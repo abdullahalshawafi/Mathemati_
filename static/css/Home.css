@@ -1,0 +1,908 @@
+* {
+	box-sizing: content-box;
+}
+.mediaViewInfo {
+	--web-view-name: custom � 1;
+	--web-view-id: custom___1;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+
+:root {
+	--web-view-ids: custom___1;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+
+#custom___1 {
+	position: absolute;
+	width: 100%;
+	height: 3599px;
+	background-color: rgba(23,23,23,1);
+	overflow: hidden;
+	--web-view-name: custom � 1;
+	--web-view-id: custom___1;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+
+#Logo {
+	position: absolute;
+	width: 425.318px;
+	height: 203.949px;
+	left: 555.557px;
+	top: 192.298px;
+	overflow: visible;
+}
+
+.Path_1 {
+	overflow: visible;
+	position: absolute;
+	width: 298.697px;
+	height: 203.949px;
+	left: 126.621px;
+	top: 0px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Path_2 {
+	overflow: visible;
+	position: absolute;
+	width: 72.815px;
+	height: 15.962px;
+	left: 346.784px;
+	top: 186.846px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Path_3 {
+	overflow: visible;
+	position: absolute;
+	width: 97.024px;
+	height: 162.325px;
+	left: 0px;
+	top: 17.755px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#We_find_x_for_you {
+	position: absolute;
+	left: 484px;
+	top: 452px;
+	overflow: visible;
+	width: 569px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 75px;
+	color: rgba(46,129,255,1);
+	letter-spacing: 0.4px;
+}
+
+#CF {
+	position: absolute;
+	width: 1536px;
+	height: 731px;
+	left: 0px;
+	top: 721px;
+	overflow: visible;
+}
+
+.Rectangle_2_n {
+	position: absolute;
+	overflow: visible;
+	width: 1536px;
+	height: 718px;
+	left: 0px;
+	top: 0px;
+}
+
+#CFBlue {
+	position: absolute;
+	width: 665px;
+	height: 665px;
+	left: 66px;
+	top: 66px;
+	overflow: visible;
+}
+
+#_Curve_Fitting {
+	position: absolute;
+	left: 756px;
+	top: 33px;
+	width: 660px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 150px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+#PI {
+	position: absolute;
+	width: 493px;
+	height: 122px;
+	left: 871px;
+	top: 300px;
+	overflow: visible;
+}
+
+#Polynomial_Interpolation {
+	position: absolute;
+	left: 55px;
+	top: 0px;
+	overflow: visible;
+	width: 439px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Ellipse_4 {
+	position: absolute;
+	overflow: visible;
+	width: 35px;
+	height: 35px;
+	left: 0px;
+	top: 5px;
+}
+
+#SI {
+	position: absolute;
+	width: 493px;
+	height: 122px;
+	left: 871px;
+	top: 418px;
+	overflow: visible;
+}
+
+#Spline_Interpolation {
+	position: absolute;
+	left: 55px;
+	top: 0px;
+	overflow: visible;
+	width: 439px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Ellipse_5 {
+	position: absolute;
+	overflow: visible;
+	width: 35px;
+	height: 35px;
+	left: 0px;
+	top: 5px;
+}
+
+#LSR {
+	position: absolute;
+	width: 525px;
+	height: 122px;
+	left: 871px;
+	top: 536px;
+	overflow: visible;
+}
+
+#Least_Squares_Regression {
+	position: absolute;
+	left: 55px;
+	top: 0px;
+	overflow: visible;
+	width: 471px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Ellipse_6 {
+	position: absolute;
+	overflow: visible;
+	width: 35px;
+	height: 35px;
+	left: 0px;
+	top: 5px;
+}
+
+#NC {
+	position: absolute;
+	width: 1536px;
+	height: 731px;
+	left: 0px;
+	top: 1438px;
+	overflow: visible;
+}
+
+.Rectangle_2_ba {
+	position: absolute;
+	overflow: visible;
+	width: 1536px;
+	height: 718px;
+	left: 0px;
+	top: 0px;
+}
+
+#CalculusRED {
+	position: absolute;
+	width: 686px;
+	height: 686px;
+	left: 751px;
+	top: 45px;
+	overflow: visible;
+}
+
+#_Calculus {
+	position: absolute;
+	left: 60px;
+	top: 6px;
+	width: 660px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 150px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+#DFD {
+	position: absolute;
+	width: 835px;
+	height: 58px;
+	left: 134px;
+	top: 326px;
+	overflow: visible;
+}
+
+#Differentiation___Finite_Diffe {
+	position: absolute;
+	left: 61px;
+	top: 0px;
+	overflow: hidden;
+	width: 775px;
+	height: 58px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 32px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Path_5 {
+	overflow: visible;
+	position: absolute;
+	width: 38px;
+	height: 30px;
+	left: 0px;
+	top: 5px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#RI {
+	position: absolute;
+	width: 835px;
+	height: 58.918px;
+	left: 134px;
+	top: 503.082px;
+	overflow: visible;
+}
+
+#Integration___Romberg {
+	position: absolute;
+	left: 61px;
+	top: 0.918px;
+	overflow: visible;
+	width: 775px;
+	height: 58px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 32px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Path_7 {
+	overflow: visible;
+	position: absolute;
+	width: 38px;
+	height: 30px;
+	left: 0px;
+	top: 5px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#DRE {
+	position: absolute;
+	width: 835px;
+	height: 58.381px;
+	left: 134px;
+	top: 237.619px;
+	overflow: visible;
+}
+
+#Differentiation___Richardson_E {
+	position: absolute;
+	left: 61px;
+	top: 0.381px;
+	overflow: hidden;
+	width: 775px;
+	height: 58px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 32px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Path_4 {
+	overflow: visible;
+	position: absolute;
+	width: 38px;
+	height: 30px;
+	left: 0px;
+	top: 5px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#NCI {
+	position: absolute;
+	width: 835px;
+	height: 58.406px;
+	left: 134px;
+	top: 414.594px;
+	overflow: visible;
+}
+
+#Integration___Newton_Cotes {
+	position: absolute;
+	left: 61px;
+	top: 0.406px;
+	overflow: visible;
+	width: 775px;
+	height: 58px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 32px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Path_6 {
+	overflow: visible;
+	position: absolute;
+	width: 38px;
+	height: 30px;
+	left: 0px;
+	top: 5px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#GQI {
+	position: absolute;
+	width: 835px;
+	height: 58px;
+	left: 134px;
+	top: 592px;
+	overflow: visible;
+}
+
+#Integration___Gauss_Quadrature {
+	position: absolute;
+	left: 61px;
+	top: 0px;
+	overflow: visible;
+	width: 775px;
+	height: 58px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 32px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Path_8 {
+	overflow: visible;
+	position: absolute;
+	width: 38px;
+	height: 30px;
+	left: 0px;
+	top: 5px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#DE {
+	position: absolute;
+	width: 1590px;
+	height: 718px;
+	left: 0px;
+	top: 2161px;
+	overflow: visible;
+}
+
+.Rectangle_2_bl {
+	position: absolute;
+	overflow: visible;
+	width: 1536px;
+	height: 718px;
+	left: 0px;
+	top: 0px;
+}
+
+#_Differential_Eqs_ {
+	position: absolute;
+	left: 730px;
+	top: 33px;
+	width: 861px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 150px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+#DE4 {
+	position: absolute;
+	width: 688px;
+	height: 688px;
+	left: 72px;
+	top: 25px;
+	overflow: visible;
+}
+
+#ODEI {
+	position: absolute;
+	width: 504.5px;
+	height: 130px;
+	left: 859.5px;
+	top: 292px;
+	overflow: visible;
+}
+
+#ODE___Iterative_methods {
+	position: absolute;
+	left: 66.5px;
+	top: 8px;
+	overflow: visible;
+	width: 439px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Polygon_1 {
+	overflow: hidden;
+	position: absolute;
+	width: 57px;
+	height: 49px;
+	transform: translate(-859.5px, -2453px) matrix(1,0,0,1,855.5001,2457) rotate(-90deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+
+#ODEPC {
+	position: absolute;
+	width: 620.5px;
+	height: 130px;
+	left: 859.5px;
+	top: 410px;
+	overflow: visible;
+}
+
+#ODE___Predictor_Corrector_meth {
+	position: absolute;
+	left: 66.5px;
+	top: 8px;
+	overflow: visible;
+	width: 555px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Polygon_2 {
+	overflow: hidden;
+	position: absolute;
+	width: 57px;
+	height: 49px;
+	transform: translate(-859.5px, -1131px) matrix(1,0,0,1,855.5001,1135) rotate(-90deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+
+#PDE {
+	position: absolute;
+	width: 536.5px;
+	height: 130px;
+	left: 859.5px;
+	top: 528px;
+	overflow: visible;
+}
+
+#PDE___Finite_Differences {
+	position: absolute;
+	left: 66.5px;
+	top: 8px;
+	overflow: visible;
+	width: 471px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+.Polygon_3 {
+	overflow: hidden;
+	position: absolute;
+	width: 57px;
+	height: 49px;
+	transform: translate(-859.5px, -1249px) matrix(1,0,0,1,855.5001,1253) rotate(-90deg);
+	transform-origin: center;
+	left: 0px;
+	top: 0px;
+}
+
+#SE {
+	position: absolute;
+	width: 1536px;
+	height: 718px;
+	left: 0px;
+	top: 2879px;
+	overflow: visible;
+}
+
+.Rectangle_2_bz {
+	position: absolute;
+	overflow: visible;
+	width: 1536px;
+	height: 718px;
+	left: 0px;
+	top: 0px;
+}
+
+#_Systems_of_Eqs_ {
+	position: absolute;
+	left: 60px;
+	top: 46px;
+	width: 796px;
+	height: 122px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 150px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+#SE_MODEL2 {
+	position: absolute;
+	width: 600px;
+	height: 600px;
+	left: 822px;
+	top: 88px;
+	overflow: visible;
+}
+
+#LS {
+	position: absolute;
+	width: 858.158px;
+	height: 58.865px;
+	left: 110.842px;
+	top: 315.135px;
+	overflow: visible;
+}
+
+#Linear_Systems_of_Equations_ {
+	position: absolute;
+	left: 84.158px;
+	top: 0.865px;
+	overflow: hidden;
+	width: 775px;
+	height: 58px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+#LS_icon {
+	position: absolute;
+	width: 53.317px;
+	height: 42.047px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+
+.Line_1 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 0px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_2 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 21.023px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_3 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 42.047px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#NS {
+	position: absolute;
+	width: 858.158px;
+	height: 58px;
+	left: 110.842px;
+	top: 424px;
+	overflow: visible;
+}
+
+#Nonlinear_Systems_of_Equations {
+	position: absolute;
+	left: 84.158px;
+	top: 0px;
+	overflow: hidden;
+	width: 775px;
+	height: 58px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+#NS_icon {
+	position: absolute;
+	width: 53.317px;
+	height: 42.047px;
+	left: 0px;
+	top: 1.135px;
+	overflow: visible;
+}
+
+.Line_4 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 0px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_5 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 21.023px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_6 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 42.047px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#EP {
+	position: absolute;
+	width: 858.158px;
+	height: 58px;
+	left: 110.842px;
+	top: 533px;
+	overflow: visible;
+}
+
+#Eigenvalue_Problem {
+	position: absolute;
+	left: 84.158px;
+	top: 0px;
+	overflow: visible;
+	width: 775px;
+	height: 58px;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 35px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+#EP_icon {
+	position: absolute;
+	width: 53.317px;
+	height: 42.047px;
+	left: 0px;
+	top: 2.135px;
+	overflow: visible;
+}
+
+.Line_7 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 0px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_8 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 21.023px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_9 {
+	overflow: visible;
+	position: absolute;
+	width: 63.317px;
+	height: 10px;
+	left: 0px;
+	top: 42.047px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#CF_ck {
+	position: absolute;
+	width: 123.333px;
+	height: 740px;
+	left: -48px;
+	top: 708px;
+	overflow: visible;
+}
+
+#NC_cl {
+	position: absolute;
+	width: 129px;
+	height: 774px;
+	left: 1459px;
+	top: 1409px;
+	overflow: visible;
+}
+
+#DE_cm {
+	position: absolute;
+	width: 124px;
+	height: 744px;
+	left: -52px;
+	top: 2143px;
+	overflow: visible;
+}
+
+#SE_cn {
+	position: absolute;
+	width: 126px;
+	height: 756px;
+	left: 1459px;
+	top: 2843px;
+	overflow: visible;
+}
+
+#Credits_______________________ {
+	position: absolute;
+	left: 106px;
+	top: 47px;
+	overflow: visible;
+	width: 725px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 40px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+#Contact_______________________ {
+	position: absolute;
+	left: 706px;
+	top: 47px;
+	overflow: visible;
+	width: 725px;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 40px;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.4px;
+}
+
+#backblue2 {
+	position: absolute;
+	width: 1600px;
+	height: 661px;
+	left: -63.5px;
+	top: -176.5px;
+	overflow: visible;
+}

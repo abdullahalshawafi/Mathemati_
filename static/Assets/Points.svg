@@ -1,0 +1,18 @@
+<svg width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="24.5" cy="24.5" r="24.5" fill="url(#paint0_radial)"/>
+<circle cx="24.5" cy="24.5" r="7.63115" fill="#4DFFF4"/>
+<circle cx="37.3525" cy="24.5" r="3.61475" fill="#0097EC"/>
+<circle cx="11.6475" cy="24.5" r="3.61475" fill="#0097EC"/>
+<circle cx="13.3041" cy="35.5101" r="2.04456" transform="rotate(-45 13.3041 35.5101)" fill="#0046FA"/>
+<circle cx="13.3041" cy="13.8604" r="2.04456" transform="rotate(45 13.3041 13.8604)" fill="#0046FA"/>
+<circle cx="35.2832" cy="35.3283" r="2.04456" transform="rotate(-45 35.2832 35.3283)" fill="#0046FA"/>
+<circle cx="35.2831" cy="13.8604" r="2.04456" transform="rotate(45 35.2831 13.8604)" fill="#0046FA"/>
+<circle cx="24.5" cy="11.6475" r="3.61475" transform="rotate(-90 24.5 11.6475)" fill="#0097EC"/>
+<circle cx="24.5" cy="37.3525" r="3.61475" transform="rotate(-90 24.5 37.3525)" fill="#0097EC"/>
+<defs>
+<radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(24.5 24.5) rotate(90) scale(24.5)">
+<stop stop-color="#151515"/>
+<stop offset="1" stop-color="#1C1C1C" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
