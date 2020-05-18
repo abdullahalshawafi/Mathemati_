@@ -28,8 +28,13 @@
             height="22.2vw"
           ></rect>
         </svg>
-        <textarea class="Rectangle_9" disabled>{% if Eqs_No == 3 %}> [ x y z ], εs%{% elif Eqs_No == 2 %}> [ x y ], εs%{% endif %}{% if results %}{% for i in range(iterations) %}&#13;&#10;> [ {{results[0][i][0]}}, {{results[0][i + 1][0]}} {% if Eqs_No == 3 %}, {{results[0][i + 2][0]}} {% endif %}], {{results[1][i]}}%{% endfor %}{% endif %}
+        {% if Method == "NewtonRaphson" %}
+        <textarea class="Rectangle_9" disabled>{% if Eqs_No == 3 %}> [ x y z ], εs%{% elif Eqs_No == 2 %}> [ x y ], εs%{% endif %}{% if results %}{% for i in range(Length) %}{% if results[0][i][0] and results[1][i] %}&#13;&#10;> [ {{results[0][i][0]}}, {{results[0][i + 1][0]}} {% if Eqs_No == 3 %}, {{results[0][i + 2][0]}} {% endif %}], {{results[1][i]}}%{% endif %}{% endfor %}{% endif %}
         </textarea>
+        {% elif Method == "FixedPoint" %}
+        <textarea class="Rectangle_9" disabled>{% if Eqs_No == 3 %}> [ x y z ], εs%{% elif Eqs_No == 2 %}> [ x y ], εs%{% endif %}{% if results %}{% for i in range(Length) %}&#13;&#10;> [ {{results[0][i]}}, {{results[1][i]}} {% if Eqs_No == 3 %}, {{results[2][i]}} {% endif %}], {{results[3][i]}}%{% endfor %}{% endif %}
+        </textarea>
+        {% endif %}
 				<div class="Rectangle_9over" disabled></div>
         <svg class="Path_3" viewBox="127.353 288 21.741 24.188">
           <path
@@ -220,13 +225,14 @@
         </div>
       </div>
       <div id="LeffTapCon">
-        <form action="" method="POST">
+        <form action="{{url_for('NonlinearSystem')}}" method="POST">
           <div id="Newton_Raphson">
             <input
               type="radio"
               id="NewtonRaphson"
               name="Method"
               value="NewtonRaphson"
+              onchange="MethodSelection()"
               {% if Method == "NewtonRaphson" %}
               checked
               {% endif %}
@@ -238,6 +244,7 @@
               id="FixedPoint"
               name="Method"
               value="FixedPoint"
+              onchange="MethodSelection()"
               {% if Method == "FixedPoint" %}
               checked
               {% endif %}
@@ -294,21 +301,20 @@
           <input type="text" name = "Heq" class="Rectangle_30" style="text-align: left;" value="{{request.form['Heq']}}" />
           <div class="Rectangle_28">
             <div class="button-div">
-              <button type="submit" class="table-button" id="calc" style="background: white;">
-                Click me
-                <!-- <embed src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" /> -->
+              <button type="submit" class="table-button" id="calc">
+                <img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" />
               </button>
               <embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}" />
               <button class="table-button" id="save">
-                <embed src="{{url_for('static', filename='Assets/Save.svg')}}" />
+                <img src="{{url_for('static', filename='Assets/Save.svg')}}" />
               </button>
               <embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}" />
               <button class="table-button" id="load">
-                <embed src="{{url_for('static', filename='Assets/Load.svg')}}" />
+                <img src="{{url_for('static', filename='Assets/Load.svg')}}" />
               </button>
               <embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}" />
               <button class="table-button" id="clear">
-                <embed src="{{url_for('static', filename='Assets/Clear.svg')}}" />
+                <img src="{{url_for('static', filename='Assets/Clear.svg')}}" />
               </button>
             </div>
           </form>
@@ -394,21 +400,35 @@
         </div>
       </div>
       <div id="Answer">
-        {% if results and Eqs_No == 2 %}
-        <input type="text" disabled value="{{results[0][-2][0]}}" class="Rectangle_32" />
-        <input type="text" disabled value="{{results[0][-1][0]}}" class="Rectangle_33" />
-        <input type="text" disabled class="Rectangle_34" />
-        <input type="text" disabled value="{{results[1][-1]}}" class="Rectangle_35" />
-        {% elif results and Eqs_No == 3 %}
-        <input type="text" disabled value="{{results[0][-3][0]}}" class="Rectangle_32" />
-        <input type="text" disabled value="{{results[0][-2][0]}}" class="Rectangle_33" />
-        <input type="text" disabled value="{{results[0][-1][0]}}" class="Rectangle_34" />
-        <input type="text" disabled value="{{results[1][-1]}}" class="Rectangle_35" />
+        {% if Method == "NewtonRaphson" %}
+          {% if results and Eqs_No == 2 %}
+          <input type="text" disabled value="{{results[0][-2][0]}}" class="Rectangle_32" />
+          <input type="text" disabled value="{{results[0][-1][0]}}" class="Rectangle_33" />
+          <input type="text" disabled class="Rectangle_34" />
+          <input type="text" disabled value="{{results[1][-1]}}" class="Rectangle_35" />
+          {% elif results and Eqs_No == 3 %}
+          <input type="text" disabled value="{{results[0][-3][0]}}" class="Rectangle_32" />
+          <input type="text" disabled value="{{results[0][-2][0]}}" class="Rectangle_33" />
+          <input type="text" disabled value="{{results[0][-1][0]}}" class="Rectangle_34" />
+          <input type="text" disabled value="{{results[1][-1]}}" class="Rectangle_35" />
+          {% endif %}
+        {% elif Method == "FixedPoint" %}
+          {% if results and Eqs_No == 2 %}
+          <input type="text" disabled value="{{results[0][-1]}}" class="Rectangle_32" />
+          <input type="text" disabled value="{{results[1][-1]}}" class="Rectangle_33" />
+          <input type="text" disabled class="Rectangle_34" />
+          <input type="text" disabled value="{{results[3][-1]}}" class="Rectangle_35" />
+          {% elif results and Eqs_No == 3 %}
+          <input type="text" disabled value="{{results[0][-1]}}" class="Rectangle_32" />
+          <input type="text" disabled value="{{results[1][-1]}}" class="Rectangle_33" />
+          <input type="text" disabled value="{{results[2][-1]}}" class="Rectangle_34" />
+          <input type="text" disabled value="{{results[3][-1]}}" class="Rectangle_35" />
+          {% endif %}
         {% else %}
-        <input type="text" disabled class="Rectangle_32" />
-        <input type="text" disabled class="Rectangle_33" />
-        <input type="text" disabled class="Rectangle_34" />
-        <input type="text" disabled class="Rectangle_35" />
+          <input type="text" disabled class="Rectangle_32" />
+          <input type="text" disabled class="Rectangle_33" />
+          <input type="text" disabled class="Rectangle_34" />
+          <input type="text" disabled class="Rectangle_35" />
         {% endif %}
         <div id="x___">
           <span>x = </span>
@@ -486,10 +506,25 @@
     window.onload = function () {
       DimInput();
       addtograph();
+      MethodSelection();
     };
+
+    function MethodSelection() {
+      var MethodFixedPoint = document.getElementsByName("Method")[1];
+      if (MethodFixedPoint.checked) {
+        document.getElementById("F_x_y_z____0__").innerHTML = "x =";
+        document.getElementById("G_x_y_z____0__").innerHTML = "y =";
+        document.getElementById("H_x_y_z____0__").innerHTML = "z =";
+      } else {
+        document.getElementById("F_x_y_z____0__").innerHTML = "F(x,y,z) = 0 =";
+        document.getElementById("G_x_y_z____0__").innerHTML = "G(x,y,z) = 0 =";
+        document.getElementById("H_x_y_z____0__").innerHTML = "H(x,y,z) = 0 =";
+      }
+    }
 
     function DimInput() {
 			var Dim2 = document.getElementsByName("Dim")[0];
+      var MethodFixedPoint = document.getElementsByName("Method")[1];
 
 			if (Dim2.checked) {
 				document.getElementsByClassName("Rectangle_30")[0].setAttribute("disabled", "true");
@@ -497,8 +532,13 @@
 				document.getElementsByClassName("Rectangle_44")[2].setAttribute("disabled", "true");
 				document.getElementsByClassName("Rectangle_44")[2].setAttribute("style", "background: #303030; color: #999999;");
 				document.getElementById("H_x_y_z____0__").setAttribute("style", "color: #999999; text-decoration: line-through;");
-				document.getElementById("F_x_y_z____0__").innerHTML = "F(x,y) = 0 =";
-				document.getElementById("G_x_y_z____0__").innerHTML = "G(x,y) = 0 =";
+        if (!MethodFixedPoint.checked) {
+  				document.getElementById("F_x_y_z____0__").innerHTML = "F(x,y) = 0 =";
+  				document.getElementById("G_x_y_z____0__").innerHTML = "G(x,y) = 0 =";
+        } else {
+          document.getElementById("F_x_y_z____0__").innerHTML = "x =";
+  				document.getElementById("G_x_y_z____0__").innerHTML = "y =";
+        }
 				document.getElementById("z___").setAttribute("style", "color: #999999; text-decoration: line-through; ");
 				document.getElementsByClassName("inChars")[2].setAttribute("style", "color: #999999; text-decoration: line-through;");
 				document.getElementsByClassName("Rectangle_34")[0].setAttribute("style", "background: #303030; color: #999999;");
@@ -511,8 +551,13 @@
 				document.getElementsByClassName("inChars")[2].setAttribute("style", "color: white; text-decoration: normal;");
 				document.getElementById("z___").setAttribute("style", "color: white; text-decoration: normal;");
 				document.getElementsByClassName("Rectangle_34")[0].setAttribute("style", "background: #282828; color: #FFFFFF;");
-				document.getElementById("F_x_y_z____0__").innerHTML = "F(x,y,z) = 0 =";
-				document.getElementById("G_x_y_z____0__").innerHTML = "G(x,y,z) = 0 =";
+        if (!MethodFixedPoint.checked) {
+  				document.getElementById("F_x_y_z____0__").innerHTML = "F(x,y,z) = 0 =";
+  				document.getElementById("G_x_y_z____0__").innerHTML = "G(x,y,z) = 0 =";
+        } else {
+          document.getElementById("F_x_y_z____0__").innerHTML = "x =";
+  				document.getElementById("G_x_y_z____0__").innerHTML = "y =";
+        }
 			}
 		}
 

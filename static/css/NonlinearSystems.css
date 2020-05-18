@@ -839,6 +839,7 @@ input:focus {
 .table-button {
   background: unset;
   border: unset;
+  outline: none;
   width: 3.255208333vw;
   margin-bottom: 0.651041667vw;
   pointer-events: visible;
@@ -857,12 +858,12 @@ input:focus {
   pointer-events: visible;
 }
 
-.button-div button embed {
+.button-div button img {
   height: 2.5vw;
   transition: 0.2s;
 }
 
-.button-div button embed:hover {
+.button-div button img:hover {
   height: 2.8vw;
   transition: 0.2s;
   filter: brightness(1.3) saturate(40);

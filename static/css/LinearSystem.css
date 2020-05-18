@@ -1,0 +1,1645 @@
+﻿* {
+	box-sizing: content-box;
+}
+
+body {
+	background-color: #1d1d1d;
+	margin: 0;
+	padding: 0;
+	font-family: "Reem Kufi", sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+.Nav-Bar {
+	background: linear-gradient(0.25turn, #2f2e2e 25%, #111111, #2f2e2e 75%);
+	margin: 0;
+	padding: 2vw 0;
+	color: white;
+	font-size: 1.5vw;
+	list-style-type: none;
+	text-align: center;
+	z-index: 1;
+}
+
+	.Nav-Bar li {
+		color: white;
+		margin: 0;
+		width: 10.8vw;
+		display: inline-block;
+		transition: 0.15s;
+		cursor: pointer;
+	}
+
+#DE-Menu .dropdown_content a:hover {
+	color: rgb(255, 109, 28);
+}
+
+#Calc-Menu .dropdown_content a:hover {
+	color: rgb(255, 28, 109);
+}
+
+#CF-Menu .dropdown_content a:hover {
+	color: rgb(28, 160, 255);
+}
+
+#SE-Menu .dropdown_content a:hover {
+	color: rgb(223, 255, 28);
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown_content {
+	display: none;
+	position: absolute;
+	border-radius: 1vw;
+	background-color: #3f3f3f;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 101;
+	animation: transition 0.4s forwards 0s ease-out;
+}
+
+@keyframes transition {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		transform: rotate(yy);
+		opacity: 1;
+	}
+}
+
+.dropdown_content a {
+	padding: 12px 16px;
+	border-radius: 1vw;
+	display: block;
+	font-size: 1vw;
+}
+
+	.dropdown_content a:hover {
+		background: radial-gradient(rgb(45, 45, 45), #3f3f3f 59%);
+	}
+
+.dropdown:hover .dropdown_content {
+	display: block;
+}
+
+.Nav-Bar li a:hover,
+.Nav-Bar li:hover {
+	color: #808080;
+	transition: 0.15s;
+}
+/*
+.Wing {
+} */
+
+.WingSrc {
+	width: 30vw;
+	position: relative;
+	top: 0.5vw;
+	z-index: 10;
+	left: 50%;
+	transform: translate(-50%, -100%);
+}
+
+.Logo-Div {
+	color: #DFFF1C;
+	background: #333333;
+	z-index: 20;
+	display: inline-block;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
+	font-size: 1.6vw;
+	padding: 1.15vw 1vw 0.8vw 1vw;
+	border-radius: 0 0 2vw 2vw;
+}
+
+.Logo {
+	margin: 0;
+	width: 10.5vw;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 5px;
+}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+/* From here starts the main---------------------------------------------- */
+.mediaViewInfo {
+	--web-view-name: Web 1920 � 1;
+	--web-view-id: Web_1920___1;
+	--web-scale-on-resize: true;
+	--web-show-by-media-query: true;
+	--web-enable-deep-linking: true;
+}
+
+:root {
+	--web-view-ids: Web_1920___1;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+
+#Web_1920___1 {
+	position: absolute;
+	width: 98.111vw;
+	height: 38.2161583vw;
+	overflow: hidden;
+	margin: -5vw 0 0 0;
+	--web-view-name: Web 1920 � 1;
+	--web-view-id: Web_1920___1;
+	--web-scale-on-resize: true;
+	--web-show-by-media-query: true;
+	--web-enable-deep-linking: true;
+}
+
+#RightTab {
+	position: absolute;
+	width: 30.53385vw;
+	height: 22.2005vw;
+	left: 64.1276vw;
+	top: 14.0625vw;
+	overflow: visible;
+}
+
+.Rectangle_6 {
+	position: absolute;
+	overflow: visible;
+	width: 7.16145vw;
+	height: 4.5579vw;
+	left: 23.3723vw;
+	top: 0vw;
+}
+
+.Rectangle_7 {
+	position: absolute;
+	overflow: visible;
+	width: 25.9765625vw;
+	height: 22.2005vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+input[type=radio] {
+	background: rgb(215, 215, 215);
+	width: 1.6vw;
+	height: 1.6vw;
+	margin-left: 0;
+	margin-right: 0.6vw;
+	filter: invert(1);
+}
+
+input[type=text] {
+	background: #282828;
+	color: white;
+	font-family: 'Reem Kufi';
+	font-size: 1vw;
+	padding: 0 0.2vw;
+	height: 1.7vw;
+	border-radius: 1vw;
+	border-color: transparent;
+	border-style: none;
+	border-width: 0;
+	text-align: center;
+}
+
+textarea:focus, input:focus {
+	outline: none;
+}
+
+.Rectangle_9 {
+	background: #282828;
+	color: white;
+	border-radius: 1vw;
+	font-family: Consolas;
+	font-size: 1.4vw;
+	padding: 1vw;
+	position: absolute;
+	overflow: visible;
+	width: 23.30729vw;
+	height: 19.140625vw;
+	left: 1.432291667vw;
+	top: 1.432291667vw;
+	resize: none;
+}
+.Rectangle_9over {
+	background: linear-gradient(white 70%, rgb(153, 255, 20));
+	border-radius: 1vw;
+	padding: 1vw;
+	position: absolute;
+	overflow: visible;
+	width: 23.30729vw;
+	height: 19.140625vw;
+	left: 1.432291667vw;
+	top: 1.432291667vw;
+	mix-blend-mode: darken;
+	pointer-events: none;
+}
+
+.Path_3 {
+	overflow: visible;
+	position: absolute;
+	width: 1.415429vw;
+	height: 1.574739vw;
+	left: 25.9270823vw;
+	top: 4.4497395vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#terminal_ {
+	position: absolute;
+	width: 3.668489vw;
+	height: 3.86778125vw;
+	left: 26.16790365vw;
+	top: 0.3736979167vw;
+	overflow: visible;
+}
+
+.Ellipse_1_o {
+	position: absolute;
+	overflow: visible;
+	width: 3.668489vw;
+	height: 3.86778125vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+.Path_4 {
+	overflow: visible;
+	position: absolute;
+	width: 1.836263021vw;
+	height: 1.1179vw;
+	left: 0.87695vw;
+	top: 1.340885417vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Path_5 {
+	overflow: visible;
+	position: absolute;
+	width: 2.101888021vw;
+	height: 1.42552vw;
+	left: 0.744140625vw;
+	top: 1.1661458333vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#MidTab {
+	position: absolute;
+	width: 21.484375vw;
+	height: 21.74479167vw;
+	left: 39.2578125vw;
+	top: 8.203125vw;
+	overflow: visible;
+}
+
+.Rectangle_8 {
+	position: absolute;
+	overflow: visible;
+	width: 21.484375vw;
+	height: 21.74479167vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+.Rectangle_8-5 {
+	position: absolute;
+	overflow: visible;
+	left: 1.5vw;
+	top: 1.5vw;
+}
+
+#LeftTap {
+	position: absolute;
+	width: 30.53385vw;
+	height: 35.28645833vw;
+	left: 5.338541667vw;
+	top: 0.9765625vw;
+	overflow: visible;
+}
+
+.Rectangle_3 {
+	position: absolute;
+	overflow: visible;
+	width: 22.981777083vw;
+	height: 35.28645833vw;
+	left: 4.4270vw;
+	top: 0vw;
+}
+
+.Rectangle_2 {
+	position: absolute;
+	overflow: visible;
+	width: 7.09635467vw;
+	height: 4.231770833vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+.Path_1 {
+	overflow: visible;
+	position: absolute;
+	width: 1.415494792vw;
+	height: 1.353580729vw;
+	left: 3.120247396vw;
+	top: 4.19967vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Path_2 {
+	overflow: visible;
+	position: absolute;
+	width: 1.415494792vw;
+	height: 1.353580729vw;
+	left: 27.2129vw;
+	top: 14.64049vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Rectangle_4 {
+	filter: drop-shadow(-0.26041667vw 0.26041667vw 0.5208333vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 5.4036vw;
+	height: 16.6015vw;
+	left: 26.69270vw;
+	top: 0vw;
+}
+
+#System {
+	position: absolute;
+	width: 3.4473vw;
+	height: 3.634375vw;
+	left: 0.5894vw;
+	top: 0.25052vw;
+	overflow: visible;
+}
+
+.Ellipse_3_ {
+	position: absolute;
+	overflow: visible;
+	width: 3.4473vw;
+	height: 3.634375vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+.Line_1 {
+	overflow: visible;
+	position: absolute;
+	width: 2.5870vw;
+	height: 0.494791667vw;
+	left: 0.68222265625vw;
+	top: 0.84166667vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_2 {
+	overflow: visible;
+	position: absolute;
+	width: 2.5870vw;
+	height: 0.494791667vw;
+	left: 0.68222265625vw;
+	top: 2.77298vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_3 {
+	overflow: visible;
+	position: absolute;
+	width: 2.5870vw;
+	height: 0.494791667vw;
+	left: 0.68222265625vw;
+	top: 1.807291667vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#LeffTapCon {
+	position: absolute;
+	width: 25.26041667vw;
+	height: 32.87760417vw;
+	left: 10.7421875vw;
+	top: 1.82291667vw;
+	overflow: visible;
+}
+
+#Newton_Raphson {
+	position: absolute;
+	left: 0vw;
+	top: 0.84635vw;
+	overflow: visible;
+	width: 11.1979vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.423177vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.497395833vw;
+	color: rgba(255,255,255,1);
+}
+
+#Fixed_Point {
+	position: absolute;
+	left: 0vw;
+	top: 3.6458333vw;
+	overflow: visible;
+	width: 7.421875vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.423177vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.497395833vw;
+	color: rgba(255,255,255,1);
+}
+
+#ID2_eqs_ {
+	position: absolute;
+	left: 0.0651041667vw;
+	top: 6.640625vw;
+	overflow: visible;
+	width: 4.296875vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278645vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888vw;
+	color: rgba(255,255,255,1);
+}
+
+#Number_of_iterations__ {
+	position: absolute;
+	left: 0vw;
+	top: 26.6276vw;
+	overflow: visible;
+	width: 14.453125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.423177vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.497395833vw;
+	color: rgba(255,255,255,1);
+}
+
+#Stopping_Criteria__s___ {
+	position: absolute;
+	left: 0.0651041667vw;
+	top: 30.79427083vw;
+	overflow: visible;
+	width: 14.71354167vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.423177vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.497395833vw;
+	color: rgba(255,255,255,1);
+}
+
+#ID3_eqs_ {
+	position: absolute;
+	left: 8.3984375vw;
+	top: 6.640625vw;
+	overflow: visible;
+	width: 4.231770833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278645vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_18 {
+	position: absolute;
+	overflow: visible;
+	width: 5.2083vw;
+	height: 1.7578vw;
+	left: 15.49479167vw;
+	top: 26.953125vw;
+}
+
+.Path_6 {
+	overflow: visible;
+	position: absolute;
+	width: 5.2083vw;
+	height: 1.82291667vw;
+	left: 15.49479167vw;
+	top: 30.859375vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Rectangle_19 {
+	position: absolute;
+	overflow: visible;
+	width: 20.703125vw;
+	height: 1.7578vw;
+	left: 0vw;
+	top: 13.671875vw;
+}
+
+.Rectangle_28 {
+	position: absolute;
+	overflow: visible;
+	width: 4.03645vw;
+	height: 14.7786vw;
+	left: 21.2239vw;
+	top: 0vw;
+}
+
+#F_x_y_z____0__ {
+	position: absolute;
+	left: 0vw;
+	top: 11.1979vw;
+	overflow: visible;
+	width: 7.8776vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.423177vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.497395833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_29 {
+	position: absolute;
+	overflow: visible;
+	width: 20.703125vw;
+	height: 1.7578vw;
+	left: 0vw;
+	top: 18.75vw;
+}
+
+#G_x_y_z____0__ {
+	position: absolute;
+	left: 0.0651041667vw;
+	top: 16.2760vw;
+	overflow: visible;
+	width: 8.0078125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.423177vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.497395833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_30 {
+	position: absolute;
+	overflow: visible;
+	width: 20.703125vw;
+	height: 1.7578vw;
+	left: 0vw;
+	top: 23.4375vw;
+}
+
+#H_x_y_z____0__ {
+	position: absolute;
+	left: 0vw;
+	top: 20.96354167vw;
+	overflow: visible;
+	width: 8.07291667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.423177vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.497395833vw;
+	color: rgba(255,255,255,1);
+}
+
+#AnswerTab {
+	position: absolute;
+	width: 30.53385vw;
+	height: 9.5703125vw;
+	left: 64.1276vw;
+	top: 2.08333333vw;
+	overflow: visible;
+}
+
+.Rectangle_6_bm {
+	position: absolute;
+	overflow: visible;
+	width: 7.16145vw;
+	height: 4.5579vw;
+	left: 23.3723vw;
+	top: 0vw;
+}
+
+.Rectangle_7_bn {
+	position: absolute;
+	overflow: visible;
+	width: 25.9765625vw;
+	height: 9.5703125vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+.Path_3_bo {
+	overflow: visible;
+	position: absolute;
+	width: 1.415429vw;
+	height: 1.55566vw;
+	left: 25.9270823vw;
+	top: 4.42617vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#Brackets {
+	position: absolute;
+	width: 2.87727vw;
+	height: 3.03346vw;
+	left: 26.7578vw;
+	top: 0.716145vw;
+	overflow: visible;
+}
+
+.Ellipse_4_br {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.03346vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+.Path_7 {
+	overflow: visible;
+	position: absolute;
+	width: 1.5983vw;
+	height: 1.56041vw;
+	left: 0.621549vw;
+	top: 0.652734vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Path_8 {
+	overflow: visible;
+	position: absolute;
+	width: 1.81386vw;
+	height: 1.76875vw;
+	left: 0.514127vw;
+	top: 0.548677vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#Answer {
+	position: absolute;
+	width: 23.4375vw;
+	height: 5.79427vw;
+	left: 65.3645833vw;
+	top: 3.580729167vw;
+	overflow: visible;
+}
+
+.Rectangle_32 {
+	position: absolute;
+	overflow: visible;
+	width: 7.94270833vw;
+	height: 1.7578vw;
+	left: 2.7343vw;
+	top: 0.3255208333vw;
+}
+
+#x___ {
+	position: absolute;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+	width: 2.669270833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278645vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_33 {
+	position: absolute;
+	overflow: visible;
+	width: 7.94270833vw;
+	height: 1.7578vw;
+	left: 15.49479167vw;
+	top: 0.3255208333vw;
+}
+
+#y___ {
+	position: absolute;
+	left: 12.36979167vw;
+	top: 0vw;
+	overflow: visible;
+	width: 2.669270833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278645vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_34 {
+	position: absolute;
+	overflow: visible;
+	width: 7.94270833vw;
+	height: 1.7578vw;
+	left: 2.7343vw;
+	top: 3.7109375vw;
+}
+
+#z___ {
+	position: absolute;
+	left: 0vw;
+	top: 3.38541667vw;
+	overflow: visible;
+	width: 2.47395833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278645vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_35 {
+	position: absolute;
+	overflow: visible;
+	width: 7.94270833vw;
+	height: 1.7578vw;
+	left: 15.49479167vw;
+	top: 3.7109375vw;
+}
+
+#_s___ {
+	position: absolute;
+	left: 12.43489vw;
+	top: 3.190104167vw;
+	overflow: visible;
+	width: 3.3203125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278645vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888vw;
+	color: rgba(255,255,255,1);
+}
+
+.table-button {
+	background: unset;
+	border: unset;
+	outline: none;
+	width: 3.255208333vw;
+	margin-bottom: 0.651041667vw;
+	pointer-events: visible;
+}
+
+.button-div {
+	left: 0.4vw;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 3vw;
+	z-index: 100;
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	pointer-events: visible;
+}
+
+	.button-div button img {
+		height: 2.5vw;
+		transition: 0.2s;
+	}
+
+		.button-div button img:hover {
+			height: 2.8vw;
+			transition: 0.2s;
+			filter: brightness(1.3) saturate(40);
+		}
+
+#calc {
+	transform: translateX(-11%);
+}
+
+
+#myFunction {
+	filter: invert(1) brightness(2);
+	z-index: 10;
+	top: 1.38vw;
+	left: 1.25vw;
+	font-family: Arial;
+	font-weight: 600;
+}
+
+
+#plot {
+}
+
+
+#LeffTapCon {
+	position: absolute;
+	width: 25.2604vw;
+	height: 32.877vw;
+	left: 10.7421vw;
+	top: 1.82291vw;
+	overflow: visible;
+}
+
+
+
+#w___ {
+	position: absolute;
+	left: 0.06510416667vw;
+	top: 0.84635vw;
+	overflow: visible;
+	width: 2.473958vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.42317vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.49739vw;
+	color: rgba(255,255,255,1);
+}
+
+#ID4_eqs_ {
+	position: absolute;
+	left: 0.06510416667vw;
+	top: 6.640625vw;
+	overflow: visible;
+	width: 4.36197vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+#Number_of_iterations__ {
+	position: absolute;
+	left: 0vw;
+	top: 26.6276vw;
+	overflow: visible;
+	width: 14.453125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.42317vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.49739vw;
+	color: rgba(255,255,255,1);
+}
+
+#Stopping_Criteria__s___ {
+	position: absolute;
+	left: 0.06510416667vw;
+	top: 30.7942vw;
+	overflow: visible;
+	width: 14.7135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.42317vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.49739vw;
+	color: rgba(255,255,255,1);
+}
+
+#ID5_eqs_ {
+	position: absolute;
+	left: 8.52864vw;
+	top: 6.640625vw;
+	overflow: visible;
+	width: 4.166667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_18 {
+	position: absolute;
+	overflow: visible;
+	width: 5.2083333vw;
+	height: 1.7578125vw;
+	left: 15.49479167vw;
+	top: 26.953125vw;
+}
+
+.Path_6 {
+	overflow: visible;
+	position: absolute;
+	width: 5.2083333vw;
+	height: 1.82291vw;
+	left: 15.49479167vw;
+	top: 30.859375vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+
+#x1_______x2_______x3_______x4_ {
+	position: absolute;
+	left: 0.84635vw;
+	top: 10.546875vw;
+	overflow: visible;
+	width: 19.661458vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.42317vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.41927vw;
+	color: rgba(255,255,255,1);
+}
+
+#Line1 {
+	position: absolute;
+	width: 20.833333vw;
+	height: 1.888020833vw;
+	left: 0vw;
+	top: 12.89025vw;
+	overflow: visible;
+}
+
+.Rectangle_19 {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+}
+
+#______________________________ {
+	position: absolute;
+	left: 2.799479167vw;
+	top: 0vw;
+	overflow: visible;
+	width: 15.36458333vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.4166666418vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.49739vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_36 {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 3.6458333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_37 {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 7.2916667vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_38 {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 10.9375vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_39 {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 14.58333333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_40 {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 18.229vw;
+	top: 0.1302083333vw;
+}
+
+#Line1_bn {
+	position: absolute;
+	width: 20.833333vw;
+	height: 1.888020833vw;
+	left: 0vw;
+	top: 15.49479167vw;
+	overflow: visible;
+}
+
+.Rectangle_19_bo {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+}
+
+#_______________________________bp {
+	position: absolute;
+	left: 2.799479167vw;
+	top: 0vw;
+	overflow: visible;
+	width: 15.36458333vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.4166666418vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.49739vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_36_bq {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 3.6458333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_37_br {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 7.2916667vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_38_bs {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 10.9375vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_39_bt {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 14.58333333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_40_bu {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 18.229vw;
+	top: 0.1302083333vw;
+}
+
+#Line1_bv {
+	position: absolute;
+	width: 20.833333vw;
+	height: 1.888020833vw;
+	left: 0vw;
+	top: 18.03385417vw;
+	overflow: visible;
+}
+
+.Rectangle_19_bw {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+}
+
+#_______________________________bx {
+	position: absolute;
+	left: 2.799479167vw;
+	top: 0vw;
+	overflow: visible;
+	width: 15.36458333vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.4166666418vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.49739vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_36_by {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 3.6458333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_37_bz {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 7.2916667vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_38_b {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 10.9375vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_39_b {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 14.58333333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_40_b {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 18.229vw;
+	top: 0.1302083333vw;
+}
+
+#Line1_b {
+	position: absolute;
+	width: 20.833333vw;
+	height: 1.888020833vw;
+	left: 0vw;
+	top: 20.63802083vw;
+	overflow: visible;
+}
+
+.Rectangle_19_b {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+}
+
+#_______________________________b {
+	position: absolute;
+	left: 2.799479167vw;
+	top: 0vw;
+	overflow: visible;
+	width: 15.36458333vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.4166666418vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.49739vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_36_b {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 3.6458333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_37_b {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 7.2916667vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_38_ca {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 10.9375vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_39_ca {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 14.58333333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_40_ca {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 18.229vw;
+	top: 0.1302083333vw;
+}
+
+#Line1_cb {
+	position: absolute;
+	width: 20.833333vw;
+	height: 1.888020833vw;
+	left: 0vw;
+	top: 23.2421875vw;
+	overflow: visible;
+}
+
+.Rectangle_19_cc {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+}
+
+#_______________________________cd {
+	position: absolute;
+	left: 2.799479167vw;
+	top: 0vw;
+	overflow: visible;
+	width: 15.36458333vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.4166666418vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.49739vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_36_ce {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 3.6458333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_37_cf {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 7.2916667vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_38_cg {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 10.9375vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_39_ch {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 14.58333333vw;
+	top: 0.1302083333vw;
+}
+
+.Rectangle_40_ci {
+	position: absolute;
+	overflow: visible;
+	width: 2.604166667vw;
+	height: 1.7578125vw;
+	left: 18.229vw;
+	top: 0.1302083333vw;
+}
+
+#ID2_eqs_ {
+	position: absolute;
+	left: 0.06510416667vw;
+	top: 4.03645833vw;
+	overflow: visible;
+	width: 4.296875vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+#ID3_eqs_ {
+	position: absolute;
+	left: 8.3984375vw;
+	top: 4.03645833vw;
+	overflow: visible;
+	width: 4.23177vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_43 {
+	position: absolute;
+	overflow: visible;
+	width: 17.578125vw;
+	height: 1.7578125vw;
+	left: 3.125vw;
+	top: 1vw;
+}
+
+
+#Answer {
+	position: absolute;
+	width: 23.4375vw;
+	height: 7.421875vw;
+	left: 65.3645833vw;
+	top: 2.86458333vw;
+	overflow: visible;
+}
+
+.Rectangle_32 {
+	position: absolute;
+	overflow: visible;
+	width: 7.9427vw;
+	height: 1.7578125vw;
+	left: 2.734375vw;
+	top: 0.32552vw;
+}
+
+#x1__ {
+	position: absolute;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+	width: 2.86458333vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_33 {
+	position: absolute;
+	overflow: visible;
+	width: 7.9427vw;
+	height: 1.7578125vw;
+	left: 15.49479167vw;
+	top: 0.32552vw;
+}
+
+#x2__ {
+	position: absolute;
+	left: 12.34895vw;
+	top: 0vw;
+	overflow: visible;
+	width: 3.125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_34 {
+	position: absolute;
+	overflow: visible;
+	width: 7.9427vw;
+	height: 1.7578125vw;
+	left: 2.734375vw;
+	top: 5.33854vw;
+}
+
+#x5__ {
+	position: absolute;
+	left: 0vw;
+	top: 5.01302vw;
+	overflow: visible;
+	width: 2.994791667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_35 {
+	position: absolute;
+	overflow: visible;
+	width: 7.9427vw;
+	height: 1.7578125vw;
+	left: 15.49479167vw;
+	top: 5.33854vw;
+}
+
+#_s___ {
+	position: absolute;
+	left: 12.34895vw;
+	top: 4.8177vw;
+	overflow: visible;
+	width: 3.3203125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_41 {
+	position: absolute;
+	overflow: visible;
+	width: 7.9427vw;
+	height: 1.7578125vw;
+	left: 2.734375vw;
+	top: 2.86458333vw;
+}
+
+#x3__ {
+	position: absolute;
+	left: 0vw;
+	top: 2.5390625vw;
+	overflow: visible;
+	width: 2.994791667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_42 {
+	position: absolute;
+	overflow: visible;
+	width: 7.9427vw;
+	height: 1.7578125vw;
+	left: 15.49479167vw;
+	top: 2.86458333vw;
+}
+
+#x4__ {
+	position: absolute;
+	left: 12.34895vw;
+	top: 2.5390625vw;
+	overflow: visible;
+	width: 3.190104167vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888020833vw;
+	color: rgba(255,255,255,1);
+}

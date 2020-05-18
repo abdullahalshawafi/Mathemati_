@@ -20,10 +20,11 @@ def Newton_Raphson(num,iterations,exp1,exp2,exp3,xval,yval,zval,Es):
     Ea = 1000
     dim1=0
     number=iterations
+    counter=0;
     while iterations!=0:
      if (Ea<Es):
       print("Ea<Es: Stopping Criteria Reached")
-      break
+      break;
      print("At iteration number",number-iterations,"  r=",number-iterations,":")
      expression =exp1
      Jacob_Matrix = [[0 for x in range(num)] for y in range(num)]
@@ -101,8 +102,8 @@ def Newton_Raphson(num,iterations,exp1,exp2,exp3,xval,yval,zval,Es):
         zval=XYZnew[i][0]
     #storing the values
      for j in range(num):
-         Storage[dim1][0]=round(XYZnew[j][0],4)
-         Error[j][0] = round((abs(XYZnew[j][0]-XYZprev[j][0])/XYZnew[j][0])*100, 4)
+         Storage[dim1][0]=XYZnew[j][0]
+         Error[j][0] = (abs(XYZnew[j][0]-XYZprev[j][0])/XYZnew[j][0])*100
          dim1=dim1+1
      Ea = np.max(Error)
      Approximate_Error[number-iterations] = Ea
@@ -113,8 +114,16 @@ def Newton_Raphson(num,iterations,exp1,exp2,exp3,xval,yval,zval,Es):
       print ("x=",xval,"  y=",yval,"Ea=", Approximate_Error[number-iterations])
      elif num==3:
       print ("x=",xval,"  y=",yval,"  z=",zval, "Ea=",Approximate_Error[number-iterations])
-    #will affect function if removed
      iterations=iterations-1
-    #returning results depending on number of variables
-    return Storage , Approximate_Error
+     counter = counter +1
+
+    # end of while loop
+    RealStorage=[[0 for x in range(1)] for y in range(num*counter)]
+    Real_Approximate_Error =  [[0 for x in range(1)] for y in range(counter)]
+
+    for j in range (num*counter):
+      RealStorage[j][0]= round(Storage[j][0], 4)
+    for j in range(counter):
+      Real_Approximate_Error[j] = round(Approximate_Error[j], 4)
+    return RealStorage ,Real_Approximate_Error
 #End of function
