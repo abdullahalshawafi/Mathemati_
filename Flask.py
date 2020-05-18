@@ -10,12 +10,19 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 def home():
     return render_template('Home.html')
 
+@app.route("/PDE", methods=['GET', 'POST'])
+def PDE():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
+
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
     if request.method == 'POST':
         pass
     else:
-        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css")
+        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():
@@ -76,17 +83,17 @@ def NonlinearSystem():
                     result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0, h_xy, Z0)
                     Length = len(result[1])
             if Length:
-                return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
+                return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
         return redirect(url_for('NonlinearSystem'))
     else:
-        return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css")
+        return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/EigenvalueProblem", methods=['GET', 'POST'])
 def EigenvalueProblem():
     if request.method == 'POST':
         pass
     else:
-        return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css")
+        return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
 if __name__ == '__main__':
     app.run(debug=True)

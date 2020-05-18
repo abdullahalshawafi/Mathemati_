@@ -28,7 +28,7 @@
             <div class="dropdown_content">
               <a href="#">ODE Iterative</a>
               <a href="#">ODE Predictor/Corrector</a>
-              <a href="#">PDE Finite Differences</a>
+              <a href="{{url_for('PDE')}}">PDE Finite Differences</a>
             </div>
           </li>
           <li id="Calc-Menu" class="dropdown">
@@ -61,10 +61,10 @@
           <li><a href="Contact.html">Contact</a></li>
         </ul>
         <div class="Wings">
-          <img class="WingSrc" src="{{url_for('static', filename='Assets/SE - Copy2.png')}}" />
+          <img class="WingSrc" src="{{url_for('static', filename='Assets/' + wing)}}" />
         </div>
         <div class="Logo-Div">
-          <a href=" {{ url_for('home') }} "><img class="Logo" src="{{url_for('static', filename='Assets/Logo Greeny.svg')}}" /></a>
+          <a href=" {{ url_for('home') }} "><img class="Logo" src="{{url_for('static', filename='Assets/' + logo)}}" /></a>
           <div>{{title}}</div>
         </div>
       </nav>
