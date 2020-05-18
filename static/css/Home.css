@@ -1,8 +1,5 @@
-* {
-	box-sizing: content-box;
-}
 .mediaViewInfo {
-	--web-view-name: custom � 1;
+	--web-view-name: custom  1;
 	--web-view-id: custom___1;
 	--web-scale-on-resize: true;
 	--web-enable-deep-linking: true;
@@ -19,13 +16,18 @@
 	border: none;
 }
 
+a {
+	text-decoration: none;
+	color: white;
+}
+
 #custom___1 {
 	position: absolute;
-	width: 100%;
-	height: 3599px;
+	width: calc(1518vw / 15.36);
+	height: calc(3599vw / 15.36);
 	background-color: rgba(23,23,23,1);
 	overflow: hidden;
-	--web-view-name: custom � 1;
+	--web-view-name: custom  1;
 	--web-view-id: custom___1;
 	--web-scale-on-resize: true;
 	--web-enable-deep-linking: true;
@@ -33,876 +35,885 @@
 
 #Logo {
 	position: absolute;
-	width: 425.318px;
-	height: 203.949px;
-	left: 555.557px;
-	top: 192.298px;
+	width: calc(425.318vw / 15.36);
+	height: calc(203.949vw / 15.36);
+	left: calc(555.557vw / 15.36);
+	top: calc(192.298vw / 15.36);
 	overflow: visible;
 }
 
 .Path_1 {
 	overflow: visible;
 	position: absolute;
-	width: 298.697px;
-	height: 203.949px;
-	left: 126.621px;
-	top: 0px;
+	width: calc(298.697vw / 15.36);
+	height: calc(203.949vw / 15.36);
+	left: calc(126.621vw / 15.36);
+	top: 0vw;
 	transform: matrix(1,0,0,1,0,0);
 }
 
 .Path_2 {
 	overflow: visible;
 	position: absolute;
-	width: 72.815px;
-	height: 15.962px;
-	left: 346.784px;
-	top: 186.846px;
+	width: calc(72.815vw / 15.36);
+	height: calc(15.962vw / 15.36);
+	left: calc(346.784vw / 15.36);
+	top: calc(186.846vw / 15.36);
 	transform: matrix(1,0,0,1,0,0);
 }
 
 .Path_3 {
 	overflow: visible;
 	position: absolute;
-	width: 97.024px;
-	height: 162.325px;
-	left: 0px;
-	top: 17.755px;
+	width: calc(97.024vw / 15.36);
+	height: calc(162.325vw / 15.36);
+	left: 0vw;
+	top: calc(17.755vw / 15.36);
 	transform: matrix(1,0,0,1,0,0);
 }
 
 #We_find_x_for_you {
 	position: absolute;
-	left: 484px;
-	top: 452px;
+	left: calc(484vw / 15.36);
+	top: calc(452vw / 15.36);
 	overflow: visible;
-	width: 569px;
+	width: calc(569vw / 15.36);
 	white-space: nowrap;
 	text-align: center;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 75px;
+	font-size: calc(75vw / 15.36);
 	color: rgba(46,129,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
 }
 
 #CF {
 	position: absolute;
-	width: 1536px;
-	height: 731px;
-	left: 0px;
-	top: 721px;
+	width: calc(1536vw / 15.36);
+	height: calc(768vw / 15.36);
+	left: 0vw;
+	top: calc(716vw / 15.36);
 	overflow: visible;
 }
 
 .Rectangle_2_n {
 	position: absolute;
 	overflow: visible;
-	width: 1536px;
-	height: 718px;
-	left: 0px;
-	top: 0px;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: calc(5vw / 15.36);
 }
 
 #CFBlue {
 	position: absolute;
-	width: 665px;
-	height: 665px;
-	left: 66px;
-	top: 66px;
+	width: calc(720vw / 15.36);
+	height: calc(720vw / 15.36);
+	left: calc(57vw / 15.36);
+	top: calc(48vw / 15.36);
 	overflow: visible;
+	mix-blend-mode: lighten;
 }
 
 #_Curve_Fitting {
 	position: absolute;
-	left: 756px;
-	top: 33px;
-	width: 660px;
-	height: 122px;
+	left: calc(786vw / 15.36);
+	top: 0vw;
+	overflow: hidden;
+	width: calc(660vw / 15.36);
+	height: calc(182vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 150px;
+	font-size: calc(150vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
 }
 
 #PI {
 	position: absolute;
-	width: 493px;
-	height: 122px;
-	left: 871px;
-	top: 300px;
+	width: calc(450vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(853vw / 15.36);
+	top: calc(340vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #Polynomial_Interpolation {
 	position: absolute;
-	left: 55px;
-	top: 0px;
+	left: calc(110vw / 15.36);
+	top: calc(29vw / 15.36);
 	overflow: visible;
-	width: 439px;
-	height: 122px;
+	width: calc(439vw / 15.36);
+	height: calc(122vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-.Ellipse_4 {
+	#Polynomial_Interpolation:hover {
+		font-size: calc(35vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#PI0000 {
 	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 	overflow: visible;
-	width: 35px;
-	height: 35px;
-	left: 0px;
-	top: 5px;
 }
 
 #SI {
 	position: absolute;
-	width: 493px;
-	height: 122px;
-	left: 871px;
-	top: 418px;
+	width: calc(450vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(853vw / 15.36);
+	top: calc(424vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #Spline_Interpolation {
 	position: absolute;
-	left: 55px;
-	top: 0px;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
 	overflow: visible;
-	width: 439px;
-	height: 122px;
+	width: calc(439vw / 15.36);
+	height: calc(122vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-.Ellipse_5 {
+	#Spline_Interpolation:hover {
+		font-size: calc(35vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#SI0000 {
 	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 	overflow: visible;
-	width: 35px;
-	height: 35px;
-	left: 0px;
-	top: 5px;
 }
 
 #LSR {
 	position: absolute;
-	width: 525px;
-	height: 122px;
-	left: 871px;
-	top: 536px;
+	width: calc(450vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(853vw / 15.36);
+	top: calc(507vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #Least_Squares_Regression {
 	position: absolute;
-	left: 55px;
-	top: 0px;
+	left: calc(110vw / 15.36);
+	top: calc(30vw / 15.36);
 	overflow: visible;
-	width: 471px;
-	height: 122px;
+	width: calc(471vw / 15.36);
+	height: calc(122vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-.Ellipse_6 {
+	#Least_Squares_Regression:hover {
+		font-size: calc(35vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#LSR0000 {
 	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 	overflow: visible;
-	width: 35px;
-	height: 35px;
-	left: 0px;
-	top: 5px;
+}
+
+#SR {
+	position: absolute;
+	width: calc(450vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(853vw / 15.36);
+	top: calc(590vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Surface_Regression {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
+	overflow: visible;
+	width: calc(471vw / 15.36);
+	height: calc(122vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Surface_Regression:hover {
+		font-size: calc(35vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#SR0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Data_is_often_given_for_discre {
+	position: absolute;
+	left: calc(837vw / 15.36);
+	top: calc(224vw / 15.36);
+	overflow: visible;
+	width: calc(674vw / 15.36);
+	height: calc(123vw / 15.36);
+	line-height: calc(35vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: calc(24vw / 15.36);
+	color: rgba(177,177,177,1);
 }
 
 #NC {
 	position: absolute;
-	width: 1536px;
-	height: 731px;
-	left: 0px;
-	top: 1438px;
+	width: calc(1536vw / 15.36);
+	height: calc(726vw / 15.36);
+	left: 0vw;
+	top: calc(1438vw / 15.36);
 	overflow: visible;
 }
 
 .Rectangle_2_ba {
 	position: absolute;
 	overflow: visible;
-	width: 1536px;
-	height: 718px;
-	left: 0px;
-	top: 0px;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 }
 
 #CalculusRED {
 	position: absolute;
-	width: 686px;
-	height: 686px;
-	left: 751px;
-	top: 45px;
+	width: calc(686vw / 15.36);
+	height: calc(686vw / 15.36);
+	left: calc(751vw / 15.36);
+	top: calc(40vw / 15.36);
 	overflow: visible;
 }
 
 #_Calculus {
 	position: absolute;
-	left: 60px;
-	top: 6px;
-	width: 660px;
-	height: 122px;
-	text-align: left;
-	font-family: Reem Kufi;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 150px;
-	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
-}
-
-#DFD {
-	position: absolute;
-	width: 835px;
-	height: 58px;
-	left: 134px;
-	top: 326px;
-	overflow: visible;
-}
-
-#Differentiation___Finite_Diffe {
-	position: absolute;
-	left: 61px;
-	top: 0px;
+	left: calc(60vw / 15.36);
+	top: calc(6vw / 15.36);
 	overflow: hidden;
-	width: 775px;
-	height: 58px;
+	width: calc(660vw / 15.36);
+	height: calc(222vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 32px;
+	font-size: calc(150vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
-}
-
-.Path_5 {
-	overflow: visible;
-	position: absolute;
-	width: 38px;
-	height: 30px;
-	left: 0px;
-	top: 5px;
-	transform: matrix(1,0,0,1,0,0);
-}
-
-#RI {
-	position: absolute;
-	width: 835px;
-	height: 58.918px;
-	left: 134px;
-	top: 503.082px;
-	overflow: visible;
-}
-
-#Integration___Romberg {
-	position: absolute;
-	left: 61px;
-	top: 0.918px;
-	overflow: visible;
-	width: 775px;
-	height: 58px;
-	text-align: left;
-	font-family: Reem Kufi;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 32px;
-	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
-}
-
-.Path_7 {
-	overflow: visible;
-	position: absolute;
-	width: 38px;
-	height: 30px;
-	left: 0px;
-	top: 5px;
-	transform: matrix(1,0,0,1,0,0);
+	letter-spacing: calc(0.4vw / 15.36);
 }
 
 #DRE {
 	position: absolute;
-	width: 835px;
-	height: 58.381px;
-	left: 134px;
-	top: 237.619px;
+	width: calc(450vw / 15.36);
+	height: calc(111vw / 15.36);
+	left: calc(110vw / 15.36);
+	top: calc(395vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
-#Differentiation___Richardson_E {
+#Differentiation_using_Richards {
 	position: absolute;
-	left: 61px;
-	top: 0.381px;
+	left: calc(88vw / 15.36);
+	top: calc(10vw / 15.36);
 	overflow: hidden;
-	width: 775px;
-	height: 58px;
+	width: calc(775vw / 15.36);
+	height: calc(101vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 32px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-.Path_4 {
-	overflow: visible;
+	#Differentiation_using_Richards:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF1C6D;
+		transition: 0.1s;
+	}
+
+#DRE0000 {
 	position: absolute;
-	width: 38px;
-	height: 30px;
-	left: 0px;
-	top: 5px;
-	transform: matrix(1,0,0,1,0,0);
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
 }
 
 #NCI {
 	position: absolute;
-	width: 835px;
-	height: 58.406px;
-	left: 134px;
-	top: 414.594px;
+	width: calc(450vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(110vw / 15.36);
+	top: calc(528vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
-#Integration___Newton_Cotes {
+#Numerical_Integration {
 	position: absolute;
-	left: 61px;
-	top: 0.406px;
+	left: calc(88vw / 15.36);
+	top: calc(28vw / 15.36);
 	overflow: visible;
-	width: 775px;
-	height: 58px;
+	width: calc(775vw / 15.36);
+	height: calc(58vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 32px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-.Path_6 {
-	overflow: visible;
-	position: absolute;
-	width: 38px;
-	height: 30px;
-	left: 0px;
-	top: 5px;
-	transform: matrix(1,0,0,1,0,0);
-}
+	#Numerical_Integration:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF1C6D;
+		transition: 0.1s;
+	}
 
-#GQI {
+#NCI0000 {
 	position: absolute;
-	width: 835px;
-	height: 58px;
-	left: 134px;
-	top: 592px;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 	overflow: visible;
 }
 
-#Integration___Gauss_Quadrature {
+#Calculus_is_the_mathematics_of {
 	position: absolute;
-	left: 61px;
-	top: 0px;
+	left: calc(114vw / 15.36);
+	top: calc(219vw / 15.36);
 	overflow: visible;
-	width: 775px;
-	height: 58px;
+	width: calc(744vw / 15.36);
+	height: calc(136vw / 15.36);
+	line-height: calc(35vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
 	text-align: left;
-	font-family: Reem Kufi;
-	font-style: normal;
+	font-family: Radley;
+	font-style: italic;
 	font-weight: normal;
-	font-size: 32px;
-	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
-}
-
-.Path_8 {
-	overflow: visible;
-	position: absolute;
-	width: 38px;
-	height: 30px;
-	left: 0px;
-	top: 5px;
-	transform: matrix(1,0,0,1,0,0);
+	font-size: calc(24vw / 15.36);
+	color: rgba(177,177,177,1);
 }
 
 #DE {
 	position: absolute;
-	width: 1590px;
-	height: 718px;
-	left: 0px;
-	top: 2161px;
+	width: calc(1590vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: calc(2161vw / 15.36);
 	overflow: visible;
 }
 
-.Rectangle_2_bl {
+.Rectangle_2_bh {
 	position: absolute;
 	overflow: visible;
-	width: 1536px;
-	height: 718px;
-	left: 0px;
-	top: 0px;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 }
 
 #_Differential_Eqs_ {
 	position: absolute;
-	left: 730px;
-	top: 33px;
-	width: 861px;
-	height: 122px;
+	left: calc(730vw / 15.36);
+	top: calc(13vw / 15.36);
+	overflow: hidden;
+	width: calc(861vw / 15.36);
+	height: calc(222vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 150px;
+	font-size: calc(150vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
 }
 
 #DE4 {
 	position: absolute;
-	width: 688px;
-	height: 688px;
-	left: 72px;
-	top: 25px;
+	width: calc(688vw / 15.36);
+	height: calc(688vw / 15.36);
+	left: calc(72vw / 15.36);
+	top: calc(25vw / 15.36);
 	overflow: visible;
+	mix-blend-mode: screen;
 }
 
 #ODEI {
 	position: absolute;
-	width: 504.5px;
-	height: 130px;
-	left: 859.5px;
-	top: 292px;
+	width: calc(450vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(834vw / 15.36);
+	top: calc(380vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #ODE___Iterative_methods {
 	position: absolute;
-	left: 66.5px;
-	top: 8px;
+	left: calc(110vw / 15.36);
+	top: calc(30vw / 15.36);
 	overflow: visible;
-	width: 439px;
-	height: 122px;
+	width: calc(439vw / 15.36);
+	height: calc(122vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-.Polygon_1 {
-	overflow: hidden;
+	#ODE___Iterative_methods:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF6D1C;
+		transition: 0.1s;
+	}
+
+#ODEI0000 {
 	position: absolute;
-	width: 57px;
-	height: 49px;
-	transform: translate(-859.5px, -2453px) matrix(1,0,0,1,855.5001,2457) rotate(-90deg);
-	transform-origin: center;
-	left: 0px;
-	top: 0px;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
 }
 
 #ODEPC {
 	position: absolute;
-	width: 620.5px;
-	height: 130px;
-	left: 859.5px;
-	top: 410px;
+	width: calc(600vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(834vw / 15.36);
+	top: calc(471vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #ODE___Predictor_Corrector_meth {
 	position: absolute;
-	left: 66.5px;
-	top: 8px;
+	left: calc(110vw / 15.36);
+	top: calc(30vw / 15.36);
 	overflow: visible;
-	width: 555px;
-	height: 122px;
+	width: calc(555vw / 15.36);
+	height: calc(122vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-.Polygon_2 {
-	overflow: hidden;
+	#ODE___Predictor_Corrector_meth:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF6D1C;
+		transition: 0.1s;
+	}
+
+
+#ODEPC0000 {
 	position: absolute;
-	width: 57px;
-	height: 49px;
-	transform: translate(-859.5px, -1131px) matrix(1,0,0,1,855.5001,1135) rotate(-90deg);
-	transform-origin: center;
-	left: 0px;
-	top: 0px;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
 }
 
 #PDE {
 	position: absolute;
-	width: 536.5px;
-	height: 130px;
-	left: 859.5px;
-	top: 528px;
+	width: calc(450vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(834vw / 15.36);
+	top: calc(563vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #PDE___Finite_Differences {
 	position: absolute;
-	left: 66.5px;
-	top: 8px;
+	left: calc(110vw / 15.36);
+	top: calc(29vw / 15.36);
 	overflow: visible;
-	width: 471px;
-	height: 122px;
+	width: calc(471vw / 15.36);
+	height: calc(122vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-.Polygon_3 {
-	overflow: hidden;
+	#PDE___Finite_Differences:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF6D1C;
+		transition: 0.1s;
+	}
+
+#PDE0000 {
 	position: absolute;
-	width: 57px;
-	height: 49px;
-	transform: translate(-859.5px, -1249px) matrix(1,0,0,1,855.5001,1253) rotate(-90deg);
-	transform-origin: center;
-	left: 0px;
-	top: 0px;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#A_differential_equation_is_an_ {
+	position: absolute;
+	left: calc(791vw / 15.36);
+	top: calc(209vw / 15.36);
+	overflow: visible;
+	width: calc(711vw / 15.36);
+	height: calc(141vw / 15.36);
+	line-height: calc(35vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: calc(24vw / 15.36);
+	color: rgba(177,177,177,1);
 }
 
 #SE {
 	position: absolute;
-	width: 1536px;
-	height: 718px;
-	left: 0px;
-	top: 2879px;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: calc(2879vw / 15.36);
 	overflow: visible;
 }
 
-.Rectangle_2_bz {
+.Rectangle_2_bw {
 	position: absolute;
 	overflow: visible;
-	width: 1536px;
-	height: 718px;
-	left: 0px;
-	top: 0px;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 }
 
 #_Systems_of_Eqs_ {
 	position: absolute;
-	left: 60px;
-	top: 46px;
-	width: 796px;
-	height: 122px;
+	left: calc(60vw / 15.36);
+	top: calc(1vw / 15.36);
+	overflow: hidden;
+	width: calc(796vw / 15.36);
+	height: calc(222vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 150px;
+	font-size: calc(150vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
 }
 
 #SE_MODEL2 {
 	position: absolute;
-	width: 600px;
-	height: 600px;
-	left: 822px;
-	top: 88px;
+	width: calc(600vw / 15.36);
+	height: calc(600vw / 15.36);
+	left: calc(832vw / 15.36);
+	top: calc(88vw / 15.36);
 	overflow: visible;
+	mix-blend-mode: screen;
 }
 
 #LS {
 	position: absolute;
-	width: 858.158px;
-	height: 58.865px;
-	left: 110.842px;
-	top: 315.135px;
+	width: calc(500vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(142vw / 15.36);
+	top: calc(371vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #Linear_Systems_of_Equations_ {
 	position: absolute;
-	left: 84.158px;
-	top: 0.865px;
+	left: calc(110vw / 15.36);
+	top: calc(31vw / 15.36);
 	overflow: hidden;
-	width: 775px;
-	height: 58px;
+	width: calc(775vw / 15.36);
+	height: calc(58vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-#LS_icon {
-	position: absolute;
-	width: 53.317px;
-	height: 42.047px;
-	left: 0px;
-	top: 0px;
-	overflow: visible;
-}
+	#Linear_Systems_of_Equations_:hover {
+		font-size: calc(35vw / 15.36);
+		color: #DFFF1C;
+		transition: 0.1s;
+	}
 
-.Line_1 {
-	overflow: visible;
+#LS0000 {
 	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 0px;
-	transform: matrix(1,0,0,1,0,0);
-}
-
-.Line_2 {
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 	overflow: visible;
-	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 21.023px;
-	transform: matrix(1,0,0,1,0,0);
-}
-
-.Line_3 {
-	overflow: visible;
-	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 42.047px;
-	transform: matrix(1,0,0,1,0,0);
 }
 
 #NS {
 	position: absolute;
-	width: 858.158px;
-	height: 58px;
-	left: 110.842px;
-	top: 424px;
+	width: calc(550vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(142vw / 15.36);
+	top: calc(465vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #Nonlinear_Systems_of_Equations {
 	position: absolute;
-	left: 84.158px;
-	top: 0px;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
 	overflow: hidden;
-	width: 775px;
-	height: 58px;
+	width: calc(775vw / 15.36);
+	height: calc(58vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-#NS_icon {
-	position: absolute;
-	width: 53.317px;
-	height: 42.047px;
-	left: 0px;
-	top: 1.135px;
-	overflow: visible;
-}
+	#Nonlinear_Systems_of_Equations:hover {
+		font-size: calc(35vw / 15.36);
+		color: #DFFF1C;
+		transition: 0.1s;
+	}
 
-.Line_4 {
-	overflow: visible;
+#NS0000 {
 	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 0px;
-	transform: matrix(1,0,0,1,0,0);
-}
-
-.Line_5 {
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 	overflow: visible;
-	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 21.023px;
-	transform: matrix(1,0,0,1,0,0);
-}
-
-.Line_6 {
-	overflow: visible;
-	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 42.047px;
-	transform: matrix(1,0,0,1,0,0);
 }
 
 #EP {
 	position: absolute;
-	width: 858.158px;
-	height: 58px;
-	left: 110.842px;
-	top: 533px;
+	width: calc(400vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(142vw / 15.36);
+	top: calc(561vw / 15.36);
 	overflow: visible;
+	cursor: pointer;
 }
 
 #Eigenvalue_Problem {
 	position: absolute;
-	left: 84.158px;
-	top: 0px;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
 	overflow: visible;
-	width: 775px;
-	height: 58px;
+	width: calc(775vw / 15.36);
+	height: calc(58vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 35px;
+	font-size: calc(30vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
 }
 
-#EP_icon {
+	#Eigenvalue_Problem:hover {
+		font-size: calc(35vw / 15.36);
+		color: #DFFF1C;
+		transition: 0.1s;
+	}
+
+#EP0000 {
 	position: absolute;
-	width: 53.317px;
-	height: 42.047px;
-	left: 0px;
-	top: 2.135px;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
 	overflow: visible;
 }
 
-.Line_7 {
-	overflow: visible;
+#A_system_of_equations_is_a_set {
 	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 0px;
-	transform: matrix(1,0,0,1,0,0);
+	left: calc(114vw / 15.36);
+	top: calc(208vw / 15.36);
+	overflow: visible;
+	width: calc(744vw / 15.36);
+	height: calc( 142 vw / 15.36);
+	line-height: calc(35vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: calc(24vw / 15.36);
+	color: rgba(177,177,177,1);
 }
 
-.Line_8 {
-	overflow: visible;
+#CF_b {
 	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 21.023px;
-	transform: matrix(1,0,0,1,0,0);
-}
-
-.Line_9 {
-	overflow: visible;
-	position: absolute;
-	width: 63.317px;
-	height: 10px;
-	left: 0px;
-	top: 42.047px;
-	transform: matrix(1,0,0,1,0,0);
-}
-
-#CF_ck {
-	position: absolute;
-	width: 123.333px;
-	height: 740px;
-	left: -48px;
-	top: 708px;
+	width: calc(123.333vw / 15.36);
+	height: calc(740vw / 15.36);
+	left: calc(-48vw / 15.36);
+	top: calc(708vw / 15.36);
 	overflow: visible;
 }
 
-#NC_cl {
+#NC_ca {
 	position: absolute;
-	width: 129px;
-	height: 774px;
-	left: 1459px;
-	top: 1409px;
+	width: calc(129vw / 15.36);
+	height: calc(774 vw / 15.36);
+	left: calc(1459vw / 15.36);
+	top: calc(1409vw / 15.36);
 	overflow: visible;
 }
 
-#DE_cm {
+#DE_cb {
 	position: absolute;
-	width: 124px;
-	height: 744px;
-	left: -52px;
-	top: 2143px;
+	width: calc(124vw / 15.36);
+	height: calc(744vw / 15.36);
+	left: calc(-52vw / 15.36);
+	top: calc(2143vw / 15.36);
 	overflow: visible;
 }
 
-#SE_cn {
+#SE_cc {
 	position: absolute;
-	width: 126px;
-	height: 756px;
-	left: 1459px;
-	top: 2843px;
+	width: calc(126vw / 15.36);
+	height: calc(756vw / 15.36);
+	left: calc(1459vw / 15.36);
+	top: calc(2843vw / 15.36);
 	overflow: visible;
 }
 
 #Credits_______________________ {
 	position: absolute;
-	left: 106px;
-	top: 47px;
+	left: calc(406vw / 15.36);
+	top: calc(47vw / 15.36);
 	overflow: visible;
-	width: 725px;
+	width: calc(725vw / 15.36);
 	white-space: nowrap;
 	text-align: center;
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 40px;
+	font-size: calc(40vw / 15.36);
 	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
+	letter-spacing: calc(0.4vw / 15.36);
 }
-#Contact_______________________ {
-	position: absolute;
-	left: 706px;
-	top: 47px;
-	overflow: visible;
-	width: 725px;
-	white-space: nowrap;
-	text-align: center;
-	font-family: Reem Kufi;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 40px;
-	color: rgba(255,255,255,1);
-	letter-spacing: 0.4px;
-}
+
+	#Credits_______________________:hover {
+		position: absolute;
+		left: calc(406vw / 15.36);
+		top: calc( 47 vw / 15.36);
+		overflow: visible;
+		width: calc(725vw / 15.36);
+		white-space: nowrap;
+		text-align: center;
+		font-family: Reem Kufi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: calc(40 vw / 15.36);
+		color: rgba(255,255,255,1);
+		letter-spacing: calc(0.4vw / 15.36);
+	}
 
 #backblue2 {
 	position: absolute;
-	width: 1600px;
-	height: 661px;
-	left: -63.5px;
-	top: -176.5px;
+	width: calc(1600vw / 15.36);
+	height: calc(661vw / 15.36);
+	left: calc(-63.5vw / 15.36);
+	top: calc(-176.5vw / 15.36);
 	overflow: visible;
+}
+
+::-webkit-scrollbar {
+  height: 0px;
+	width: 10px;
 }

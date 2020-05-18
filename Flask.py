@@ -8,7 +8,7 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html')
+    return render_template('Home.html')
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
@@ -21,6 +21,11 @@ def LinearSystem():
 def NonlinearSystem():
     if request.method == 'POST':
         Method = ''
+        Eqs_No = iterations = f_xy = g_xy =X0 = Y0 = 0
+        StoppingCriteria = 0.0
+        Length = 0
+        result = []
+
         if 'Method' in request.form:
             Method  = request.form['Method']
         if 'Dim' in request.form:
@@ -28,14 +33,12 @@ def NonlinearSystem():
             if Eqs_No == 2:
                 f_xy = request.form['Feq']
                 g_xy = request.form['Geq']
-                h_xy = 0
                 X0 = request.form['X0']
                 if not X0 == '':
                     X0 = float(request.form['X0'])
                 Y0 = request.form['Y0']
                 if not Y0 == '':
                     Y0 = float(request.form['Y0'])
-                Z0 = 0
             elif Eqs_No == 3:
                 f_xy = request.form['Feq']
                 g_xy = request.form['Geq']
@@ -59,13 +62,22 @@ def NonlinearSystem():
 
         if Method and Eqs_No and StoppingCriteria and iterations and f_xy and g_xy and X0 and Y0:
             if Method == "NewtonRaphson":
-                result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
+                if Eqs_No == 2:
+                    result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, 0, X0, Y0, 0, StoppingCriteria)
+                    Length = len(result[1])
+                elif Eqs_No == 3 and Z0 and h_xy:
+                    result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
+                    Length = len(result[1])
             elif Method == "FixedPoint":
-                result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0, h_xy, Z0)
-            Length = len(result[0])
-            return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
-        else:
-            return redirect(url_for('NonlinearSystem'))
+                if Eqs_No == 2:
+                    result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0)
+                    Length = len(result[1])
+                elif Eqs_No == 3 and h_xy and Z0:
+                    result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0, h_xy, Z0)
+                    Length = len(result[1])
+            if Length:
+                return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
+        return redirect(url_for('NonlinearSystem'))
     else:
         return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css")
 
