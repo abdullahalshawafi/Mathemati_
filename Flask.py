@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
+from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
@@ -13,14 +14,71 @@ def home():
 @app.route("/PDE", methods=['GET', 'POST'])
 def PDE():
     if request.method == 'POST':
-        pass
+        #Taking the equation parameters
+        h=k=0
+        dxx=dyy=dx=dy=u_coeff=function=''
+        dxx=request.form['dxx']
+        dyy=request.form['dyy']
+        dx=request.form['dx']
+        dy=request.form['dy']
+        u_coeff=request.form['U_Coeff']
+        function=request.form['Function']
+        h=float(request.form['h_step'])
+        k=float(request.form['k_step'])
+        boundaries=[]
+        for i in range(12):
+            #Strings for table records : 
+
+            f_str='function'+str(i)
+            x_i_str='xi'+str(i)
+            x_f_str='xf'+str(i)
+            y_i_str='yi'+str(i)
+            y_f_str='yf'+str(i)
+            u_str='u'+str(i)
+            #Parameters
+            f=request.form[f_str]
+            x_i=request.form[x_i_str]
+            x_f=request.form[x_f_str]
+            y_i=request.form[y_i_str]
+            y_f=request.form[y_f_str]
+            u=request.form[u_str]
+
+            #Check that the table record is not empty 
+
+            if not f=="" and not x_i=="" and not x_f=="" and not y_i=="" and not y_f=="" and not u=="":
+                x_i=float(request.form[x_i_str])
+                x_f=float(request.form[x_f_str])
+                y_i=float(request.form[y_i_str])
+                y_f=float(request.form[y_f_str])
+                bound=boundry(y_i,y_f,x_i,x_f,f,u)
+                boundaries.append(bound)
+
+        grid=Grid(boundaries,h,k)
+        points=grid.get_points(grid.get_boundry_rows_points(),grid.get_boundry_cols_points())
+        pde=PDE_Solver(points,grid)
+        pde.Get_Parameters(dxx,dyy,dx,dy,u_coeff,function)
+        x_point=float(request.form['x_cordinates'])
+        y_point=float(request.form['y_cordinates'])
+        _point=point(x_point,y_point,False)
+        U=request.form['Output_U']
+        U_Value=pde.Solve_At_Point(_point)
+        U=U_Value
+        print(U)
+        return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
+
+
+
+
+        #pass
     else:
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
     if request.method == 'POST':
+
         pass
+        
     else:
         return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
@@ -62,7 +120,7 @@ def NonlinearSystem():
 
         StoppingCriteria = request.form['StoppingCriteria']
         if not StoppingCriteria == '':
-            StoppingCriteria = float(request.form['StoppingCriteria'])
+            StoppingCriteria = float(request.form[''])
         iterations = request.form['Iterations']
         if not iterations == '':
             iterations = int(request.form['Iterations'])

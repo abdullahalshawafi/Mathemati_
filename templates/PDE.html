@@ -1,7 +1,9 @@
 ﻿{% extends "layout.html" %}
 {% block content %}
 	<main>
+
 		<div id="Web_1920___1">
+			<form  action="{{url_for('PDE')}}" method="POST">
 			<div id="MidTab">
 				<svg class="Rectangle_8">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="22.9vw" height="8.46vw">
@@ -32,9 +34,9 @@
 					</div>
 					<div id="out">
 
-						<span>at: X = <input type="text" class="Rectangle_x" /> &nbsp; Y = <input type="text" class="Rectangle_x" /></span>
+						<span>at: X = <input name="x_cordinates" type="text" class="Rectangle_x" /> &nbsp; Y = <input type="text" name="y_cordinates" class="Rectangle_x" /></span>
 						<br />
-						<span>U = <input type="text" class="Rectangle_U" /></span>
+						<span>U = <input name="Output_U" type="text" class="Rectangle_U" /></span>
 
 					</div>
 				</div>
@@ -89,8 +91,8 @@
 					</rect>
 				</svg>
 				<div class="Rectangle_28">
-					<div class="button-div">
-						<button class="table-button" id="calc">
+					<div class="button-div" >
+						<button class="table-button" type="submit" id="calc" onclick="PDE()">
 							<embed src="{{url_for('static', filename='Assets/Calc Button.svg')}}">
 						</button>
 						<embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
@@ -109,7 +111,7 @@
 				</div>
 
 				<div id="Linearized_">
-					<span>X-step = <input type="text" class="Rectangle_step" /> &nbsp; Y-step = <input type="text" class="Rectangle_step" /></span>
+					<span>X-step = <input type="text" name="h_step" class="Rectangle_step" /> &nbsp; Y-step = <input type="text" name="k_step" class="Rectangle_step" /></span>
 				</div>
 				<div class="Rectangle_19">
 					<div id="table">
@@ -118,26 +120,26 @@
 						<span class="inChars">0 = </span>
 
 
-						<input type="text" class="Rectangle_44" /> <span class="inChars">Uxx +</span>
+						<input type="text" name="dxx" class="Rectangle_44" /> <span class="inChars">Uxx +</span>
 
 
-						<input type="text" class="Rectangle_44" /> <span class="inChars">Uyy +</span>
-
-						<br />
-
-
-						<input type="text" class="Rectangle_44" />  <span class="inChars">Ux + </span>
-
-
-
-						<input type="text" class="Rectangle_44" /> <span class="inChars">Uy + </span>
+						<input type="text" name="dyy" class="Rectangle_44" /> <span class="inChars">Uyy +</span>
 
 						<br />
 
 
-						<input type="text" class="Rectangle_44" /> <span class="inChars">U + </span>
+						<input type="text" name="dx" class="Rectangle_44" />  <span class="inChars">Ux + </span>
 
-						<input type="text" class="Rectangle_44wide" />
+
+
+						<input type="text" name="dy" class="Rectangle_44" /> <span class="inChars">Uy + </span>
+
+						<br />
+
+
+						<input type="text" name="U_Coeff" class="Rectangle_44" /> <span class="inChars">U + </span>
+
+						<input type="text" name = "Function" class="Rectangle_44wide" />
 
 					</div>
 				</div>
@@ -159,112 +161,112 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function0" type="text" /></td>
+								<td><input name="xi0" type="text" /></td>
+								<td><input name="xf0" type="text" /></td>
+								<td><input name="yi0" type="text" /></td>
+								<td><input name="yf0" type="text" /></td>
+								<td class="wide-slot"><input name="u0" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function1" type="text" /></td>
+								<td><input name="xi1" type="text" /></td>
+								<td><input name="xf1" type="text" /></td>
+								<td><input name="yi1" type="text" /></td>
+								<td><input name="yf1" type="text" /></td>
+								<td class="wide-slot"><input name="u1" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function2" type="text" /></td>
+								<td><input name="xi2" type="text" /></td>
+								<td><input name="xf2" type="text" /></td>
+								<td><input name="yi2" type="text" /></td>
+								<td><input name="yf2" type="text" /></td>
+								<td class="wide-slot"><input name="u2" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function3" type="text" /></td>
+								<td><input name="xi3" type="text" /></td>
+								<td><input name="xf3" type="text" /></td>
+								<td><input name="yi3" type="text" /></td>
+								<td><input name="yf3" type="text" /></td>
+								<td class="wide-slot"><input name="u3" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function4" type="text" /></td>
+								<td><input name="xi4" type="text" /></td>
+								<td><input name="xf4" type="text" /></td>
+								<td><input name="yi4" type="text" /></td>
+								<td><input name="yf4" type="text" /></td>
+								<td class="wide-slot"><input name="u4" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function5" type="text" /></td>
+								<td><input name="xi5" type="text" /></td>
+								<td><input name="xf5" type="text" /></td>
+								<td><input name="yi5" type="text" /></td>
+								<td><input name="yf5" type="text" /></td>
+								<td class="wide-slot"><input name="u5" type="text" /></td>
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function6" type="text" /></td>
+								<td><input name="xi6" type="text" /></td>
+								<td><input name="xf6" type="text" /></td>
+								<td><input name="yi6" type="text" /></td>
+								<td><input name="yf6" type="text" /></td>
+								<td class="wide-slot"><input name="u6" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function7" type="text" /></td>
+								<td><input name="xi7" type="text" /></td>
+								<td><input name="xf7" type="text" /></td>
+								<td><input name="yi7" type="text" /></td>
+								<td><input name="yf7" type="text" /></td>
+								<td class="wide-slot"><input name="u7" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function8" type="text" /></td>
+								<td><input name="xi8" type="text" /></td>
+								<td><input name="xf8" type="text" /></td>
+								<td><input name="yi8" type="text" /></td>
+								<td><input name="yf8" type="text" /></td>
+								<td class="wide-slot"><input name="u8" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function9" type="text" /></td>
+								<td><input name="xi9" type="text" /></td>
+								<td><input name="xf9" type="text" /></td>
+								<td><input name="yi9" type="text" /></td>
+								<td><input name="yf9" type="text" /></td>
+								<td class="wide-slot"><input name="u9" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function10" type="text" /></td>
+								<td><input name="xi10" type="text" /></td>
+								<td><input name="xf10" type="text" /></td>
+								<td><input name="yi10" type="text" /></td>
+								<td><input name="yf10" type="text" /></td>
+								<td class="wide-slot"><input name="u10" type="text" /></td>
 
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td class="wide-slot"><input type="text" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-								<td class="wide-slot"><input type="text" /></td>
+								<td class="wide-slot"><input name="function11" type="text" /></td>
+								<td><input name="xi11" type="text" /></td>
+								<td><input name="xf11" type="text" /></td>
+								<td><input name="yi11" type="text" /></td>
+								<td><input name="yf11" type="text" /></td>
+								<td class="wide-slot"><input name="u11" type="text" /></td>
 
 							</tr>
 						</tfoot>
@@ -309,6 +311,7 @@
 					<div id="myFunction" class="Rectangle_8"></div>
 				</section>
 			</div>
+		</form>
 		</div>
 	</main>
 
