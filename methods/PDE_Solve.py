@@ -10,8 +10,8 @@ from sympy import lambdify
 from sympy import symbols, solve
 import math
 from decimal import *
-from sympy.plotting import plot
-#import matplotlib.pylab as plt
+from fractions import Fraction
+import matplotlib.pylab as plt
 #%matplotlib inline
 x = symbols('x')
 y = symbols('y')
@@ -45,10 +45,8 @@ def getrange(start, end, step):
 # In[263]:
 
 
-from fractions import Fraction
 
-a = Decimal('3.3')
-round(Fraction(),acc )
+
 
 
 # In[264]:
