@@ -4,7 +4,7 @@
 # In[261]:
 
 
-import numpy as np 
+import numpy as np
 from sympy.parsing.sympy_parser import parse_expr
 from sympy import lambdify
 from sympy import symbols, solve
@@ -17,7 +17,7 @@ x = symbols('x')
 y = symbols('y')
 
 
-# to prevent floats errors 
+# to prevent floats errors
 getcontext().prec = 8
 acc = 10
 
@@ -30,15 +30,15 @@ utility = lambda x: round(x, acc)
 # helper function works as np.linespace but with acc contol
 
 def getrange(start, end, step):
-    
+
     arr = []
-    
+
     x = Fraction(start)
     y = Fraction(end)
     while round(float(x), acc) <= round(float(y), acc):
         arr.append(x)
         x+= Fraction(step)
-        
+
     return arr
 
 
@@ -72,42 +72,42 @@ value: U value at this point should be a string if it's unknown
 """
 
 class point():
-    
+
     count = 0
-    
+
     def __init__(self, x, y, is_bound):
         self.x = round(float(x), acc)
         self.y = round(float(y), acc)
-        
+
         self.index = -1
         self.i_index = 0
         self.j_index = 0
-        
+
         self.is_bound = is_bound
-        
+
         self.irreg = False
         self.alpha = 1
         self.beta = 1
-        
+
         self.right = []
         self.left = []
         self.up = []
         self.down = []
-        
+
         self.value = 'x' + str(point.count)
         point.count+=1
-        
 
-    def __gt__(self, other): 
-        if(self.x >= other.x  and self.y >= other.y): 
+
+    def __gt__(self, other):
+        if(self.x >= other.x  and self.y >= other.y):
             return True
-        else: 
+        else:
             return False
-        
-    def __eq__(self, other): 
-        if(abs(self.x - other.x) <= 0.0000001 and abs(self.y - other.y) <= 0.0000001): 
+
+    def __eq__(self, other):
+        if(abs(self.x - other.x) <= 0.0000001 and abs(self.y - other.y) <= 0.0000001):
             return True
-        else: 
+        else:
             return False
 
 
@@ -131,94 +131,93 @@ value = U value at this boundry
 """
 
 class boundry():
-    
-    
+
+
     def __init__(self, ly, my, lx, mx, equation, value):
-        
+
         if len(solve(equation, y, check = False)) == 0:
             self.equation = lambdify(x, solve(equation, check = False))
         else:
             self.equation = lambdify(x, solve(equation, y, check = False))
-        
+
         if len(solve(equation, x, check = False)) == 0:
             self.inv = lambdify(y, solve(equation , check = False))
         else:
             self.inv = lambdify(y, solve(equation, x, check = False))
-        
+
         self.ly = ly
         self.my = my
         self.lx = lx
         self.mx = mx
         self.eq=equation
         self.value = lambdify([x,y], value)
-        
+
 
 
 # In[266]:
 
 
 class Grid():
-    
+
     #def __init__(self, start_x, end_x, start_y, end_y, h, k, boundries):
     def __init__(self, boundary, h, k):
         self.boundries = boundary
         self.start_x = self.get_start_x()
         self.end_x = self.get_end_x()
-        
+
         self.start_y = self.get_start_y()
         self.end_y = self.get_end_y()
-        
+
         self.h = h
         self.k = k
-        
+
         #self.boundries = boundries
-        
-        
+
+
     def get_start_x(self):
         x_i=self.boundries[0].lx
         for bound in self.boundries:
             if bound.lx<x_i:
                 x_i=bound.lx
         return x_i
-    
+
     def get_end_x(self):
         x_f=self.boundries[0].mx
         for bound in self.boundries:
             if bound.mx>x_f:
                 x_f=bound.mx
         return x_f
-    
+
     def get_start_y(self):
         y_i=self.boundries[0].ly
         for bound in self.boundries:
             if bound.ly<y_i:
                 y_i=bound.ly
         return y_i
-    
+
     def get_end_y(self):
         y_f=self.boundries[0].my
         for bound in self.boundries:
             if bound.my>y_f:
                 y_f=bound.my
         return y_f
-    
-    def Plot_Region(self):
-        for bound in self.boundries:
-            equation=0
-            x_range=np.linspace(bound.lx,bound.mx,100)
-            if len(bound.equation(x_range)[0]) == 1:
-                equation = lambdify(x, bound.eq)
-                print("Hi")
-                #plt.plot(x_range,equation(x_range),color='red')
-            else :
-                equation=bound.equation
-                #plt.plot(x_range,equation(x_range)[0],color='red')
-                print("Not Hi")
-            #print(equation(x_range)[0])
-            #plt.plot(x_range,bound.equation(x_range)[0],color='red')
 
-            
-        
+    def Plot_Region(self):
+        plt.plt.style.use('dark_background')
+        plt.figure(figsize=(18,9),dpi =200)
+        for bound in self.boundries:
+            x_data = np.linspace(bound.lx, bound.mx, 10000)
+            y_data = list(map(bound.equation, x_data))
+            plt.plot(x_data,y_data, label=bound.eq)
+
+        plt.xticks(np.arange(self.start_x, self.end_x + self.h, self.h))
+        plt.yticks(np.arange(self.start_y, self.end_y + self.k, self.k))
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.legend()
+        plt.savefig('Boundeies')
+
+
     def get_boundry_rows_points(self):
         boundry_rows_points = []
 
@@ -241,10 +240,10 @@ class Grid():
             if len(row) != 0:
                 boundry_rows_points.append(row)
 
-        # this copy will be used in avarege 
-        
+        # this copy will be used in avarege
+
         temp_rows = boundry_rows_points.copy()
-        
+
         # get the unique boundry points in every row
         for r in range(len(boundry_rows_points)):
             boundry_rows_points[r], counts = np.unique(boundry_rows_points[r], return_counts=True)
@@ -260,9 +259,9 @@ class Grid():
                         sum_v += temp_rows[r][i].value
 
                     boundry_rows_points[r][p].value = sum_v / len(ls)
-                    
+
         return boundry_rows_points
-    
+
     def get_boundry_cols_points(self):
         boundry_cols_points = []
         h=self.h
@@ -274,7 +273,7 @@ class Grid():
             for s in bounds:
                 if i >= s.lx and i <= s.mx:
                     if s.lx == s.mx:
-                        
+
                         for j in np.arange(s.ly, s.my + self.k, self.k):
                             p = point(round(s.equation(j)[0], acc), utility(j), True)
                             p.value = s.value(utility(j), round(s.equation(j)[0], acc))
@@ -291,12 +290,12 @@ class Grid():
 
         # this copy will be used in avarege
         temp_cols = boundry_cols_points.copy()
-        
+
         # get the unique boundry points in every coluomns
         for r in range(len(boundry_cols_points)):
             boundry_cols_points[r], counts = np.unique(boundry_cols_points[r], return_counts=True)
 
-        # get avarege for intersection points            
+        # get avarege for intersection points
         for r in range(len(boundry_cols_points)):
             for p in range(len(boundry_cols_points[r])):
                 ls = [i for i,x in enumerate(temp_cols[r]) if x == boundry_cols_points[r][p]]
@@ -306,11 +305,11 @@ class Grid():
                         sum_v += temp_cols[r][i].value
 
                     boundry_cols_points[r][p].value = sum_v / len(ls)
-                    
+
         return boundry_cols_points
-    
+
     def get_points(self, boundry_rows_points, boundry_cols_points):
-        
+
         #loop on the grid and get all points between boundry points
         #also set (up, down, left, right) with (irreg, alpha, beta)
         #and the index (i_index, j_index) and index
@@ -328,9 +327,11 @@ class Grid():
                     j_bound = 0
                     while j_bound < len(boundry_cols_points[c]):
 
-                        if  (len(boundry_rows_points[r]) > 1 and len(boundry_cols_points[c]) > 1 and 
+                         if  (len(boundry_rows_points[r]) > 1 and len(boundry_cols_points[c]) > 1 and
+                            i_bound + 1 < len(boundry_rows_points[r]) and
+                            j_bound + 1 < len(boundry_cols_points[c]) and
                             i > boundry_rows_points[r][i_bound].x and
-                            i < boundry_rows_points[r][i_bound + 1].x and 
+                            i < boundry_rows_points[r][i_bound + 1].x and
                             j < boundry_cols_points[c][j_bound + 1].y and
                             j > boundry_cols_points[c][j_bound].y):
 
@@ -378,37 +379,37 @@ class Grid():
                             count+=1
                             points.append(p)
 
-                        j_bound+=2
-                    i_bound+=2
+                        j_bound+=1
+                    i_bound+=1
 
-                c+=1  
+                c+=1
             r+=1
-            
+
         for p in range(len(points)):
             if points[p].up[0] in points:
                 x = points.index(points[p].up[0])
                 points[p].up[0] = points[x]
-                
+
             if points[p].down[0] in points:
                 x = points.index(points[p].down[0])
                 points[p].down[0] = points[x]
-                
-            
+
+
             if points[p].right[0] in points:
                 x = points.index(points[p].right[0])
                 points[p].right[0] = points[x]
-                
-                
-            
+
+
+
             if points[p].left[0] in points:
                 x = points.index(points[p].left[0])
                 points[p].left[0] = points[x]
-            
+
         return points
-    
-        
-    
-    
+
+
+
+
 
 
 # In[267]:
@@ -429,7 +430,7 @@ class PDE_Solver :
         self.Number_Of_Points=len(self.list_points)
         self.h=self.grid.h
         self.k=self.grid.k
-        
+
     def Get_Parameters(self,dxx,dyy,dx,dy,u,function):
         self.dxx=lambdify([x,y], dxx)
         self.dx=lambdify([x,y], dx)
@@ -437,9 +438,9 @@ class PDE_Solver :
         self.dy=lambdify([x,y], dy)
         self.u_coeff=lambdify([x,y], u)
         self.function=lambdify([x,y], function)
-    
+
     def Solution(self):
-        
+
         for p in self.list_points:
             Up_Beta=p.up[0].beta
             Down_Beta=p.down[0].beta
@@ -448,7 +449,7 @@ class PDE_Solver :
             Row_Matrix=np.zeros(self.Number_Of_Points)
             x=p.x
             y=p.y
-            
+
             u_term1=2*self.dxx(x,y)/(Right_Alpha*Left_Alpha*self.h**2)
             u_term2=2*self.dyy(x,y)/(Up_Beta*Down_Beta*self.k**2)
             u_term3=self.dx(x,y)*(Right_Alpha-Left_Alpha)/(self.h*Left_Alpha*Right_Alpha)
@@ -463,7 +464,7 @@ class PDE_Solver :
             LeftCoeff=0
             Output=0
 
-            #Solving the up point : 
+            #Solving the up point :
 
             if p.up[0].is_bound==True :
                 Term1=2*self.dyy(x,y)/(Up_Beta*(Up_Beta+Down_Beta)*self.k**2)
@@ -477,8 +478,8 @@ class PDE_Solver :
                 up_term2=self.dy(x,y)*Down_Beta/(self.k*Up_Beta*(Up_Beta+Down_Beta))
                 UpperCoeff=up_term1+up_term2
                 Row_Matrix[p.up[0].index]=UpperCoeff
-                
-            #Solving the down point 
+
+            #Solving the down point
             if p.down[0].is_bound==True: #Boundary
                 Term1=2*self.dyy(x,y)/(Down_Beta*(Up_Beta+Down_Beta)*self.k**2)
                 Term2=self.dy(x,y)*Up_Beta/(self.k*Down_Beta*(Up_Beta+Down_Beta))
@@ -491,8 +492,8 @@ class PDE_Solver :
                 low_term2=self.dy(x,y)*Up_Beta/(self.k*Down_Beta*(Up_Beta+Down_Beta))
                 LowerCoeff=low_term1+low_term2
                 Row_Matrix[p.down[0].index]=LowerCoeff
-            
-            #Solving Right : 
+
+            #Solving Right :
             if p.right[0].is_bound==True: #Boundary
                 Term1=2*self.dxx(x,y)/(Right_Alpha*(Right_Alpha+Left_Alpha)*self.h**2)
                 Term2=self.dx(x,y)*Right_Alpha/(self.h*Right_Alpha*(Right_Alpha+Left_Alpha))
@@ -500,13 +501,13 @@ class PDE_Solver :
                 Term=Term*p.right[0].value
                 Output=Output+Term
                 RightCoeff=0
-            #Not Boundary : 
+            #Not Boundary :
             else :
                 right_term1=2*self.dxx(x,y)/(Right_Alpha*(Right_Alpha+Left_Alpha)*self.h**2)
                 right_term2=self.dx(x,y)*Left_Alpha/(self.h*Right_Alpha*(Right_Alpha+Left_Alpha))
                 RightCoeff=right_term1+right_term2
                 Row_Matrix[p.right[0].index]=RightCoeff
-            
+
             #Solving Left
             if p.left[0].is_bound==True: #Boundary
                 Term1=2*self.dxx(x,y)/(Left_Alpha*(Left_Alpha+Right_Alpha)*self.h**2)
@@ -515,21 +516,21 @@ class PDE_Solver :
                 Term=Term*p.left[0].value
                 Output=Output+Term
                 LeftCoeff=0
-            #Not Boundary : 
+            #Not Boundary :
             else :
                 left_term1=2*self.dxx(x,y)/(Left_Alpha*(Right_Alpha+Left_Alpha)*self.h**2)
                 left_term2=self.dx(x,y)*Right_Alpha/(self.h*Left_Alpha*(Right_Alpha+Left_Alpha))
                 LeftCoeff=left_term1+left_term2
                 Row_Matrix[p.left[0].index]=LeftCoeff
-            
+
             Output=Output-self.function(x,y)
             self.OutputMatrix.append(Output)
             self.CoeffMatrix.append(Row_Matrix)
-            
-            
-            
 
-        
+
+
+
+
     def Solve(self):
         self.Solution()
         b=np.array(self.OutputMatrix)
@@ -547,9 +548,6 @@ class PDE_Solver :
         for p in self.list_points:
             if p.x==x and p.y==y:
                 Point=p
-                break 
+                break
         Sol_Vector=self.Solve()
         return Sol_Vector[Point.index]
-            
-        
-
