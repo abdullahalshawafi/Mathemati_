@@ -377,9 +377,8 @@ class Grid():
                             count+=1
                             points.append(p)
 
-                        j_bound+=1
+                         j_bound+=1
                     i_bound+=1
-
                 c+=1
             r+=1
 
