@@ -88,10 +88,11 @@ def PDE():
         x_point=float(request.form['x_cordinates'])
         y_point=float(request.form['y_cordinates'])
         _point=point(x_point,y_point,False)
-        U=request.form['Output_U']
+        grid.Plot_Region()
+        U=''
         U_Value=pde.Solve_At_Point(_point)
         U=U_Value
-        print(U)
+        
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
     else:
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
