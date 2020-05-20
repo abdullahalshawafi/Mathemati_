@@ -160,7 +160,7 @@ def Newton(Xi,Yi,n,value,order): #for the interface team
     DiffYint = [0 for i in range(n)]
     for i in range(n):
         DiffExp[i] = diff(Exp[i],x)
-        DiffYint[i] = DiffExp[i].subs(x,value)
+        DiffYint[i] = round(DiffExp[i].subs(x,value),6)
     
     return DT,Yint[order],Exp[order],DiffYint[order],DiffExp[order],RE[order]
 
