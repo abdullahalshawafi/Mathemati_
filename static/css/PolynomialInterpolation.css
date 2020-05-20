@@ -101,9 +101,9 @@ a {
 } */
 
 .WingSrc {
-	width: 25vw;
+	width: 30vw;
 	position: relative;
-	top: 0.2vw;
+	top: 0.5vw;
 	z-index: 10;
 	left: 50%;
 	transform: translate(-50%, -100%);
@@ -119,10 +119,9 @@ a {
 	top: 0;
 	left: 50%;
 	transform: translate(-50%, 0);
-	font-size: 1.45vw;
-	padding: 1.25vw 1vw 1.1vw 1vw;
+	font-size: 1.15vw;
+	padding: 1.65vw 1vw 1.45vw 1vw;
 	border-radius: 0 0 2vw 2vw;
-	filter: hue-rotate(180deg);
 }
 
 .Logo {
@@ -185,6 +184,15 @@ a {
 }
 
 
+#MidTab {
+	position: absolute;
+	width: 21.56vw;
+	height: 21.8vw;
+	left: 39.26vw;
+	top: 8.2vw;
+	overflow: visible;
+}
+
 .Rectangle_8 {
 	position: absolute;
 	overflow: visible;
@@ -198,7 +206,7 @@ a {
 	position: absolute;
 	width: 30.53vw;
 	height: 35.29vw;
-	left: 4.4vw;
+	left: 5.4vw;
 	top: 0.98vw;
 	overflow: visible;
 }
@@ -210,14 +218,6 @@ a {
 	height: 35.29vw;
 	left: 4.48vw;
 	top: 0px;
-}
-.Rectangle_expand {
-	position: absolute;
-	overflow: visible;
-	width: 23.02vw;
-	height: 35.29vw;
-	left: 4.48vw;
-	top: 14.9vw;
 }
 
 .Rectangle_2 {
@@ -250,7 +250,7 @@ a {
 }
 
 .Rectangle_4 {
-	filter: drop-shadow(-0.3vw 0.3vw 0.6vw rgba(0, 0, 0, 0.161));
+	filter: drop-shadow(-4px 4px 8px rgba(0, 0, 0, 0.161));
 	position: absolute;
 	overflow: visible;
 	width: 5.3vw;
@@ -259,6 +259,14 @@ a {
 	top: 0px;
 }
 
+#System {
+	position: absolute;
+	width: 190.950.07vw;
+	height: 5.95vw;
+	left: -5.45vw;
+	top: 0;
+	overflow: visible;
+}
 
 .Ellipse_3_r {
 	position: absolute;
@@ -303,15 +311,9 @@ a {
 	position: absolute;
 	width: 25.26vw;
 	height: 34.05vw;
-	left: 9.75vw;
+	left: 10.75vw;
 	top: 1.58vw;
 	overflow: visible;
-}
-.Rectangle_8-5 {
-	position: absolute;
-	overflow: visible;
-	left: 1.5vw;
-	top: 1.5vw;
 }
 
 .Rectangle_18 {
@@ -319,7 +321,7 @@ a {
 	overflow: visible;
 	width: 20.25vw;
 	left: 0.2vw;
-	top: 15.3vw;
+	top: 8.2vw;
 }
 
 .Rectangle_28 {
@@ -334,7 +336,7 @@ a {
 #Linearized_ {
 	position: absolute;
 	left: 0px;
-	top: 0.62vw;
+	top: 4.62vw;
 	overflow: visible;
 	width: 7.1vw;
 	white-space: nowrap;
@@ -351,45 +353,12 @@ a {
 .Rectangle_43 {
 	position: absolute;
 	overflow: visible;
-	width: 20.7vw;
+	width: 7vw;
 	height: 1.9vw;
-	left: 0px;
-	top: 2.3vw;
+	left: 13vw;
+	top: 0.4vw;
 }
 
-#Surface_ {
-	position: absolute;
-	left: 11.7vw;
-	top: 4.65vw;
-	overflow: visible;
-	width: 5.2vw;
-	white-space: nowrap;
-	line-height: 2.38vw;
-	margin-top: -0.45vw;
-	text-align: left;
-	font-family: Radley;
-	font-style: italic;
-	font-weight: normal;
-	font-size: 1.45vw;
-	color: rgba(255,255,255,1);
-}
-
-#Best_Fitting_Family_of_Curves {
-	position: absolute;
-	left: 0px;
-	top: 9.5vw;
-	overflow: visible;
-	width: 17.77vw;
-	white-space: nowrap;
-	line-height: 2.38vw;
-	margin-top: -0.45vw;
-	text-align: left;
-	font-family: Radley;
-	font-style: italic;
-	font-weight: normal;
-	font-size: 1.45vw;
-	color: rgba(255,255,255,1);
-}
 
 #Table {
 	position: absolute;
@@ -400,7 +369,14 @@ a {
 	overflow: visible;
 }
 
-
+.Rectangle_44 {
+	position: absolute;
+	overflow: visible;
+	width: 20.7vw;
+	height: 2.58vw;
+	left: 0px;
+	top: 0px;
+}
 
 #Line1 {
 	position: absolute;
@@ -412,12 +388,27 @@ a {
 }
 
 
-
+#Newton_ {
+	position: absolute;
+	left: 0px;
+	top: 0.58vw;
+	overflow: visible;
+	width: 10.13vw;
+	white-space: nowrap;
+	line-height: 2.38vw;
+	margin-top: -0.45vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.45vw;
+	color: rgba(255,255,255,1);
+}
 
 #Table_ {
 	position: absolute;
 	left: 0.07vw;
-	top: 13vw;
+	top: 6.1vw;
 	overflow: visible;
 	width: 3.77vw;
 	white-space: nowrap;
@@ -427,37 +418,35 @@ a {
 	font-family: Radley;
 	font-style: italic;
 	font-weight: normal;
-	font-size: 1.2vw;
+	font-size: 1.45vw;
 	color: rgba(175,175,175,1);
-}
-
-#System {
-	position: absolute;
-	width: 3.4473vw;
-	height: 3.634375vw;
-	left: 0.5894vw;
-	top: 0.25052vw;
-	overflow: visible;
-}
-
-.Polygon_23 {
-	overflow: visible;
-	position: absolute;
-	width: 2.02vw;
-	height: 2.46vw;
-	left: 0.4vw;
-	top: 0.4vw;
-	transform: matrix(1,0,0,1,0,0);
 }
 
 .Rectangle_55 {
 	position: absolute;
 	overflow: auto;
-	width: 49vw;
-	height: 16.5vw;
-	left: 1vw;
-	top: 15.5vw;
+	width: 18.8vw;
+	height: 25vw;
+	left: 1.1vw;
+	top: 8.5vw;
 	color: white;
+}
+
+#Best_fitting_curves_are__ {
+	position: absolute;
+	left: 0px;
+	top: -3.36vw;
+	overflow: visible;
+	width: 15.88vw;
+	white-space: nowrap;
+	line-height: 2.38vw;
+	margin-top: -0.35vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.65vw;
+	color: rgba(175,175,175,1);
 }
 
 #AnswerTab {
@@ -466,6 +455,15 @@ a {
 	height: 20.96vw;
 	left: 64.13vw;
 	top: 4.03vw;
+	overflow: visible;
+}
+
+#AnswerTabB {
+	position: absolute;
+	width: 30.53vw;
+	height: 20.96vw;
+	left: 64.13vw;
+	top: 25.03vw;
 	overflow: visible;
 }
 
@@ -540,7 +538,15 @@ a {
 	width: 23.8vw;
 	height: 18.3vw;
 	left: 65.3vw;
-	top: 2vw;
+	top: 5.07vw;
+	overflow: visible;
+}
+#AnswerB {
+	position: absolute;
+	width: 23.8vw;
+	height: 18.3vw;
+	left: 65.3vw;
+	top: 26.07vw;
 	overflow: visible;
 }
 
@@ -550,13 +556,61 @@ a {
 	width: 18.75vw;
 	height: 1.9vw;
 	left: 4.82vw;
-	top: 3.34vw;
+	top: 0.14vw;
+}
+.Rectangle_32B {
+	position: absolute;
+	overflow: visible;
+	width: 18.75vw;
+	height: 1.9vw;
+	left: 4.82vw;
+	top: 3.44vw;
+}
+.Rectangle_32D {
+	position: absolute;
+	overflow: visible;
+	width: 18.75vw;
+	height: 1.9vw;
+	left: 4.82vw;
+	top: 6.8vw;
 }
 
 #R__x____ {
 	position: absolute;
 	left: 0.07vw;
-	top: 3.1vw;
+	top: 0px;
+	overflow: visible;
+	width: 4.75vw;
+	white-space: nowrap;
+	line-height: 2.38vw;
+	margin-top: -0.35vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.56vw;
+	color: rgba(255,255,255,1);
+}
+#R__x____B {
+	position: absolute;
+	left: 0.07vw;
+	top: 3.2vw;
+	overflow: visible;
+	width: 4.75vw;
+	white-space: nowrap;
+	line-height: 2.38vw;
+	margin-top: -0.35vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.56vw;
+	color: rgba(255,255,255,1);
+}
+#R__x____D {
+	position: absolute;
+	left: 0.07vw;
+	top: 6.75vw;
 	overflow: visible;
 	width: 4.75vw;
 	white-space: nowrap;
@@ -570,21 +624,33 @@ a {
 	color: rgba(255,255,255,1);
 }
 
-.Rectangle_34 {
+
+
+
+.Rectangle_41 {
 	position: absolute;
 	overflow: visible;
-	width: 20.7vw;
+	width: 9.375vw;
 	height: 1.9vw;
-	left: 2.8vw;
+	left: 2.41vw;
+	top: 3.4vw;
+}
+.Rectangle_41D {
+	position: absolute;
+	overflow: visible;
+	width: 9.375vw;
+	height: 1.9vw;
+	left: 2.41vw;
 	top: 10vw;
 }
 
-#Sr___ {
+
+#R___ {
 	position: absolute;
-	left: 0.07vw;
-	top: 9.9vw;
+	left: 0px;
+	top: 3.2vw;
 	overflow: visible;
-	width: 3vw;
+	width: 2.38vw;
 	white-space: nowrap;
 	line-height: 2.38vw;
 	margin-top: -0.35vw;
@@ -595,28 +661,26 @@ a {
 	font-size: 1.56vw;
 	color: rgba(255,255,255,1);
 }
-
-.Rectangle_41 {
-	position: absolute;
-	overflow: visible;
-	width: 5.875vw;
-	height: 1.9vw;
-	left: 2.01vw;
-	top: 6.7vw;
-}
-.Rectangle_43 {
-	position: absolute;
-	overflow: visible;
-	width: 5.875vw;
-	height: 1.9vw;
-	left: 8.91vw;
-	top: 6.7vw;
-}
-
-#R___ {
+#R___B {
 	position: absolute;
 	left: 0px;
-	top: 6.51vw;
+	top: 0.2vw;
+	overflow: visible;
+	width: 2.38vw;
+	white-space: nowrap;
+	line-height: 2.38vw;
+	margin-top: -0.35vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.56vw;
+	color: rgba(255,255,255,1);
+}
+#R___D {
+	position: absolute;
+	left: 0px;
+	top: 9.9vw;
 	overflow: visible;
 	width: 2.38vw;
 	white-space: nowrap;
@@ -633,16 +697,80 @@ a {
 .Rectangle_42 {
 	position: absolute;
 	overflow: visible;
-	width: 5.875vw;
+	width: 9.375vw;
 	height: 1.9vw;
-	left: 17.63vw;
-	top: 6.7vw;
+	left: 14.13vw;
+	top: 3.4vw;
+}
+.Rectangle_42D {
+	position: absolute;
+	overflow: visible;
+	width: 9.375vw;
+	height: 1.9vw;
+	left: 14.13vw;
+	top: 10vw;
+}
+.Rectangle_41B {
+	position: absolute;
+	overflow: visible;
+	width: 5.375vw;
+	height: 1.9vw;
+	left: 3.13vw;
+	top: 0.3vw;
+}
+.Rectangle_42B {
+	position: absolute;
+	overflow: visible;
+	width: 6.175vw;
+	height: 1.9vw;
+	left: 10.33vw;
+	top: 0.3vw;
+}
+.Rectangle_42B2 {
+	position: absolute;
+	overflow: visible;
+	width: 6.175vw;
+	height: 1.9vw;
+	left: 17.33vw;
+	top: 0.3vw;
 }
 
 #____ {
 	position: absolute;
-	left: 15.3vw;
-	top: 6.51vw;
+	left: 12.1vw;
+	top: 3.21vw;
+	overflow: visible;
+	width: 30.07vw;
+	white-space: nowrap;
+	line-height: 2.38vw;
+	margin-top: -0.35vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.56vw;
+	color: rgba(255,255,255,1);
+}
+#____B {
+	position: absolute;
+	left: 8.6vw;
+	top: 0.21vw;
+	overflow: visible;
+	width: 16.07vw;
+	white-space: nowrap;
+	line-height: 2.38vw;
+	margin-top: -0.35vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.56vw;
+	color: rgba(255,255,255,1);
+}
+#____D {
+	position: absolute;
+	left: 12.1vw;
+	top: 9.9vw;
 	overflow: visible;
 	width: 30.07vw;
 	white-space: nowrap;
@@ -656,31 +784,6 @@ a {
 	color: rgba(255,255,255,1);
 }
 
-.Rectangle_45 {
-	position: absolute;
-	overflow: visible;
-	width: 20.7vw;
-	height: 1.9vw;
-	left: 2.8vw;
-	top: 13.17vw;
-}
-
-#St___ {
-	position: absolute;
-	left: 0.07vw;
-	top: 13.02vw;
-	overflow: visible;
-	width: 2.8vw;
-	white-space: nowrap;
-	line-height: 2.38vw;
-	margin-top: -0.35vw;
-	text-align: left;
-	font-family: Radley;
-	font-style: italic;
-	font-weight: normal;
-	font-size: 1.56vw;
-	color: rgba(255,255,255,1);
-}
 
 .Rectangle_46 {
 	position: absolute;
@@ -688,13 +791,13 @@ a {
 	width: 9.375vw;
 	height: 1.9vw;
 	left: 14.127vw;
-	top: 16.34vw;
+	top: 13.34vw;
 }
 
 #Correlation_factor__ {
 	position: absolute;
 	left: 0.07vw;
-	top: 16.21vw;
+	top: 13.21vw;
 	overflow: visible;
 	width: 13.48vw;
 	white-space: nowrap;
@@ -708,7 +811,7 @@ a {
 	color: rgba(255,255,255,1);
 }
 
-#Best_fitting_curves_are__ {
+#Lagrange_ {
 	position: absolute;
 	left: 0px;
 	top: 3.26vw;
@@ -722,17 +825,18 @@ a {
 	font-style: italic;
 	font-weight: normal;
 	font-size: 1.65vw;
-	color: rgba(175,175,175,1);
+	color: white;
 }
 
 .table-button {
 	background: unset;
 	border: unset;
 	outline: none;
-	cursor: pointer;
 	width: 3.255208333vw;
 	margin-bottom: 0.651041667vw;
 	pointer-events: visible;
+	outline: none;
+	cursor: pointer;
 }
 
 .button-div {
@@ -748,12 +852,12 @@ a {
 	pointer-events: visible;
 }
 
-	.button-div button embed {
+	.button-div button img {
 		height: 2.5vw;
 		transition: 0.2s;
 	}
 
-		.button-div button embed:hover {
+		.button-div button img:hover {
 			height: 2.8vw;
 			transition: 0.2s;
 			filter: brightness(1.3) saturate(40);
@@ -794,60 +898,11 @@ textarea:focus, input:focus {
 
 .Rectangle_44 {
 	position: relative;
-	width: 5.5vw;
-	height: 2.85vw;
+	width: 4.28vw;
+	height: 2.55vw;
 	padding: 0;
-	margin-bottom: 0.6vw;
-}
-.Rectangle_44wide {
-	position: relative;
-	width: 11vw;
-	height: 2.85vw;
-	padding: 0;
-	margin-bottom: 0.6vw;
-}
-.Rectangle_step {
-	position: relative;
-	width: 4.6vw;
-	height: 2.85vw;
-	padding: 0;
-	margin-bottom: 0.6vw;
-}
 
-#out {
-	position: absolute;
-	left: -17.6vw;
-	top: 5.6vw;
-	overflow: visible;
-	width: 7.1vw;
-	white-space: nowrap;
-	line-height: 2.18vw;
-	margin-top: -0.45vw;
-	text-align: left;
-	font-family: Radley;
-	font-style: italic;
-	font-weight: normal;
-	font-size: 1.45vw;
-	color: rgba(255,255,255,1);
 }
-
-.Rectangle_x {
-	position: relative;
-	width: 6.8vw;
-	height: 2.85vw;
-	padding: 0;
-	margin-bottom: 0.6vw;
-}
-
-.Rectangle_U {
-	position: relative;
-	width: 18.6vw;
-	height: 2.85vw;
-	padding: 0;
-	margin-bottom: 0.6vw;
-}
-
-
 .inChars {
 	position: relative;
 	color: white;
@@ -856,21 +911,40 @@ textarea:focus, input:focus {
 	font-size: 1.2vw;
 	padding: 0 0.2vw;
 	text-align: center;
-	width: 4vw;
-	margin-bottom: 0.6vw;
+	width: 3vw;
+}
+.inChar {
+	position: relative;
+	color: white;
+	font-family: Radley;
+	font-style: italic;
+	font-size: 1.3vw;
+	padding: 0 0.2vw;
+	text-align: center;
+	width: 1vw;
 }
 .Rectangle_19 {
 	position: absolute;
-	max-width: 20.83vw;
+	width: 20.83vw;
+	max-height: 1.8vw;
 	left: 0px;
-	top: 4.21vw;
+	top: 6.51vw;
+	overflow-x: auto;
 }
 .Rectangle_19::-webkit-scrollbar {
 height: 0;
 }
+#table {
+	height: 1.65vw;
+	display: inline-flex;
+}
 
-
-
+.Rectangle_8-5 {
+	position: absolute;
+	overflow: visible;
+	left: 1.5vw;
+	top: 1.5vw;
+}
 
 
 #myFunction {
@@ -884,9 +958,8 @@ height: 0;
 #plot {
 }
 
-
 .table {
-	width: 47vw;
+	width: 14vw;
 	margin: 1vw auto;
 	text-align: center;
 	vertical-align: central;
@@ -918,15 +991,9 @@ height: 0;
 			outline: none;
 		}
 
-	.table th:nth-child(even),
-	.table td:nth-child(even) {
-		border-left: solid 0.14vw white;
+	.table th:nth-child(odd),
+	.table td:nth-child(odd) {
 		border-right: solid 0.14vw white;
-	}
-	.table th:last-child,
-	.table td:last-child {
-		border-left: solid 0.14vw white;
-		border-right: solid 0;
 	}
 
 	.table th {
@@ -945,10 +1012,6 @@ height: 0;
 		padding: 0.5vw 0;
 		font-size: 1vw;
 	}
-
-.wide-slot {
-	width: 15vw;
-}
 
 .Hue-Bar {
 	display: inline-block;
@@ -1054,158 +1117,4 @@ height: 0;
 
 .LineSlider {
 	transform: rotate(90deg) translate(-1vw,1vw);
-}
-
-#MidTab {
-	position: absolute;
-	width: 22.9vw;
-	height: 14.13vw;
-	left: 39vw;
-	top: 0.65vw;
-	overflow: visible;
-}
-
-.Rectangle_8 {
-	position: absolute;
-	overflow: visible;
-	width: 22.9vw;
-	height: 10.3vw;
-	left: 0px;
-	top: 3.9vw;
-}
-
-.Rectangle_56 {
-	width: 7.36vw;
-	height: 4.56vw;
-	position: absolute;
-	overflow: visible;
-	transform: translate(0, -0.25vw) matrix(1,0,0,1,0,0) rotate(-90deg);
-	transform-origin: center;
-	left: 16.94vw;
-	top: 1.3vw;
-}
-
-.Path_3 {
-	overflow: visible;
-	position: absolute;
-	width: 1.4vw;
-	height: 1.58vw;
-	transform: translate(0, -0.25vw) matrix(1,0,0,1,0,0) rotate(180deg);
-	transform-origin: center;
-	left: 17vw;
-	top: 2.8vw;
-}
-
-#Group_1 {
-	position: absolute;
-	width: 3.52vw;
-	height: 3.8vw;
-	left: 18.9vw;
-	top: 0px;
-	overflow: visible;
-}
-
-.Ellipse_5_n {
-	position: absolute;
-	overflow: visible;
-	width: 3.5vw;
-	height: 3.66vw;
-	left: 0;
-	top: 0.2vw;
-}
-
-#U__x_y_ {
-	position: absolute;
-	left: -0.2vw;
-	top: 0.6vw;
-	overflow: visible;
-	width: 3.6vw;
-	white-space: nowrap;
-	text-align: center;
-	font-family: Radley;
-	font-weight: bold;
-	font-size: 2.5vw;
-	color: rgba(255,109,28,1);
-	line-height: 60%;
-}
-#AnswerTab {
-	position: absolute;
-	width: 30.5vw;
-	height: 35.5vw;
-	left: 64.8vw;
-	top: 1.25vw;
-	overflow: visible;
-}
-
-.Rectangle_6 {
-	position: absolute;
-	overflow: visible;
-	width: 7.16vw;
-	height: 4.56vw;
-	left: 23.5vw;
-	top: 0px;
-}
-
-.Rectangle_7 {
-	position: absolute;
-	overflow: visible;
-	width: 25.97vw;
-	height: 35.5vw;
-	left: 0;
-	top: 0;
-}
-
-#Brackets {
-	position: absolute;
-	width: 4.42vw;
-	height: 4.42vw;
-	left: 25.72vw;
-	top: 0;
-	overflow: visible;
-}
-
-.Ellipse_4_bj {
-	position: absolute;
-	overflow: visible;
-	width: 2.9vw;
-	height: 3vw;
-	left: 1.04vw;
-	top: 0.65vw;
-}
-
-#PDE0045 {
-	position: absolute;
-	width: 4.42vw;
-	height: 4.42vw;
-	left: 0px;
-	top: 0px;
-	overflow: visible;
-}
-
-.Path_9 {
-	overflow: visible;
-	position: absolute;
-	width: 1.4vw;
-	height: 1.58vw;
-	left: 25.9vw;
-	top: 4.45vw;
-	transform: matrix(1,0,0,1,0,0);
-}
-
-.Rectangle_57 {
-	position: absolute;
-	overflow: visible;
-	width: 23.63vw;
-	height: 16.2vw;
-	left: 1.17vw;
-	top: 1.5vw;
-}
-
-.Rectangle_58 {
-	position: absolute;
-	overflow: visible;
-	width: 23.63vw;
-	height: 15.5vw;
-	left: 1.2vw;
-	top: 18.5vw;
 }

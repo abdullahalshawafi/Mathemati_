@@ -11,6 +11,34 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 def home():
     return render_template('Home.html')
 
+@app.route("/PolynomialInterpolation", methods=['GET', 'POST'])
+def PolynomialInterpolation():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/SplineInterpolation", methods=['GET', 'POST'])
+def SplineInterpolation():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/LeastSquareReg", methods=['GET', 'POST'])
+def LeastSquareReg():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/SurfaceFitting", methods=['GET', 'POST'])
+def SurfaceFitting():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
+
 @app.route("/PDE", methods=['GET', 'POST'])
 def PDE():
     if request.method == 'POST':
@@ -27,7 +55,7 @@ def PDE():
         k=float(request.form['k_step'])
         boundaries=[]
         for i in range(12):
-            #Strings for table records : 
+            #Strings for table records :
 
             f_str='function'+str(i)
             x_i_str='xi'+str(i)
@@ -43,7 +71,7 @@ def PDE():
             y_f=request.form[y_f_str]
             u=request.form[u_str]
 
-            #Check that the table record is not empty 
+            #Check that the table record is not empty
 
             if not f=="" and not x_i=="" and not x_f=="" and not y_i=="" and not y_f=="" and not u=="":
                 x_i=float(request.form[x_i_str])
@@ -65,11 +93,6 @@ def PDE():
         U=U_Value
         print(U)
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
-
-
-
-
-        #pass
     else:
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
 
@@ -78,7 +101,7 @@ def LinearSystem():
     if request.method == 'POST':
 
         pass
-        
+
     else:
         return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
@@ -120,7 +143,7 @@ def NonlinearSystem():
 
         StoppingCriteria = request.form['StoppingCriteria']
         if not StoppingCriteria == '':
-            StoppingCriteria = float(request.form[''])
+            StoppingCriteria = float(request.form['StoppingCriteria'])
         iterations = request.form['Iterations']
         if not iterations == '':
             iterations = int(request.form['Iterations'])

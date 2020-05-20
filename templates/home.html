@@ -48,25 +48,25 @@
 					</div>
 					<div id="PI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Polynomial_Interpolation">
-							<span>Polynomial Interpolation</span>
+							<a href="{{url_for('PolynomialInterpolation')}}"><span>Polynomial Interpolation</span></a>
 						</div>
 						<img id="PI0000" src="{{url_for('static', filename='HoverAnimations/PI/PI0000.png')}}">
 					</div>
 					<div id="SI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Spline_Interpolation">
-							<span>Spline Interpolation</span>
+							<a href="{{url_for('SplineInterpolation')}}"><span>Spline Interpolation</span></a>
 						</div>
 						<img id="SI0000" src="{{url_for('static', filename='HoverAnimations/SI/SI0000.png')}}">
 					</div>
 					<div id="LSR" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Least_Squares_Regression">
-							<span>Least Squares Regression</span>
+							<a href="{{url_for('LeastSquareReg')}}"><span>Least Squares Regression</span></a>
 						</div>
 						<img id="LSR0000" src="{{url_for('static', filename='HoverAnimations/LSR/LSR0000.png')}}">
 					</div>
 					<div id="SR" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Surface_Regression">
-							<span>Surface Fitting</span>
+							<a href="{{url_for('SurfaceFitting')}}"><span>Surface Fitting</span></a> 
 						</div>
 						<img id="SR0000" src="{{url_for('static', filename='HoverAnimations/SR/SR0000.png')}}">
 					</div>

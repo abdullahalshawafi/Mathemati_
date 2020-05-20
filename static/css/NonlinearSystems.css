@@ -840,6 +840,7 @@ input:focus {
   background: unset;
   border: unset;
   outline: none;
+  cursor: pointer;
   width: 3.255208333vw;
   margin-bottom: 0.651041667vw;
   pointer-events: visible;
