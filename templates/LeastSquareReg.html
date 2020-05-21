@@ -45,174 +45,216 @@
 					</div>
 				</div>
 			</div>
-			<div id="LeffTapCon">
-				<svg class="Rectangle_18">
-					<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="19.53vw">
-					</rect>
-				</svg>
-				<div class="Rectangle_28">
-					<div class="button-div">
-						<button class="table-button" id="calc">
-							<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="save">
-							<img src="{{url_for('static', filename='Assets/Save.svg')}}">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="load">
-							<img src="{{url_for('static', filename='Assets/Load.svg')}}">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="clear">
-							<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
-						</button>
+			<form action="{{url_for('LeastSquareReg')}}" method="post">
+				<div id="LeffTapCon">
+					<svg class="Rectangle_18">
+						<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="19.53vw">
+						</rect>
+					</svg>
+					<div class="Rectangle_28">
+						<div class="button-div">
+								<button type="submit" class="table-button" id="calc">
+									<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}">
+								</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button class="table-button" id="save">
+								<img src="{{url_for('static', filename='Assets/Save.svg')}}">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button class="table-button" id="load">
+								<img src="{{url_for('static', filename='Assets/Load.svg')}}">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button class="table-button" id="clear">
+								<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
+							</button>
+						</div>
+					</div>
+					<div id="Non_Linearized_">
+						<input type="radio" id="Nonlinear" name="Method" {% if Method == "Nonlinear" %} checked {% endif %} value="Nonlinear"><label for="Nonlinear">
+							<span>Nonlinear:</span>
+							<input type="text" name="Nonlinear_Equation" value="{{request.form['Nonlinear_Equation']}}" class="Rectangle_43" style="text-align: left" />
+						</label>
+					</div>
+
+					<div id="Linearized_">
+						<input type="radio" id="Linearized" name="Method" {% if Method == "Linearized" %} checked {% endif %} value="Linearized"><label for="Linearized"><span>Linearized:</span></label>
+					</div>
+
+					<div id="Best_Fitting_Family_of_Curves">
+						<input type="radio" id="Best-Fitting-Family-of-Curves" name="Method" {% if Method == "Best-Fitting-Family-of-Curves" %} checked {% endif %} value="Best-Fitting-Family-of-Curves"><label for="Best-Fitting-Family-of-Curves"><span>Curve Family Detective</span></label>
+					</div>
+					<div class="Rectangle_19">
+						<div id="table">
+
+
+							<input type="text" class="Rectangle_44" value="y" /> <div class="inChar">=</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C1 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C2 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C3 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C4 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C5 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C6 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C7 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C8 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C9 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C10 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C11 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C12 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C13 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C14 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C15 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C16 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C17 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C18 +</div>
+
+
+							<input type="text" class="Rectangle_44" /> <div class="inChars">C19</div>
+
+						</div>
+					</div>
+
+					<div id="Table_">
+						<span>Table:</span>
+					</div>
+					<div class="Rectangle_55">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>x</th>
+									<th>y</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input name="x_coordinates0" value="{{request.form['x_coordinates0']}}" type="text" /></td>
+									<td><input name="y_coordinates0" value="{{request.form['y_coordinates0']}}" type="text" /></td>
+
+								</tr>
+								<tr>
+									<td><input name="x_coordinates1" value="{{request.form['x_coordinates1']}}" type="text" /></td>
+									<td><input name="y_coordinates1" value="{{request.form['y_coordinates1']}}" type="text" /></td>
+
+								</tr>
+								<tr>
+									<td><input name="x_coordinates2" value="{{request.form['x_coordinates2']}}" type="text" /></td>
+									<td><input name="y_coordinates2" value="{{request.form['y_coordinates2']}}" type="text" /></td>
+								</tr>
+								<tr>
+									<td><input name="x_coordinates3" value="{{request.form['x_coordinates3']}}" type="text" /></td>
+									<td><input name="y_coordinates3" value="{{request.form['y_coordinates3']}}" type="text" /></td>
+
+								</tr>
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates4']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates4']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates5']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates5']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates6']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates6']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates7']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates7']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates8']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates8']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates9']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates9']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates10']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates10']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates11']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates11']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates12']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates12']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates13']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates13']}}" type="text" /></td>
+
+								</tr>
+
+							</tbody>
+							<tfoot>
+								<tr>
+									<td><input name="x_coordinates4" value="{{request.form['x_coordinates14']}}" type="text" /></td>
+									<td><input name="y_coordinates4" value="{{request.form['y_coordinates14']}}" type="text" /></td>
+
+								</tr>
+							</tfoot>
+						</table>
+
+
 					</div>
 				</div>
-				<div id="Non_Linearized_">
-					<input type="radio" id="Non-Linearized" name="Method" value="Non-Linearized"><label for="Non-Linearized">
-						<span>Non-Linearized:</span>
-						<input type="text" class="Rectangle_43" style="text-align: left" />
-					</label>
-				</div>
-
-				<div id="Linearized_">
-					<input type="radio" id="Linearized" name="Method" value="Linearized"><label for="Linearized"><span>Linearized:</span></label>
-				</div>
-
-				<div id="Best_Fitting_Family_of_Curves">
-					<input type="radio" id="Best-Fitting-Family-of-Curves" name="Method" value="Best-Fitting-Family-of-Curves"><label for="Best-Fitting-Family-of-Curves"><span>Best Fitting Family of Curves</span></label>
-				</div>
-				<div class="Rectangle_19">
-					<div id="table">
-
-
-						<input type="text" class="Rectangle_44" value="y" /> <div class="inChar">=</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C1 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C2 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C3 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C4 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C5 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C6 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C7 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C8 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C9 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C10 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C11 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C12 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C13 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C14 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C15 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C16 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C17 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C18 +</div>
-
-
-						<input type="text" class="Rectangle_44" /> <div class="inChars">C19</div>
-
-					</div>
-				</div>
-
-				<div id="Table_">
-					<span>Table:</span>
-				</div>
-				<div class="Rectangle_55">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>x</th>
-								<th>y</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-
-							</tr>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-
-							</tr>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-							</tr>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-
-							</tr>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-
-							</tr>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-
-							</tr>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-
-							</tr>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td><input type="number" /></td>
-								<td><input type="number" /></td>
-
-							</tr>
-						</tfoot>
-					</table>
-
-
-				</div>
-			</div>
+			</form>
 			<div id="AnswerTab">
 				<svg class="Rectangle_6">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_6" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.16vw" height="4.56vw">
@@ -234,38 +276,56 @@
 				</div>
 			</div>
 			<div id="Answer">
-				<input type="text" class="Rectangle_32" style="text-align: left" />
+
+				<input type="text" class="Rectangle_32" disabled style="text-align: left" />
 				<div id="R__x____">
-					<span>R (x) = </span>
+					<span>Detected Family : </span>
 				</div>
 
 
 
 				<div id="Sr___">
-					<span>Sr = </span>
+					<span>Sᵣ = </span>
 				</div>
 
 				<div id="R___">
-					<span>R ( </span>
+					<span>f ( </span>
 				</div>
 				<div id="____">
 					<span>) = </span>
 				</div>
 				<div id="St___">
-					<span>St = </span>
+					<span>Sₜ = </span>
 				</div>
 
 				<div id="Correlation_factor__">
-					<span>Correlation factor =</span>
+					<span>r &nbsp;&nbsp;=</span>
 				</div>
 				<div id="Best_fitting_curves_are__">
-					<span>Best fitting curves are: </span>
+					<span>f (x) = </span>
+					{% if results %}
+					<input type="text" class="Rectangle_Essam" value="{{results}}" disabled style="text-align: left">
+					{% else %}
+					<input type="text" class="Rectangle_Essam" value="{{results}}" disabled style="text-align: left">
+					{% endif %}
 				</div>
-				<input type="text" class="Rectangle_34" style="text-align: left" />
-				<input type="text" class="Rectangle_41" />
-				<input type="text" class="Rectangle_42" />
-				<input type="text" class="Rectangle_45" style="text-align: left" />
-				<input type="text" class="Rectangle_46" />
+				{% if Error %}
+				<input type="text" class="Rectangle_34" value="{{Error}}"" disabled style="text-align: left" />
+				{% else %}
+				<input type="text" class="Rectangle_34" disabled style=""text-align: left" />
+				{% endif %}
+				<input type="text" class="Rectangle_41" onfocusout="substitute(this)" style="width: 5vw; left: 1.5vw;" />
+				<input type="text" class="Rectangle_42" disabled style="left: 8.5vw; width: 15vw; text-align: left;"/>
+				{% if TrueErr %}
+				<input type="text" class="Rectangle_45" disabled value="{{TrueErr}}" style="text-align: left" />
+				{% else %}
+				<input type="text" class="Rectangle_45" disabled style="text-align: left" />
+				{% endif %}
+				{% if r %}
+				<input type="text" class="Rectangle_46" disabled value="{{r}}" style="width: 20.7vw; left: 2.8vw; text-align: left;" />
+				{% else %}
+				<input type="text" class="Rectangle_46" disabled value="{{r}}" style="width: 20.7vw; left: 2.8vw; text-align: left;" />
+				{% endif %}
 			</div>
 		</div>
 	</main>

@@ -22,7 +22,7 @@
     <header>
       <nav>
         <ul class="Nav-Bar">
-          <li><a href="Credits.html">Credits</a></li>
+          <li><a href="{{url_for('Credits')}}">Credits</a></li>
           <li id="DE-Menu" class="dropdown">
             <div>Differential Eqs.</div>
             <div class="dropdown_content">
@@ -35,7 +35,7 @@
             <div>Calculus</div>
             <div class="dropdown_content">
               <a href="#">Diff. Richardson Extrapolation</a>
-              <a href="#">Numerical Integration</a>
+              <a href="{{url_for('Integration')}}">Numerical Integration</a>
             </div>
           </li>
           <li></li>
@@ -58,7 +58,7 @@
               <a href="{{url_for('EigenvalueProblem')}}">Eigenvalue Problem</a>
             </div>
           </li>
-          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="{{url_for('Contact')}}">Contact</a></li>
         </ul>
         <div class="Wings">
           <img class="WingSrc" src="{{url_for('static', filename='Assets/' + wing)}}" />

@@ -886,6 +886,7 @@ a {
 	font-size: calc(40vw / 15.36);
 	color: rgba(255,255,255,1);
 	letter-spacing: calc(0.4vw / 15.36);
+	z-index: 2;
 }
 
 	#Credits_______________________:hover {

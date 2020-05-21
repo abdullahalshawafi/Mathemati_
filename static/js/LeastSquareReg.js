@@ -26,3 +26,16 @@ var parameters = {
   width: window.innerWidth / 100 * 19.13
 };
 functionPlot(parameters);
+
+function substitute(el) {
+  var x = el.value;
+  console.log(x);
+  var F = document.getElementsByClassName('Rectangle_Essam')[0].value;
+  F.replace('**', '^');
+  F.replace('sin', '(1)*')
+  F.replace('cos(', 'Math.cos(')
+  F.replace('tan(', 'Math.tan(')
+  F.replace('exp(', 'Math.exp(')
+  console.log(F);
+  document.getElementsByClassName('Rectangle_42')[0].value = eval(F);
+}

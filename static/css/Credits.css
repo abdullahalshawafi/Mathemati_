@@ -1,0 +1,3334 @@
+﻿* {
+	box-sizing: content-box;
+}
+
+body {
+	background-color: #1d1d1d;
+	margin: 0;
+	padding: 0;
+	font-family: "Reem Kufi", sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+header {
+	position: fixed;
+	z-index: 1005;
+}
+
+
+.Nav-Bar {
+	background: linear-gradient(0.25turn, #2f2e2e 25%, #111111, #2f2e2e 75%);
+	margin: 0;
+	padding: 2vw 0;
+	color: white;
+	font-size: 1.5vw;
+	list-style-type: none;
+	text-align: center;
+	box-shadow: rgba(0, 0, 0, 0.6) 0 1.2vw 4vw;
+}
+
+	.Nav-Bar li {
+		color: white;
+		margin: 0;
+		width: 10.8vw;
+		display: inline-block;
+		transition: 0.15s;
+		cursor: pointer;
+	}
+
+#DE-Menu .dropdown_content a:hover {
+	color: rgb(255, 109, 28);
+}
+
+#Calc-Menu .dropdown_content a:hover {
+	color: rgb(255, 28, 109);
+}
+
+#CF-Menu .dropdown_content a:hover {
+	color: rgb(28, 160, 255);
+}
+
+#SE-Menu .dropdown_content a:hover {
+	color: rgb(223, 255, 28);
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown_content {
+	display: none;
+	position: absolute;
+	border-radius: 1vw;
+	background-color: #3f3f3f;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 101;
+	animation: transition 0.4s forwards 0s ease-out;
+}
+
+@keyframes transition {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		transform: rotate(yy);
+		opacity: 1;
+	}
+}
+
+.dropdown_content a {
+	padding: 12px 16px;
+	border-radius: 1vw;
+	display: block;
+	font-size: 1vw;
+}
+
+	.dropdown_content a:hover {
+		background: radial-gradient(rgb(45, 45, 45), #3f3f3f 59%);
+	}
+
+.dropdown:hover .dropdown_content {
+	display: block;
+}
+
+.Nav-Bar li a:hover,
+.Nav-Bar li:hover {
+	color: #808080;
+	transition: 0.15s;
+}
+/* 
+.Wing {
+} */
+
+.WingSrc {
+	width: 24vw;
+	position: relative;
+	top: 0.5vw;
+	z-index: 10;
+	left: 50%;
+	transform: translate(-50%, -100%);
+}
+
+.Logo-Div {
+	color: #00FF88;
+	background: #333333;
+	z-index: 20;
+	display: inline-block;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
+	font-size: 1.8vw;
+	padding: 1.15vw 1.2vw 1vw 1.2vw;
+	border-radius: 0 0 2vw 2vw;
+	box-shadow: rgba(0, 0, 0, 0.6) 0vw 1vw 4vw;
+}
+
+.Logo {
+	margin: 0;
+	width: 10.5vw;
+	filter: hue-rotate(-45deg) saturate(2.4);
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 5px;
+}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+/* From here starts the main---------------------------------------------- */
+.mediaViewInfo {
+	--web-view-name: Web 1920 � 1;
+	--web-view-id: Web_1920___1;
+	--web-scale-on-resize: true;
+	--web-show-by-media-query: true;
+	--web-enable-deep-linking: true;
+}
+
+:root {
+	--web-view-ids: Web_1920___1;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+
+#Web_1920___1 {
+	position: absolute;
+	top: 8vw;
+	width: 98.11vw;
+	height: 181.901vw;
+	background-color: rgba(29,29,29,1);
+	overflow: hidden;
+	--web-view-name: Web 1920 � 1;
+	--web-view-id: Web_1920___1;
+	--web-scale-on-resize: true;
+	--web-show-by-media-query: true;
+	--web-enable-deep-linking: true;
+}
+
+#SE {
+	position: absolute;
+	width: 90.4296vw;
+	height: 24.609375vw;
+	left: 4.1015625vw;
+	top: 152.14843vw;
+	overflow: visible;
+}
+
+#EP {
+	position: absolute;
+	width: 20.638020vw;
+	height: 24.544270vw;
+	left: 69.79166vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Rectangle_78 {
+	position: absolute;
+	overflow: visible;
+	width: 19.466145vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.236979vw;
+}
+
+.Rectangle_77 {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0;
+}
+
+#EPA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Ellipse_4_m {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.975716vw;
+	top: 1.023828vw;
+}
+
+#EP0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Eigenvalue__Problem {
+	position: absolute;
+	left: 6.18485vw;
+	top: 3.3203125vw;
+	overflow: visible;
+	width: 9.1796875vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(223,255,28,1);
+}
+
+#__Mohamed_Salama_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 9.830729vw;
+	overflow: visible;
+	width: 12.56510vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.0.1953vw;
+}
+
+#__Ahmed_Waleed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 12.5vw;
+	overflow: visible;
+	width: 10.22135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Andrew_Boshra {
+	position: absolute;
+	left: 3.059895vw;
+	top: 15.169270vw;
+	overflow: visible;
+	width: 10.48177vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Bishoy_Atef {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.83854vw;
+	overflow: visible;
+	width: 7.942708vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Robert_Mounir {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.5078125vw;
+	overflow: visible;
+	width: 9.895833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#NS_ {
+	position: absolute;
+	width: 22.5911vw;
+	height: 24.544270vw;
+	left: 45.833333vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Rectangle_78_v {
+	position: absolute;
+	overflow: visible;
+	width: 21.4192vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.236979vw;
+}
+
+.Rectangle_77_w {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0;
+}
+
+#NS_A {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1302083333vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Ellipse_4_z {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 1.03893vw;
+	top: 1.023828vw;
+}
+
+#NS_0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Nonlinear_Systems_Fixed_Point {
+	position: absolute;
+	left: 5.46875vw;
+	top: 4.94791667vw;
+	overflow: visible;
+	width: 12.8255vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.6927vw;
+	color: rgba(223,255,28,1);
+}
+
+#__Hazem_Mahmoud_Abdo_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 12.04427vw;
+	overflow: visible;
+	width: 15.69010vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Khaled_Mahmoud {
+	position: absolute;
+	left: 3.059895vw;
+	top: 16.080729vw;
+	overflow: visible;
+	width: 16.9270833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Mahmoud_Hafez {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.18229vw;
+	overflow: visible;
+	width: 15.950520vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#NS {
+	position: absolute;
+	width: 20.5078125vw;
+	height: 24.609375vw;
+	left: 23.958333vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_ {
+	position: absolute;
+	overflow: visible;
+	width: 19.3359vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.30208vw;
+}
+
+.Rectangle_77_ {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+}
+
+#NSA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1302083333vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Ellipse_4_ba {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 1.1015625vw;
+	top: 1.088932292vw;
+}
+
+#NS0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Nonlinear_Systems_Newton_Raphs {
+	position: absolute;
+	left: 4.296875vw;
+	top: 4.6875vw;
+	overflow: visible;
+	width: 12.8255vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.6927vw;
+	color: rgba(223,255,28,1);
+}
+
+#__Mariam_Ashraf_Malak {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.19791667vw;
+	overflow: visible;
+	width: 14.7786vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Hazem_Khaled_Kasim {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.0625vw;
+	overflow: visible;
+	width: 14.32291667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Nour_El_Din_Mostafa {
+	position: absolute;
+	left: 3.059895vw;
+	top: 16.9921vw;
+	overflow: visible;
+	width: 13.541667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mostafa_Ahmed_Sabra {
+	position: absolute;
+	left: 3.059895vw;
+	top: 19.85670vw;
+	overflow: visible;
+	width: 14.583333vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#LS {
+	position: absolute;
+	width: 22.5911vw;
+	height: 24.609375vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_bi {
+	position: absolute;
+	overflow: visible;
+	width: 21.4192vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.30208vw;
+}
+
+.Rectangle_77_bj {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+}
+
+#LSA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Ellipse_4_bm {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.98665vw;
+	top: 1.088932292vw;
+}
+
+#LS0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Linear_Systems {
+	position: absolute;
+	left: 5.924479vw;
+	top: 5.729166vw;
+	overflow: visible;
+	width: 11.9140625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(223,255,28,1);
+}
+
+#__Mostafa_Mohamed_El_Gendy_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.0677vw;
+	overflow: visible;
+	width: 18.75vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mostafa_Wael_Kamal {
+	position: absolute;
+	left: 3.059895vw;
+	top: 15.23375vw;
+	overflow: visible;
+	width: 13.8020833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Taher_Mohamed_Ahmed_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 19.40104vw;
+	overflow: visible;
+	width: 16.2109375vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#DE {
+	position: absolute;
+	width: 90.4296vw;
+	height: 53.515625vw;
+	left: 4.1015625vw;
+	top: 94.20572917vw;
+	overflow: visible;
+}
+
+#PDE_ {
+	position: absolute;
+	width: 29.752601417vw;
+	height: 24.4791667vw;
+	left: 60.67708333vw;
+	top: 29.03645833vw;
+	overflow: visible;
+}
+
+.Rectangle_78_bu {
+	position: absolute;
+	overflow: visible;
+	width: 28.58072917vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_bv {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#PDE___Irregular_Boundaries_ {
+	position: absolute;
+	left: 4.7526vw;
+	top: 4.55729vw;
+	overflow: visible;
+	width: 21.679vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,109,28,1);
+}
+
+#__Yahia_Zakaria_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.91927vw;
+	overflow: visible;
+	width: 17.12239vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__We_am_Bassem_Hosny {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.71875vw;
+	overflow: visible;
+	width: 14.97395vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Yousef_Gamal_Reda {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 13.541667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Yousef_Ahmed_Anwar {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3177vw;
+	overflow: visible;
+	width: 15.0390625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Ihab_Yousry {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.1171vw;
+	overflow: visible;
+	width: 13.60677vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#PDE_A {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Ellipse_4_ca {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 1.0123vw;
+	top: 0.9046875vw;
+}
+
+#PDE_0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#PDE {
+	position: absolute;
+	width: 27.1484vw;
+	height: 24.4791667vw;
+	left: 30.9895833vw;
+	top: 29.03645833vw;
+	overflow: visible;
+}
+
+.Rectangle_78_b {
+	position: absolute;
+	overflow: visible;
+	width: 25.9765625vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_b {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#PDEA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Ellipse_4_cc {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 1.004296785vw;
+	top: 0.9046875vw;
+}
+
+#PDE0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#PDE___Regular_Boundaries_ {
+	position: absolute;
+	left: 3.6458333vw;
+	top: 4.55729vw;
+	overflow: visible;
+	width: 21.15885417vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,109,28,1);
+}
+
+#__Ahmed_Mahmoud_El_Ghareeb_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.91927vw;
+	overflow: visible;
+	width: 20.638020vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mostafa_Ahmed_Sobhy_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.71875vw;
+	overflow: visible;
+	width: 15.69010vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Michael_Aziz_Fahim {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 13.8671vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Mohamed_Abdelhamed_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3177vw;
+	overflow: visible;
+	width: 21.4192vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ghieath_Omar_Saleh {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.1171vw;
+	overflow: visible;
+	width: 14.1927vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#ODEPC_ {
+	position: absolute;
+	width: 28.3541667vw;
+	height: 24.4791667vw;
+	left: 0vw;
+	top: 29.03645833vw;
+	overflow: visible;
+}
+
+.Rectangle_78_ck {
+	position: absolute;
+	overflow: visible;
+	width: 27.21354vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_cl {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#ODEPC_A {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Ellipse_4_co {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.9765625vw;
+	top: 0.9046875vw;
+}
+
+#ODEPC_0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#ODE___Adam_s_Backward {
+	position: absolute;
+	left: 4.8828vw;
+	top: 4.94791667vw;
+	overflow: visible;
+	width: 19.85670vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,109,28,1);
+}
+
+#__Iten_Emad_El_Din_Saleh {
+	position: absolute;
+	left: 3.059895vw;
+	top: 10.872395vw;
+	overflow: visible;
+	width: 16.276vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Donia_AbdElfatah__ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 13.34635vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Radwa_Ahmed_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 18.1640625vw;
+	overflow: visible;
+	width: 17.3828125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#ODEPC {
+	position: absolute;
+	width: 29.752601417vw;
+	height: 24.4791667vw;
+	left: 60.67708333vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_cv {
+	position: absolute;
+	overflow: visible;
+	width: 28.58072917vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_cw {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#ODEPCA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Ellipse_4_cz {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 1.0123vw;
+	top: 0.91582vw;
+}
+
+#ODEPC0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#ODE___Milne_s_Method {
+	position: absolute;
+	left: 6.7057vw;
+	top: 4.296875vw;
+	overflow: visible;
+	width: 17.7734vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,109,28,1);
+}
+
+#__Hussein_Mostafa_Hussein {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.91927vw;
+	overflow: visible;
+	width: 16.9921vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ayman_Mohamed_Reda {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.71875vw;
+	overflow: visible;
+	width: 16.145833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mina_Emad_Fakhry {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 13.60677vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Mahmoud_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3177vw;
+	overflow: visible;
+	width: 19.53125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mahmoud_Elsayed_Mahmoud {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.1171vw;
+	overflow: visible;
+	width: 19.98679vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#ODEI_ {
+	position: absolute;
+	width: 27.1484vw;
+	height: 24.4791667vw;
+	left: 30.9895833vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_c {
+	position: absolute;
+	overflow: visible;
+	width: 25.9765625vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_c {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#Brackets {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Ellipse_4_dc {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 1.004296785vw;
+	top: 0.91582vw;
+}
+
+#ODEI_0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#ODE___Runge_Kutta_ {
+	position: absolute;
+	left: 6.0546875vw;
+	top: 4.296875vw;
+	overflow: visible;
+	width: 16.341145vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,109,28,1);
+}
+
+#__Gaser_Ashraf_Fayez {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.91927vw;
+	overflow: visible;
+	width: 13.411458vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Yousef_Mostafa_Elmahdy {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.71875vw;
+	overflow: visible;
+	width: 16.9270833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Yousef_Atef_Abdo {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 11.84895vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Hamdy_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3177vw;
+	overflow: visible;
+	width: 17.513vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Mohamed_Ibrahim {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.1171vw;
+	overflow: visible;
+	width: 18.1640625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#ODEI {
+	position: absolute;
+	width: 28.3541667vw;
+	height: 24.4791667vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_dl {
+	position: absolute;
+	overflow: visible;
+	width: 27.21354vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_dm {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#ODEIA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Ellipse_4_dp {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.9765625vw;
+	top: 0.91582vw;
+}
+
+#ODEI0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#ODE___Euler___Heun_s_ {
+	position: absolute;
+	left: 5.924479vw;
+	top: 4.296875vw;
+	overflow: visible;
+	width: 17.7734vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,109,28,1);
+}
+
+#__Esraa_Gamal_Saad {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.91927vw;
+	overflow: visible;
+	width: 13.020833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Esraa_Amr_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.71875vw;
+	overflow: visible;
+	width: 14.7786vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Basssant_Abd_Elaziem_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 21.9401vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Rawaa_Ahmed_Said_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3177vw;
+	overflow: visible;
+	width: 14.1276vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Menna_Allah_Ahmed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.1171vw;
+	overflow: visible;
+	width: 14.453125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#NC {
+	position: absolute;
+	width: 90.4296vw;
+	height: 24.609375vw;
+	left: 4.1015625vw;
+	top: 65.0390625vw;
+	overflow: visible;
+}
+
+#GQI {
+	position: absolute;
+	width: 20.638020vw;
+	height: 24.609375vw;
+	left: 69.79166vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_dz {
+	position: absolute;
+	overflow: visible;
+	width: 19.466145vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.30208vw;
+}
+
+.Rectangle_77_d {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+}
+
+#GQIA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.260416vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Ellipse_4_ea {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.9106119792vw;
+	top: 1.1222vw;
+}
+
+#GQI0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0.2vw;
+	overflow: visible;
+}
+
+#Gauss__Quadrature_Int_ {
+	position: absolute;
+	left: 4.55729vw;
+	top: 2.734375vw;
+	overflow: visible;
+	width: 12.43489vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,28,109,1);
+}
+
+#__Ahmed_Said_Abdallah {
+	position: absolute;
+	left: 3.059895vw;
+	top: 9.11458vw;
+	overflow: visible;
+	width: 14.518229vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Emad_Eldin {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.9140625vw;
+	overflow: visible;
+	width: 13.0859375vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ziad_Atef_Ahmed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.7135vw;
+	overflow: visible;
+	width: 11.39322917vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Omar_Mohamed_Ahmed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.513vw;
+	overflow: visible;
+	width: 15.8203125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mohamed_Saad_Fathy {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.3125vw;
+	overflow: visible;
+	width: 14.453125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#RI {
+	position: absolute;
+	width: 22.5911vw;
+	height: 24.544270vw;
+	left: 45.833333vw;
+	top: 0.1vw;
+	overflow: visible;
+}
+
+.Rectangle_78_ec {
+	position: absolute;
+	overflow: visible;
+	width: 21.4192vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.236979vw;
+}
+
+.Rectangle_77_ed {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0.1vw;
+}
+
+#RIA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Ellipse_4_eg {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.973828vw;
+	top: 1.057096vw;
+}
+
+#RI0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Romberg_Int_ {
+	position: absolute;
+	left: 6.7057vw;
+	top: 4.3619vw;
+	overflow: visible;
+	width: 10.3515625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,28,109,1);
+}
+
+#__Mohamed_Khaled_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 9.049479167vw;
+	overflow: visible;
+	width: 18.42447917vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Nada_El_Sayed_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.84895vw;
+	overflow: visible;
+	width: 16.53645vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Raghad_Khaled_Abdel_Hay {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.6484375vw;
+	overflow: visible;
+	width: 17.2526vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Reem_Emad_Ramadan {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.44791667vw;
+	overflow: visible;
+	width: 14.9088vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Kareem_Taha_Abdel_Sabour {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.24739vw;
+	overflow: visible;
+	width: 18.098958vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#NCI {
+	position: absolute;
+	width: 20.5078125vw;
+	height: 24.4791667vw;
+	left: 23.958333vw;
+	top: 0.1302083333vw;
+	overflow: visible;
+}
+
+.Rectangle_78_ep {
+	position: absolute;
+	overflow: visible;
+	width: 19.3359vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_eq {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#NCIA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Ellipse_4_et {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.8515625vw;
+	top: 0.9919921875vw;
+}
+
+#NCI0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0.2vw;
+	overflow: visible;
+}
+
+#Newton_Cotes_Int_ {
+	position: absolute;
+	left: 3.580729vw;
+	top: 4.94791667vw;
+	overflow: visible;
+	width: 14.2578125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,28,109,1);
+}
+
+#__Marim_Naser_Rashad_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 10.286458vw;
+	overflow: visible;
+	width: 14.3880vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mariem_Muhammed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 13.411458vw;
+	overflow: visible;
+	width: 13.8020833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Abeer_Hussien_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 16.53645vw;
+	overflow: visible;
+	width: 16.145833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mohamed_Ahmed_Fathy {
+	position: absolute;
+	left: 3.059895vw;
+	top: 19.66145vw;
+	overflow: visible;
+	width: 15.75520vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#DFD {
+	position: absolute;
+	width: 22.5911vw;
+	height: 24.4791667vw;
+	left: 0vw;
+	top: 0.1302083333vw;
+	overflow: visible;
+}
+
+.Rectangle_78_e {
+	position: absolute;
+	overflow: visible;
+	width: 21.4192vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_e {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#DFDA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.3vw;
+	top: 0.151041667vw;
+	overflow: visible;
+}
+
+.Ellipse_4_fa {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.98665vw;
+	top: 0.926888vw;
+}
+
+#DFD0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Differentiation {
+	position: absolute;
+	left: 6.119791667vw;
+	top: 4.296875vw;
+	overflow: visible;
+	width: 11.5234375vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(255,28,109,1);
+}
+
+#__Ahmed_Jamal_Abdelsamie {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.984375vw;
+	overflow: visible;
+	width: 17.12239vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Abdelrahman_Jamal_Sayed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.78385vw;
+	overflow: visible;
+	width: 17.7734vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Tarek_Yasser_Ismaiel_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.583333vw;
+	overflow: visible;
+	width: 13.60677vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Nadeen_Ayman_Mesbah {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3828125vw;
+	overflow: visible;
+	width: 15.4947vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Maryem_Salah_Metwaly {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.18229vw;
+	overflow: visible;
+	width: 15.625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#CF {
+	position: absolute;
+	width: 90.4296vw;
+	height: 24.4791667vw;
+	left: 4.1015625vw;
+	top: 36.1328125vw;
+	overflow: visible;
+}
+
+#SI {
+	position: absolute;
+	width: 26.499739vw;
+	height: 24.4791667vw;
+	left: 63.93229vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_ff {
+	position: absolute;
+	overflow: visible;
+	width: 25.3255vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_fg {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#SIA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.651041667vw;
+	overflow: visible;
+}
+
+.Ellipse_4_fj {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.99544vw;
+	top: 0;
+}
+
+#SI0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: -0.7vw;
+	overflow: visible;
+}
+
+#Spline___Bezier__Interpolation {
+	position: absolute;
+	left: 7.942708vw;
+	top: 2.34375vw;
+	overflow: visible;
+	width: 11.9140625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(28,160,255,1);
+}
+
+#__Hossam_Muhammed_Saeed_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.91927vw;
+	overflow: visible;
+	width: 18.18510vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ziyad_Hassan_Abdelmaqsoud {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.71875vw;
+	overflow: visible;
+	width: 19.66145vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Abdullah_Adel_Abdullah {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 16.666666667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Mohamed_Ibrahim_fp {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3177vw;
+	overflow: visible;
+	width: 18.1640625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Yousef_Ahmed_Anwar_fq {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.1171vw;
+	overflow: visible;
+	width: 15.0390625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#SR {
+	position: absolute;
+	width: 29.36197vw;
+	height: 24.4791667vw;
+	left: 32.7473vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_fs {
+	position: absolute;
+	overflow: visible;
+	width: 28.19010vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_ft {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#SRA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.651041667vw;
+	overflow: visible;
+}
+
+.Ellipse_4_fw {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.99648vw;
+	top: 14.26.499739vw;
+}
+
+#SR0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: -0.7vw;
+	overflow: visible;
+}
+
+#Curve_Fitting {
+	position: absolute;
+	left: 10.22135vw;
+	top: 4.296875vw;
+	overflow: visible;
+	width: 10.22135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(28,160,255,1);
+}
+
+#__Essam_Wisam_Fouads {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.91927vw;
+	overflow: visible;
+	width: 14.97395vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Hala_Hamdy_Abdelhady {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.71875vw;
+	overflow: visible;
+	width: 16.40625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Noran_Hany_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 15.75520vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mohamed_Ayman_Mostafa {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3177vw;
+	overflow: visible;
+	width: 18.03385417vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mohammad_Nabawe_HGamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.1171vw;
+	overflow: visible;
+	width: 20.5078125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#PI {
+	position: absolute;
+	width: 30.92447917vw;
+	height: 24.4791667vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_f {
+	position: absolute;
+	overflow: visible;
+	width: 29.752601417vw;
+	height: 23.30729167vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_f {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#PIA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1302083333vw;
+	top: 0.651041667vw;
+	overflow: visible;
+}
+
+.Ellipse_4_ga {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.9765625vw;
+	top: 0;
+}
+
+#PI0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: -0.7vw;
+	overflow: visible;
+}
+
+#Polynomial_Interpolation {
+	position: absolute;
+	left: 6.4453125vw;
+	top: 4.296875vw;
+	overflow: visible;
+	width: 19.3359vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(28,160,255,1);
+}
+
+#__Mohamed_Akram_Abdelfattah {
+	position: absolute;
+	left: 3.059895vw;
+	top: 8.91927vw;
+	overflow: visible;
+	width: 20.3776vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Omar_Ahmed_Mohamed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 11.71875vw;
+	overflow: visible;
+	width: 16.53645vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ammar_Mohamed_Sobhi {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.518229vw;
+	overflow: visible;
+	width: 16.8619vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ahmed_Ayman_Ahmed {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.3177vw;
+	overflow: visible;
+	width: 15.75520vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Youssef_Atef_Tawfik {
+	position: absolute;
+	left: 3.059895vw;
+	top: 20.1171vw;
+	overflow: visible;
+	width: 13.541667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#GR {
+	position: absolute;
+	width: 90.8203125vw;
+	height: 20.8984375vw;
+	left: 3.7109375vw;
+	top: 10.48177vw;
+	overflow: visible;
+}
+
+#I {
+	position: absolute;
+	width: 66.796875vw;
+	height: 20.8984375vw;
+	left: 24.0234375vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_gj {
+	position: absolute;
+	overflow: visible;
+	width: 65.625vw;
+	height: 19vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_gk {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#IA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.651041667vw;
+	overflow: visible;
+}
+
+.Ellipse_4_gn {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.883333vw;
+	top: 0.1vw;
+}
+
+#I0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: -0.7vw;
+	overflow: visible;
+}
+
+#Interface_Design___Integration {
+	position: absolute;
+	left: 20.638020vw;
+	top: 2.5390625vw;
+	overflow: visible;
+	width: 26.888vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.651041667vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 2.213541667vw;
+	color: rgba(0,255,136,1);
+}
+
+#__Abdullah_Adel_Abdullah_gq {
+	position: absolute;
+	left: 3.059895vw;
+	top: 7.2265625vw;
+	overflow: visible;
+	width: 15.88541667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Peter_Michael_Azmy {
+	position: absolute;
+	left: 3.059895vw;
+	top: 9.700520833vw;
+	overflow: visible;
+	width: 13.21614583vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Omar_Muhammed_Yacine {
+	position: absolute;
+	left: 3.059895vw;
+	top: 12.17447vw;
+	overflow: visible;
+	width: 16.9270833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Hossam_Muhammad_Saeed_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 14.6484375vw;
+	overflow: visible;
+	width: 18.098958vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mostafa_Magdy_Abdel_Rahman_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 17.05729167vw;
+	overflow: visible;
+	width: 20.44270vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mostafa_Mahmoud_Kamal {
+	position: absolute;
+	left: 25.84635vw;
+	top: 7.2265625vw;
+	overflow: visible;
+	width: 17.12239vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Osama_Magdy_Aied {
+	position: absolute;
+	left: 25.78125vw;
+	top: 9.700520833vw;
+	overflow: visible;
+	width: 12.76041667vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ziyad_Hassan_Abdelmaqsoud_gx {
+	position: absolute;
+	left: 25.84635vw;
+	top: 12.17447vw;
+	overflow: visible;
+	width: 18.75vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Essam_Wisam_Fouad_ {
+	position: absolute;
+	left: 25.78125vw;
+	top: 14.6484375vw;
+	overflow: visible;
+	width: 14.1276vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mostafa_Mohamed_El_Gendy__gz {
+	position: absolute;
+	left: 25.84635vw;
+	top: 17.05729167vw;
+	overflow: visible;
+	width: 18.75vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Mostafa_Wael_Kamal_g {
+	position: absolute;
+	left: 47.8515625vw;
+	top: 7.2265625vw;
+	overflow: visible;
+	width: 13.8020833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Yahia_Zakaria_Mohamed_g {
+	position: absolute;
+	left: 47.91666667vw;
+	top: 9.700520833vw;
+	overflow: visible;
+	width: 16.341145vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Yousef_Gamal_Reda_g {
+	position: absolute;
+	left: 47.8515625vw;
+	top: 12.17447vw;
+	overflow: visible;
+	width: 12.9572917vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Taher_Mohamed_Ahmed__g {
+	position: absolute;
+	left: 47.8515625vw;
+	top: 14.6484375vw;
+	overflow: visible;
+	width: 16.2109375vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Ziad_Atef_Ahmed_g {
+	position: absolute;
+	left: 47.72135417vw;
+	top: 17.05729167vw;
+	overflow: visible;
+	width: 11.39322917vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#TS {
+	position: absolute;
+	width: 21.54947917vw;
+	height: 20.8984375vw;
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+.Rectangle_78_g {
+	position: absolute;
+	overflow: visible;
+	width: 20.3776vw;
+	height: 19.72656vw;
+	left: 1.171875vw;
+	top: 1.171875vw;
+}
+
+.Rectangle_77_g {
+	filter: drop-shadow(0.260416vw 0.260416vw 0.390625vw rgba(0, 0, 0, 0.161));
+	position: absolute;
+	overflow: visible;
+	width: 6.51041667vw;
+	height: 6.25vw;
+	left: 0vw;
+	top: 0vw;
+}
+
+#TSA {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0.1953vw;
+	top: 0.651041667vw;
+	overflow: visible;
+}
+
+.Ellipse_4_ha {
+	position: absolute;
+	overflow: visible;
+	width: 2.87727vw;
+	height: 3.0334635vw;
+	left: 0.9765625vw;
+	top: 0;
+}
+
+#TS0000 {
+	position: absolute;
+	width: 4.8828vw;
+	height: 4.8828vw;
+	left: 0vw;
+	top: -0.7vw;
+	overflow: visible;
+}
+
+#Supervised_by_ {
+	position: absolute;
+	left: 5.6640vw;
+	top: 4.8177vw;
+	overflow: visible;
+	width: 11.39322917vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.1953vw;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.953125vw;
+	color: rgba(0,255,136,1);
+}
+
+#__Dr__Amani_El_Gammal {
+	position: absolute;
+	left: 3.059895vw;
+	top: 10.22135vw;
+	overflow: visible;
+	width: 15.69010vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Eng__Sroor_El_Gendy {
+	position: absolute;
+	left: 3.059895vw;
+	top: 13.4765625vw;
+	overflow: visible;
+	width: 14.0625vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.455729vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.4322vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#Created_by_CMP_2023_ {
+	position: absolute;
+	left: 38.0859375vw;
+	top: 5.2083333vw;
+	overflow: visible;
+	width: 22.4609375vw;
+	white-space: nowrap;
+	text-align: center;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 2.47395833vw;
+	color: rgba(255,255,255,1);
+}
+
+.Line_1 {
+	overflow: visible;
+	position: absolute;
+	width: 15.4947vw;
+	height: 0.651041667vw;
+	left: 21.7vw;
+	top: 7.16145833vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Line_2 {
+	overflow: visible;
+	position: absolute;
+	width: 15.4947vw;
+	height: 0.651041667vw;
+	left: 61.2vw;
+	top: 7.16145833vw;
+	transform: matrix(1,0,0,1,0,0);
+}

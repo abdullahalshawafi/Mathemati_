@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
+from methods.LeastSquareReg import Nonlinear_Regression, TrueError
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
@@ -11,10 +12,18 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 def home():
     return render_template('Home.html')
 
+@app.route("/Credits")
+def Credits():
+    return render_template('Credits.html', title='Credits', css="Credits.css", wing="Neon Green Header.svg", logo="Logo.svg")
+
+@app.route("/Contact")
+def Contact():
+    return render_template('Contact.html', title='Contact', css="Contact.css", wing="Neon Green Header.svg", logo="Logo.svg")
+
 @app.route("/PolynomialInterpolation", methods=['GET', 'POST'])
 def PolynomialInterpolation():
     if request.method == 'POST':
-        pass
+        pass;
     else:
         return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
 
@@ -28,7 +37,33 @@ def SplineInterpolation():
 @app.route("/LeastSquareReg", methods=['GET', 'POST'])
 def LeastSquareReg():
     if request.method == 'POST':
-        pass
+        Method = ''
+        print("Method=", Method)
+        if 'Method' in request.form:
+            Method  = request.form['Method']
+            print("Method=", Method)
+        if Method == 'Nonlinear':
+            Equation = request.form['Nonlinear_Equation']
+            i = 0
+            xdata = []
+            ydata = [];
+            while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                i += 1
+            if len(xdata)>=3:
+                result, Error = Nonlinear_Regression(xdata, ydata, Equation, 4);
+                TrueErr = TrueError(ydata, 4);
+                r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
+            else:
+                result="The data set is too small"
+                Error='...'
+                TrueErr='...';
+                r='...'
+
+            if result and TrueErr:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r)
+        return redirect(url_for('LeastSquareReg'))
     else:
         return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
 
@@ -38,6 +73,13 @@ def SurfaceFitting():
         pass
     else:
         return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/Integration", methods=['GET', 'POST'])
+def Integration():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
 @app.route("/PDE", methods=['GET', 'POST'])
 def PDE():
@@ -92,7 +134,7 @@ def PDE():
         U=''
         U_Value=pde.Solve_At_Point(_point)
         U=U_Value
-        
+
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
     else:
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
