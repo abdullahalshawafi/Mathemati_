@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from methods.LeastSquareReg import Nonlinear_Regression, TrueError
+from methods.LeastSquareReg import Nonlinear_Regression, TrueError, Curve_Family_Detective
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
@@ -63,6 +63,19 @@ def LeastSquareReg():
 
             if result and TrueErr:
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r)
+        elif Method == 'Best-Fitting-Family-of-Curves':
+            i = 0
+            xdata = []
+            ydata = [];
+            while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                i += 1
+            result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4);
+            TrueErr = TrueError(ydata, 4);
+            r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
+            if result and TrueErr:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
         return redirect(url_for('LeastSquareReg'))
     else:
         return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")

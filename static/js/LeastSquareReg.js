@@ -1,41 +1,48 @@
-x = 0;
 var parameters = {
   target: '#myFunction',
-  data: [
-    {
-      fn: 'sin(x)',
-      color: "hsl(" + ((x * 3.6 + 180)) + ", 100%, 60%)",
-      range: [0, Math.PI / 2],
-      closed: false
-    },
-    {
-      x: 'cos(t)',
-      y: 'sin(t)',
-      fnType: 'parametric',
-      graphType: 'polyline'
-    },
-    {
-      fn: 'x * x + y * y - 2',
-      fnType: 'implicit'
-    }
+  data: [{
+    fn: 'x * x + y * y -1000000',
+    color: "#eb00ff",
+    fnType: 'implicit'
+  },
+  {
+    fn: 'x * x + y * y -1000000',
+    color: "#2c00ff",
+    fnType: 'implicit'
+  }
   ],
   grid: true,
-  yAxis: { domain: [-3, 3] },
-  xAxis: { domain: [-3, 3] },
+  yAxis: { domain: [-5, 5] },
+  xAxis: { domain: [-5, 5] },
   height: window.innerWidth / 100 * 18.45,
   width: window.innerWidth / 100 * 19.13
 };
+
 functionPlot(parameters);
 
+function addtograph() {
+  if (document.getElementsByClassName("Rectangle_Essam")[0].value) {
+    var func = document.getElementsByClassName("Rectangle_Essam")[0].value;
+    func = func.replace('**', '^')
+    parameters.data[1].fn = '-y+' + func;
+  }
+  functionPlot(parameters);
+}
+
+window.onload = function () {
+  addtograph();
+};
+
 function substitute(el) {
-  var x = el.value;
+  var x = parseFloat(el.value);
   console.log(x);
   var F = document.getElementsByClassName('Rectangle_Essam')[0].value;
-  F.replace('**', '^');
-  F.replace('sin', '(1)*')
-  F.replace('cos(', 'Math.cos(')
-  F.replace('tan(', 'Math.tan(')
-  F.replace('exp(', 'Math.exp(')
+  F = F.replace('**', '^');
+  F = F.replace('sin', 'Math.sin');
+  F = F.replace('cos(', 'Math.cos(');
+  F = F.replace('tan(', 'Math.tan(');
+  F = F.replace('exp(', 'Math.exp(');
+  F = F.replace('log(', 'Math.log()');
   console.log(F);
   document.getElementsByClassName('Rectangle_42')[0].value = eval(F);
 }

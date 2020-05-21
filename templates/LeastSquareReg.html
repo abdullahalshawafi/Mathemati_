@@ -188,64 +188,64 @@
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates5']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates5']}}" type="text" /></td>
+									<td><input name="x_coordinates5" value="{{request.form['x_coordinates5']}}" type="text" /></td>
+									<td><input name="y_coordinates5" value="{{request.form['y_coordinates5']}}" type="text" /></td>
 
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates6']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates6']}}" type="text" /></td>
+									<td><input name="x_coordinates6" value="{{request.form['x_coordinates6']}}" type="text" /></td>
+									<td><input name="y_coordinates6" value="{{request.form['y_coordinates6']}}" type="text" /></td>
 
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates7']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates7']}}" type="text" /></td>
+									<td><input name="x_coordinates7" value="{{request.form['x_coordinates7']}}" type="text" /></td>
+									<td><input name="y_coordinates7" value="{{request.form['y_coordinates7']}}" type="text" /></td>
 
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates8']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates8']}}" type="text" /></td>
+									<td><input name="x_coordinates8" value="{{request.form['x_coordinates8']}}" type="text" /></td>
+									<td><input name="y_coordinates8" value="{{request.form['y_coordinates8']}}" type="text" /></td>
 
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates9']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates9']}}" type="text" /></td>
+									<td><input name="x_coordinates9" value="{{request.form['x_coordinates9']}}" type="text" /></td>
+									<td><input name="y_coordinates9" value="{{request.form['y_coordinates9']}}" type="text" /></td>
 
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates10']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates10']}}" type="text" /></td>
+									<td><input name="x_coordinates10" value="{{request.form['x_coordinates10']}}" type="text" /></td>
+									<td><input name="y_coordinates10" value="{{request.form['y_coordinates10']}}" type="text" /></td>
 
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates11']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates11']}}" type="text" /></td>
+									<td><input name="x_coordinates11" value="{{request.form['x_coordinates11']}}" type="text" /></td>
+									<td><input name="y_coordinates11" value="{{request.form['y_coordinates11']}}" type="text" /></td>
 
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates12']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates12']}}" type="text" /></td>
+									<td><input name="x_coordinates12" value="{{request.form['x_coordinates12']}}" type="text" /></td>
+									<td><input name="y_coordinates12" value="{{request.form['y_coordinates12']}}" type="text" /></td>
 
 								</tr>
 
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates13']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates13']}}" type="text" /></td>
+									<td><input name="x_coordinates13" value="{{request.form['x_coordinates13']}}" type="text" /></td>
+									<td><input name="y_coordinates13" value="{{request.form['y_coordinates13']}}" type="text" /></td>
 
 								</tr>
 
 							</tbody>
 							<tfoot>
 								<tr>
-									<td><input name="x_coordinates4" value="{{request.form['x_coordinates14']}}" type="text" /></td>
-									<td><input name="y_coordinates4" value="{{request.form['y_coordinates14']}}" type="text" /></td>
+									<td><input name="x_coordinates14" value="{{request.form['x_coordinates14']}}" type="text" /></td>
+									<td><input name="y_coordinates14" value="{{request.form['y_coordinates14']}}" type="text" /></td>
 
 								</tr>
 							</tfoot>
@@ -276,8 +276,11 @@
 				</div>
 			</div>
 			<div id="Answer">
-
+				{% if family %}
+				<input type="text" class="Rectangle_32" value="{{family}}" disabled style="text-align: left" />
+				{% else %}
 				<input type="text" class="Rectangle_32" disabled style="text-align: left" />
+				{% endif %}
 				<div id="R__x____">
 					<span>Detected Family : </span>
 				</div>
@@ -304,13 +307,13 @@
 				<div id="Best_fitting_curves_are__">
 					<span>f (x) = </span>
 					{% if results %}
-					<input type="text" class="Rectangle_Essam" value="{{results}}" disabled style="text-align: left">
+					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" value="{{results}}" disabled style="text-align: left">
 					{% else %}
-					<input type="text" class="Rectangle_Essam" value="{{results}}" disabled style="text-align: left">
+					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" value="{{results}}" disabled style="text-align: left">
 					{% endif %}
 				</div>
 				{% if Error %}
-				<input type="text" class="Rectangle_34" value="{{Error}}"" disabled style="text-align: left" />
+				<input type="text" class="Rectangle_34" value="{{Error}}" disabled style="text-align: left" />
 				{% else %}
 				<input type="text" class="Rectangle_34" disabled style=""text-align: left" />
 				{% endif %}

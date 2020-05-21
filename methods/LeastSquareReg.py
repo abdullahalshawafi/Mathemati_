@@ -261,16 +261,16 @@ def Curve_Family_Detective(xdata, ydata, r):
     indM=reg_errors.index(max(reg_errors))
     if (indm == 3):
         #y=ae^(bx), Str_Sol[3] = ["ln(a)","b"]
-        str_equation = "y = " + str(round(exp(float(Str_Sol[indm][0])),r)) + " * e^(" + Str_Sol[indm][1] + " * x)"
+        str_equation = str(round(exp(float(Str_Sol[indm][0])),r)) + " * exp(" + Str_Sol[indm][1] + " * x)"
     elif (indm == 5):
         #y=1/(a+bx), RHS[5] = "a+bx"
-        str_equation = "y = 1/("+RHS[indm]+")"
+        str_equation = "1/("+RHS[indm]+")"
     elif (indm == 6):
         # y=a*x^(b),  Str_Sol[6] = ["ln(a)","b"]
-        str_equation = "y = " + str(round(exp(float(Str_Sol[indm][0])),r)) + " * x^(" + Str_Sol[indm][1] + ")"
+        str_equation = str(round(exp(float(Str_Sol[indm][0])),r)) + " * x^(" + Str_Sol[indm][1] + ")"
     else:
         #The linearized form is the original form itself
-        str_equation = LHS[indm] + " = " + RHS[indm]
+        str_equation = RHS[indm]
     err_copy=reg_errors.copy()
     err_copy.pop(indm);
 
