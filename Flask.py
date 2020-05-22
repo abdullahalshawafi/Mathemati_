@@ -3,6 +3,8 @@ from methods.LeastSquareReg import Nonlinear_Regression, TrueError, Curve_Family
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
+from methods.PolynomialInterpolation import Newton,LaGrange
+from methods.Bezier import bezier_curve_bin
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
@@ -23,9 +25,61 @@ def Contact():
 @app.route("/PolynomialInterpolation", methods=['GET', 'POST'])
 def PolynomialInterpolation():
     if request.method == 'POST':
-        pass;
+        Method = ''
+
+        Degree = -1
+
+        NumPoints = 0
+        X_Points = []
+        Y_Points = []
+
+        if 'Method' in request.form:
+            Method = request.form['Method']
+
+
+        if Method=="Newton" and (request.form['Degree']) :
+            Degree = int(request.form['Degree'])
+
+        while (request.form["X_" + str(NumPoints)]) and (request.form["Y_" + str(NumPoints)]) :
+
+            Xtemp =float((request.form["X_" + str(NumPoints)]))
+            if NumPoints>0 :
+                if Xtemp != X_Points[NumPoints-1]:
+                    X_Points.append(float((request.form["X_" + str(NumPoints)])))
+                    Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
+            else:
+                X_Points.append(float((request.form["X_" + str(NumPoints)])))
+                Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
+
+            NumPoints += 1
+
+
+        NumPoints=len(X_Points)
+        if Method and NumPoints > 0 and (Degree>-1 or Method=='Lagrange') and (NumPoints)>= (Degree+1):
+
+            X_val = 0
+            if Method == "Newton":
+                X_diff_val = 0
+                X_val = 0
+                #if request.form["Xderivative"]:
+                 #   X_diff_val = float(request.form["Xderivative"])
+                #if request.form["Xvalue"]:
+                 #   X_val = float(request.form["Xvalue"])
+                DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
+                ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction,Yderivative=Y_diff_val, Yvalue = Y_val , ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
+
+            elif Method == "Lagrange":
+                #if request.form["Xvalue"]:
+
+                 #   X_val = float(request.form["Xvalue"])
+                Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
+                ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, Yvalue = Y_val, ParametricX=ParametricX,ParametricY=ParametricY)
+        return redirect(url_for('PolynomialInterpolation'))
     else:
-        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = "No Valid Input data")
+
 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
@@ -46,7 +100,7 @@ def LeastSquareReg():
             Equation = request.form['Nonlinear_Equation']
             i = 0
             xdata = []
-            ydata = [];
+            ydata = []
             while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
                 xdata.append(float(request.form['x_coordinates' + str(i)]))
                 ydata.append(float(request.form['y_coordinates' + str(i)]))

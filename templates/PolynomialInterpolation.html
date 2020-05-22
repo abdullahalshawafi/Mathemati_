@@ -6,12 +6,26 @@
 			<div id="MidTab">
 
 				<svg class="Rectangle_8">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="21.5vw" height="21.65vw">
-					</rect>
+					<rect fill="rgba(60,60,60,1)"
+						  id="Rectangle_8"
+						  rx="1.5vw"
+						  ry="1.5vw"
+						  x="0"
+						  y="0"
+						  width="21.5vw"
+						  height="21.65vw"
+					></rect>
 				</svg>
 				<svg class="Rectangle_8-5">
-					<rect fill="#282828" id="Rectangle_8.5" rx="0.8vw" ry="0.8vw" x="0" y="0" width="18.5vw" height="18.65vw">
-					</rect>
+					<rect fill="#282828"
+						  id="Rectangle_8.5"
+						  rx="0.8vw"
+						  ry="0.8vw"
+						  x="0"
+						  y="0"
+						  width="18.5vw"
+						  height="18.65vw"
+					></rect>
 				</svg>
 				<section id="plot">
 					<div id="myFunction" class="Rectangle_8"></div>
@@ -46,13 +60,160 @@
 				</div>
 			</div>
 			<div id="LeffTapCon">
+				<form action="{{url_for('PolynomialInterpolation')}}" method="POST">
 				<svg class="Rectangle_18">
 					<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="25.93vw">
 					</rect>
 				</svg>
+
+				<div id="Newton_">
+					<input
+							type="radio"
+							id="Newton"
+							name="Method"
+							value="Newton"
+							onchange="MethodSelection()"
+							{% if Method == "Newton" %}
+					        checked
+              				{% endif %}
+					/><label for="Newton">
+						<span>Newton, Degree = </span>
+						<input type="text" name="Degree" value="{{request.form['Degree']}}" class="Rectangle_43" />
+					</label>
+				</div>
+				<div id="Lagrange_">
+					<input type="radio"
+						   id="Lagrange"
+						   name="Method"
+						   value="Lagrange"
+						   onchange="MethodSelection()"
+						   {% if Method == "Lagrange" %}
+							checked
+					       {% endif %}
+            		/><label for="Lagrange"><span>Lagrange</span></label>
+				</div>
+
+				<div id="Table_">
+					<span>Table:</span>
+				</div>
+				<div class="Rectangle_55">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>x</th>
+								<th>y</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="text" name="X_0" value="{{request.form['X_0']}}" /></td>
+								<td><input type="text" name="Y_0"  value="{{request.form['Y_0']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_1" value="{{request.form['X_1']}}"/></td>
+								<td><input type="text" name="Y_1" value="{{request.form['Y_1']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_2" value="{{request.form['X_2']}}" /></td>
+								<td><input type="text" name="Y_2" value="{{request.form['Y_2']}}" /></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="X_3" value="{{request.form['X_3']}}" /></td>
+								<td><input type="text"  name="Y_3" value="{{request.form['Y_3']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" value="{{request.form['X_4']}}" name="X_4"/></td>
+								<td><input type="text" value="{{request.form['Y_4']}}" name="Y_4"/></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" value="{{request.form['X_5']}}" name="X_5"/></td>
+								<td><input type="text" value="{{request.form['Y_5']}}" name="Y_5"/></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_6" value="{{request.form['X_6']}}" /></td>
+								<td><input type="text" name="Y_6" value="{{request.form['Y_6']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_7" value="{{request.form['X_7']}}" /></td>
+								<td><input type="text" name="Y_7" value="{{request.form['Y_7']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_8" value="{{request.form['X_8']}}" /></td>
+								<td><input type="text" name="Y_8" value="{{request.form['Y_8']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_9" value="{{request.form['X_9']}}" /></td>
+								<td><input type="text" name="Y_9" value="{{request.form['Y_9']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_10" value="{{request.form['X_10']}}" /></td>
+								<td><input type="text" name="Y_10" value="{{request.form['Y_10']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_11" value="{{request.form['X_11']}}" /></td>
+								<td><input type="text" name="Y_11" value="{{request.form['Y_11']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_12" value="{{request.form['X_12']}}" /></td>
+								<td><input type="text" name="Y_12" value="{{request.form['Y_12']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_13" value="{{request.form['X_13']}}" /></td>
+								<td><input type="text" name="Y_13" value="{{request.form['Y_13']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_14" value="{{request.form['X_14']}}" /></td>
+								<td><input type="text" name="Y_14" value="{{request.form['Y_14']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_15" value="{{request.form['X_15']}}" /></td>
+								<td><input type="text" name="Y_15" value="{{request.form['Y_15']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_16" value="{{request.form['X_16']}}" /></td>
+								<td><input type="text" name="Y_16" value="{{request.form['Y_16']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_17" value="{{request.form['X_17']}}" /></td>
+								<td><input type="text" name="Y_17" value="{{request.form['Y_17']}}" /></td>
+
+							</tr>
+							<tr>
+								<td><input type="text" name="X_18" value="{{request.form['X_18']}}" /></td>
+								<td><input type="text" name="Y_18" value="{{request.form['Y_18']}}" /></td>
+
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td><input type="text" name="X_19" value="{{request.form['Y_19']}}" /></td>
+								<td><input type="text" name="Y_19" value="{{request.form['Y_19']}}"/></td>
+
+							</tr>
+						</tfoot>
+					</table>
+
+
+				</div>
 				<div class="Rectangle_28">
 					<div class="button-div">
-						<button class="table-button" id="calc">
+						<button type="submit" class="table-button" id="calc">
 							<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}">
 						</button>
 						<embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
@@ -69,109 +230,7 @@
 						</button>
 					</div>
 				</div>
-				<div id="Newton_">
-					<input type="radio" id="Newton" name="Method" value="Newton"><label for="Newton">
-						<span>Newton, Degree = </span>
-						<input type="text" class="Rectangle_43" />
-					</label>
-				</div>
-				<div id="Lagrange_">
-					<input type="radio" id="Lagrange" name="Method" value="Lagrange"><label for="Lagrange"><span>Lagrange</span></label>
-				</div>
-
-				<div id="Table_">
-					<span>Table:</span>
-				</div>
-				<div class="Rectangle_55">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>x</th>
-								<th>y</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><input name="x_coordinates0" type="text" /></td>
-								<td><input name="y_coordinates0" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates1" type="text" /></td>
-								<td><input name="y_coordinates1" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates2" type="text" /></td>
-								<td><input name="y_coordinates2" type="text" /></td>
-							</tr>
-							<tr>
-								<td><input name="x_coordinates3" type="text" /></td>
-								<td><input name="y_coordinates3" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates4" type="text" /></td>
-								<td><input name="y_coordinates4" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates5" type="text" /></td>
-								<td><input name="y_coordinates5" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates6" type="text" /></td>
-								<td><input name="y_coordinates6" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates7" type="text" /></td>
-								<td><input name="y_coordinates7" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates8" type="text" /></td>
-								<td><input name="y_coordinates8" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates9" type="text" /></td>
-								<td><input name="y_coordinates9" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates10" type="text" /></td>
-								<td><input name="y_coordinates10" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates11" type="text" /></td>
-								<td><input name="y_coordinates11" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates12" type="text" /></td>
-								<td><input name="y_coordinates12" type="text" /></td>
-
-							</tr>
-							<tr>
-								<td><input name="x_coordinates13" type="text" /></td>
-								<td><input name="y_coordinates13" type="text" /></td>
-
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td><input name="x_coordinates14" type="text" /></td>
-								<td><input name="y_coordinates14" type="text" /></td>
-
-							</tr>
-						</tfoot>
-					</table>
-
-
-				</div>
+				</form>
 			</div>
 			<div id="AnswerTab">
 				<svg class="Rectangle_6">
@@ -194,7 +253,8 @@
 				</div>
 			</div>
 			<div id="Answer">
-				<input type="text" class="Rectangle_32" style="text-align: left" />
+				<input type="text" disabled value="{{PolynomialFunction}}" class="Rectangle_32" style="text-align: left" />
+
 				<div id="R__x____">
 					<span>P (x) = </span>
 				</div>
@@ -206,7 +266,9 @@
 					<span>) = </span>
 				</div>
 
-				<input type="text" class="Rectangle_32D" style="text-align: left" />
+				<input type="text"disabled value="{{PolynomialDerivativeFunction}}" class="Rectangle_32D" style="text-align: left" />
+
+
 				<div id="R__x____D">
 					<span>P`(x) = </span>
 				</div>
@@ -217,8 +279,8 @@
 				<div id="____D">
 					<span>) = </span>
 				</div>
-				<input type="text" class="Rectangle_41D" />
-				<input type="text" class="Rectangle_42D" />
+				<input type="text" name="Xderivative" value="{{request.form['Xderivative']}}"class="Rectangle_41D" />
+				<input type="text" disabled value="{{Yderivative}}" class="Rectangle_42D" />
 
 				<div id="Correlation_factor__">
 					<span>Residual Error = </span>
@@ -226,9 +288,11 @@
 				<div id="Best_fitting_curves_are__">
 					<span>Polynomial Interpolation: </span>
 				</div>
-				<input type="text" class="Rectangle_41" />
-				<input type="text" class="Rectangle_42" />
-				<input type="text" class="Rectangle_46" />
+				<input type="text" name="Xvalue" value="{{request.form['Xvalue']}}" class="Rectangle_41" />
+				<input type="text" disabled value="{{Yvalue}}" class="Rectangle_42" />
+
+
+				<input type="text" disabled value="{{ResidualError}}" class="Rectangle_46" />
 			</div>
 			<div id="AnswerTabB">
 				<svg class="Rectangle_6">
@@ -251,7 +315,7 @@
 				</div>
 			</div>
 			<div id="AnswerB">
-				<input type="text" class="Rectangle_32B" style="text-align: left" />
+				<input type="text" disabled value="{{ParametricX}}" class="Rectangle_32B" style="text-align: left" />
 				<div id="R__x____B">
 					<span>X (t) = </span>
 				</div>
@@ -263,7 +327,7 @@
 					<span>) = &emsp;&emsp;&emsp;&emsp;,</span>
 				</div>
 
-				<input type="text" class="Rectangle_32D" style="text-align: left" />
+				<input type="text" disabled value="{{ParametricY}}" class="Rectangle_32D" style="text-align: left" />
 				<div id="R__x____D">
 					<span>Y (t) = </span>
 				</div>
