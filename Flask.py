@@ -5,6 +5,7 @@ from methods.FixedPoint import FixedPointIteration
 from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
 from methods.PolynomialInterpolation import Newton,LaGrange
 from methods.Bezier import bezier_curve_bin
+from methods.SplineInterpolation import linear_spline,quad_spline,cubic_spline,get_interval_list
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
@@ -84,9 +85,27 @@ def PolynomialInterpolation():
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
     if request.method == 'POST':
-        pass
+        Numbers =[]
+        NumPoints = 0
+
+        while (request.form['x_coordinates'+str(NumPoints)]) and (request.form['y_coordinates'+str(NumPoints)]) :
+           Numbers.append([float((request.form['x_coordinates'+str(NumPoints)])),float((request.form['y_coordinates'+str(NumPoints)]))])
+           NumPoints +=1
+
+        print(NumPoints,Numbers)
+
+        LinearSpline = linear_spline(NumPoints,Numbers)
+        IntervalList = get_interval_list(NumPoints,Numbers)
+        QuadraticSpline = quad_spline(NumPoints,Numbers)
+        CubicSpline = cubic_spline(NumPoints,Numbers)
+        print(LinearSpline)
+        print(QuadraticSpline)
+        print(CubicSpline)
+        print(IntervalList)
+        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1 ,eq=LinearSpline)
+
     else:
-        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
 @app.route("/LeastSquareReg", methods=['GET', 'POST'])
 def LeastSquareReg():
