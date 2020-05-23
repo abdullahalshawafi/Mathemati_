@@ -40,7 +40,7 @@ def get_diagonally_dominant_matrix(num_EQs,list_of_inputs):
             error_occurred=1;
             # returning a tuble, check if tuple[1]==1 then the equation can't form the matrix
             return list_of_equations, error_occurred
-        elif find_order_in_matrix(given_eq) == -1:
+        elif find_order_in_matrix(given_eq) == -2:
             error_occurred = 1;
             # returning a tuble, check if tuple[1]==1 then the equation can't form the matrix
             return list_of_equations, error_occurred
