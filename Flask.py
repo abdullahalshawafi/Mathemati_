@@ -283,10 +283,10 @@ def PDE():
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
+    Length = 0
+    temp_to_test = 0
     if request.method == 'POST':
         Method = ''
-        Length=0
-        temp_to_test
         inputs = []
         result = []
         n =0
@@ -299,104 +299,32 @@ def LinearSystem():
 ##########################################################################
 
         temp_to_test = request.form['StoppingCriteria']
-        if not StoppingCriteria == '':
+        if not temp_to_test == '':
             StoppingCriteria = float(request.form['StoppingCriteria'])
             choice = 2
 
         temp_to_test = request.form['Iterations']
-        if not iterations == '':
+        if not temp_to_test == '':
             iterations = int(request.form['Iterations'])
             choice=1
 
         temp_to_test = request.form['w']
-        if not w == '':
+        if not temp_to_test == '':
             w = int(request.form['w'])
 
 
         if 'Dim' in request.form:
             n = int(request.form['Dim']) # size = n*(n+1), inputs[size-1]
-            if n ==2 :
-                inputs[0] = request.form['x00']
-                inputs[1] = request.form['x01']
-                inputs[2] = request.form['c0']
-
-                inputs[3] = request.form['x10']
-                inputs[4] = request.form['x11']
-                inputs[5] = request.form['c1']
-            elif n==3:
-                inputs[0] = request.form['x00']
-                inputs[1] = request.form['x01']
-                inputs[2] = request.form['x02']
-                inputs[3] = request.form['c0']
-
-                inputs[4] = request.form['x10']
-                inputs[5] = request.form['x11']
-                inputs[6] = request.form['x12']
-                inputs[7] = request.form['c1']
-
-                inputs[8] = request.form['x20']
-                inputs[9] = request.form['x21']
-                inputs[10] = request.form['x22']
-                inputs[11] = request.form['c2']
-            elif n==4:
-                inputs[0] = request.form['x00']
-                inputs[1] = request.form['x01']
-                inputs[2] = request.form['x02']
-                inputs[3] = request.form['x03']
-                inputs[4] = request.form['c0']
-
-                inputs[5] = request.form['x10']
-                inputs[6] = request.form['x11']
-                inputs[7] = request.form['x12']
-                inputs[8] = request.form['x13']
-                inputs[9] = request.form['c1']
-
-                inputs[10] = request.form['x20']
-                inputs[11] = request.form['x21']
-                inputs[12] = request.form['x22']
-                inputs[13] = request.form['x23']
-                inputs[14] = request.form['c2']
-
-                inputs[15] = request.form['x30']
-                inputs[16] = request.form['x31']
-                inputs[17] = request.form['x32']
-                inputs[18] = request.form['x33']
-                inputs[19] = request.form['c3']
-            elif n==5:
-                inputs[0] = request.form['x00']
-                inputs[1] = request.form['x01']
-                inputs[2] = request.form['x02']
-                inputs[3] = request.form['x03']
-                inputs[4] = request.form['x04']
-                inputs[5] = request.form['c0']
-
-                inputs[6] = request.form['x10']
-                inputs[7] = request.form['x11']
-                inputs[8] = request.form['x12']
-                inputs[9] = request.form['x13']
-                inputs[10] = request.form['x14']
-                inputs[11] = request.form['c1']
-
-                inputs[12] = request.form['x20']
-                inputs[13] = request.form['x21']
-                inputs[14] = request.form['x22']
-                inputs[15] = request.form['x23']
-                inputs[16] = request.form['x24']
-                inputs[17] = request.form['c2']
-
-                inputs[18] = request.form['x30']
-                inputs[19] = request.form['x31']
-                inputs[20] = request.form['x32']
-                inputs[21] = request.form['x33']
-                inputs[22] = request.form['x34']
-                inputs[23] = request.form['c3']
-
-                inputs[24] = request.form['x40']
-                inputs[25] = request.form['x41']
-                inputs[26] = request.form['x42']
-                inputs[27] = request.form['x43']
-                inputs[28] = request.form['x44']
-                inputs[29] = request.form['c4']
+            if n >1 :
+                for i in range (n):
+                    for j in range (n+1):
+                        if j != n:
+                            temp= 'x'+str(i)+str(j)
+                        elif j==n:
+                            temp = 'c' + str(i)
+                        temp_to_test = request.form[temp]
+                        if not temp_to_test == '':
+                              inputs.append(request.form[temp])
 ##########################################################################
         if (n*(n+1)==len(inputs)) and (StoppingCriteria or iterations) and w and choice:
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
