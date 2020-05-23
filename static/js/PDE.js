@@ -20,3 +20,15 @@ var parameters = {
   width: window.innerWidth / 100 * 23.5
 };
 functionPlot(parameters);
+
+function MethodSelection() {
+  var Irregular = document.getElementsByName("Method")[1];
+  if (Irregular.checked) {
+    document.getElementById("UXY1").style.display="none";
+    document.getElementById("UXY2").style.display="none";
+
+  } else {
+    document.getElementById("UXY1").style.display="inline";
+    document.getElementById("UXY2").style.display="inline";
+  }
+}

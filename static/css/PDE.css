@@ -334,6 +334,23 @@ a {
 #Linearized_ {
 	position: absolute;
 	left: 0px;
+	top: 3.2vw;
+	overflow: visible;
+	width: 7.1vw;
+	white-space: nowrap;
+	line-height: 2.18vw;
+	margin-top: -0.45vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.45vw;
+	color: rgba(255,255,255,1);
+}
+
+#Type {
+	position: absolute;
+	left: 0px;
 	top: 0.62vw;
 	overflow: visible;
 	width: 7.1vw;
@@ -346,6 +363,7 @@ a {
 	font-weight: normal;
 	font-size: 1.45vw;
 	color: rgba(255,255,255,1);
+	display: inline-flex;
 }
 
 .Rectangle_43 {
@@ -797,21 +815,21 @@ textarea:focus, input:focus {
 	width: 5.5vw;
 	height: 2.85vw;
 	padding: 0;
-	margin-bottom: 0.6vw;
+	margin-bottom: 0.4vw;
 }
 .Rectangle_44wide {
 	position: relative;
 	width: 11vw;
 	height: 2.85vw;
 	padding: 0;
-	margin-bottom: 0.6vw;
+	margin-bottom: 0.4vw;
 }
 .Rectangle_step {
 	position: relative;
 	width: 4.6vw;
 	height: 2.85vw;
 	padding: 0;
-	margin-bottom: 0.6vw;
+	margin-bottom: 0.4vw;
 }
 
 #out {
@@ -836,7 +854,7 @@ textarea:focus, input:focus {
 	width: 6.8vw;
 	height: 2.85vw;
 	padding: 0;
-	margin-bottom: 0.6vw;
+	margin-bottom: 0.4vw;
 }
 
 .Rectangle_U {
@@ -844,7 +862,7 @@ textarea:focus, input:focus {
 	width: 18.6vw;
 	height: 2.85vw;
 	padding: 0;
-	margin-bottom: 0.6vw;
+	margin-bottom: 0.4vw;
 }
 
 
@@ -857,13 +875,13 @@ textarea:focus, input:focus {
 	padding: 0 0.2vw;
 	text-align: center;
 	width: 4vw;
-	margin-bottom: 0.6vw;
+	margin-bottom: 0.4vw;
 }
 .Rectangle_19 {
 	position: absolute;
 	max-width: 20.83vw;
 	left: 0px;
-	top: 4.21vw;
+	top: 6vw;
 }
 .Rectangle_19::-webkit-scrollbar {
 height: 0;
