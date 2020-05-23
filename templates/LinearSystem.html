@@ -1,4 +1,4 @@
-﻿{% extends "layout.html" %}
+{% extends "layout.html" %}
 {% block content %}
 
 	<main>
@@ -95,7 +95,8 @@
 				</div>
 			</div>
 			<div id="LeffTapCon">
-				<div id="w___">
+			<form action="{{url_for('LinearSystem')}}" method="POST">
+			 	<div id="w___">
 					<span>w = </span>
 				</div>
 				<div id="Number_of_iterations__">
@@ -104,11 +105,11 @@
 				<div id="Stopping_Criteria__s___">
 					<span>Stopping Criteria εs% =</span>
 				</div>
-				<input type="text" class="Path_6" />
-				<input type="text" class="Rectangle_18" />
+				<input type="text" class="Path_6" name ="Stopping Criteria"  />
+				<input type="text" class="Rectangle_18" name = "Number of iterations" />
 				<div class="Rectangle_28">
 					<div class="button-div">
-						<button class="table-button" id="calc">
+						<button type="submit" class="table-button" id="calc">
 							<img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}">
 						</button>
 						<embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
@@ -134,12 +135,12 @@
 						<div id="______________________________">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-						<input type="text" class="Rectangle_19" onfocusout="addtograph()" />
-						<input type="text" class="Rectangle_36" onfocusout="addtograph()" />
-						<input type="text" class="Rectangle_37" />
-						<input type="text" class="Rectangle_38" />
-						<input type="text" class="Rectangle_39" />
-						<input type="text" class="Rectangle_40" onfocusout="addtograph()" />
+						<input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" />
+						<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" />
+						<input type="text" class="Rectangle_37" name="x02"/>
+						<input type="text" class="Rectangle_38" name="x03"/>
+						<input type="text" class="Rectangle_39" name="x04"/>
+						<input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" />
 					</div>
 					<div id="Line1_bn">
 
@@ -148,12 +149,12 @@
 						<div id="_______________________________bp">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-						<input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" />
-						<input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" />
-						<input type="text" class="Rectangle_37_br" />
-						<input type="text" class="Rectangle_38_bs" />
-						<input type="text" class="Rectangle_39_bt" />
-						<input type="text" class="Rectangle_40_bu" onfocusout="addtograph()" />
+						<input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" />
+						<input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" />
+						<input type="text" class="Rectangle_37_br" name="x12"/>
+						<input type="text" class="Rectangle_38_bs" name="x13" />
+						<input type="text" class="Rectangle_39_bt" name="x14"/>
+						<input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" />
 
 					</div>
 					<div id="Line1_bv">
@@ -161,52 +162,59 @@
 						<div id="_______________________________bx">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-						<input type="text" class="Rectangle_19_bw" />
-						<input type="text" class="Rectangle_36_by" />
-						<input type="text" class="Rectangle_37_bz" />
-						<input type="text" class="Rectangle_38_b" />
-						<input type="text" class="Rectangle_39_b" />
-						<input type="text" class="Rectangle_40_b" />
+						<input type="text" class="Rectangle_19_bw"name="x20" />
+						<input type="text" class="Rectangle_36_by" name="x21"/>
+						<input type="text" class="Rectangle_37_bz"name="x22" />
+						<input type="text" class="Rectangle_38_b" name="x23"/>
+						<input type="text" class="Rectangle_39_b"name="x24" />
+						<input type="text" class="Rectangle_40_b"name="c2"  />
 
 					</div>
 					<div id="Line1_b">
 						<div id="_______________________________b">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-						<input type="text" class="Rectangle_19_b" />
-						<input type="text" class="Rectangle_36_b" />
-						<input type="text" class="Rectangle_37_b" />
-						<input type="text" class="Rectangle_38_ca" />
-						<input type="text" class="Rectangle_39_ca" />
-						<input type="text" class="Rectangle_40_ca" />
+						<input type="text" class="Rectangle_19_b" name="x30"/>
+						<input type="text" class="Rectangle_36_b" name="x31" />
+						<input type="text" class="Rectangle_37_b" name="x32"/>
+						<input type="text" class="Rectangle_38_ca" name="x33"/>
+						<input type="text" class="Rectangle_39_ca" name="x34"/>
+						<input type="text" class="Rectangle_40_ca" name="c3"/>
 
 					</div>
 					<div id="Line1_cb">
 						<div id="_______________________________cd">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-						<input type="text" class="Rectangle_19_cc" />
-						<input type="text" class="Rectangle_36_ce" />
-						<input type="text" class="Rectangle_37_cf" />
-						<input type="text" class="Rectangle_38_cg" />
-						<input type="text" class="Rectangle_39_ch" />
-						<input type="text" class="Rectangle_40_ci" />
+						<input type="text" class="Rectangle_19_cc" name="x40"/>
+						<input type="text" class="Rectangle_36_ce" name="x41"/>
+						<input type="text" class="Rectangle_37_cf" name="x42"/>
+						<input type="text" class="Rectangle_38_cg" name="x43"/>
+						<input type="text" class="Rectangle_39_ch" name="x44"/>
+						<input type="text" class="Rectangle_40_ci" name="c4"/>
 					</div>
 				</div>
 				<div id="ID2_eqs_">
-					<input type="radio" id="2eqs" name="Dim" value="2eqs" onchange="DimInput()"><label for="2eqs"><span>2eqs</span></label>
+					<input
+					 type="radio"
+					 id="2eqs"
+					 name="Dim"
+					 value=2
+					 onchange="DimInput()"
+					 >
+					<label for="2eqs"><span>2eqs</span></label>
 				</div>
 				<div id="ID3_eqs_">
-					<input type="radio" id="3eqs" name="Dim" value="3eqs" onchange="DimInput()"><label for="3eqs"><span>3eqs</span></label>
+					<input type="radio" id="3eqs" name="Dim" value=3 onchange="DimInput()" ><label for="3eqs"><span>3eqs</span></label>
 				</div>
 				<div id="ID4_eqs_">
-					<input type="radio" id="4eqs" name="Dim" value="4eqs" onchange="DimInput()"><label for="4eqs"><span>4eqs</span></label>
+					<input type="radio" id="4eqs" name="Dim" value=4 onchange="DimInput()"><label for="4eqs"><span>4eqs</span></label>
 				</div>
 				<div id="ID5_eqs_">
-					<input type="radio" id="5eqs" name="Dim" value="5eqs" onchange="DimInput()"><label for="5eqs"><span>5eqs</span></label>
+					<input type="radio" id="5eqs" name="Dim" value=5 onchange="DimInput()"><label for="5eqs"><span>5eqs</span></label>
 				</div>
-				<input type="text" class="Rectangle_43" />
-
+				<input type="text" class="Rectangle_43" name="w"/>
+     </form>
 			</div>
 			<div id="AnswerTab">
 				<svg class="Rectangle_6_bm">
@@ -260,12 +268,43 @@
 				<div id="x4__">
 					<span>x4= </span>
 				</div>
-				<input type="text" class="Rectangle_32" disabled />
-				<input type="text" class="Rectangle_33" disabled />
+
+				{% if results and Eqs_No == 2 %}
+				<input type="text" class="Rectangle_32" disabled value ="{{results[0][0]}}"  />
+				<input type="text" class="Rectangle_33" disabled value ="{{results[0][1]}}" />
 				<input type="text" class="Rectangle_34" disabled />
-				<input type="text" class="Rectangle_35" disabled />
+				<input type="text" class="Rectangle_35" disabled value ="error"/>
 				<input type="text" class="Rectangle_41" disabled />
 				<input type="text" class="Rectangle_42" disabled />
+				{% elif results and Eqs_No == 3 %}
+				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
+				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
+				<input type="text" class="Rectangle_34" disabled />
+				<input type="text" class="Rectangle_35" disabled value ="error"/>
+				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
+				<input type="text" class="Rectangle_42" disabled />
+				{% elif results and Eqs_No == 4 %}
+				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
+				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
+				<input type="text" class="Rectangle_34" disabled />
+				<input type="text" class="Rectangle_35" disabled value ="error"/>
+				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
+				<input type="text" class="Rectangle_42" disabled value= {{results[0][3]}}/>
+				{% elif results and Eqs_No == 5 %}
+				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
+				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
+				<input type="text" class="Rectangle_34" disabled value ={{results[0][4]}} />
+				<input type="text" class="Rectangle_35" disabled value ="error"/>
+				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
+				<input type="text" class="Rectangle_42" disabled value= {{results[0][3]}}/>
+				{%else %}
+				<input type="text" class="Rectangle_32" disabled/>
+				<input type="text" class="Rectangle_33" disabled/>
+				<input type="text" class="Rectangle_34" disabled/>
+				<input type="text" class="Rectangle_35" disabled/>
+				<input type="text" class="Rectangle_41" disabled/>
+				<input type="text" class="Rectangle_42" disabled/>
+				{% endif %}
 			</div>
 
 

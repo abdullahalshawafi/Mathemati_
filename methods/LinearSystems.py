@@ -134,45 +134,49 @@ def solve_linear_systems(n,list_of_inputs,w,choice,num_iterations,error):
     x = n * x  # intial guess
     x_old = [1]
     x_old = n * x_old
+    max_error_each_iteration = []
+    all_errors_in_one_iteration = []
+    list_of_iterations = []
     # loop run for m times depending on m the error value
     if choice == 1:
         for i in range(0, num_iterations):
+            list_of_iterations.append(x * 1)
             x = SOR(a, x, b, w)
+            for k in range(0, n):
+                if x[k] == 0:
+                    continue
+                all_errors_in_one_iteration.append((x[k] - x_old[k]) / x[k])
+            abs_errors = list(map(abs, all_errors_in_one_iteration))
+            max_error = max(abs_errors) * 1
+            if max(all_errors_in_one_iteration) == max_error:
+                max_error = max_error * 1
+            else:
+                max_error = -max_error * 1
+            all_errors_in_one_iteration = []
+            max_error_each_iteration.append(max_error)
+            x_old = x * 1
+
     elif choice == 2:
         status = True
         while True:
+            status = False
+            list_of_iterations.append(x * 1)
             x = SOR(a, x, b, w)
-            status = True
             for k in range(0, n):
                 if x[k] == 0:
-                    break
-                if (x[k] - x_old[k]) / x[k] > error / 100.0:
-                    status = False
-                    break
+                    continue
+                all_errors_in_one_iteration.append((x[k] - x_old[k]) / x[k])
+            abs_errors = list(map(abs, all_errors_in_one_iteration))
+            max_error = max(abs_errors) * 1
+            if max(all_errors_in_one_iteration) == max_error:
+                max_error = max_error * 1
+            else:
+                max_error = -max_error * 1
+            all_errors_in_one_iteration = []
+            max_error_each_iteration.append(max_error)
+            if abs(max_error) < error / 100.0:
+                status = True
+            x_old = x * 1
             if status == True:
                 break
-            x_old = x * 1
-    return x,error_occurred
-
-#################################################################################################
-inputs=[]
-#inputs=[0,1,0,0,5,0,8,2,9,2,3,7]
-#inputs=[1,0]
-inputs=[1,2,0,5,3,0]
-n=2
-w=1.2
-choice=1
-iterations=1000
-error=1
-#######################################
-tuple=solve_linear_systems(n,inputs,w,choice,iterations,error)
-error_handling=tuple[1];
-solution =tuple[0];
-if not error_handling:
-    print(solution)
-    print("test done")
-elif error_handling==1 :
-    print ("can't generate a diagonally dominant matrix")
-else :
-    print("equations are parallel")
-#######################################
+    return x, error_occurred, list_of_iterations, max_error_each_iteration
