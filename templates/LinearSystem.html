@@ -12,7 +12,45 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="26vw" height="22.2vw">
 					</rect>
 				</svg>
-				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 x5 ], εs% </textarea>
+				{%if Eqs_No == 2  %}
+				<textarea class="Rectangle_9" disabled>> [ x1 x2 ], εs%
+					{% if results %}
+					{{ results[2][0]}}
+					{% for i in range(results[4]-1) %}
+					{{ results[2][i+1]}} , {{ results[3][i]}}
+					{% endfor %}
+					{% endif %}
+				</textarea>
+				{%elif Eqs_No == 3  %}
+				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 ], εs%
+					{% if results %}
+					{{ results[2][0]}}
+					{% for i in range(results[4]-1) %}
+					{{ results[2][i+1]}} , {{ results[3][i]}}
+					{% endfor %}
+					{% endif %}
+				 </textarea>
+				{%elif Eqs_No == 4  %}
+				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 ], εs%
+					{% if results %}
+					{{ results[2][0]}}
+					{% for i in range(results[4]-1) %}
+					{{ results[2][i+1]}} , {{ results[3][i]}}
+					{% endfor %}
+					{% endif %}
+				</textarea>
+				{%elif Eqs_No == 5  %}
+				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 x5 ], εs%
+					{% if results %}
+					{{ results[2][0]}}
+					{% for i in range(results[4]-1) %}
+					{{ results[2][i+1]}} , {{ results[3][i]}}
+					{% endfor %}
+					{% endif %}
+				</textarea>
+				{% else %}
+				<textarea class="Rectangle_9" disabled>  </textarea>
+				{% endif %}
 				<div class="Rectangle_9over"></div>
 				<svg class="Path_3" viewBox="127.353 288 21.741 24.188">
 					<path fill="rgba(60,60,60,1)" id="Path_3" d="M 149.094482421875 288 C 136.7897644042969 288.0400390625 127.0997924804688 295.9132995605469 127.358024597168 309.1545715332031 C 127.6162490844727 322.3958129882813 127.358024597168 288 127.358024597168 288 L 149.094482421875 288 Z">
@@ -273,28 +311,28 @@
 				<input type="text" class="Rectangle_32" disabled value ="{{results[0][0]}}"  />
 				<input type="text" class="Rectangle_33" disabled value ="{{results[0][1]}}" />
 				<input type="text" class="Rectangle_34" disabled />
-				<input type="text" class="Rectangle_35" disabled value ="error"/>
+				<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}" />
 				<input type="text" class="Rectangle_41" disabled />
 				<input type="text" class="Rectangle_42" disabled />
 				{% elif results and Eqs_No == 3 %}
 				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
 				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
 				<input type="text" class="Rectangle_34" disabled />
-				<input type="text" class="Rectangle_35" disabled value ="error"/>
+				<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
 				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
 				<input type="text" class="Rectangle_42" disabled />
 				{% elif results and Eqs_No == 4 %}
 				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
 				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
 				<input type="text" class="Rectangle_34" disabled />
-				<input type="text" class="Rectangle_35" disabled value ="error"/>
+				<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
 				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
 				<input type="text" class="Rectangle_42" disabled value= {{results[0][3]}}/>
 				{% elif results and Eqs_No == 5 %}
 				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
 				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
 				<input type="text" class="Rectangle_34" disabled value ={{results[0][4]}} />
-				<input type="text" class="Rectangle_35" disabled value ="error"/>
+				<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
 				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
 				<input type="text" class="Rectangle_42" disabled value= {{results[0][3]}}/>
 				{%else %}

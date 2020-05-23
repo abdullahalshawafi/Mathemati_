@@ -165,7 +165,7 @@ def solve_linear_systems(n,list_of_inputs,w,choice,num_iterations,error):
             for k in range(0, n):
                 if x[k] == 0:
                     continue
-                all_errors_in_one_iteration.append((x[k] - x_old[k]) / x[k])
+                all_errors_in_one_iteration.append((x[k] - x_old[k]) * 100 / x[k])
             abs_errors = list(map(abs, all_errors_in_one_iteration))
             max_error = max(abs_errors) * 1
             if max(all_errors_in_one_iteration) == max_error:
@@ -174,9 +174,9 @@ def solve_linear_systems(n,list_of_inputs,w,choice,num_iterations,error):
                 max_error = -max_error * 1
             all_errors_in_one_iteration = []
             max_error_each_iteration.append(max_error)
-            if abs(max_error) < error / 100.0:
+            if abs(max_error) <= error:
                 status = True
             x_old = x * 1
             if status == True:
                 break
-    return x, error_occurred, list_of_iterations, max_error_each_iteration
+    return x, error_occurred, list_of_iterations, max_error_each_iteration, len(list_of_iterations)
