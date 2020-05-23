@@ -21,6 +21,10 @@ a {
 	color: white;
 }
 
+#credits:hover, #contact:hover {
+	color: #00FF88;
+}
+
 #custom___1 {
 	position: absolute;
 	width: calc(1518vw / 15.36);

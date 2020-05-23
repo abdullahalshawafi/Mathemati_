@@ -89,7 +89,7 @@
 					</div>
 					<div id="DRE" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Differentiation_using_Richards">
-							<span>Differentiation using<br />Richardson Extrapolation</span><br>
+							<a href="{{('Differentiation')}}"><span>Differentiation using<br />Richardson Extrapolation</span></a><br>
 						</div>
 						<img id="DRE0000" src="{{url_for('static', filename='HoverAnimations/DRE/DRE0000.png')}}">
 					</div>
@@ -178,7 +178,7 @@
 				<img id="DE_cb" src="{{url_for('static', filename='images/DE_cb.png')}}" >
 				<img id="SE_cc" src="{{url_for('static', filename='images/SE_cc.png')}}" >
 				<div id="Credits_______________________">
-					<a href="{{url_for('Credits')}}"><span>Credits</span></a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="{{url_for('Contact')}}"><span>Contact</span></a>
+					<a href="{{url_for('Credits')}}" id="credits"><span>Credits</span></a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="{{url_for('Contact')}}" id="contact"><span>Contact</span></a>
 				</div>
 				<img id="backblue2" src="{{url_for('static', filename='images/backblue2.png')}}">
 			</div>

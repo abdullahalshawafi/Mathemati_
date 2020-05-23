@@ -23,7 +23,8 @@ functionPlot(parameters);
 function addtograph() {
   if (document.getElementsByClassName("Rectangle_Essam")[0].value) {
     var func = document.getElementsByClassName("Rectangle_Essam")[0].value;
-    func = func.replace('**', '^')
+    for(let i =0 ; i<9 ;i++)
+      func = func.replace('**', '^');
     parameters.data[1].fn = '-y+' + func;
   }
   functionPlot(parameters);
@@ -35,14 +36,26 @@ window.onload = function () {
 
 function substitute(el) {
   var x = parseFloat(el.value);
-  console.log(x);
   var F = document.getElementsByClassName('Rectangle_Essam')[0].value;
-  F = F.replace('**', '^');
-  F = F.replace('sin', 'Math.sin');
-  F = F.replace('cos(', 'Math.cos(');
-  F = F.replace('tan(', 'Math.tan(');
-  F = F.replace('exp(', 'Math.exp(');
-  F = F.replace('log(', 'Math.log()');
-  console.log(F);
-  document.getElementsByClassName('Rectangle_42')[0].value = eval(F);
+  F = F.replace(/\^/g, '**');
+  F = F.replace(/sin/g, 'Math.sin');
+  F = F.replace(/cos/g, 'Math.cos');
+  F = F.replace(/tan/g, 'Math.tan');
+  F = F.replace(/exp/g, 'Math.exp');
+  F = F.replace(/log/g, 'Math.log');
+  if (eval(F).toFixed(4) != "NaN")
+    document.getElementsByClassName('Rectangle_42')[0].value = eval(F).toFixed(4);
+  else
+    document.getElementsByClassName('Rectangle_42')[0].value = '';
+}
+
+function DimInput() {
+  var MethodFamily = document.getElementsByName('Method')[2];
+  if (!MethodFamily.checked) {
+    document.getElementById('R__x____').setAttribute("style", "color: #999999;");
+    document.getElementsByClassName('Rectangle_32')[0].setAttribute("style", "background: #303030; text-align: left;");
+  } else {
+    document.getElementById('R__x____').setAttribute("style", "");
+    document.getElementsByClassName('Rectangle_32')[0].setAttribute("style", "text-align: left;");
+  }
 }

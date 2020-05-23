@@ -71,81 +71,82 @@
 						</div>
 					</div>
 					<div id="Non_Linearized_">
-						<input type="radio" id="Nonlinear" name="Method" {% if Method == "Nonlinear" %} checked {% endif %} value="Nonlinear"><label for="Nonlinear">
+						<input type="radio" id="Nonlinear" name="Method" onchange="DimInput()" {% if Method == "Nonlinear" %} checked {% endif %} value="Nonlinear"><label for="Nonlinear">
 							<span>Nonlinear:</span>
 							<input type="text" name="Nonlinear_Equation" value="{{request.form['Nonlinear_Equation']}}" class="Rectangle_43" style="text-align: left" />
 						</label>
 					</div>
 
 					<div id="Linearized_">
-						<input type="radio" id="Linearized" name="Method" {% if Method == "Linearized" %} checked {% endif %} value="Linearized"><label for="Linearized"><span>Linearized:</span></label>
+						<input type="radio" id="Linearized" name="Method" onchange="DimInput()" {% if Method == "Linearized" %} checked {% endif %} value="Linearized"><label for="Linearized"><span>Linearized:</span></label>
 					</div>
 
 					<div id="Best_Fitting_Family_of_Curves">
-						<input type="radio" id="Best-Fitting-Family-of-Curves" name="Method" {% if Method == "Best-Fitting-Family-of-Curves" %} checked {% endif %} value="Best-Fitting-Family-of-Curves"><label for="Best-Fitting-Family-of-Curves"><span>Curve Family Detective</span></label>
+						<input type="radio" id="Best-Fitting-Family-of-Curves" name="Method" onchange="DimInput()" {% if Method == "Best-Fitting-Family-of-Curves" %} checked {% endif %} value="Best-Fitting-Family-of-Curves"><label for="Best-Fitting-Family-of-Curves"><span>Curve Family Detective</span></label>
 					</div>
 					<div class="Rectangle_19">
 						<div id="table">
 
-
-							<input type="text" class="Rectangle_44" value="y" /> <div class="inChar">=</div>
-
-
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C1 +</div>
-
-
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C2 +</div>
+							{% if request.form['Abdullah_Knows_It_All'] %}
+							<input type="text" name="Abdullah_Knows_It_All" value="{{request.form['Abdullah_Knows_It_All']}}" class="Rectangle_44" /> <div class="inChar">=</div>
+							{% else %}
+							<input type="text" name="Abdullah_Knows_It_All" class="Rectangle_44" value="Y" /> <div class="inChar">=</div>
+							{% endif %}
+							<input type="text" name="term0" value="{{request.form['term0']}}" class="Rectangle_44" /> <div class="inChars">C1 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C3 +</div>
+							<input type="text" name="term1" value="{{request.form['term1']}}" class="Rectangle_44" /> <div class="inChars">C2 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C4 +</div>
+							<input type="text" name="term2" value="{{request.form['term2']}}" class="Rectangle_44" /> <div class="inChars">C3 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C5 +</div>
+							<input type="text" name="term3" value="{{request.form['term3']}}" class="Rectangle_44" /> <div class="inChars">C4 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C6 +</div>
+							<input type="text" name="term4" value="{{request.form['term4']}}" class="Rectangle_44" /> <div class="inChars">C5 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C7 +</div>
+							<input type="text" name="term5" value="{{request.form['term5']}}" class="Rectangle_44" /> <div class="inChars">C6 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C8 +</div>
+							<input type="text" name="term6" value="{{request.form['term6']}}" class="Rectangle_44" /> <div class="inChars">C7 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C9 +</div>
+							<input type="text" name="term7" value="{{request.form['term7']}}" class="Rectangle_44" /> <div class="inChars">C8 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C10 +</div>
+							<input type="text" name="term8" value="{{request.form['term8']}}" class="Rectangle_44" /> <div class="inChars">C9 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C11 +</div>
+							<input type="text" name="term9" value="{{request.form['term9']}}" class="Rectangle_44" /> <div class="inChars">C10 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C12 +</div>
+							<input type="text" name="term10" value="{{request.form['term10']}}" class="Rectangle_44" /> <div class="inChars">C11 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C13 +</div>
+							<input type="text" name="term11" value="{{request.form['term11']}}" class="Rectangle_44" /> <div class="inChars">C12 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C14 +</div>
+							<input type="text" name="term12" value="{{request.form['term12']}}" class="Rectangle_44" /> <div class="inChars">C13 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C15 +</div>
+							<input type="text" name="term13" value="{{request.form['term13']}}" class="Rectangle_44" /> <div class="inChars">C14 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C16 +</div>
+							<input type="text" name="term14" value="{{request.form['term14']}}" class="Rectangle_44" /> <div class="inChars">C15 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C17 +</div>
+							<input type="text" name="term15" value="{{request.form['term15']}}" class="Rectangle_44" /> <div class="inChars">C16 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C18 +</div>
+							<input type="text" name="term16" value="{{request.form['term16']}}" class="Rectangle_44" /> <div class="inChars">C17 +</div>
 
 
-							<input type="text" class="Rectangle_44" /> <div class="inChars">C19</div>
+							<input type="text" name="term17" value="{{request.form['term17']}}" class="Rectangle_44" /> <div class="inChars">C18 +</div>
+
+
+							<input type="text" name="term18" value="{{request.form['term18']}}" class="Rectangle_44" /> <div class="inChars">C19</div>
 
 						</div>
 					</div>
@@ -291,9 +292,15 @@
 					<span>Sᵣ = </span>
 				</div>
 
+				{% if Method == 'Linearized' %}
+				<div id="R___">
+					<span>Y ( </span>
+				</div>
+				{% else %}
 				<div id="R___">
 					<span>f ( </span>
 				</div>
+				{% endif %}
 				<div id="____">
 					<span>) = </span>
 				</div>
@@ -305,29 +312,33 @@
 					<span>r &nbsp;&nbsp;=</span>
 				</div>
 				<div id="Best_fitting_curves_are__">
+					{% if Method == 'Linearized' %}
+					<span>Y (x) = </span>
+					{% else %}
 					<span>f (x) = </span>
+					{% endif %}
 					{% if results %}
 					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" value="{{results}}" disabled style="text-align: left">
 					{% else %}
-					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" value="{{results}}" disabled style="text-align: left">
+					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" disabled style="text-align: left">
 					{% endif %}
 				</div>
-				{% if Error %}
+				{% if not Error == '' %}
 				<input type="text" class="Rectangle_34" value="{{Error}}" disabled style="text-align: left" />
 				{% else %}
-				<input type="text" class="Rectangle_34" disabled style=""text-align: left" />
+				<input type="text" class="Rectangle_34" disabled style="text-align: left" />
 				{% endif %}
 				<input type="text" class="Rectangle_41" onfocusout="substitute(this)" style="width: 5vw; left: 1.5vw;" />
 				<input type="text" class="Rectangle_42" disabled style="left: 8.5vw; width: 15vw; text-align: left;"/>
-				{% if TrueErr %}
+				{% if not TrueErr == '' %}
 				<input type="text" class="Rectangle_45" disabled value="{{TrueErr}}" style="text-align: left" />
 				{% else %}
 				<input type="text" class="Rectangle_45" disabled style="text-align: left" />
 				{% endif %}
-				{% if r %}
+				{% if not r == '' %}
 				<input type="text" class="Rectangle_46" disabled value="{{r}}" style="width: 20.7vw; left: 2.8vw; text-align: left;" />
 				{% else %}
-				<input type="text" class="Rectangle_46" disabled value="{{r}}" style="width: 20.7vw; left: 2.8vw; text-align: left;" />
+				<input type="text" class="Rectangle_46" disabled style="width: 20.7vw; left: 2.8vw; text-align: left;" />
 				{% endif %}
 			</div>
 		</div>

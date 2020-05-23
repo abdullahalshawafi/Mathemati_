@@ -68,9 +68,9 @@ def Linearized_Regression(xdata, ydata, Function,r):
         for j in range(1,n):
             a[i-1][j-1] = np.sum(np.multiply(FL[i],FL[j]))
         b[i-1][0]= np.sum(np.multiply(FL[0],FL[i]))
-    Sol=np.round(np.transpose(np.linalg.solve(a, b)),r) #receiving the list, making it horizontal then rounding each element
     if(np.linalg.det(a)==0):
-        return '','','','',''
+        return '','','',''
+    Sol=np.round(np.transpose(np.linalg.solve(a, b)),r) #receiving the list, making it horizontal then rounding each element
     Solution = []
     for sublist in Sol: #Flattening the list ( from [[ ]] to [ ])
         for item in sublist:
@@ -321,6 +321,8 @@ def main():
                 for i in range(0, n):
                     Function.append(input("Insert your functions : \n"))
                 LHS, RHS, Constants,Sr = Surface_Fit_Beta(xdata, ydata, zdata, Function, r);
+                if(LHS==''):
+                    print("Singular Matrix")
                 print(LHS, '=', RHS,'\n');
                 print("Regression Error(Sr)= ", Sr);
                 Plot_3D_RHS(xdata, ydata, zdata, RHS)
@@ -360,4 +362,4 @@ def main():
                 repeat = True
             else:
                 repeat = False
-#main()
+# main()

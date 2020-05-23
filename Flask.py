@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from methods.LeastSquareReg import Nonlinear_Regression, TrueError, Curve_Family_Detective
+from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
@@ -136,6 +136,28 @@ def LeastSquareReg():
 
             if result and TrueErr:
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r)
+        elif Method == 'Linearized':
+            i = 0
+            xdata = []
+            ydata = []
+            while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                i += 1
+            j = 0
+            Fdata = [request.form['Abdullah_Knows_It_All']]
+            while request.form['term' + str(j)]:
+                Fdata.append(request.form['term' + str(j)])
+                j += 1
+
+            LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
+
+            if LHS:
+                TrueErr = TrueError(ydata, 4)
+                r=round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
+            else:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix', Error='...', TrueErr='...', r='...')
         elif Method == 'Best-Fitting-Family-of-Curves':
             i = 0
             xdata = []
@@ -147,7 +169,7 @@ def LeastSquareReg():
             result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4);
             TrueErr = TrueError(ydata, 4);
             r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
-            if result and TrueErr:
+            if result and Error and TrueErr:
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
         return redirect(url_for('LeastSquareReg'))
     else:
@@ -156,9 +178,42 @@ def LeastSquareReg():
 @app.route("/SurfaceFitting", methods=['GET', 'POST'])
 def SurfaceFitting():
     if request.method == 'POST':
-        pass
+        Sr = 0
+        LHS = 0
+        i = 0
+        xdata = []
+        ydata = []
+        zdata = []
+        while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!='' and request.form['z_coordinates' + str(i)]!=''):
+            xdata.append(float(request.form['x_coordinates' + str(i)]))
+            ydata.append(float(request.form['y_coordinates' + str(i)]))
+            zdata.append(float(request.form['z_coordinates' + str(i)]))
+            i += 1
+        j = 0
+        Fdata = [request.form['Abdullah_Knows_It_All']]
+        while request.form['term' + str(j)]:
+            Fdata.append(request.form['term' + str(j)])
+            j += 1
+
+        if xdata and Fdata:
+            LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 4)
+
+        if LHS and not Sr == '':
+            print(LHS, Sr)
+            return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results=RHS, Error=Sr)
+        elif not xdata:
+            return redirect(url_for('SurfaceFitting'))
+        else:
+            return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results='Singular Matrix', Error='...')
     else:
         return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/Differentiation", methods=['GET', 'POST'])
+def Differentiation():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('Differentiation.html', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
 @app.route("/Integration", methods=['GET', 'POST'])
 def Integration():
