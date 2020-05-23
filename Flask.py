@@ -6,6 +6,7 @@ from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
 from methods.PolynomialInterpolation import Newton,LaGrange
 from methods.Bezier import bezier_curve_bin
 from methods.SplineInterpolation import linear_spline,quad_spline,cubic_spline,get_interval_list
+from methods.LinearSystems import solve_linear_systems
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
@@ -283,11 +284,129 @@ def PDE():
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
     if request.method == 'POST':
+        Method = ''
+        Length=0
+        temp_to_test
+        inputs = []
+        result = []
+        n =0
+        choice =0
+        iterations = 0
+        StoppingCriteria =0.0
+        w=1
 
-        pass
+
+##########################################################################
+
+        temp_to_test = request.form['StoppingCriteria']
+        if not StoppingCriteria == '':
+            StoppingCriteria = float(request.form['StoppingCriteria'])
+            choice = 2
+
+        temp_to_test = request.form['Iterations']
+        if not iterations == '':
+            iterations = int(request.form['Iterations'])
+            choice=1
+
+        temp_to_test = request.form['w']
+        if not w == '':
+            w = int(request.form['w'])
+
+
+        if 'Dim' in request.form:
+            n = int(request.form['Dim']) # size = n*(n+1), inputs[size-1]
+            if n ==2 :
+                inputs[0] = request.form['x00']
+                inputs[1] = request.form['x01']
+                inputs[2] = request.form['c0']
+
+                inputs[3] = request.form['x10']
+                inputs[4] = request.form['x11']
+                inputs[5] = request.form['c1']
+            elif n==3:
+                inputs[0] = request.form['x00']
+                inputs[1] = request.form['x01']
+                inputs[2] = request.form['x02']
+                inputs[3] = request.form['c0']
+
+                inputs[4] = request.form['x10']
+                inputs[5] = request.form['x11']
+                inputs[6] = request.form['x12']
+                inputs[7] = request.form['c1']
+
+                inputs[8] = request.form['x20']
+                inputs[9] = request.form['x21']
+                inputs[10] = request.form['x22']
+                inputs[11] = request.form['c2']
+            elif n==4:
+                inputs[0] = request.form['x00']
+                inputs[1] = request.form['x01']
+                inputs[2] = request.form['x02']
+                inputs[3] = request.form['x03']
+                inputs[4] = request.form['c0']
+
+                inputs[5] = request.form['x10']
+                inputs[6] = request.form['x11']
+                inputs[7] = request.form['x12']
+                inputs[8] = request.form['x13']
+                inputs[9] = request.form['c1']
+
+                inputs[10] = request.form['x20']
+                inputs[11] = request.form['x21']
+                inputs[12] = request.form['x22']
+                inputs[13] = request.form['x23']
+                inputs[14] = request.form['c2']
+
+                inputs[15] = request.form['x30']
+                inputs[16] = request.form['x31']
+                inputs[17] = request.form['x32']
+                inputs[18] = request.form['x33']
+                inputs[19] = request.form['c3']
+            elif n==5:
+                inputs[0] = request.form['x00']
+                inputs[1] = request.form['x01']
+                inputs[2] = request.form['x02']
+                inputs[3] = request.form['x03']
+                inputs[4] = request.form['x04']
+                inputs[5] = request.form['c0']
+
+                inputs[6] = request.form['x10']
+                inputs[7] = request.form['x11']
+                inputs[8] = request.form['x12']
+                inputs[9] = request.form['x13']
+                inputs[10] = request.form['x14']
+                inputs[11] = request.form['c1']
+
+                inputs[12] = request.form['x20']
+                inputs[13] = request.form['x21']
+                inputs[14] = request.form['x22']
+                inputs[15] = request.form['x23']
+                inputs[16] = request.form['x24']
+                inputs[17] = request.form['c2']
+
+                inputs[18] = request.form['x30']
+                inputs[19] = request.form['x31']
+                inputs[20] = request.form['x32']
+                inputs[21] = request.form['x33']
+                inputs[22] = request.form['x34']
+                inputs[23] = request.form['c3']
+
+                inputs[24] = request.form['x40']
+                inputs[25] = request.form['x41']
+                inputs[26] = request.form['x42']
+                inputs[27] = request.form['x43']
+                inputs[28] = request.form['x44']
+                inputs[29] = request.form['c4']
+##########################################################################
+        if (n*(n+1)==len(inputs)) and (StoppingCriteria or iterations) and w and choice:
+            result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
+            Length = len(result[0])
+            if Length:
+                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=n, results=result)
+        return redirect(url_for('LinearSystem'))
 
     else:
-        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",Length=Length, Method=Method, iterations=iterations, Eqs_No=n, results=result)
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():
