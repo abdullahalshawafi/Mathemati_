@@ -66,7 +66,7 @@
 					</div>
 					<div id="SR" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Surface_Regression">
-							<a href="{{url_for('SurfaceFitting')}}"><span>Surface Fitting</span></a> 
+							<a href="{{url_for('SurfaceFitting')}}"><span>Surface Fitting</span></a>
 						</div>
 						<img id="SR0000" src="{{url_for('static', filename='HoverAnimations/SR/SR0000.png')}}">
 					</div>
@@ -89,13 +89,13 @@
 					</div>
 					<div id="DRE" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Differentiation_using_Richards">
-							<span>Differentiation using<br />Richardson Extrapolation</span><br>
+							<a href="{{('Differentiation')}}"><span>Differentiation using<br />Richardson Extrapolation</span></a><br>
 						</div>
 						<img id="DRE0000" src="{{url_for('static', filename='HoverAnimations/DRE/DRE0000.png')}}">
 					</div>
 					<div id="NCI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Numerical_Integration">
-							<span>Numerical Integration</span>
+							<a href="{{url_for('Integration')}}"><span>Numerical Integration</span></a>
 						</div>
 						<img id="NCI0000" src="{{url_for('static', filename='HoverAnimations/NCI/NCI0000.png')}}">
 					</div>
@@ -178,7 +178,7 @@
 				<img id="DE_cb" src="{{url_for('static', filename='images/DE_cb.png')}}" >
 				<img id="SE_cc" src="{{url_for('static', filename='images/SE_cc.png')}}" >
 				<div id="Credits_______________________">
-					<span>Credits</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span>Contact</span>
+					<a href="{{url_for('Credits')}}" id="credits"><span>Credits</span></a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="{{url_for('Contact')}}" id="contact"><span>Contact</span></a>
 				</div>
 				<img id="backblue2" src="{{url_for('static', filename='images/backblue2.png')}}">
 			</div>

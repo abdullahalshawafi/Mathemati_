@@ -21,6 +21,10 @@ a {
 	color: white;
 }
 
+#credits:hover, #contact:hover {
+	color: #00FF88;
+}
+
 #custom___1 {
 	position: absolute;
 	width: calc(1518vw / 15.36);
@@ -886,6 +890,7 @@ a {
 	font-size: calc(40vw / 15.36);
 	color: rgba(255,255,255,1);
 	letter-spacing: calc(0.4vw / 15.36);
+	z-index: 2;
 }
 
 	#Credits_______________________:hover {

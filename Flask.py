@@ -1,7 +1,12 @@
 from flask import Flask, render_template, url_for, request, redirect
+from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
+from methods.PolynomialInterpolation import Newton,LaGrange
+from methods.Bezier import bezier_curve_bin
+from methods.SplineInterpolation import linear_spline,quad_spline,cubic_spline,get_interval_list
+from methods.LinearSystems import solve_linear_systems
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
@@ -11,33 +16,212 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 def home():
     return render_template('Home.html')
 
+@app.route("/Credits")
+def Credits():
+    return render_template('Credits.html', title='Credits', css="Credits.css", wing="Neon Green Header.svg", logo="Logo.svg")
+
+@app.route("/Contact")
+def Contact():
+    return render_template('Contact.html', title='Contact', css="Contact.css", wing="Neon Green Header.svg", logo="Logo.svg")
+
 @app.route("/PolynomialInterpolation", methods=['GET', 'POST'])
 def PolynomialInterpolation():
     if request.method == 'POST':
-        pass
+        Method = ''
+
+        Degree = -1
+
+        NumPoints = 0
+        X_Points = []
+        Y_Points = []
+
+        if 'Method' in request.form:
+            Method = request.form['Method']
+
+
+        if Method=="Newton" and (request.form['Degree']) :
+            Degree = int(request.form['Degree'])
+
+        while (request.form["X_" + str(NumPoints)]) and (request.form["Y_" + str(NumPoints)]) :
+
+            Xtemp =float((request.form["X_" + str(NumPoints)]))
+            if NumPoints>0 :
+                if Xtemp != X_Points[NumPoints-1]:
+                    X_Points.append(float((request.form["X_" + str(NumPoints)])))
+                    Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
+            else:
+                X_Points.append(float((request.form["X_" + str(NumPoints)])))
+                Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
+
+            NumPoints += 1
+
+
+        NumPoints=len(X_Points)
+        if Method and NumPoints > 0 and (Degree>-1 or Method=='Lagrange') and (NumPoints)>= (Degree+1):
+
+            X_val = 0
+            if Method == "Newton":
+                X_diff_val = 0
+                X_val = 0
+                #if request.form["Xderivative"]:
+                 #   X_diff_val = float(request.form["Xderivative"])
+                #if request.form["Xvalue"]:
+                 #   X_val = float(request.form["Xvalue"])
+                DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
+                ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction,Yderivative=Y_diff_val, Yvalue = Y_val , ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
+
+            elif Method == "Lagrange":
+                #if request.form["Xvalue"]:
+
+                 #   X_val = float(request.form["Xvalue"])
+                Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
+                ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, Yvalue = Y_val, ParametricX=ParametricX,ParametricY=ParametricY)
+        return redirect(url_for('PolynomialInterpolation'))
     else:
-        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = "No Valid Input data")
+
 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
     if request.method == 'POST':
-        pass
+        Numbers =[]
+        NumPoints = 0
+
+        while (request.form['x_coordinates'+str(NumPoints)]) and (request.form['y_coordinates'+str(NumPoints)]) :
+           Numbers.append([float((request.form['x_coordinates'+str(NumPoints)])),float((request.form['y_coordinates'+str(NumPoints)]))])
+           NumPoints +=1
+
+        print(NumPoints,Numbers)
+
+        LinearSpline = linear_spline(NumPoints,Numbers)
+        IntervalList = get_interval_list(NumPoints,Numbers)
+        QuadraticSpline = quad_spline(NumPoints,Numbers)
+        CubicSpline = cubic_spline(NumPoints,Numbers)
+        print(LinearSpline)
+        print(QuadraticSpline)
+        print(CubicSpline)
+        print(IntervalList)
+        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1 ,eq=LinearSpline)
+
     else:
-        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
 @app.route("/LeastSquareReg", methods=['GET', 'POST'])
 def LeastSquareReg():
     if request.method == 'POST':
-        pass
+        Method = ''
+        print("Method=", Method)
+        if 'Method' in request.form:
+            Method  = request.form['Method']
+            print("Method=", Method)
+        if Method == 'Nonlinear':
+            Equation = request.form['Nonlinear_Equation']
+            i = 0
+            xdata = []
+            ydata = []
+            while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                i += 1
+            if len(xdata)>=3:
+                result, Error = Nonlinear_Regression(xdata, ydata, Equation, 4);
+                TrueErr = TrueError(ydata, 4);
+                r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
+            else:
+                result="The data set is too small"
+                Error='...'
+                TrueErr='...';
+                r='...'
+
+            if result and TrueErr:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r)
+        elif Method == 'Linearized':
+            i = 0
+            xdata = []
+            ydata = []
+            while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                i += 1
+            j = 0
+            Fdata = [request.form['Abdullah_Knows_It_All']]
+            while request.form['term' + str(j)]:
+                Fdata.append(request.form['term' + str(j)])
+                j += 1
+
+            LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
+
+            if LHS:
+                TrueErr = TrueError(ydata, 4)
+                r=round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
+            else:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix', Error='...', TrueErr='...', r='...')
+        elif Method == 'Best-Fitting-Family-of-Curves':
+            i = 0
+            xdata = []
+            ydata = [];
+            while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                i += 1
+            result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4);
+            TrueErr = TrueError(ydata, 4);
+            r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
+            if result and Error and TrueErr:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
+        return redirect(url_for('LeastSquareReg'))
     else:
         return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
 
 @app.route("/SurfaceFitting", methods=['GET', 'POST'])
 def SurfaceFitting():
     if request.method == 'POST':
-        pass
+        Sr = 0
+        LHS = 0
+        i = 0
+        xdata = []
+        ydata = []
+        zdata = []
+        while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!='' and request.form['z_coordinates' + str(i)]!=''):
+            xdata.append(float(request.form['x_coordinates' + str(i)]))
+            ydata.append(float(request.form['y_coordinates' + str(i)]))
+            zdata.append(float(request.form['z_coordinates' + str(i)]))
+            i += 1
+        j = 0
+        Fdata = [request.form['Abdullah_Knows_It_All']]
+        while request.form['term' + str(j)]:
+            Fdata.append(request.form['term' + str(j)])
+            j += 1
+
+        if xdata and Fdata:
+            LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 4)
+
+        if LHS and not Sr == '':
+            print(LHS, Sr)
+            return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results=RHS, Error=Sr)
+        elif not xdata:
+            return redirect(url_for('SurfaceFitting'))
+        else:
+            return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results='Singular Matrix', Error='...')
     else:
         return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/Differentiation", methods=['GET', 'POST'])
+def Differentiation():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('Differentiation.html', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
+
+@app.route("/Integration", methods=['GET', 'POST'])
+def Integration():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
 @app.route("/PDE", methods=['GET', 'POST'])
 def PDE():
@@ -92,19 +276,65 @@ def PDE():
         U=''
         U_Value=pde.Solve_At_Point(_point)
         U=U_Value
-        
+
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
     else:
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
+    Length = 0
+    temp_to_test = 0
     if request.method == 'POST':
+        Method = ''
+        inputs = []
+        result = []
+        n =0
+        choice =0
+        iterations = 0
+        StoppingCriteria =0.0
+        w=1
 
-        pass
+
+##########################################################################
+
+        temp_to_test = request.form['StoppingCriteria']
+        if not temp_to_test == '':
+            StoppingCriteria = float(request.form['StoppingCriteria'])
+            choice = 2
+
+        temp_to_test = request.form['Iterations']
+        if not temp_to_test == '':
+            iterations = int(request.form['Iterations'])
+            choice=1
+
+        temp_to_test = request.form['w']
+        if not temp_to_test == '':
+            w = int(request.form['w'])
+
+
+        if 'Dim' in request.form:
+            n = int(request.form['Dim']) # size = n*(n+1), inputs[size-1]
+            if n >1 :
+                for i in range (n):
+                    for j in range (n+1):
+                        if j != n:
+                            temp= 'x'+str(i)+str(j)
+                        elif j==n:
+                            temp = 'c' + str(i)
+                        temp_to_test = request.form[temp]
+                        if not temp_to_test == '':
+                              inputs.append(request.form[temp])
+##########################################################################
+        if (n*(n+1)==len(inputs)) and (StoppingCriteria or iterations) and w and choice:
+            result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
+            Length = len(result[0])
+            if Length:
+                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=n, results=result)
+        return redirect(url_for('LinearSystem'))
 
     else:
-        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",Length=Length, Method=Method, iterations=iterations, Eqs_No=n, results=result)
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():

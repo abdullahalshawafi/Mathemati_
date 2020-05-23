@@ -550,12 +550,18 @@ a {
 	overflow: visible;
 }
 
+.Rectangle_Essam {
+	text-align: left;
+  width: 19.2vw;
+  left: 4.82vw;
+}
+
 .Rectangle_32 {
 	position: absolute;
 	overflow: visible;
-	width: 18.75vw;
+	width: 11.75vw;
 	height: 1.9vw;
-	left: 4.82vw;
+	left: 11.82vw;
 	top: 0.14vw;
 }
 
@@ -639,7 +645,7 @@ a {
 
 #____ {
 	position: absolute;
-	left: 12.1vw;
+	left: 6.7vw;
 	top: 6.51vw;
 	overflow: visible;
 	width: 30.07vw;
@@ -720,7 +726,7 @@ a {
 	font-style: italic;
 	font-weight: normal;
 	font-size: 1.65vw;
-	color: rgba(175,175,175,1);
+	color: white;
 }
 
 .table-button {
