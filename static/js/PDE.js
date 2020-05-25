@@ -27,8 +27,26 @@ function MethodSelection() {
     document.getElementById("UXY1").style.display="none";
     document.getElementById("UXY2").style.display="none";
 
+    document.getElementById("Dir0").style.display="none";
+    document.getElementById("Dir1").style.display="none";
+    document.getElementById("Dir2").style.display="none";
+    document.getElementById("Dir3").style.display="none";
+    document.getElementById("Dir4").style.display="none";
+    
+
   } else {
     document.getElementById("UXY1").style.display="inline";
     document.getElementById("UXY2").style.display="inline";
+
+    document.getElementById("Dir0").style.display="block";
+    document.getElementById("Dir1").style.display="block";
+    document.getElementById("Dir2").style.display="block";
+    document.getElementById("Dir3").style.display="block";
+    document.getElementById("Dir4").style.display="block";
   }
 }
+
+var img = document.createElement("img");
+img.src = "{{url_for('static', filename='Assets/Storked-Copy.svg')}}";
+var src = document.getElementById("myFunction");
+src.appendChild(img);
