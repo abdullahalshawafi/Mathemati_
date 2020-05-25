@@ -8,6 +8,7 @@ from methods.PolynomialInterpolation import Newton,LaGrange
 from methods.Bezier import bezier_curve_bin
 from methods.SplineInterpolation import linear_spline,quad_spline,cubic_spline,get_interval_list
 from methods.LinearSystems import solve_linear_systems
+from methods.ODE_Kutta import rungeKutta
 from methods.ODE_Adams import  ode_adams_backward_difference
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -225,6 +226,37 @@ def Integration():
     else:
         return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
+@app.route("/ODERK", methods=['GET', 'POST'])
+def ODERK():
+    if request.method == 'POST':
+        equation = ''
+        x0 = ''
+        fx0 = ''
+        h = ''
+        xn = ''
+        equation = request.form['equation']
+        if equation:
+            equation = request.form['equation']
+        x0 = request.form['x0']
+        if x0:
+            x0 = float(request.form['x0'])
+        fx0 = request.form['fx0']
+        if fx0:
+            fx0 = float(request.form['fx0'])
+        h = request.form['h']
+        if h:
+            h = float(request.form['h'])
+        xn = request.form['xn']
+        if xn:
+            xn = float(request.form['xn'])
+
+        result = rungeKutta(x0, fx0, xn, h, equation)
+        
+        return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
+
+    else:
+        return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
+
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
     if request.method == 'POST':
@@ -244,18 +276,18 @@ def ODEPC():
 
             y_i = request.form[y_index]
             x_i = request.form[x_index]
-            
+
 
             if x_i and y_i:
                 x.append(float(x_i))
                 y.append(float(y_i))
-            
+
         Number_Of_Points = len(x) #Getting the number of points from the length of the list
 
         Number_Of_Corrections=''
         Stopping_Criteria=''
 
-        Number_Of_Corrections=float(request.form['Num_Of_Corrections']) 
+        Number_Of_Corrections=float(request.form['Num_Of_Corrections'])
         Stopping_Criteria=float(request.form['Stopping_Criteria'])
 
         x_requested=''
@@ -265,19 +297,19 @@ def ODEPC():
         x_requested=float(request.form['xn'])
         #y_requested=float(request.form['yn'])
         #s_requested=float(request.form['Epslon'])
-        
+
         results=[]
 
 
 
 
-        if Method=="AdamBackward": 
+        if Method=="AdamBackward":
             if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
                 results=ode_adams_backward_difference(Equation,Number_Of_Corrections,Stopping_Criteria,Number_Of_Points,x,y,x_requested)
                 return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",results=results)
 
 
-        
+
     else:
         return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg")
 
@@ -391,8 +423,8 @@ def PDE():
                     function_list.append(f)
                     value_list.append(u)
                     boundry_counter=boundry_counter+1
-                
-                elif f=="" and x_i=="" and x_f=="" and not y_i=="" and not y_f=="" and not u=="": #Open Boundary Condition 
+
+                elif f=="" and x_i=="" and x_f=="" and not y_i=="" and not y_f=="" and not u=="": #Open Boundary Condition
                     yy=int(y_i)
                     Rows=int(y_f)
                     Value=int(u)
@@ -404,7 +436,7 @@ def PDE():
             y2=max(yf_list)
 
 
-                #If There is 4 Boundries --> Closed Region 
+                #If There is 4 Boundries --> Closed Region
             if boundry_counter==4:
                 UList=Closed_Region(value_list[0],value_list[1],value_list[2],value_list[3],h,k,x1,x2,y1,y2,dxx,dyy,dx,dy,u_coeff,dxy,function)
                 x_point=float(request.form['x_cordinates'])
@@ -412,8 +444,8 @@ def PDE():
                 x_index=(x_point-x1)/h
                 y_index=(y_point-y1)/k
                 U=UList[x_index][y_index]
-                return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)  
-                    
+                return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
+
             elif boundry_counter==3: #Indication to open boundries --->
                 x_point=float(request.form['x_cordinates'])
                 y_point=float(request.form['y_cordinates'])
@@ -426,7 +458,7 @@ def PDE():
                 return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
 
 
-        
+
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
     else:
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
