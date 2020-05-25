@@ -8,6 +8,7 @@ from methods.PolynomialInterpolation import Newton,LaGrange
 from methods.Bezier import bezier_curve_bin
 from methods.SplineInterpolation import linear_spline,quad_spline,cubic_spline,get_interval_list
 from methods.LinearSystems import solve_linear_systems
+from methods.ODE-Adams import  ode_adams_backward_difference
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
@@ -163,14 +164,14 @@ def LeastSquareReg():
         elif Method == 'Best-Fitting-Family-of-Curves':
             i = 0
             xdata = []
-            ydata = [];
+            ydata = []
             while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
                 xdata.append(float(request.form['x_coordinates' + str(i)]))
                 ydata.append(float(request.form['y_coordinates' + str(i)]))
                 i += 1
             result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4);
-            TrueErr = TrueError(ydata, 4);
-            r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
+            TrueErr = TrueError(ydata, 4)
+            r=round((abs(Error-TrueErr)/TrueErr)**0.5,4)
             if result and Error and TrueErr:
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
         return redirect(url_for('LeastSquareReg'))
@@ -227,7 +228,55 @@ def Integration():
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
     if request.method == 'POST':
-        pass
+
+        x = []
+        y = []
+
+        Method = request.form['Method']
+        Equation = request.form['Equation']
+
+        for i in range(4):
+            x_index = 'x'+str(i)
+            y_index =' y'+str(i)
+
+            x_i=''
+            y_i=''
+
+            x_i = request.form[x_index]
+            y_i = request.form[y_index]
+
+            if x_i and y_i:
+                x.append(float(x_i))
+                y.append(float(y_i))
+            
+        Number_Of_Points = len(x) #Getting the number of points from the length of the list
+
+        Number_Of_Corrections=''
+        Stopping_Criteria=''
+
+        Number_Of_Corrections=int(request.form['Num_Of_Corrections'])
+        Stopping_Criteria=float(request.form['Stopping_Criteria'])
+
+        x_requested=''
+        y_requested=''
+        s_requested=''
+
+        x_requested=float(request.form['xn'])
+        y_requested=float(request.form['yn'])
+        s_requested=float(request.form['Epslon'])
+        
+        Iterations_List=[]
+
+
+
+
+        if Method=="Adam’s Backward": 
+            if len(x)==0 and len(y)==0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
+                Iterations_List=ode_adams_backward_difference(Equation,Number_Of_Corrections,Stopping_Criteria,Number_Of_Points,x,y,x_requested)
+            return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",results=Iterations_List)
+
+
+        
     else:
         return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg")
 

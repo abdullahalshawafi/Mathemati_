@@ -12,7 +12,7 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.49vw" ry="1.49vw" x="0" y="0" width="25.976vw" height="35.28vw">
 					</rect>
 				</svg>
-				<textarea class="Rectangle_9" disabled>> [ x y z ], λ, εs%  </textarea>
+				<textarea class="Rectangle_9" name="Iterations" disabled>> [ x y z ], λ, εs%  </textarea>
 				<div class="Rectangle_9over"> </div>
 
 				<svg class="Path_3" viewBox="127.353 288 21.741 20.791">
@@ -43,9 +43,9 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.49vw" ry="1.49vw" x="0" y="0" width="21.48vw" height="11.68vw">
 					</rect>
 				</svg>
-				<input type="text" class="Rectangle_32" disabled />
-				<input type="text" class="Rectangle_33" disabled />
-				<input type="text" class="Rectangle_35" disabled />
+				<input type="text" name="xn" class="Rectangle_32"  />
+				<input type="text" name="yn" class="Rectangle_33" disabled />
+				<input type="text" name="Epslon" class="Rectangle_35" disabled />
 				<div id="x___">
 					<span>x<span style="font-size:0.8vw">n</span> = </span>
 				</div>
@@ -99,14 +99,14 @@
 				<div id="Power_with_defelation">
 					<input type="radio" id="Power-with-defelation" name="Method" value="Milne’s Method" onchange="DimInput()"><label for="Power-with-defelation"><span>Milne’s Method</span></label>
 				</div>
-				<input type="text" class="Rectangle_43" style="text-align: left" />
+				<input type="text" class="Rectangle_43" style="text-align: left" name="Equation" />
 				<div id="f_x__y__z___">
 					<span>Differential Equation:</span>
 				</div>
-				<div id="Number_of_iterations__">
+				<div id="Number_of_iterations__" name="Num_Of_Corrections">
 					<span>Number of corrections =</span>
 				</div>
-				<div id="Stopping_Criteria__s___">
+				<div id="Stopping_Criteria__s___" name="Stopping_Criteria">
 					<span>Stopping Criteria εs% =</span>
 				</div>
 				<svg class="Rectangle_181">
@@ -123,25 +123,25 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="text" /></td>
-								<td><input type="text" /></td>
+								<td><input type="text" name="x0" /></td>
+								<td><input type="text" name="y0" /></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" /></td>
-								<td><input type="text" /></td>
+								<td><input type="text" name="x1" /></td>
+								<td><input type="text" name="y1" /></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" /></td>
-								<td><input type="text" /></td>
+								<td><input type="text" name="x2" /></td>
+								<td><input type="text" name="y2" /></td>
 
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td><input type="text" /></td>
-								<td><input type="text" /></td>
+								<td><input type="text" name="x3" /></td>
+								<td><input type="text" name="y3" /></td>
 
 							</tr>
 						</tfoot>
