@@ -224,6 +224,13 @@ def Integration():
     else:
         return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
+@app.route("/ODEPC", methods=['GET', 'POST'])
+def ODEPC():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg")
+
 @app.route("/PDE", methods=['GET', 'POST'])
 def PDE():
     if request.method == 'POST':
@@ -374,38 +381,33 @@ def PDE():
     else:
         return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
 
-
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
     Length = 0
     temp_to_test = 0
+    inputs = []
+    result = []
+    n = 0
+    choice = 0
+    iterations = 0
+    StoppingCriteria = 0.0
+    w = 1
+
     if request.method == 'POST':
-        Method = ''
-        inputs = []
-        result = []
-        n =0
-        choice =0
-        iterations = 0
-        StoppingCriteria =0.0
-        w=1
 
-
-##########################################################################
-
-        temp_to_test = request.form['StoppingCriteria']
+        temp_to_test = request.form['Stopping Criteria']
         if not temp_to_test == '':
-            StoppingCriteria = float(request.form['StoppingCriteria'])
+            StoppingCriteria = float(request.form['Stopping Criteria'])
             choice = 2
 
-        temp_to_test = request.form['Iterations']
+        temp_to_test = request.form['Number of iterations']
         if not temp_to_test == '':
-            iterations = int(request.form['Iterations'])
+            iterations = int(request.form['Number of iterations'])
             choice=1
 
         temp_to_test = request.form['w']
         if not temp_to_test == '':
-            w = int(request.form['w'])
-
+            w = float(request.form['w'])
 
         if 'Dim' in request.form:
             n = int(request.form['Dim']) # size = n*(n+1), inputs[size-1]
@@ -424,11 +426,12 @@ def LinearSystem():
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
             Length = len(result[0])
             if Length:
-                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=n, results=result)
+                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
         return redirect(url_for('LinearSystem'))
 
     else:
-        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",Length=Length, Method=Method, iterations=iterations, Eqs_No=n, results=result)
+        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():
