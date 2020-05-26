@@ -77,9 +77,6 @@ def Whole_Problem(Matrix,Vector,n,re):
     # Valuez.append(x)
      #Vectorz.append(y)
      return Valuez,Vectorz
-    
-
-    
 
 def ListToMatrix(Size, Matrix, Guess):
     matrix = np.array(Matrix).reshape(Size, Size)
@@ -134,7 +131,6 @@ def LeastDominant(Matrix,  Guess, Iterations , re) :
     
 def nrm(x):
 	return x/np.linalg.norm(x)
-
 
 def deflate(A,curr_Evalue,x):
     if is_symmetric(A):

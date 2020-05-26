@@ -167,8 +167,11 @@ def solve_linear_systems(n,list_of_inputs,w,choice,num_iterations,error):
                     continue
                 all_errors_in_one_iteration.append((x[k] - x_old[k]) * 100 / x[k])
             abs_errors = list(map(abs, all_errors_in_one_iteration))
-            max_error = max(abs_errors) * 1
-            if max(all_errors_in_one_iteration) == max_error:
+            if abs_errors:
+                max_error = max(abs_errors) * 1
+            else:
+                max_error=0;
+            if all_errors_in_one_iteration and max(all_errors_in_one_iteration) == max_error:
                 max_error = max_error * 1
             else:
                 max_error = -max_error * 1
