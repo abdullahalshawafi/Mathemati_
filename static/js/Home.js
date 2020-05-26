@@ -18,7 +18,7 @@ function ForwardAnimation(el) {
 
     if (timeFromLastUpdate > timePerFrame) {
       if (frameNumber < 10)
-        document.getElementById(el.id + "0000").setAttribute('src', imagePath + `0${frameNumber}.png`);
+        document.getElementById(el.id + "0000").setAttribute('src', imagePath + `${frameNumber}.png`);
       else
         document.getElementById(el.id + "0000").setAttribute('src', imagePath + `${frameNumber}.png`);
       timeWhenLastUpdate = startTime;
