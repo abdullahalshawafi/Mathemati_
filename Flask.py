@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, url_for, request, redirect
 from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta
 from methods.NewtonRaphson import Newton_Raphson
@@ -158,12 +159,15 @@ def LeastSquareReg():
 
             LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
 
-            if LHS:
+            if  ydata and xdata and LHS !="" :
                 TrueErr = TrueError(ydata, 4)
                 r=round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
-            else:
+            elif not ydata or not xdata:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points.', Error='...', TrueErr='...', r='...')
+            elif xdata and ydata:
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix', Error='...', TrueErr='...', r='...')
+
         elif Method == 'Best-Fitting-Family-of-Curves':
             i = 0
             xdata = []
@@ -173,10 +177,15 @@ def LeastSquareReg():
                 ydata.append(float(request.form['y_coordinates' + str(i)]))
                 i += 1
             result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4);
-            TrueErr = TrueError(ydata, 4)
-            r=round((abs(Error-TrueErr)/TrueErr)**0.5,4)
-            if result and Error and TrueErr:
+            TrueErr = TrueError(ydata, 4);
+            r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
+            if result !="" and Error !="" :
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
+            elif not xdata or not ydata:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points', Error='...', TrueErr='...', r='...', family= ' ...')
+            elif xdata and ydata:
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix', Error='...', TrueErr='...', r='...', family= ' ...')
+
         return redirect(url_for('LeastSquareReg'))
     else:
         return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
@@ -281,7 +290,7 @@ def ODERK():
             xn = float(request.form['xn'])
 
         result = rungeKutta(x0, fx0, xn, h, equation)
-        
+
         return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
 
     else:
