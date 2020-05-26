@@ -1,12 +1,12 @@
 var parameters = {
   target: '#myFunction',
   data: [{
-    fn: 'x * x + y * y -1000000',
+    fn: '',
     color: "#eb00ff",
     fnType: 'implicit'
   },
   {
-    fn: 'x * x + y * y -1000000',
+    fn: '',
     color: "#2c00ff",
     fnType: 'implicit'
   }
@@ -18,7 +18,7 @@ var parameters = {
   width: window.innerWidth / 100 * 19.13
 };
 
-functionPlot(parameters);
+// functionPlot(parameters);
 
 function addtograph() {
   if (document.getElementsByClassName("Rectangle_19")[0].value && document.getElementsByName("Dim")[0].checked) {

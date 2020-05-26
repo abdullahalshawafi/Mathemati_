@@ -1,27 +1,19 @@
-
 from flask import Flask, render_template, url_for, request, redirect
-from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta
-from methods.NewtonRaphson import Newton_Raphson
-from methods.FixedPoint import FixedPointIteration
-from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
-from methods.RegularPDE import Open_Region,Closed_Region
-from methods.PolynomialInterpolation import Newton,LaGrange
+from methods.PolynomialInterpolation import Newton, LaGrange
 from methods.Bezier import bezier_curve_bin
-from methods.SplineInterpolation import linear_spline,quad_spline,cubic_spline,get_interval_list
-from methods.LinearSystems import solve_linear_systems
+from methods.SplineInterpolation import linear_spline, quad_spline,cubic_spline, get_interval_list
+from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta
+from methods.Differentiation import  TableDeriv, FuncDeriv
+from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoidal_Double_Integ, single_mixe_rule, double_mixed_rule, triple_mixed_rule
+from methods.Romberg import RombergRule
+from methods.Gauss_Quadrature import myfun, Exact
 from methods.ODE_Kutta import rungeKutta
 from methods.ODE_Adams import  ode_adams_backward_difference
-from methods.Differentiation import  TableDeriv,FuncDeriv
-from methods.Gauss_Quadrature import myfun
-from methods.Gauss_Quadrature import Exact
-from methods.NewtonCotes import Trapezoidal_Integ
-from methods.NewtonCotes import Trapezoidal_error
-from methods.NewtonCotes import Trapezoidal_Double_Integ
-from methods.NewtonCotes import Trapezoidal_Triple_Integ
-from methods.NewtonCotes import single_mixe_rule
-from methods.NewtonCotes import double_mixed_rule
-from methods.NewtonCotes import triple_mixed_rule
-from methods.IntFunctions import RombergRule
+from methods.RegularPDE import Open_Region, Closed_Region
+from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
+from methods.LinearSystems import solve_linear_systems
+from methods.NewtonRaphson import Newton_Raphson
+from methods.FixedPoint import FixedPointIteration
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -97,7 +89,6 @@ def PolynomialInterpolation():
         return redirect(url_for('PolynomialInterpolation'))
     else:
         return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = "No Valid Input data")
-
 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
@@ -266,8 +257,6 @@ def Differentiation():
     else:
         return render_template('Differentiation.html', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
 
-
-
 @app.route("/Integration", methods=['GET', 'POST'])
 def Integration():
     if request.method == 'POST':
@@ -292,10 +281,11 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
+                    print(ResultRom)
                     ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
-                
+
                 TrapError=Trapezoidal_error(function,x1,x2,N)
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
             elif NumOfVar == '2':
@@ -317,10 +307,11 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
+                    print(ResultRom)
                     ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
-                
+
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,y1=y1,y2=y2,n2=N2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
             else:
                 function=request.form['func']
@@ -340,12 +331,13 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
+                    print(ResultRom)
                     ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
-                
+
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
-          
+
     else:
         return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
@@ -636,7 +628,6 @@ def LinearSystem():
 
     else:
         return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
-
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():

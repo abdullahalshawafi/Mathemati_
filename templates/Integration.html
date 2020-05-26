@@ -244,8 +244,11 @@
 				</div>
 			</div>
 			<div id="GQI">
-				<input type="text" class="Rectangle_32_cb" value="{{ResultRom}}" disabled />
-
+				{% if ResultRom %}
+				<input type="text" class="Rectangle_32_cb" value="{{ResultRom[0]}}" disabled />
+				{% else %}
+				<input type="text" class="Rectangle_32_cb" disabled />
+				{% endif %}
 				<div id="I____cc">
 					<span>I = </span>
 				</div>
@@ -288,7 +291,7 @@
 					<span>Gauss Quadrature:</span>
 				</div>
 			</div>
-			
+
 		</div>
 
 	</main>
