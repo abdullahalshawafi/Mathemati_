@@ -669,12 +669,21 @@ textarea:focus, input:focus {
 	color: rgba(255,255,255,1);
 }
 
+#ExactTab {
+	position: absolute;
+	width: calc(330vw / 15.36);
+	height: calc(334vw / 15.36);
+	left: calc(563vw / 15.36);
+	top: calc(50vw / 15.36);
+	overflow: visible;
+}
+
 #MidTab {
 	position: absolute;
 	width: calc(330vw / 15.36);
 	height: calc(334vw / 15.36);
 	left: calc(563vw / 15.36);
-	top: calc(126vw / 15.36);
+	top: calc(146vw / 15.36);
 	overflow: visible;
 }
 
@@ -1178,4 +1187,63 @@ textarea:focus, input:focus {
 
 #calc {
 	transform: translateX(-11%);
+}
+
+#Error__EG {
+	position: absolute;
+	left: calc(194vw / 15.36);
+	top: calc(6vw / 15.36);
+	overflow: visible;
+	width: calc(74vw / 15.36);
+	white-space: nowrap;
+	line-height: calc(36vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: calc(20vw / 15.36);
+	color: rgba(255,255,255,1);
+}
+
+.Rectangle_36_cm {
+	position: absolute;
+	overflow: visible;
+	width: calc(102vw / 15.36);
+	height: calc(29vw / 15.36);
+	left: calc(260vw / 15.36);
+	top: calc(64vw / 15.36);
+}
+
+.Rectangle_8-51 {
+	position: absolute;
+	overflow: visible;
+	left: 6vw;
+	top: 1.5vw;
+	width: 14vw;
+}
+
+#I___Ex {
+	position: absolute;
+	left: calc(19vw / 15.36);
+	top: calc(22vw / 15.36);
+	overflow: visible;
+	width: calc(30vw / 15.36);
+	white-space: nowrap;
+	line-height: calc(36vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: calc(25vw / 15.36);
+	color: rgba(255,255,255,1);
+}
+.Rectangle_32_cm {
+	position: absolute;
+	overflow: visible;
+	width: calc(142vw / 15.36);
+	height: calc(29vw / 15.36);
+	left: calc(41vw / 15.36);
+	top: calc(64vw / 15.36);
 }
