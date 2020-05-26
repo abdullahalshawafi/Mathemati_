@@ -12,6 +12,16 @@ from methods.LinearSystems import solve_linear_systems
 from methods.ODE_Kutta import rungeKutta
 from methods.ODE_Adams import  ode_adams_backward_difference
 from methods.Differentiation import  TableDeriv,FuncDeriv
+from methods.Gauss_Quadrature import myfun
+from methods.Gauss_Quadrature import Exact
+from methods.NewtonCotes import Trapezoidal_Integ
+from methods.NewtonCotes import Trapezoidal_error
+from methods.NewtonCotes import Trapezoidal_Double_Integ
+from methods.NewtonCotes import Trapezoidal_Triple_Integ
+from methods.NewtonCotes import single_mixe_rule
+from methods.NewtonCotes import double_mixed_rule
+from methods.NewtonCotes import triple_mixed_rule
+from methods.IntFunctions import RombergRule
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -261,7 +271,81 @@ def Differentiation():
 @app.route("/Integration", methods=['GET', 'POST'])
 def Integration():
     if request.method == 'POST':
-        pass
+        Dim=''
+        if 'Dim' in request.form:
+            NumOfVar=request.form['Dim']
+            if NumOfVar == '1':
+                function=request.form['func']
+                function=function.replace("^","**")
+                function=function.replace("PI","pi")
+                x1=float(request.form['x1'])
+                x2=float(request.form['x2'])
+                N=int(request.form['n1'])
+                if N > 6:
+                    Result="N > 6"
+                    error=""
+                else:
+                    Result,error=myfun(function,x1,x2,1,1,N)
+                exact=Exact(function,x1,x2,1,1,1,1,1)
+                ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
+                ResultMin,ErrorMin=single_mixe_rule(function,x1,x2,N)
+                OrderOfError=int(request.form['OrderOfError'])
+                if(OrderOfError%2==0):
+                    ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
+                    ResultRom=ResultRom[0]
+                else:
+                    ResultRom="Order of Error must be even"
+                
+                TrapError=Trapezoidal_error(function,x1,x2,N)
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+            elif NumOfVar == '2':
+                function=request.form['func']
+                x1=float(request.form['x1'])
+                x2=float(request.form['x2'])
+                N=int(request.form['n1'])
+                y1=float(request.form['y1'])
+                y2=float(request.form['y2'])
+                N2=int(request.form['n2'])
+                if N > 6:
+                    Result="N > 6"
+                    error=""
+                else:
+                    Result,error=myfun(function,x1,x2,y1,y2,N)
+                ResultMin=double_mixed_rule (function,x1,x2,N,y1,y2,N2)
+                exact=Exact(function,x1,x2,y1,y2,1,1,2)
+                ResultTrap=Trapezoidal_Double_Integ(function,x1,x2,N,y1,y2,N2)
+                OrderOfError=int(request.form['OrderOfError'])
+                if(OrderOfError%2==0):
+                    ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
+                    ResultRom=ResultRom[0]
+                else:
+                    ResultRom="Order of Error must be even"
+                
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,y1=y1,y2=y2,n2=N2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+            else:
+                function=request.form['func']
+                x1=float(request.form['x1'])
+                x2=float(request.form['x2'])
+                N=int(request.form['n1'])
+                y1=float(request.form['y1'])
+                y2=float(request.form['y2'])
+                N2=int(request.form['n2'])
+                z1=float(request.form['z1'])
+                z2=float(request.form['z2'])
+                N3=int(request.form['n3'])
+                Result="too complex"
+                exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
+                ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
+                ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)
+                OrderOfError=int(request.form['OrderOfError'])
+                if(OrderOfError%2==0):
+                    ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
+                    ResultRom=ResultRom[0]
+                else:
+                    ResultRom="Order of Error must be even"
+                
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+          
     else:
         return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
