@@ -597,11 +597,12 @@ def NonlinearSystem():
         if not iterations == '':
             iterations = int(request.form['Iterations'])
 
-        if Method and Eqs_No and StoppingCriteria and iterations and f_xy and g_xy and X0 and Y0:
+        if Method and Eqs_No and not StoppingCriteria == '' and iterations and f_xy and g_xy and X0 and Y0:
             if Method == "NewtonRaphson":
                 if Eqs_No == 2:
                     result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, 0, X0, Y0, 0, StoppingCriteria)
                     Length = len(result[1])
+                    print(result, Length)
                 elif Eqs_No == 3 and Z0 and h_xy:
                     result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
                     Length = len(result[1])
