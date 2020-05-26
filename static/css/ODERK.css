@@ -120,8 +120,8 @@ a {
 	top: 0;
 	left: 50%;
 	transform: translate(-50%, 0);
-	font-size: 1.1vw;
-	padding: 1.45vw 1vw 1.3vw 1vw;
+	font-size: 1.3vw;
+	padding: 1.35vw 1vw 1.2vw 1vw;
 	border-radius: 0 0 2vw 2vw;
 	filter: hue-rotate(180deg);
 }
@@ -791,7 +791,6 @@ a {
 	width: 15.4296875vw;
 	white-space: nowrap;
 	line-height: 2.408854167vw;
-	margin-top: -8.0.3255208333vw;
 	text-align: center;
 	font-family: Radley;
 	font-style: italic;
@@ -803,7 +802,7 @@ a {
 #Number_of_iterations__ {
 	position: absolute;
 	left: 0.0651041667vw;
-	top: 27.52760417vw;
+	top: 5.52760417vw;
 	overflow: visible;
 	width: 14.453125vw;
 	white-space: nowrap;
@@ -812,25 +811,133 @@ a {
 	font-family: Radley;
 	font-style: italic;
 	font-weight: normal;
-	font-size: 1.44395833vw;
+	font-size: 1.54395833vw;
+	color: rgba(255,255,255,1);
+}
+#Number_of_iterations__2 {
+	position: absolute;
+	left: 0.0651041667vw;
+	top: 8.52760417vw;
+	overflow: visible;
+	width: 14.453125vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.54395833vw;
 	color: rgba(255,255,255,1);
 }
 
 #Stopping_Criteria__s___ {
 	position: absolute;
 	left: 0.1302083333vw;
-	top: 30.79427083vw;
+	top: 11.6vw;
 	overflow: visible;
 	width: 14.7135vw;
 	white-space: nowrap;
 	line-height: 2.34375vw;
-	margin-top: -6.0.3255208333vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.29395833vw;
+	color: rgba(255,255,255,1);
+}
+#Stopping_Criteria__s___2 {
+	position: absolute;
+	left: 0.1302083333vw;
+	top: 14.55vw;
+	overflow: visible;
+	width: 14.7135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
 	text-align: left;
 	font-family: Radley;
 	font-style: italic;
 	font-weight: normal;
 	font-size: 1.49395833vw;
 	color: rgba(255,255,255,1);
+}
+#sample {
+	position: absolute;
+	left: 0.1302083333vw;
+	top: 18.79427083vw;
+	overflow: visible;
+	width: 14.7135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.29395833vw;
+	color: #999999;
+}
+#samples1 {
+	position: absolute;
+	left: 1.1302083333vw;
+	top: 21vw;
+	overflow: visible;
+	width: 14.7135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.29395833vw;
+	color: #ffffff;
+	letter-spacing: 0.1953vw;
+}
+#samples2 {
+	position: absolute;
+	left: 1.1302083333vw;
+	top: 24vw;
+	overflow: visible;
+	width: 14.7135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.29395833vw;
+	color: #ffffff;
+	letter-spacing: 0.1953vw;
+}
+#samples3 {
+	position: absolute;
+	left: 1.1302083333vw;
+	top: 27vw;
+	overflow: visible;
+	width: 14.7135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.29395833vw;
+	color: #ffffff;
+	letter-spacing: 0.1953vw;
+}
+#samples4 {
+	position: absolute;
+	left: 1.1302083333vw;
+	top: 30vw;
+	overflow: visible;
+	width: 14.7135vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.29395833vw;
+	color: #ffffff;
+	letter-spacing: 0.1953vw;
 }
 
 #Inv__Power {
@@ -927,19 +1034,36 @@ a {
 .Rectangle_18 {
 	position: absolute;
 	overflow: visible;
-	width: 5.20833vw;
+	width: 14.50833vw;
 	height: 1.7578125vw;
-	left: 15.5598983vw;
-	top: 27.953125vw;
+	left: 5.5598983vw;
+	top: 8.953125vw;
+}
+.Rectangle_182 {
+	position: absolute;
+	overflow: visible;
+	width: 14.50833vw;
+	height: 1.7578125vw;
+	left: 5.5598983vw;
+	top: 5.953125vw;
 }
 
 .Path_6 {
 	overflow: visible;
 	position: absolute;
-	width: 5.20833vw;
+	width: 14.50833vw;
 	height: 1.822916667vw;
-	left: 15.5598983vw;
-	top: 31vw;
+	left: 5.5598983vw;
+	top: 12vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+.Path_62 {
+	overflow: visible;
+	position: absolute;
+	width: 14.50833vw;
+	height: 1.822916667vw;
+	left: 5.5598983vw;
+	top: 15vw;
 	transform: matrix(1,0,0,1,0,0);
 }
 
@@ -1093,6 +1217,7 @@ textarea:focus, input:focus {
 	background: unset;
 	border: unset;
 	outline: none;
+	cursor: pointer;
 	width: 3.25520833vw;
 	margin-bottom: 0.651041667vw;
 	pointer-events: visible;
@@ -1214,13 +1339,13 @@ textarea:focus, input:focus {
 	width: calc(310vw / 15.36);
 	height: calc(29vw / 15.36);
 	left: 0.3vw;
-	top: calc(120vw / 15.36);
+	top: calc(50vw / 15.36);
 }
 
 #f_x__y__z___ {
 	position: absolute;
 	left: calc(1vw / 15.36);
-	top: calc(93vw / 15.36);
+	top: calc(13vw / 15.36);
 	overflow: visible;
 	width: calc(91vw / 15.36);
 	white-space: nowrap;
