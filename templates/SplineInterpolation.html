@@ -186,7 +186,7 @@
 						</div>
 					</div>
 					<div id="Answer" style="height: 9vw">
-						<button class="Expand" onclick="Expand(this, {{NumPoints}})">
+						<button class="Expand" onclick="Expand(this, {{NumPoints}}, {{IntervalList | safe}}, {{LinearSpline|safe}})">
 							<img src="static/Assets/Expand.svg">
 						</button>
 						<div id="Best_fitting_curves_are__">
@@ -226,7 +226,7 @@
 						</div>
 					</div>
 					<div id="Answer" style="height: 9vw">
-						<button class="Expand" onclick="Expand(this, {{NumPoints}})">
+						<button class="Expand" onclick="Expand(this, {{NumPoints}}, {{IntervalList | safe}}, {{QuadraticSpline|safe}})">
 							<img src="static/Assets/Expand.svg">
 						</button>
 						<div id="Best_fitting_curves_are__">
@@ -265,7 +265,7 @@
 						</div>
 					</div>
 					<div id="Answer" style="height: 9vw">
-						<button class="Expand" onclick="Expand(this, {{NumPoints}})">
+						<button class="Expand" onclick="Expand(this, {{NumPoints}}, {{IntervalList | safe}}, {{CubicSpline|safe}})">
 							<img src="static/Assets/Expand.svg">
 						</button>
 						<div id="Best_fitting_curves_are__">
@@ -318,7 +318,7 @@ var parameters = {
 };
 functionPlot(parameters);
 
-function Expand(el, x) {
+function Expand(el, x, intervals ,eq) {
 
   // var con = document.getElementsByClassName("Quadratic")[0];
 
@@ -338,11 +338,11 @@ function Expand(el, x) {
 
       input.setAttribute("type", "text");
       input.setAttribute("name", "interval" + i);
-      input.setAttribute("value", "{{eq}}");
+      input.setAttribute("value", eq[i]);
       input.setAttribute("disabled", true);
 
 
-      span.innerHTML = '[' + i + ', ' + (i + 1) + ']';
+      span.innerHTML = '[' + intervals[i] + ']';
 
       label.setAttribute("for", "interval" + i);
 

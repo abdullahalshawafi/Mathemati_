@@ -34,9 +34,9 @@ def Contact():
 
 @app.route("/PolynomialInterpolation", methods=['GET', 'POST'])
 def PolynomialInterpolation():
+    PolynomialFunction = ""
     if request.method == 'POST':
         Method = ''
-
         Degree = -1
 
         NumPoints = 0
@@ -77,7 +77,7 @@ def PolynomialInterpolation():
                  #   X_val = float(request.form["Xvalue"])
                 DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
                 ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
-                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction,Yderivative=Y_diff_val, Yvalue = Y_val , ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction, ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
 
             elif Method == "Lagrange":
                 #if request.form["Xvalue"]:
@@ -85,10 +85,10 @@ def PolynomialInterpolation():
                  #   X_val = float(request.form["Xvalue"])
                 Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
                 ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
-                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, Yvalue = Y_val, ParametricX=ParametricX,ParametricY=ParametricY)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
         return redirect(url_for('PolynomialInterpolation'))
     else:
-        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = "No Valid Input data")
+        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
@@ -110,7 +110,7 @@ def SplineInterpolation():
         print(QuadraticSpline)
         print(CubicSpline)
         print(IntervalList)
-        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1 ,eq=LinearSpline)
+        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
 
     else:
         return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
