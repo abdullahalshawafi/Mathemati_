@@ -15,6 +15,10 @@ from methods.LinearSystems import solve_linear_systems
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
+<<<<<<< HEAD
+
+=======
+>>>>>>> b7f1f45e21b253eaba8e17f605ec9592bdd4777a
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
