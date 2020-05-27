@@ -14,6 +14,7 @@ from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
 from methods.LinearSystems import solve_linear_systems
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
+from methods.Eigenvalue import solve_Eigenvalue
 
 app = Flask(__name__)
 app.static_folder = 'static'
