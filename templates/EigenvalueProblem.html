@@ -12,9 +12,34 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.49vw" ry="1.49vw" x="0" y="0" width="25.976vw" height="35.28vw">
 					</rect>
 				</svg>
-				<textarea class="Rectangle_9" disabled>> [ x y z ], λ, εs% </textarea>
+				{%if Length == 2  %}
+				<textarea class="Rectangle_9" disabled> [ x y ] , {λ} , εs%
+					{% if results and (Method==2 or Method==1) %}
+					{% for i in range((iterations)-0) %}
+					{{ results[1][i]}} , {{ results[0][i]}},{{results[2][i]}}
+					{% endfor %}
+					{% elif results and (Method==3) %}
+					{% for i in range((iterations)-0) %}
+					{{ results[1][i]}} , {{ results[0][i]}},{{results[2][i]}}
+					{% endfor %}
+					{% endif %}
+                </textarea>
+				{%elif Length == 3  %}
+				<textarea class="Rectangle_9" disabled> [ x y z] , {λ} , εs%
+					{% if results and (Method==2 or Method==1) %}
+					{% for i in range((iterations)-0) %}
+					{{ results[1][i]}} , {{ results[0][i]}},{{results[2][i]}}
+					{% endfor %}
+					{% elif results and (Method==3) %}
+					{% for i in range((iterations)-0) %}
+					{{ results[1][i]}} , {{ results[0][i]}},{{results[2][i]}}
+					{% endfor %}
+					{% endif %}
+                </textarea>
+				{% else %}
+				<textarea class="Rectangle_9" disabled></textarea>
+				{% endif %}
 				<div class="Rectangle_9over"> </div>
-
 				<svg class="Path_3" viewBox="127.353 288 21.741 20.791">
 					<path fill="rgba(60,60,60,1)" id="Path_3" d="M 149.094482421875 288 C 136.7897644042969 288.034423828125 127.0997924804688 294.8020629882813 127.358024597168 306.1839294433594 C 127.6162490844727 317.5657653808594 127.358024597168 288 127.358024597168 288 L 149.094482421875 288 Z">
 					</path>
@@ -56,12 +81,25 @@
 					<div id="_s________________________">
 						<span>εs% =                     </span>
 					</div>
+					{% if results and ( Length ==3 or Length==2)and( Method == 1 or Method == 2 ) %}
+					<input type="text" class="Rectangle_10" disabled value ="{{results[4][0]}}"  />
+					<input type="text" class="Rectangle_11" disabled value ="{{results[4][1]}}"  />
+					<input type="text" class="Rectangle_12" disabled value ="{{results[4][2]}}" />
+					<input type="text" class="Rectangle_13" disabled value ="{{results[5]}}" />
+					<input type="text" class="Rectangle_14" disabled value ="{{results[3]}}" />
+					{% elif results and ( Length ==3 or Length==2) and ( Method == 3) %}
+					<input type="text" class="Rectangle_10" disabled value ="{{results[1][0][0]}}"  />
+					<input type="text" class="Rectangle_11" disabled value ="{{results[1][0][1]}}"  />
+					<input type="text" class="Rectangle_12" disabled value ="{{results[1][0][2]}}" />
+					<input type="text" class="Rectangle_13" disabled value ="{{results[2][0]}}" />
+					<input type="text" class="Rectangle_14" disabled value ="{{results[0][0]}}"/>
+					{%else %}
 					<input type="text" class="Rectangle_10" disabled />
 					<input type="text" class="Rectangle_11" disabled />
 					<input type="text" class="Rectangle_12" disabled />
 					<input type="text" class="Rectangle_13" disabled />
 					<input type="text" class="Rectangle_14" disabled />
-
+					{% endif %}
 				</div>
 				<div id="Group_3">
 					<div id="____">
@@ -76,11 +114,19 @@
 					<div id="_s_________________________">
 						<span>εs% =                     </span>
 					</div>
+					{% if results and (Length==3 or Length==2) and( Method == 3) %}
+					<input type="text" class="Rectangle_10_"   disabled value ="{{results[1][1][0]}}"  />
+					<input type="text" class="Rectangle_11_"   disabled value ="{{results[1][1][1]}}"  />
+					<input type="text" class="Rectangle_12_ba" disabled value ="{{results[1][1][2]}}"  />
+					<input type="text" class="Rectangle_13_bb" disabled value ="{{results[2][1]}}" />
+					<input type="text" class="Rectangle_14_bc" disabled value ="{{results[0][1]}}" />
+					{%else %}
 					<input type="text" class="Rectangle_10_" disabled />
-					<input type="text" class="Rectangle_11_" disabled />
+					<input type="text" class="Rectangle_11_" disabled  />
 					<input type="text" class="Rectangle_12_ba" disabled />
-					<input type="text" class="Rectangle_13_bb" disabled />
+					<input type="text" class="Rectangle_13_bb" disabled/>
 					<input type="text" class="Rectangle_14_bc" disabled />
+					{% endif %}
 				</div>
 				<div id="Group_4">
 					<div id="____be">
@@ -95,11 +141,19 @@
 					<div id="_s_________________________bh">
 						<span>εs% =                     </span>
 					</div>
+					{% if results and (Length==3)and( Method == 3) %}
+					<input type="text" class="Rectangle_10_bi" disabled value ="{{results[1][2][0]}}"  />
+					<input type="text" class="Rectangle_11_bj" disabled value ="{{results[1][2][1]}}"  />
+					<input type="text" class="Rectangle_12_bk" disabled value ="{{results[1][2][2]}}"  />
+					<input type="text" class="Rectangle_13_bl" disabled value ="{{results[2][2]}}"  />
+					<input type="text" class="Rectangle_14_bm" disabled value ="{{results[0][2]}}"  />
+					{% else %}
 					<input type="text" class="Rectangle_10_bi" disabled />
 					<input type="text" class="Rectangle_11_bj" disabled />
 					<input type="text" class="Rectangle_12_bk" disabled />
 					<input type="text" class="Rectangle_13_bl" disabled />
 					<input type="text" class="Rectangle_14_bm" disabled />
+					{% endif %}
 				</div>
 			</div>
 			<div id="LeftTap">
@@ -147,6 +201,7 @@
 				</div>
 			</div>
 			<div id="LeffTapCon">
+			<form action="{{url_for('EigenvalueProblem')}}" method="POST">
 				<div id="Power">
 					<input type="radio" id="PowerM" name="Method" value="Power" onchange="DimInput()"><label for="PowerM"><span>Power</span></label>
 				</div>
@@ -157,10 +212,10 @@
 					<input type="radio" id="Power-with-defelation" name="Method" value="Power-with-defelation" onchange="DimInput()"><label for="Power-with-defelation"><span>Power with defelation</span></label>
 				</div>
 				<div id="ID2x2">
-					<input type="radio" id="2x2" name="Dim" value="2x2" onchange="DimInput()"><label for="2x2"><span>2x2</span></label>
+					<input type="radio" id="2x2" name="Dim" value="2" onchange="DimInput()"><label for="2x2"><span>2x2</span></label>
 				</div>
 				<div id="ID3x3">
-					<input type="radio" id="3x3" name="Dim" value="3x3" onchange="DimInput()"><label for="3x3"><span>3x3</span></label>
+					<input type="radio" id="3x3" name="Dim" value="3" onchange="DimInput()"><label for="3x3"><span>3x3</span></label>
 				</div>
 
 				<div id="Matrix_______________Initial_v">
@@ -221,9 +276,9 @@
 						</button>
 					</div>
 				</div>
+			</form>
 			</div>
 		</div>
-
 	</main>
 
 	<script src="{{url_for('static', filename='js/EigenvalueProblem.js')}}" charset="utf-8"></script>

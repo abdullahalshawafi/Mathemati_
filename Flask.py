@@ -696,10 +696,79 @@ def NonlinearSystem():
 
 @app.route("/EigenvalueProblem", methods=['GET', 'POST'])
 def EigenvalueProblem():
+    Length = 0
+    temp_to_test = 0
+
+    size = 0
+    list_of_entires = []
+    list_init_vector = []
+
+    iter_or_stoppingC = 0
+    num_iteration = 0
+    StoppingCriteria = 0
+
+    Method = ''  # Choice
+
+    result = []
+
     if request.method == 'POST':
-        pass
+
+        if 'Method' in request.form:
+            temp_to_test = request.form['Method']
+            if temp_to_test == 'Power':
+                Method = 1
+            elif temp_to_test == 'Inv.Power':
+                Method = 2
+            elif temp_to_test == 'Power-with-defelation':
+                Method = 3
+
+        temp_to_test = request.form['Stopping Criteria']
+        if not temp_to_test == '':
+            StoppingCriteria = float(request.form['Stopping Criteria'])
+            iter_or_stoppingC = 2
+
+        temp_to_test = request.form['Number of iterations']
+        if not temp_to_test == '':
+            num_iteration = int(request.form['Number of iterations'])
+            iter_or_stoppingC = 1
+
+        if 'Dim' in request.form:
+            size = int(request.form['Dim'])
+            if size > 1:
+                for i in range(size):
+                    for j in range(size + 1):
+                        if j != size:
+                            temp = 'x' + str(i) + str(j)
+                        temp_to_test = request.form[temp]
+                        if not temp_to_test == '':
+                            list_of_entires.append(request.form[temp])
+                        elif j == size:
+                            temp = 'v' + str(i)
+                        temp_to_test = request.form[temp]
+                        if not temp_to_test == '':
+                            list_init_vector.append(request.form[temp])
+
+        if (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
+            result = solve_Eigenvalue(size, list_of_entires, list_init_vector, Method, iter_or_stoppingC, num_iteration,
+                                      StoppingCriteria)
+
+            # result[0] List_Eig_values-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
+            # result[1] List_Eig_vectors-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
+            # result[2] List_relative_error-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
+            # result[3] Eig_value ->if method == 1 or 2 : carries the value to be displayed
+            # result[4] Eig_vector ->if method == 1 or 2 : carries the value to be displayed
+            # result[5] True_error ->if method == 1 or 2 : carries the value to be displayed
+            # result[6] test -> if false then there was an error in the calculations
+            Length = len(result[0])
+            if Length and result[6]:
+                return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
+                                       css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
+                                       Length=size, Method=Method, iterations=len(result[0]), results=result)
+        return redirect(url_for('EigenvalueProblem'))
     else:
-        return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",
+                               wing="SE - copy2.png", logo="Logo Greeny.svg")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
