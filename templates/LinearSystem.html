@@ -15,36 +15,44 @@
 				{%if Eqs_No == 2  %}
 				<textarea class="Rectangle_9" disabled>> [ x1 x2 ], εs%
 					{% if results %}
-					{{ results[2][0]}}
+					initial guess >>{{ results[2][0]}}
 					{% for i in range(results[4]-1) %}
-					{{ results[2][i+1]}} , {{ results[3][i]}}
+					>>{{ results[2][i+1]}},
+					εs% = {{ results[3][i]}}
+					---
 					{% endfor %}
 					{% endif %}
 				</textarea>
 				{%elif Eqs_No == 3  %}
 				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 ], εs%
 					{% if results %}
-					{{ results[2][0]}}
+					initial guess >>{{ results[2][0]}}
 					{% for i in range(results[4]-1) %}
-					{{ results[2][i+1]}} , {{ results[3][i]}}
+					>>{{ results[2][i+1]}},
+					εs% = {{ results[3][i]}}
+					---
 					{% endfor %}
 					{% endif %}
 				 </textarea>
 				{%elif Eqs_No == 4  %}
 				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 ], εs%
 					{% if results %}
-					{{ results[2][0]}}
+					initial guess >>{{ results[2][0]}}
 					{% for i in range(results[4]-1) %}
-					{{ results[2][i+1]}} , {{ results[3][i]}}
+					>>{{ results[2][i+1]}},
+					εs% = {{ results[3][i]}}
+					---
 					{% endfor %}
 					{% endif %}
 				</textarea>
 				{%elif Eqs_No == 5  %}
 				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 x5 ], εs%
 					{% if results %}
-					{{ results[2][0]}}
+					initial guess >>{{ results[2][0]}}
 					{% for i in range(results[4]-1) %}
-					{{ results[2][i+1]}} , {{ results[3][i]}}
+					>>{{ results[2][i+1]}},
+					εs% = {{ results[3][i]}}
+					---
 					{% endfor %}
 					{% endif %}
 				</textarea>

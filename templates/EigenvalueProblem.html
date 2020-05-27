@@ -13,10 +13,16 @@
 					</rect>
 				</svg>
 				{%if Length == 2  %}
-				<textarea class="Rectangle_9" disabled> [ x y ] , {λ} , εs%
+				<textarea class="Rectangle_9" disabled>>>[ x y ],
+					λ,
+					εs%
+					---
 					{% if results and (Method==2 or Method==1) %}
 					{% for i in range((iterations)-0) %}
-					{{ results[1][i]}} , {{ results[0][i]}},{{results[2][i]}}
+					>>{{ results[1][i]}},
+					λ = {{ results[0][i]}},
+					εs% = {{results[2][i]}}
+					---
 					{% endfor %}
 					{% elif results and (Method==3) %}
 					{% for i in range((iterations)-0) %}
@@ -25,10 +31,16 @@
 					{% endif %}
                 </textarea>
 				{%elif Length == 3  %}
-				<textarea class="Rectangle_9" disabled> [ x y z] , {λ} , εs%
+				<textarea class="Rectangle_9" disabled>>>[ x y z],
+					λ,
+					εs%
+					---
 					{% if results and (Method==2 or Method==1) %}
 					{% for i in range((iterations)-0) %}
-					{{ results[1][i]}} , {{ results[0][i]}},{{results[2][i]}}
+					>>{{ results[1][i]}},
+					λ = {{ results[0][i]}},
+					εs% = {{results[2][i]}}
+					---
 					{% endfor %}
 					{% elif results and (Method==3) %}
 					{% for i in range((iterations)-0) %}
