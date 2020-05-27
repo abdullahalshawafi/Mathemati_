@@ -78,9 +78,14 @@
 					<div id="________________________">
 						<span>λ =                     </span>
 					</div>
+					<!--should be handled in a better way by any frontend guy
+					 if method ==3 no error will be displayed, elif method = 1 or 2 , it will be displayed-->
+
 					<div id="_s________________________">
 						<span>εs% =                     </span>
 					</div>
+
+					<!--          -->
 					{% if results and ( Length ==3 or Length==2)and( Method == 1 or Method == 2 ) %}
 					<input type="text" class="Rectangle_10" disabled value ="{{results[4][0]}}"  />
 					<input type="text" class="Rectangle_11" disabled value ="{{results[4][1]}}"  />
@@ -91,7 +96,7 @@
 					<input type="text" class="Rectangle_10" disabled value ="{{results[1][0][0]}}"  />
 					<input type="text" class="Rectangle_11" disabled value ="{{results[1][0][1]}}"  />
 					<input type="text" class="Rectangle_12" disabled value ="{{results[1][0][2]}}" />
-					<input type="text" class="Rectangle_13" disabled value ="{{results[2][0]}}" />
+					<input type="text" class="Rectangle_13" disabled  />
 					<input type="text" class="Rectangle_14" disabled value ="{{results[0][0]}}"/>
 					{%else %}
 					<input type="text" class="Rectangle_10" disabled />
@@ -111,20 +116,18 @@
 					<div id="_________________________">
 						<span>λ =                     </span>
 					</div>
-					<div id="_s_________________________">
-						<span>εs% =                     </span>
-					</div>
+
 					{% if results and (Length==3 or Length==2) and( Method == 3) %}
-					<input type="text" class="Rectangle_10_"   disabled value ="{{results[1][1][0]}}"  />
-					<input type="text" class="Rectangle_11_"   disabled value ="{{results[1][1][1]}}"  />
+					<input type="text" class="Rectangle_10_" disabled value ="{{results[1][1][0]}}"  />
+					<input type="text" class="Rectangle_11_" disabled value ="{{results[1][1][1]}}"  />
 					<input type="text" class="Rectangle_12_ba" disabled value ="{{results[1][1][2]}}"  />
-					<input type="text" class="Rectangle_13_bb" disabled value ="{{results[2][1]}}" />
+
 					<input type="text" class="Rectangle_14_bc" disabled value ="{{results[0][1]}}" />
 					{%else %}
 					<input type="text" class="Rectangle_10_" disabled />
 					<input type="text" class="Rectangle_11_" disabled  />
 					<input type="text" class="Rectangle_12_ba" disabled />
-					<input type="text" class="Rectangle_13_bb" disabled/>
+
 					<input type="text" class="Rectangle_14_bc" disabled />
 					{% endif %}
 				</div>
@@ -138,20 +141,18 @@
 					<div id="_________________________bg">
 						<span>λ =                     </span>
 					</div>
-					<div id="_s_________________________bh">
-						<span>εs% =                     </span>
-					</div>
+
 					{% if results and (Length==3)and( Method == 3) %}
 					<input type="text" class="Rectangle_10_bi" disabled value ="{{results[1][2][0]}}"  />
 					<input type="text" class="Rectangle_11_bj" disabled value ="{{results[1][2][1]}}"  />
 					<input type="text" class="Rectangle_12_bk" disabled value ="{{results[1][2][2]}}"  />
-					<input type="text" class="Rectangle_13_bl" disabled value ="{{results[2][2]}}"  />
+
 					<input type="text" class="Rectangle_14_bm" disabled value ="{{results[0][2]}}"  />
 					{% else %}
 					<input type="text" class="Rectangle_10_bi" disabled />
 					<input type="text" class="Rectangle_11_bj" disabled />
 					<input type="text" class="Rectangle_12_bk" disabled />
-					<input type="text" class="Rectangle_13_bl" disabled />
+
 					<input type="text" class="Rectangle_14_bm" disabled />
 					{% endif %}
 				</div>
