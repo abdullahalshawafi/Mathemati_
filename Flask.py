@@ -15,7 +15,10 @@ from methods.LinearSystems import solve_linear_systems
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
+<<<<<<< HEAD
 
+=======
+>>>>>>> b7f1f45e21b253eaba8e17f605ec9592bdd4777a
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
@@ -740,16 +743,16 @@ def EigenvalueProblem():
                     for j in range(size + 1):
                         if j != size:
                             temp = 'x' + str(i) + str(j)
-                        temp_to_test = request.form[temp]
-                        if not temp_to_test == '':
-                            list_of_entires.append(request.form[temp])
+                            temp_to_test = request.form[temp]
+                            if not temp_to_test == '':
+                                list_of_entires.append(request.form[temp])
                         elif j == size:
                             temp = 'v' + str(i)
-                        temp_to_test = request.form[temp]
-                        if not temp_to_test == '':
-                            list_init_vector.append(request.form[temp])
+                            temp_to_test = request.form[temp]
+                            if not temp_to_test == '':
+                                list_init_vector.append(request.form[temp])
 
-        if (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
+        if size and (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
             result = solve_Eigenvalue(size, list_of_entires, list_init_vector, Method, iter_or_stoppingC, num_iteration,
                                       StoppingCriteria)
 
@@ -759,9 +762,9 @@ def EigenvalueProblem():
             # result[3] Eig_value ->if method == 1 or 2 : carries the value to be displayed
             # result[4] Eig_vector ->if method == 1 or 2 : carries the value to be displayed
             # result[5] True_error ->if method == 1 or 2 : carries the value to be displayed
-            # result[6] test -> if false then there was an error in the calculations
+            # result[6] test -> if false then there was an error in the calculations of the power method
             Length = len(result[0])
-            if Length and result[6]:
+            if Length:
                 return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
                                        css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
                                        Length=size, Method=Method, iterations=len(result[0]), results=result)
