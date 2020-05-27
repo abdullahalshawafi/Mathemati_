@@ -43,17 +43,25 @@ def Extrapolation(list, ord, table) :
 
 
 def CalcTrueError(ApproxValue, DerivFunc, DerivPoint, DerivOrder):
-    #Deriving the exact value 
+    #Deriving the exact value
     x = Symbol('x') #specifies a symbol for calculations
     init_printing(use_unicode=True) #No idea
     ExactValue = diff(DerivFunc, 'x', DerivOrder) #Obtains the analytical form of the derivative
     DerivEqu = lambdify(x,ExactValue) #No idea 2
-    try:
-     ExactValue = DerivEqu(DerivPoint) #Subs for the value of DerivPoint in the analytical form and returns the value
 
-    except (Exception, TypeError, AttributeError): 
+    try:
+      ExactValue = DerivEqu(DerivPoint)
+
+    except (Exception, TypeError, AttributeError):
      raise WrongFunctionFormat
-     
+
+    if(round(ApproxValue,5) == round(ExactValue,5) == 0):
+        return "0/0, Undefined value"
+    if (round(ApproxValue,5) == round(ExactValue,5)):
+        return 0
+    elif (ExactValue == 0): #To avoid oo error
+        return str(round(ApproxValue,5))+'/0'
+
 
     TrueError = abs( (ExactValue - ApproxValue)/ExactValue ) * 100 #Calculates the true error
 
@@ -95,7 +103,7 @@ def derivativeForTable(h, x, method, mat, order):
             return (mat[1][w] - mat[1][z]) / (2 * h)
         elif method == '2':
             return (mat[1][w] - 2 * mat[1][m] + mat[1][z]) / (pow(h, 2))
-        
+
         elif method == '3':
             l = mat[0].index(round(x + (2 * h)), 5)  # to get index of X(i+2)
             g = mat[0].index(round(x - (2 * h)), 5)  # to get index of X(i-2)
@@ -103,12 +111,12 @@ def derivativeForTable(h, x, method, mat, order):
     except ValueError:
         raise ThirdDerivError
 
-#Some clarification for what "method" is, it is the order of derivation, as in a first derivative (1), second derivative (2) and so on.. 
+#Some clarification for what "method" is, it is the order of derivation, as in a first derivative (1), second derivative (2) and so on..
 def derivativeForFunction(h, x, method, formula):
     w = formula.subs({'x': float(x + h)}).evalf()  # to get index of X(i+1)
     z = formula.subs({'x': float(x - h)}).evalf()  # to get index of X(i-1)
     m = formula.subs({'x': x}).evalf()  # to get index of X(i)
-    
+
     try:
      if method == '1':
         return (w - z) / (
@@ -117,28 +125,28 @@ def derivativeForFunction(h, x, method, formula):
      elif method == '2':
         return (w - 2 * m + z) / (
             pow(h, 2))  # Uses the formula f''(x) = [f(x+h) - 2f(x) + f(x-h)]/h^2 to obtain the second derivative
-   
+
      elif method == '3':  # Uses the formula [f(x-2h) + 2f(x-h) - 2f(x+h) + f(x+2h)]/2h^3 to obtain the third derivative
         l = formula.subs({'x': float(x + (2 * h))}).evalf()  # to get index of X(i+2)
         g = formula.subs({'x': float(x - (2 * h))}).evalf()  # to get index of X(i-2)
         return (-1 * g + 2 * z - 2 * w + l) / (2 * pow(h, 3))
     except OverflowError:
         raise OverflowError
-    
+
 
 
 ############################################################################################################
 def FuncDeriv(func, h, order, x):
-    
-    
+
+
     formula = sympify(func)  # converts the input function into a format sympy can work with
-    
+
     order = 2*(order+1) #So the order of extrapolation is entered as 1,2,3 or any other number
     #The extrapolating function takes the order as O(h^order), so for a first order extrapolation O(h^4) the user would enter 1 and it would become 2*2 =4
     #For a second order extrapolation O(h^6), the user would enter 2 which would become 2*3 =6
     #For a third order O(h^8), the user would enter 3 which would become 2*4 = 8
 
-    
+
     FirstDerivList = []
     SecondDerivList = []
     ThirdDerivList = []
@@ -158,16 +166,17 @@ def FuncDeriv(func, h, order, x):
     ThirdDerivApprox = Extrapolation(ThirdDerivList, order, False)
 
     try:
-      FirstDerivTrueError = CalcTrueError(FirstDerivApprox, formula, x, '1') #Calculates the true error    
+      FirstDerivTrueError = CalcTrueError(FirstDerivApprox, formula, x, '1') #Calculates the true error
       SecondDerivTrueError = CalcTrueError(SecondDerivApprox, formula, x, '2')
       ThirdDerivTrueError = CalcTrueError(ThirdDerivApprox, formula, x, '3')
 
     except WrongFunctionFormat:
         return "Wrong Function Format",None , "Wrong Function Format", None  ,"Wrong Function Format", None
-    
 
-    return FirstDerivApprox, FirstDerivTrueError, SecondDerivApprox, SecondDerivTrueError,ThirdDerivApprox, ThirdDerivTrueError
-  
+    if type(FirstDerivTrueError) is str and type(SecondDerivTrueError) is str and type(ThirdDerivTrueError) is str:
+        return round(FirstDerivApprox, 5), round(FirstDerivTrueError, 5), round(SecondDerivApprox, 5), round(SecondDerivTrueError, 5),round(ThirdDerivApprox, 5), round(ThirdDerivTrueError, 5)
+
+    return round(FirstDerivApprox, 5), FirstDerivTrueError, round(SecondDerivApprox, 5), SecondDerivTrueError,round(ThirdDerivApprox, 5), ThirdDerivTrueError
 
 def TableDeriv(x, Xlist, Ylist):
 
@@ -176,20 +185,20 @@ def TableDeriv(x, Xlist, Ylist):
     try:
         index = np.where(Xlist == x)[0] #Finds the index of the input point for the derivative
     #Note that np.where returns a matrix of the indices where the value is found, hence the [0][0] to get the first occurance.
-    
+
     except IndexError:
         return "Point not in table, aborting..."
-       
+
 
     #We need to now know which side is shorter to truncate the list
-    
-    after = points - (index +1) #Sees how many indices/points are after the wanted element, this is more compact than after = points - 1 - index 
+
+    after = points - (index +1) #Sees how many indices/points are after the wanted element, this is more compact than after = points - 1 - index
     before = index  #Finds the number of incdices/points are before the wanted element. Excludes the index of the point entered as the indexing starts at 0 anyway, no need for index - 1
     order = math.floor(math.log2(points)) * 2  #The number of extrapolations depends logarithmically on the number of data points
     #We need at least 4 data points + the middle one to extrapolate once (one CD with h and another with 2h)
     #We need 8  + the middle one to extrapolate twice (one CD with, another with 2h and another with 4h)
     #And it goes on like this..
-           
+
 
     if (after != before): #If the point isn't centered, we need to truncate the point so it's in the middle.
         diff = abs(after-before)
@@ -200,13 +209,13 @@ def TableDeriv(x, Xlist, Ylist):
             order = math.floor(math.log2(before*2)) * 2 #Untested, no sheet problems have the required points in a place other than the middle
 
         else:
-            Xlist = Xlist[diff:] 
+            Xlist = Xlist[diff:]
             Ylist = Ylist[diff:]
-            order = math.floor(math.log2(after*2)) * 2 
+            order = math.floor(math.log2(after*2)) * 2
 
     #print(Xlist) #For debugging
     #print(Ylist) #For debugging
-    
+
     mat = np.row_stack((Xlist,Ylist)) #Requested by the interface team, this takes 2 lists and stacks them into a matrix
     mat = mat.tolist() #This was required to create the correct input for the function to work without any modifications, there might be a better way but this works fine for now.
 
@@ -248,13 +257,13 @@ def TableDeriv(x, Xlist, Ylist):
             FirstDerivApprox = Extrapolation(FirstDerivList,order , True) #Extrapolates the derivative values
             SecondDerivApprox = Extrapolation(SecondDerivList,order , True)
             return FirstDerivApprox,SecondDerivApprox,"Calculation point doesn't exist on the table"
-            
+
 
     FirstDerivApprox = Extrapolation(FirstDerivList,order , True)
     SecondDerivApprox = Extrapolation(SecondDerivList,order , True)
     ThirdDerivApprox = Extrapolation(ThirdDerivList,order , True)
-    
-    return FirstDerivApprox,SecondDerivApprox,ThirdDerivApprox
+
+    return round(FirstDerivApprox, 5),round(SecondDerivApprox, 5),round(ThirdDerivApprox, 5)
 
 ############################################################################################################
 def Main():
@@ -264,7 +273,7 @@ def Main():
         h_func = float( input("please enter the h you want to use: ") )  # step size is entered here and converted from string into float
         order = int( input("Enter the order of extrapolation : ") )  # The order of extrapolation converted into integer, note
         X = float( input("Enter the X coordinate of the point where you want to get the derivative : ") )  # The point we want the derivative at converted from string into float
-    
+
 
         print(FuncDeriv(func, h_func, order, X))
 

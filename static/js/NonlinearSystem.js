@@ -18,7 +18,7 @@ var parameters = {
     width: window.innerWidth / 100 * 19.13
 };
 
-functionPlot(parameters);
+// functionPlot(parameters);
 
 function addtograph() {
     var MethodFixedPoint = document.getElementsByName("Method")[1];
