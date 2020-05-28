@@ -1,5 +1,5 @@
 
-
+import math
 import warnings
 warnings.filterwarnings("ignore")
 import matplotlib.pyplot as plt
@@ -14,6 +14,13 @@ from sympy.plotting import plot
 from mpl_toolkits.mplot3d import Axes3D
 from sympy.plotting import plot3d
 
+def Sround(x,n):
+    if(x==0):
+        return 0;
+    elif (x != x):
+        return 9e99;
+    else:
+        return  round(x, -int(math.floor(math.log10(abs(x)))) + (n - 1));
 
 def Plot_3D_RHS(xdata,ydata,zdata,RHS):
     x,y = symbols('x y')
@@ -61,7 +68,10 @@ def Linearized_Regression(xdata, ydata, Function,r):
     for i in range(0,len(F)): #this for loop goes through each function
         Z = [] #temporary list
         for j in range(0, len(xdata)):  #this one makes a new list by plugging each xdata, ydata for each function
-            Z.append(F[i](xdata[j], ydata[j]))
+            if(F[i](xdata[j], ydata[j])==F[i](xdata[j], ydata[j])):
+                Z.append(F[i](xdata[j], ydata[j]))
+            else:
+                return '','','',''
         FL.append(Z) #FL contains a sublist     for each function, this sublist is the result from plugging each xdata and ydata into the function
         n=len(F)
     a = np.empty((n-1,n-1))
@@ -83,8 +93,8 @@ def Linearized_Regression(xdata, ydata, Function,r):
         for j in range(1,n):
             Val -= (FL[j][i]*Solution[j-1]) #subtract each of the entries in the 1st sublist from each of the functions*constant in the RHS.
         RegressionError.append(Val**2) # square at each time.
-    Sr = round(np.sum(RegressionError),r) #Sr = Sum((Yi-Y(regression))^2) = Sum((Yi-Const1*X1i-Const2*X2i-......)^2)
-    StringSol = [str(c) for c in Solution ] #converting each constant to a string
+    Sr = Sround(np.sum(RegressionError),r) #Sr = Sum((Yi-Y(regression))^2) = Sum((Yi-Const1*X1i-Const2*X2i-......)^2)
+    StringSol = [str(Sround(c,4)) for c in Solution ] #converting each constant to a string
     LHS=Function.pop(0) #removing the LHS
     RHS=[' * '.join(x) for x in zip(StringSol, Function)]#multiplying the constants and the functions element wise
 
@@ -114,7 +124,7 @@ def Surface_Fit_Beta(xdata, ydata, zdata, Function,r):
         b[i-1][0]= np.sum(np.multiply(FL[0],FL[i]))
     if(np.linalg.det(a)==0):
         return '','','',''
-    Sol=np.round(np.transpose(np.linalg.solve(a, b)),r) #receiving the list, making it horizontal then rounding each element
+    Sol=np.Sround(np.transpose(np.linalg.solve(a, b)),r) #receiving the list, making it horizontal then rounding each element
     Solution = []
     for sublist in Sol: #Flattening the list ( from [[ ]] to [ ])
         for item in sublist:
@@ -126,7 +136,7 @@ def Surface_Fit_Beta(xdata, ydata, zdata, Function,r):
         for j in range(1,n):
             Val -= (FL[j][i]*Solution[j-1]) #subtract each of the entries in the 1st sublist from each of the functions*constant in the RHS.
         RegressionError.append(Val**2) # square at each time.
-        Sr = round(np.sum(RegressionError),r) #Sr = Sum((Yi-Y(regression))^2) = Sum((Yi-Const1*X1i-Const2*X2i-......)^2)
+        Sr = Sround(np.sum(RegressionError),r) #Sr = Sum((Yi-Y(regression))^2) = Sum((Yi-Const1*X1i-Const2*X2i-......)^2)
 
     LHS=Function.pop(0) #removing the LHS
     rhs=[' * '.join(x) for x in zip(StringSol, Function)]#multiplying the constants and the functions element wise
@@ -144,16 +154,16 @@ def Nonlinear_Regression(xdata,ydata,NonlinearFunction,r): #takes x,y lists and 
      return Sol,0;
   F=sympy.lambdify([x, a,b,c], Function)
   C, Covariance = curve_fit(F, xdata, ydata) #we don't need to show the covariance matrix
-  Sol=Function.subs([(x, x), (a, round(C[0],r)), (b,round( C[1],r)), (c, round(C[2],r))])
-                   #    ,(d, round(C[3],r))
-  #,(e,round(C[4],r)),(f,round(C[5],r)),(g,round(C[6],r)),
-                     #(h,round(C[7],r)),(i,round(C[8],r))])
+  Sol=Function.subs([(x, x), (a, Sround(C[0],r)), (b,Sround( C[1],r)), (c, Sround(C[2],r))])
+                   #    ,(d, Sround(C[3],r))
+  #,(e,Sround(C[4],r)),(f,Sround(C[5],r)),(g,Sround(C[6],r)),
+                     #(h,Sround(C[7],r)),(i,Sround(C[8],r))])
   RegressionError = []
   val=ydata.copy()
   for i in range(0,len(ydata)):
       val[i] -= (Sol.subs(x,xdata[i])) #subtract each of the entries in the 1st sublist from each of the functions*constant in the RHS.
   RegressionError.append(val[i]**2) # square at each time.
-  Sr = round(np.sum(RegressionError),r) #Sr = Sum((Yi-Y(regression))^2) = Sum((Yi-Const1*X1i-Const2*X2i-......)^2)
+  Sr = Sround(np.sum(RegressionError),r) #Sr = Sum((Yi-Y(regression))^2) = Sum((Yi-Const1*X1i-Const2*X2i-......)^2)
   return str(Sol) ,Sr
 
 def Nonlinear_Regression_d(xdata,ydata,NonlinearFunction,r): #takes x,y lists and a nonlinear function string
@@ -165,16 +175,16 @@ def Nonlinear_Regression_d(xdata,ydata,NonlinearFunction,r): #takes x,y lists an
      return Sol,0;
   F=sympy.lambdify([x, a,b,c,d], Function)
   C, Covariance = curve_fit(F, xdata, ydata) #we don't need to show the covariance matrix
-  Sol=Function.subs([(x, x), (a, round(C[0],r)), (b,round( C[1],r)), (c, round(C[2],r))
-                       ,(d, round(C[3],r))])
-  #,(e,round(C[4],r)),(f,round(C[5],r)),(g,round(C[6],r)),
-                     #(h,round(C[7],r)),(i,round(C[8],r))])
+  Sol=Function.subs([(x, x), (a, Sround(C[0],r)), (b,Sround( C[1],r)), (c, Sround(C[2],r))
+                       ,(d, Sround(C[3],r))])
+  #,(e,Sround(C[4],r)),(f,Sround(C[5],r)),(g,Sround(C[6],r)),
+                     #(h,Sround(C[7],r)),(i,Sround(C[8],r))])
   RegressionError = []
   val=ydata.copy()
   for i in range(0,len(ydata)):
       val[i] -= (Sol.subs(x,xdata[i])) #subtract each of the entries in the 1st sublist from each of the functions*constant in the RHS.
   RegressionError.append(val[i]**2) # square at each time.
-  Sr = round(np.sum(RegressionError),r) #Sr = Sum((Yi-Y(regression))^2) = Sum((Yi-Const1*X1i-Const2*X2i-......)^2)
+  Sr = Sround(np.sum(RegressionError),r) #Sr = Sum((Yi-Y(regression))^2) = Sum((Yi-Const1*X1i-Const2*X2i-......)^2)
   return str(Sol) ,Sr
 
 
@@ -219,7 +229,7 @@ def TrueError(ydata,r):
     ydata_Avg = (np.sum(ydata))/len(ydata)
     for y in ydata:
         TrueError.append((y-ydata_Avg)**2)
-    St = round(np.sum(TrueError),r)
+    St = Sround(np.sum(TrueError),r)
     return St
 
 def Curfe_Vamily_Detective(xdata,ydata,r):
@@ -236,7 +246,7 @@ def Curfe_Vamily_Detective(xdata,ydata,r):
     indm = reg_errors.index(min(reg_errors))
     err_copy=reg_errors
     err_copy.pop(indm);
-    return Str_Sol[indm],Forms[indm],reg_errors[indm],round(np.std(err_copy),r)
+    return Str_Sol[indm],Forms[indm],reg_errors[indm],Sround(np.std(err_copy),r)
 
 
 def Curve_Family_Detective(xdata, ydata, r):
@@ -270,20 +280,20 @@ def Curve_Family_Detective(xdata, ydata, r):
     indM=reg_errors.index(max(reg_errors))
     if (indm == 3):
         #y=ae^(bx), Str_Sol[3] = ["ln(a)","b"]
-        str_equation = str(round(exp(float(Str_Sol[indm][0])),r)) + " * exp(" + Str_Sol[indm][1] + " * x)"
+        str_equation = str(Sround(exp(float(Str_Sol[indm][0])),r)) + " * exp(" + Str_Sol[indm][1] + " * x)"
     elif (indm == 5):
         #y=1/(a+bx), RHS[5] = "a+bx"
         str_equation = "1/("+RHS[indm]+")"
     elif (indm == 6):
         # y=a*x^(b),  Str_Sol[6] = ["ln(a)","b"]
-        str_equation = str(round(exp(float(Str_Sol[indm][0])),r)) + " * x^(" + Str_Sol[indm][1] + ")"
+        str_equation = str(Sround(exp(float(Str_Sol[indm][0])),r)) + " * x^(" + Str_Sol[indm][1] + ")"
     else:
         #The linearized form is the original form itself
         str_equation = RHS[indm]
     err_copy=reg_errors.copy()
     err_copy.pop(indm);
 
-    return str_equation,forms[indm],reg_errors[indm],round(np.std(err_copy),r)
+    return str_equation,forms[indm],reg_errors[indm],Sround(np.std(err_copy),r)
 
 
 def main():
@@ -318,7 +328,7 @@ def main():
                 print("Regression Error(Sr)= ", Sr);
                 St = TrueError(ydata, r);
                 print("True Error(St)= ", St);
-                corrolation_coeff = round(sqrt((abs(St - Sr)) / St), r)
+                corrolation_coeff = Sround(sqrt((abs(St - Sr)) / St), r)
                 print("Corrolation Coeffecient(r)= ", corrolation_coeff);
                 Plot_2D_RHS(xdata, ydata, RHS, LHS)
             elif (Choice == 'S'):
@@ -345,7 +355,7 @@ def main():
                 print("The standard deviation of regression errors due to other families is " ,STnD , " \n")
                 St = TrueError(ydata, r);
                 #print("True Error(St)= ", St);
-                corrolation_coeff = round(sqrt((abs(St - Sr)) / St), r)
+                corrolation_coeff = Sround(sqrt((abs(St - Sr)) / St), r)
                 #print("and a Corrolation Coeffecient(r)= ", corrolation_coeff);
             elif (Choice == 'Q'): #Was trying non_linear curve fit for the detective and a+b*sin(c*x+d)
                 r = int(input("Round the results to how many decimals ? :\n "))
@@ -361,7 +371,7 @@ def main():
 
                 St = TrueError(ydata, r);
                 #print("True Error(St)= ", St);
-                corrolation_coeff = round(sqrt((abs(St - Sr_m)) / St), r)
+                corrolation_coeff = Sround(sqrt((abs(St - Sr_m)) / St), r)
                 #print("and a Corrolation Coeffecient(r)= ", corrolation_coeff);
 
             else:

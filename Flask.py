@@ -170,7 +170,7 @@ def LeastSquareReg():
             elif not ydata or not xdata:
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points.', Error='...', TrueErr='...', r='...')
             elif xdata and ydata:
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix', Error='...', TrueErr='...', r='...')
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular/Out of Domain Matrix', Error='...', TrueErr='...', r='...')
 
         elif Method == 'Best-Fitting-Family-of-Curves':
             i = 0
@@ -188,7 +188,7 @@ def LeastSquareReg():
             elif not xdata or not ydata:
                 return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points', Error='...', TrueErr='...', r='...', family= ' ...')
             elif xdata and ydata:
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix', Error='...', TrueErr='...', r='...', family= ' ...')
+                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix/ Out of Domain Matrix', Error='...', TrueErr='...', r='...', family= ' ...')
 
         return redirect(url_for('LeastSquareReg'))
     else:
