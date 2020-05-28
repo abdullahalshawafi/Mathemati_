@@ -392,7 +392,7 @@ def ODEPC():
             Method = request.form['Method']
             Equation = request.form['Equation']
 
-            for i in range(4):
+            for i in range(8):
                 x_index = 'x'+str(i)
                 y_index ='y'+str(i)
 
