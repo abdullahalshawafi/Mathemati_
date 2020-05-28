@@ -23,9 +23,20 @@
 					 {%endif%}
 
 					 {%if Method=="MilneMethod"%}
+					 {%if OK==True%}
+					 yp = 
+					{%print(yp)%}
+					YC Iterations : 
 					{%for i in range (4)%}
-					{%print(yp[i], YC[i],Error[i])%}
+					{%print(YC[i])%}
 					{%endfor%}
+					
+					relative error = 
+					{%print(Error)%}
+					{%endif%}
+					{%if OK==False%}
+					{%print("Some Fields are empty or incorrect Try again")%}
+					{%endif%}
 					{%endif%}
 					 
 					 {%if Method==""%}
