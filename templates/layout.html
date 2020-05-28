@@ -31,7 +31,7 @@
           <li id="DE-Menu" class="dropdown">
             <div>Differential Eqs.</div>
             <div class="dropdown_content">
-              <a href="#">ODE Iterative</a>
+              <a href="{{url_for('ODERK')}}">ODE Runge-Kutta</a>
               <a href="{{url_for('ODEPC')}}">ODE Predictor/Corrector</a>
               <a href="{{url_for('PDE')}}">PDE Finite Differences</a>
             </div>
@@ -77,6 +77,5 @@
 
       {% block content %}{% endblock content %}
 
-      </script>
   </body>
 </html>

@@ -5,7 +5,7 @@ $(window).load(function () {
 function ForwardAnimation(el) {
   const imagePath = 'static/HoverAnimations/' + el.id + '/' + el.id + '00';
   const totalFrames = 71;
-  const timePerFrame = 30;
+  const timePerFrame = 10;
   let timeWhenLastUpdate;
   let timeFromLastUpdate;
   let length = document.getElementById(el.id + "0000").src.length;

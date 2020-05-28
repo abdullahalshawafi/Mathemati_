@@ -416,8 +416,10 @@ def simpson_3_over_8_triple_inetegration(func, starting_point, ending_point, num
 #------------------------------------------ Simpson mixed rule ----------------------------------------------------------
 # SINGLE :
 def single_mixe_rule ( func,a,b,n):
-    if ( n == 3):
-        return simpson_3_over_8(func,a,b,n)
+    if ( n % 2 == 0):
+        return simpson13(func,a,b,n),simp_1_over_3_error(func,a,b,n)
+    elif(n == 3):
+        return simpson_3_over_8(func,a,b,n),simp_3_over_8_error(func, a, b, n)
     else:
         h = (b - a) / n
         n1= n-3
@@ -426,7 +428,7 @@ def single_mixe_rule ( func,a,b,n):
         print(I1)
         I2= simpson_3_over_8(func,b1,b,3)
         print(I2)
-        return I1+I2
+        return I1+I2, max(simp_1_over_3_error(func,a,b1,n1),simp_3_over_8_error(func,b1,b,3))
 
 
 # DOUBLE :
@@ -508,7 +510,7 @@ def simp_3_over_8_error(func, a, b, n):
     fb = eval(y3)
     const_term = ((b - a) ** 4) / (80 * (n ** 4))
     return abs(const_term * (fb - fa))
-
+"""
 # ---------------------------------------------- Code Test ------------------------------------------------------------
 type = int(input(
     'Please, choose the type of your integral problem (1 for single integertion, 2 for double integertion, 3 for triple integertion) : '))
@@ -699,3 +701,4 @@ if (type == 3):
                                                starting_point3, ending_point3, number_of_intervals3))
 
 # تم بحمدالله
+"""

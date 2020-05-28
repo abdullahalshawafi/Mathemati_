@@ -56,7 +56,7 @@ def FixedPointIteration(choose, max_iteration, error, str_eq1, str_eq2, xo, yo, 
             z_new = eq3.evalf(subs={x: x_new, y: y_new, z: z_new}, n=6)
             x_sol.append(round(x_new, 4))
             y_sol.append(round(y_new, 4))
-            z_sol.append(round(z_sol, 4))
+            z_sol.append(round(z_new, 4))
             e = ((abs(float(x_new) - float(xold))) / float(xold)) * 100
             Iteration_Error.append(round(e, 4))
             if e < float(error):

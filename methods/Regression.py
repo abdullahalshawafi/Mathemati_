@@ -1,3 +1,5 @@
+
+
 import warnings
 warnings.filterwarnings("ignore")
 import matplotlib.pyplot as plt
@@ -257,6 +259,13 @@ def Curve_Family_Detective(xdata, ydata, r):
         RHS.append(rhs)
         Str_Sol.append(str_sol)
         reg_errors.append(sr)
+    print(reg_errors)
+    for x in reg_errors:
+        for x in reg_errors:
+            if(x==''):
+                reg_errors.pop(reg_errors.index(x));
+    print(reg_errors)
+
     indm = reg_errors.index(min(reg_errors))
     indM=reg_errors.index(max(reg_errors))
     if (indm == 3):
@@ -362,4 +371,5 @@ def main():
                 repeat = True
             else:
                 repeat = False
-# main()
+#main()
+
