@@ -284,11 +284,8 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
-                    print(ResultRom)
-                    ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
-
                 TrapError=Trapezoidal_error(function,x1,x2,N)
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
             elif NumOfVar == '2':
@@ -310,8 +307,6 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
-                    print(ResultRom)
-                    ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
 
@@ -334,8 +329,6 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
-                    print(ResultRom)
-                    ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
 
