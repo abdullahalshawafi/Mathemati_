@@ -25,6 +25,10 @@ function addtograph() {
   functionPlot(parameters);
 }
 
+window.onload = function () {
+  addtograph();
+  DimInput();
+};
 
 function DimInput() {
   var Dim1 = document.getElementsByName("Dim")[0];

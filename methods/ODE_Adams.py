@@ -2,7 +2,7 @@
 ######## Adam's method with backward difference#######
 ######## This problem solves the equations till the fourth order
 from math import e #### Added this to be able to solve functions containing e ############
-
+from math import sin , cos ,tan , sinh , cosh , tanh , asin , acos , atan , asinh , acosh , atanh
 """
 equation1 = input("Enter the RHS of the equation here: ")
 x = 2.3
@@ -32,7 +32,6 @@ xrequired1 = float(input("X at which y is to be calculated: "))
 no_of_iter1 = int(input("Please enter the number of iterations to stop at (at least 2) :"))
 no_of_digi1=int(input("Please enter the number of digits to compare at:"))
 """
-
 def ode_adams_backward_difference(equation,no_of_digi,no_of_iter,N,X,Y,xrequired):
 
 ########### Checking that the equation is a valid one ############
@@ -162,11 +161,11 @@ def ode_adams_backward_difference(equation,no_of_digi,no_of_iter,N,X,Y,xrequired
 
 
 
-        results.append("------------------------------------------X="+ str(format((X[len(X) - 1]), '.' + '3' + 'f'))+" is done")
+        results.append("X="+ str(format((X[len(X) - 1]), '.' + '3' + 'f'))+" is done")
 #######################################
     return results
-
 """
+
 r=[]
 r=ode_adams_backward_difference(equation1,no_of_digi1,no_of_iter1,N1,X1,Y1,xrequired1)
 for a in r:
@@ -175,5 +174,5 @@ for a in r:
             print(g)
     else:
         print(a)
-
 """
+

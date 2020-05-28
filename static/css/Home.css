@@ -379,7 +379,7 @@ a {
 	left: calc(88vw / 15.36);
 	top: calc(10vw / 15.36);
 	overflow: hidden;
-	width: calc(775vw / 15.36);
+	width: calc(375vw / 15.36);
 	height: calc(101vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
@@ -421,7 +421,7 @@ a {
 	left: calc(88vw / 15.36);
 	top: calc(28vw / 15.36);
 	overflow: visible;
-	width: calc(775vw / 15.36);
+	width: calc(330vw / 15.36);
 	height: calc(58vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
@@ -712,7 +712,7 @@ a {
 	left: calc(110vw / 15.36);
 	top: calc(31vw / 15.36);
 	overflow: hidden;
-	width: calc(775vw / 15.36);
+	width: calc(420vw / 15.36);
 	height: calc(58vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
@@ -754,7 +754,7 @@ a {
 	left: calc(110vw / 15.36);
 	top: calc(32vw / 15.36);
 	overflow: hidden;
-	width: calc(775vw / 15.36);
+	width: calc(475vw / 15.36);
 	height: calc(58vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
@@ -796,7 +796,7 @@ a {
 	left: calc(110vw / 15.36);
 	top: calc(32vw / 15.36);
 	overflow: visible;
-	width: calc(775vw / 15.36);
+	width: calc(300vw / 15.36);
 	height: calc(58vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;

@@ -3,19 +3,19 @@ var parameters = {
   target: '#myFunction',
   data: [
     {
-      fn: 'sin(x)',
+      fn: '',
       color: "hsl(" + ((x * 3.6 + 180)) + ", 100%, 60%)",
       range: [0, Math.PI / 2],
       closed: false
     },
     {
-      x: 'cos(t)',
-      y: 'sin(t)',
+      x: '',
+      y: '',
       fnType: 'parametric',
       graphType: 'polyline'
     },
     {
-      fn: 'x * x + y * y - 2',
+      fn: '',
       fnType: 'implicit'
     }
   ],
