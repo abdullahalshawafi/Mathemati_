@@ -8,17 +8,15 @@ from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoida
 from methods.Romberg import RombergRule
 from methods.Gauss_Quadrature import myfun, Exact
 from methods.ODE_Kutta import rungeKutta
-from methods.ODE_Adams import  ode_adams_backward_difference
+from methods.ODE_Adams import ode_adams_backward_difference
+from methods.ODE_milne import milne
 from methods.RegularPDE import Open_Region, Closed_Region
 from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
 from methods.LinearSystems import solve_linear_systems
-
-from methods.ODE_Adams import  ode_adams_backward_difference
-from methods.ODE_milne import milne
-import numpy as np
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
+import numpy as np
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -380,9 +378,9 @@ def ODERK():
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
     if request.method == 'POST':
-        #Variables decleration 
+        #Variables decleration
         Is_OK=True
-   
+
 
         try:
             x = []
@@ -407,35 +405,35 @@ def ODEPC():
 
                 x_i = request.form[x_index]
                 y_i = request.form[y_index]
-            
+
 
                 if x_i and y_i:
                     x.append(float(x_i))
                     y.append(float(y_i))
-            
-            
+
+
             Number_Of_Points = len(x) #Getting the number of points from the length of the list
-            Number_Of_Corrections=int(request.form['Num_Of_Corrections']) 
+            Number_Of_Corrections=int(request.form['Num_Of_Corrections'])
             Stopping_Criteria=int(request.form['Stopping_Criteria'])
             x_requested=float(request.form['xn'])
-        
-        except: 
+
+        except:
             Is_OK=False
 
 
 
-        if Method=="AdamBackward": 
+        if Method=="AdamBackward":
             if Is_OK==True:
 
                 if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
-                  
+
                     results=ode_adams_backward_difference(Equation,Number_Of_Corrections,Stopping_Criteria,Number_Of_Points,x,y,x_requested)
                     return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",results=results,Method=Method,OK=Is_OK)
-                else:    
+                else:
                     return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=False)
 
             else :
-  
+
                 return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=Is_OK)
 
         elif Method=="MilneMethod":
