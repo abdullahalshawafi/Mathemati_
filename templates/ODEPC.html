@@ -13,22 +13,34 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.49vw" ry="1.49vw" x="0" y="0" width="25.976vw" height="35.28vw">
 					</rect>
 				</svg>
-				{%if Methods=="Adam’s Backward"%}
-				<textarea class="Rectangle_9" name="Iterations" disabled>> [ x y z ], λ, εs%  
+				
+
+				<textarea class="Rectangle_9" name="Iterations" disabled>
+					{%if Method=="AdamBackward"%}
+					{%if OK==True%}
 					{%for r in results%}
-					{print(r)}
+					
+
+					{%print(r)%}
 
 					{%endfor%}
 
-				{%endif%}
-				</textarea>
+					 {%endif%}
+					{%if OK==False%}
 
-				<textarea class="Rectangle_9" name="Iterations" disabled>>
-					{%for r in results%}
-					 {%print(r)%}
+					{%print("Some Fields are empty or incorrect Try again")%}
+					{%endif%}
+					 {%endif%}
+
+					 {%if Method=="MilneMethod"%}
+					{%for i in range (4)%}
+					{%print(yp[i], YC[i],Error[i])%}
+					{%endfor%}
+					{%endif%}
 					 
-					 {%endfor%}
-	
+					 {%if Method==""%}
+					 > [ x y z ], λ, εs%  
+					 {%endif%}
 
 			
 				</textarea>
@@ -63,8 +75,8 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.49vw" ry="1.49vw" x="0" y="0" width="21.48vw" height="11.68vw">
 					</rect>
 				</svg>
-				<input type="text" name="xn" class="Rectangle_32"  />
-				<input type="text" name="yn" class="Rectangle_33" disabled />
+				<input type="text" name="xn" value="{{request.form['xn']}}" class="Rectangle_32"  />
+				<input type="text" name="yn" value="{{request.form['yn']}}" class="Rectangle_33" />
 				<input type="text" name="Epslon" class="Rectangle_35" disabled />
 				<div id="x___">
 					<span>x<span style="font-size:0.8vw">n</span> = </span>
@@ -121,9 +133,9 @@
 					><label for="PowerM"><span>Adam’s Backward</span></label>
 				</div>
 				<div id="Power_with_defelation">
-					<input type="radio" id="Power-with-defelation" name="Method" value="Milne’s Method" onchange="DimInput()"><label for="Power-with-defelation"><span>Milne’s Method</span></label>
+					<input type="radio" id="Power-with-defelation" name="Method" value="MilneMethod" onchange="DimInput()"><label for="Power-with-defelation"><span>Milne’s Method</span></label>
 				</div>
-				<input type="text" class="Rectangle_43" style="text-align: left" name="Equation" />
+				<input type="text" class="Rectangle_43" style="text-align: left" name="Equation" value="{{request.form['Equation']}}" />
 				<div id="f_x__y__z___">
 					<span>Differential Equation:</span>
 				</div>
@@ -147,25 +159,25 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="text" name="x0" /></td>
-								<td><input type="text" name="y0" /></td>
+								<td><input type="text" name="x0" value="{{request.form['x0']}}" /></td>
+								<td><input type="text" name="y0" value="{{request.form['y0']}}" /></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x1" /></td>
-								<td><input type="text" name="y1" /></td>
+								<td><input type="text" name="x1" value="{{request.form['x1']}}" /></td>
+								<td><input type="text" name="y1" value="{{request.form['y1']}}" /></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x2" /></td>
-								<td><input type="text" name="y2" /></td>
+								<td><input type="text" name="x2" value="{{request.form['x2']}}" /></td>
+								<td><input type="text" name="y2" value="{{request.form['y2']}}" /></td>
 
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td><input type="text" name="x3" /></td>
-								<td><input type="text" name="y3" /></td>
+								<td><input type="text" name="x3" value="{{request.form['x3']}}" /></td>
+								<td><input type="text" name="y3" value="{{request.form['y3']}}" /></td>
 
 							</tr>
 						</tfoot>
@@ -173,8 +185,8 @@
 
 				</div>
 
-				<input name="Num_Of_Corrections" type="text" class="Path_6" />
-				<input type="text" name="Stopping_Criteria" class="Rectangle_18" />
+				<input name="Num_Of_Corrections" type="text" value="{{request.form['Num_Of_Corrections']}}" class="Path_6" />
+				<input type="text" name="Stopping_Criteria" value="{{request.form['Stopping_Criteria']}}" class="Rectangle_18" />
 
 
 

@@ -9,6 +9,8 @@ from methods.Bezier import bezier_curve_bin
 from methods.SplineInterpolation import linear_spline,quad_spline,cubic_spline,get_interval_list
 from methods.LinearSystems import solve_linear_systems
 from methods.ODE_Adams import  ode_adams_backward_difference
+from methods.ODE_milne import milne
+import numpy as np
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
@@ -228,54 +230,77 @@ def Integration():
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
     if request.method == 'POST':
+        #Variables decleration 
+        Is_OK=True
+   
 
-        x = []
-        y = []
+        try:
+            x = []
+            y = []
+            Number_Of_Corrections=''
+            Stopping_Criteria=''
+            Method=''
+            x_requested=''
+            Equation=''
+            #results=[]
+            Number_Of_Points=0
 
-        Method = request.form['Method']
-        Equation = request.form['Equation']
+            Method = request.form['Method']
+            Equation = request.form['Equation']
 
-        for i in range(4):
-            x_index = 'x'+str(i)
-            y_index ='y'+str(i)
+            for i in range(4):
+                x_index = 'x'+str(i)
+                y_index ='y'+str(i)
 
-            x_i=''
-            y_i=''
+                x_i=''
+                y_i=''
 
-            y_i = request.form[y_index]
-            x_i = request.form[x_index]
+                x_i = request.form[x_index]
+                y_i = request.form[y_index]
             
 
-            if x_i and y_i:
-                x.append(float(x_i))
-                y.append(float(y_i))
+                if x_i and y_i:
+                    x.append(float(x_i))
+                    y.append(float(y_i))
             
-        Number_Of_Points = len(x) #Getting the number of points from the length of the list
-
-        Number_Of_Corrections=''
-        Stopping_Criteria=''
-
-        Number_Of_Corrections=float(request.form['Num_Of_Corrections']) 
-        Stopping_Criteria=float(request.form['Stopping_Criteria'])
-
-        x_requested=''
-        #y_requested=''
-        #s_requested=''
-
-        x_requested=float(request.form['xn'])
-        #y_requested=float(request.form['yn'])
-        #s_requested=float(request.form['Epslon'])
+            
+            Number_Of_Points = len(x) #Getting the number of points from the length of the list
+            Number_Of_Corrections=int(request.form['Num_Of_Corrections']) 
+            Stopping_Criteria=int(request.form['Stopping_Criteria'])
+            x_requested=float(request.form['xn'])
         
-        results=[]
+        except: 
+            Is_OK=False
 
 
 
 
         if Method=="AdamBackward": 
-            if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
-                results=ode_adams_backward_difference(Equation,Number_Of_Corrections,Stopping_Criteria,Number_Of_Points,x,y,x_requested)
-                return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",results=results)
 
+            if Is_OK==True:
+
+                if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
+                  
+                    results=ode_adams_backward_difference(Equation,Number_Of_Corrections,Stopping_Criteria,Number_Of_Points,x,y,x_requested)
+                    return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",results=results,Method=Method,OK=Is_OK)
+                else:    
+                    return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=False)
+
+            else :
+  
+                return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=Is_OK)
+
+        elif Method=="MilneMethod":
+            if Is_OK==True:
+                if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
+                    y_requested=float(request.form['yn'])
+                    yp, YC, relative_error=milne(Equation,5,x,y,x_requested,Number_Of_Corrections,Stopping_Criteria,y_requested)
+                    results=np.array([yp,YC,relative_error])
+                    return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",yp=yp,YC=YC,Error=relative_error,Method=Method,OK=Is_OK)
+            else :
+                return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=Is_OK)
+        else :
+            return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=Is_OK)
 
         
     else:
