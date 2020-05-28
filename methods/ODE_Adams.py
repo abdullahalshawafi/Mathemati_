@@ -3,7 +3,6 @@
 ######## This problem solves the equations till the fourth order
 from math import e #### Added this to be able to solve functions containing e ############
 from math import sin , cos ,tan , sinh , cosh , tanh , asin , acos , atan , asinh , acosh , atanh
-
 """
 equation1 = input("Enter the RHS of the equation here: ")
 x = 2.3
