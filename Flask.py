@@ -8,12 +8,15 @@ from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoida
 from methods.Romberg import RombergRule
 from methods.Gauss_Quadrature import myfun, Exact
 from methods.ODE_Kutta import rungeKutta
-from methods.ODE_Adams import  ode_adams_backward_difference
+from methods.ODE_Adams import ode_adams_backward_difference
+from methods.ODE_milne import milne
 from methods.RegularPDE import Open_Region, Closed_Region
 from methods.PDE_Solve import Grid, PDE_Solver, boundry , point
 from methods.LinearSystems import solve_linear_systems
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
+from methods.Eigenvalue import solve_Eigenvalue
+import numpy as np
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -34,9 +37,9 @@ def Contact():
 
 @app.route("/PolynomialInterpolation", methods=['GET', 'POST'])
 def PolynomialInterpolation():
+    PolynomialFunction = ""
     if request.method == 'POST':
         Method = ''
-
         Degree = -1
 
         NumPoints = 0
@@ -77,7 +80,7 @@ def PolynomialInterpolation():
                  #   X_val = float(request.form["Xvalue"])
                 DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
                 ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
-                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction,Yderivative=Y_diff_val, Yvalue = Y_val , ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction, ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
 
             elif Method == "Lagrange":
                 #if request.form["Xvalue"]:
@@ -85,10 +88,10 @@ def PolynomialInterpolation():
                  #   X_val = float(request.form["Xvalue"])
                 Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
                 ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
-                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, Yvalue = Y_val, ParametricX=ParametricX,ParametricY=ParametricY)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
         return redirect(url_for('PolynomialInterpolation'))
     else:
-        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = "No Valid Input data")
+        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
@@ -110,7 +113,7 @@ def SplineInterpolation():
         print(QuadraticSpline)
         print(CubicSpline)
         print(IntervalList)
-        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1 ,eq=LinearSpline)
+        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
 
     else:
         return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
@@ -375,54 +378,75 @@ def ODERK():
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
     if request.method == 'POST':
-
-        x = []
-        y = []
-
-        Method = request.form['Method']
-        Equation = request.form['Equation']
-
-        for i in range(4):
-            x_index = 'x'+str(i)
-            y_index ='y'+str(i)
-
-            x_i=''
-            y_i=''
-
-            y_i = request.form[y_index]
-            x_i = request.form[x_index]
+        #Variables decleration
+        Is_OK=True
 
 
-            if x_i and y_i:
-                x.append(float(x_i))
-                y.append(float(y_i))
+        try:
+            x = []
+            y = []
+            Number_Of_Corrections=''
+            Stopping_Criteria=''
+            Method=''
+            x_requested=''
+            Equation=''
+            #results=[]
+            Number_Of_Points=0
 
-        Number_Of_Points = len(x) #Getting the number of points from the length of the list
+            Method = request.form['Method']
+            Equation = request.form['Equation']
 
-        Number_Of_Corrections=''
-        Stopping_Criteria=''
+            for i in range(4):
+                x_index = 'x'+str(i)
+                y_index ='y'+str(i)
 
-        Number_Of_Corrections=float(request.form['Num_Of_Corrections'])
-        Stopping_Criteria=float(request.form['Stopping_Criteria'])
+                x_i=''
+                y_i=''
 
-        x_requested=''
-        #y_requested=''
-        #s_requested=''
+                x_i = request.form[x_index]
+                y_i = request.form[y_index]
 
-        x_requested=float(request.form['xn'])
-        #y_requested=float(request.form['yn'])
-        #s_requested=float(request.form['Epslon'])
 
-        results=[]
+                if x_i and y_i:
+                    x.append(float(x_i))
+                    y.append(float(y_i))
 
+
+            Number_Of_Points = len(x) #Getting the number of points from the length of the list
+            Number_Of_Corrections=int(request.form['Num_Of_Corrections'])
+            Stopping_Criteria=int(request.form['Stopping_Criteria'])
+            x_requested=float(request.form['xn'])
+
+        except:
+            Is_OK=False
 
 
 
         if Method=="AdamBackward":
-            if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
-                results=ode_adams_backward_difference(Equation,Number_Of_Corrections,Stopping_Criteria,Number_Of_Points,x,y,x_requested)
-                return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",results=results)
+            if Is_OK==True:
 
+                if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
+
+                    results=ode_adams_backward_difference(Equation,Number_Of_Corrections,Stopping_Criteria,Number_Of_Points,x,y,x_requested)
+                    return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",results=results,Method=Method,OK=Is_OK)
+                else:
+                    return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=False)
+
+            else :
+
+                return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=Is_OK)
+
+        elif Method=="MilneMethod":
+            if Is_OK==True:
+                if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
+                    y_requested=float(request.form['yn'])
+                    yp, YC, relative_error=milne(Equation,5,x,y,x_requested,Number_Of_Corrections,Stopping_Criteria,y_requested)
+                    results=np.array([yp,YC,relative_error])
+                    return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",yp=yp,YC=YC,Error=relative_error,Method=Method,OK=Is_OK)
+            else :
+                return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=Is_OK)
+        else :
+            return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=Is_OK)
 
 
     else:
@@ -696,10 +720,79 @@ def NonlinearSystem():
 
 @app.route("/EigenvalueProblem", methods=['GET', 'POST'])
 def EigenvalueProblem():
+    Length = 0
+    temp_to_test = 0
+
+    size = 0
+    list_of_entires = []
+    list_init_vector = []
+
+    iter_or_stoppingC = 0
+    num_iteration = 0
+    StoppingCriteria = 0
+
+    Method = ''  # Choice
+
+    result = []
+
     if request.method == 'POST':
-        pass
+
+        if 'Method' in request.form:
+            temp_to_test = request.form['Method']
+            if temp_to_test == 'Power':
+                Method = 1
+            elif temp_to_test == 'Inv.Power':
+                Method = 2
+            elif temp_to_test == 'Power-with-defelation':
+                Method = 3
+
+        temp_to_test = request.form['Stopping Criteria']
+        if not temp_to_test == '':
+            StoppingCriteria = float(request.form['Stopping Criteria'])
+            iter_or_stoppingC = 2
+
+        temp_to_test = request.form['Number of iterations']
+        if not temp_to_test == '':
+            num_iteration = int(request.form['Number of iterations'])
+            iter_or_stoppingC = 1
+
+        if 'Dim' in request.form:
+            size = int(request.form['Dim'])
+            if size > 1:
+                for i in range(size):
+                    for j in range(size + 1):
+                        if j != size:
+                            temp = 'x' + str(i) + str(j)
+                            temp_to_test = request.form[temp]
+                            if not temp_to_test == '':
+                                list_of_entires.append(request.form[temp])
+                        elif j == size:
+                            temp = 'v' + str(i)
+                            temp_to_test = request.form[temp]
+                            if not temp_to_test == '':
+                                list_init_vector.append(request.form[temp])
+
+        if size and (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
+            result = solve_Eigenvalue(size, list_of_entires, list_init_vector, Method, iter_or_stoppingC, num_iteration,
+                                      StoppingCriteria)
+
+            # result[0] List_Eig_values-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
+            # result[1] List_Eig_vectors-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
+            # result[2] List_relative_error-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
+            # result[3] Eig_value ->if method == 1 or 2 : carries the value to be displayed
+            # result[4] Eig_vector ->if method == 1 or 2 : carries the value to be displayed
+            # result[5] True_error ->if method == 1 or 2 : carries the value to be displayed
+            # result[6] test -> if false then there was an error in the calculations of the power method
+            Length = len(result[0])
+            if Length:
+                return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
+                                       css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
+                                       Length=size, Method=Method, iterations=Length, results=result)
+        return redirect(url_for('EigenvalueProblem'))
     else:
-        return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",
+                               wing="SE - copy2.png", logo="Logo Greeny.svg")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
