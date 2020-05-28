@@ -27,6 +27,9 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 def home():
     return render_template('Home.html')
 
+#def reset():
+#    return redirect ("/")
+
 @app.route("/Credits")
 def Credits():
     return render_template('Credits.html', title='Credits', css="Credits.css", wing="Neon Green Header.svg", logo="Logo.svg")
