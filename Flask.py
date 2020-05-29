@@ -27,6 +27,9 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 def home():
     return render_template('Home.html')
 
+#def reset():
+#    return redirect ("/")
+
 @app.route("/Credits")
 def Credits():
     return render_template('Credits.html', title='Credits', css="Credits.css", wing="Neon Green Header.svg", logo="Logo.svg")
@@ -284,11 +287,8 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
-                    print(ResultRom)
-                    ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
-
                 TrapError=Trapezoidal_error(function,x1,x2,N)
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
             elif NumOfVar == '2':
@@ -310,8 +310,6 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
-                    print(ResultRom)
-                    ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
 
@@ -334,8 +332,6 @@ def Integration():
                 OrderOfError=int(request.form['OrderOfError'])
                 if(OrderOfError%2==0):
                     ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
-                    print(ResultRom)
-                    ResultRom=ResultRom[0]
                 else:
                     ResultRom="Order of Error must be even"
 
@@ -396,7 +392,7 @@ def ODEPC():
             Method = request.form['Method']
             Equation = request.form['Equation']
 
-            for i in range(4):
+            for i in range(8):
                 x_index = 'x'+str(i)
                 y_index ='y'+str(i)
 
@@ -714,11 +710,11 @@ def LinearSystem():
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
             Length = len(result[0])
             if Length:
-                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
+                 return render_template('LinearSystem.html', title='Linear Systems - SOR', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
         return redirect(url_for('LinearSystem'))
 
     else:
-        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('LinearSystem.html', title='Linear Systems - SOR', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():

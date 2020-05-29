@@ -93,7 +93,7 @@
 					<!--should be handled in a better way by any frontend guy
 					 if method ==3 no error will be displayed, elif method = 1 or 2 , it will be displayed-->
 
-					<div id="_s________________________">
+					<div id="es" >
 						<span>εs% =                     </span>
 					</div>
 
@@ -216,13 +216,23 @@
 			<div id="LeffTapCon">
 			<form action="{{url_for('EigenvalueProblem')}}" method="POST">
 				<div id="Power">
-					<input type="radio" id="PowerM" name="Method" value="Power" onchange="DimInput()"><label for="PowerM"><span>Power</span></label>
+					<input type="radio" 
+					id="PowerM" 
+					name="Method" 
+					value="Power" 
+					onchange="DimInput()">
+					<label for="PowerM"><span>Power</span></label>
 				</div>
 				<div id="Inv__Power">
 					<input type="radio" id="Inv.Power" name="Method" value="Inv.Power" onchange="DimInput()"><label for="Inv.Power"><span>Inv. Power</span></label>
 				</div>
 				<div id="Power_with_defelation">
-					<input type="radio" id="Power-with-defelation" name="Method" value="Power-with-defelation" onchange="DimInput()"><label for="Power-with-defelation"><span>Power with defelation</span></label>
+					<input type="radio" 
+					id="Power-with-defelation" 
+					name="Method" 
+					value="Power-with-defelation" 
+					onchange="DimInput()">
+					<label for="Power-with-defelation"><span>Power with defelation</span></label>
 				</div>
 				<div id="ID2x2">
 					<input type="radio" id="2x2" name="Dim" value="2" onchange="DimInput()"><label for="2x2"><span>2x2</span></label>

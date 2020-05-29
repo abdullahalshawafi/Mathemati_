@@ -45,11 +45,11 @@ function addtograph() {
         addtograph();
         MethodSelection();
 
-
     };
 
     function MethodSelection() {
         var MethodFixedPoint = document.getElementsByName("Method")[1];
+
         if (MethodFixedPoint.checked) {
             document.getElementById("F_x_y_z____0__").innerHTML = "x =";
             document.getElementById("G_x_y_z____0__").innerHTML = "y =";
@@ -62,16 +62,15 @@ function addtograph() {
     }
 
     function DimInput() {
-        var Dim2 = document.getElementsByName("Dim")[0];
-        var MethodFixedPoint = document.getElementsByName("Method")[1];
-
-        if (Dim2.checked) {
+        var Dim2 = document.getElementsByName("Dim")[0].checked;
+        var MethodFixedPoint = document.getElementsByName("Method")[1].checked;
+        if (Dim2) {
             document.getElementsByClassName("Rectangle_30")[0].setAttribute("disabled", "true");
             document.getElementsByClassName("Rectangle_30")[0].setAttribute("style", "background: #303030; color: #999999; text-align: left;");
             document.getElementsByClassName("Rectangle_44")[2].setAttribute("disabled", "true");
             document.getElementsByClassName("Rectangle_44")[2].setAttribute("style", "background: #303030; color: #999999;");
             document.getElementById("H_x_y_z____0__").setAttribute("style", "color: #999999; text-decoration: line-through;");
-            if (!MethodFixedPoint.checked) {
+            if (!MethodFixedPoint) {
                 document.getElementById("F_x_y_z____0__").innerHTML = "F(x,y) = 0 =";
                 document.getElementById("G_x_y_z____0__").innerHTML = "G(x,y) = 0 =";
             } else {
@@ -90,7 +89,7 @@ function addtograph() {
             document.getElementsByClassName("inChars")[2].setAttribute("style", "color: white; text-decoration: normal;");
             document.getElementById("z___").setAttribute("style", "color: white; text-decoration: normal;");
             document.getElementsByClassName("Rectangle_34")[0].setAttribute("style", "background: #282828; color: #FFFFFF;");
-            if (!MethodFixedPoint.checked) {
+            if (!MethodFixedPoint) {
                 document.getElementById("F_x_y_z____0__").innerHTML = "F(x,y,z) = 0 =";
                 document.getElementById("G_x_y_z____0__").innerHTML = "G(x,y,z) = 0 =";
             } else {

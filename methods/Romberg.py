@@ -73,7 +73,7 @@ def RombergInt(nIntOp,Func,O_error,lowerb,upperb):
             Romberg[j,k]=(4**(k)*Romberg[j,k-1]-Romberg[j-1,k-1])/(4**(k)-1)
     
     print(Romberg)
-    return Romberg
+    return Romberg[O_error//2-1,O_error//2-1]
 
 def RombergRule(Fn,numI,ax,bx,ay,by,az,bz,Order_of_Error):
     ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n/10%10!=1)*(n%10<4)*n%10::4]) 
