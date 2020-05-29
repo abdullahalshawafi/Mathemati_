@@ -32,7 +32,7 @@ function MethodSelection() {
     document.getElementById("Dir2").style.display="none";
     document.getElementById("Dir3").style.display="none";
     document.getElementById("Dir4").style.display="none";
-    
+
 
   } else {
     document.getElementById("UXY1").style.display="inline";
@@ -45,6 +45,52 @@ function MethodSelection() {
     document.getElementById("Dir4").style.display="block";
   }
 }
+
+$(document).ready(function() {
+      $('form').submit(function (e) {
+          $.ajax({
+              type: "POST",
+              url: '/_background_process_PDE',
+              data: $('form').serialize(), // serializes the form's elements.
+              success: function (data) {
+                if (data.error)
+                {
+                  alert(data.error)
+                }
+                else {
+                  alert(data.U);
+                  $('#res').html(data.U);
+                }
+              }
+          });
+
+          e.preventDefault(); // block the traditional submission of the form.
+      });
+
+      // Inject our CSRF token into our AJAX request.
+      $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+              if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                  xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+              }
+          }
+      })
+  });
+
+
+/*
+
+action="{{url_for('PDE')}}"
+ $(function() {
+       $('a#process_input').bind('click', function() {
+       $.getJSON('/background_process', {
+         proglang: $('input[name="proglang"]').val(),
+       }, function(data) {
+         $("#result").text(data.result);
+       });
+       return false;
+       });
+     });*/
 
 var img = document.createElement("img");
 img.src = "{{url_for('static', filename='Assets/Storked-Copy.svg')}}";

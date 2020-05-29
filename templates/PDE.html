@@ -3,7 +3,7 @@
 <main>
 
 	<div id="Web_1920___1">
-		<form action="{{url_for('PDE')}}" method="POST">
+		<form>
 			<div id="MidTab">
 				<svg class="Rectangle_8">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="22.9vw" height="8.46vw">
@@ -34,9 +34,13 @@
 					</div>
 					<div id="out">
 
-						<span>at: X = <input name="x_cordinates" type="text" class="Rectangle_x" value="{{request.form['x_cordinates']}}" /> &nbsp; Y = <input type="text" name="y_cordinates" value="{{request.form['y_cordinates']}}" class="Rectangle_x" /></span>
+						<span>at: X = <input name="x_cordinates" type="text" class="Rectangle_x" value="{{request.form['x_cordinates']}}" /> &nbsp; Y = <input type="text" name="y_cordinates" value="{{request.form['y_cordinates']}}" id="Y" class="Rectangle_x" /></span>
 						<br />
-						<span>U = <label>{%print(U)%}</label></span>
+						<span>U = <label id="res">
+							{% if U != 'erorr' %}
+							{%print(U)%}
+							{% endif %}
+						</label></span>
 
 					</div>
 				</div>
@@ -157,7 +161,7 @@
 
 						<input type="text" name="dy" value="{{request.form['dy']}}" class="Rectangle_44" /> <span class="inChars">Uy + </span>
 
-						
+
 
 
 						<input type="text" name="U_Coeff" value="{{request.form['U_Coeff']}}" class="Rectangle_44" /> <span class="inChars">U = </span>
@@ -169,13 +173,13 @@
 
 
 				<div id="Table_">
-					
+
 				</div>
 				<div class="Rectangle_55">
 					<table class="table">
 						<thead>
 							<tr>
-								
+
 								<th>Boundry Eq: f(x,y) = 0 =</th>
 								<th>Xi</th>
 								<th>Xf</th>
@@ -187,7 +191,7 @@
 						</thead>
 						<tbody>
 							<tr>
-								
+
 								<td class="wide-slot"><input name="function0" value="{{request.form['function0']}}" type="text" /></td>
 								<td><input name="xi0" value="{{request.form['xi0']}}" type="text" /></td>
 								<td><input name="xf0" value="{{request.form['xf0']}}" type="text" /></td>
@@ -198,7 +202,7 @@
 
 							</tr>
 							<tr>
-								
+
 								<td class="wide-slot"><input name="function1" value="{{request.form['function1']}}" type="text" /></td>
 								<td><input name="xi1" value="{{request.form['xi1']}}" type="text" /></td>
 								<td><input name="xf1" value="{{request.form['xf1']}}" type="text" /></td>
@@ -209,7 +213,7 @@
 
 							</tr>
 							<tr>
-								
+
 								<td class="wide-slot"><input name="function2" value="{{request.form['function2']}}" type="text" /></td>
 								<td><input name="xi2" value="{{request.form['xi2']}}" type="text" /></td>
 								<td><input name="xf2" value="{{request.form['xf2']}}" type="text" /></td>
@@ -220,7 +224,7 @@
 
 							</tr>
 							<tr>
-								
+
 								<td class="wide-slot"><input name="function3" value="{{request.form['function3']}}" type="text" /></td>
 								<td><input name="xi3" value="{{request.form['xi3']}}" type="text" /></td>
 								<td><input name="xf3" value="{{request.form['xf3']}}" type="text" /></td>
