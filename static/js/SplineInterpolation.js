@@ -27,12 +27,15 @@ var parameters = {
 };
 functionPlot(parameters);
 
-function Expand(el, x, intervals ,eq) {
 
+function Expand(el, x, intervals ,eq) {
+  {
+    document.querySelector('#FORM').submit();
+  }
   // var con = document.getElementsByClassName("Quadratic")[0];
 
   con = el.parentElement.parentElement;
-  // el.classList.toggle("CC")
+  el.classList.toggle("CC")
 
   if (!el.classList.contains("CC")) {
     el.classList.add("CC");
