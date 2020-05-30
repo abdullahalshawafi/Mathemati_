@@ -897,5 +897,14 @@ def differentiationvideo():
     return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
 
 
+@app.route("/polynomialvideo")
+def polynomialvideo():
+        return render_template('polynomialvideo.html', title='Polynomial Instructions', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/odekuttavideo")
+def odekuttavideo():
+        return render_template('odekuttavideo.html', title='ODE Runge-Kutta Instructions', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
