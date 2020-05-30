@@ -875,6 +875,15 @@ def eigenvideo():
 def linearvideo():
     return render_template('linearvideo.html', title='Linear System Instructions', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" )
 
+@app.route("/nonlinearvideo")
+def nonlinearvideo():
+    return render_template('nonlinearvideo.html', title='Nonlinear System Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+
+  
+@app.route("/differentiationvideo")
+def differentiationvideo():
+    return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
+
 
 if __name__ == '__main__':
     app.run(debug=True)
