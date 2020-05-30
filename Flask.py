@@ -71,7 +71,7 @@ def PolynomialInterpolation():
 
 
         NumPoints=len(X_Points)
-        if Method and NumPoints > 0 and (Degree>-1 or Method=='Lagrange') and (NumPoints)>= (Degree+1):
+        if ((Method=='Lagrange' and NumPoints > 0) or (Method=='Newton' and NumPoints > 1) ) and (Degree>-1 or Method=='Lagrange') and (NumPoints)>= (Degree+1):
 
             X_val = 0
             if Method == "Newton":
@@ -92,6 +92,10 @@ def PolynomialInterpolation():
                 Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
                 ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
                 return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
+        else:
+            return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation',
+                                   css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg",
+                                   Method=Method, PolynomialFunction="Invalid input")
         return redirect(url_for('PolynomialInterpolation'))
     else:
         return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
@@ -107,17 +111,19 @@ def SplineInterpolation():
            NumPoints +=1
 
         print(NumPoints,Numbers)
-
-        LinearSpline = linear_spline(NumPoints,Numbers)
-        IntervalList = get_interval_list(NumPoints,Numbers)
-        QuadraticSpline = quad_spline(NumPoints,Numbers)
-        CubicSpline = cubic_spline(NumPoints,Numbers)
-        print(LinearSpline)
-        print(QuadraticSpline)
-        print(CubicSpline)
-        print(IntervalList)
-        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
-
+        if NumPoints>1:
+            LinearSpline = linear_spline(NumPoints,Numbers)
+            IntervalList = get_interval_list(NumPoints,Numbers)
+            QuadraticSpline = quad_spline(NumPoints,Numbers)
+            CubicSpline = cubic_spline(NumPoints,Numbers)
+            print(LinearSpline)
+            print(QuadraticSpline)
+            print(CubicSpline)
+            print(IntervalList)
+            return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
+        else:
+            return render_template('SplineInterpolation.html', title='Spline Interpolation',
+                                   css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg", eq="")
     else:
         return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
