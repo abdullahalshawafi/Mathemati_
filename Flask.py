@@ -650,11 +650,11 @@ def LinearSystem():
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
             Length = len(result[0])
             if Length:
-                 return render_template('LinearSystem.html', title='Linear Systems - SOR', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
+                 return render_template('LinearSystem.html', title='Linear Systems - SOR / GS', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
         return redirect(url_for('LinearSystem'))
 
     else:
-        return render_template('LinearSystem.html', title='Linear Systems - SOR', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('LinearSystem.html', title='Linear Systems - SOR / GS', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():
@@ -796,6 +796,27 @@ def EigenvalueProblem():
         return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",
                                wing="SE - copy2.png", logo="Logo Greeny.svg")
 
+@app.route("/sfvideo")
+def sfvideo():
+    return render_template('sfvideo.html', title='Surface Fitting Instructions', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
+
+
+@app.route("/leastsquarevideo")
+def leastsquarevideo():
+    return render_template('leastsquarevideo.html', title='Least Square Instructions', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
+
+
+@app.route("/eigenvideo")
+def eigenvideo():
+    return render_template('eigenvideo.html', title='Eigen Value Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+
+  
+@app.route("/linearvideo")
+def linearvideo():
+    return render_template('linearvideo.html', title='Linear System Instructions', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" )
+
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+

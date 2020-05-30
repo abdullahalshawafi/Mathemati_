@@ -124,7 +124,7 @@ def Surface_Fit_Beta(xdata, ydata, zdata, Function,r):
         b[i-1][0]= np.sum(np.multiply(FL[0],FL[i]))
     if(np.linalg.det(a)==0):
         return '','','',''
-    Sol=np.Sround(np.transpose(np.linalg.solve(a, b)),r) #receiving the list, making it horizontal then rounding each element
+    Sol=np.round(np.transpose(np.linalg.solve(a, b)),r) #receiving the list, making it horizontal then rounding each element
     Solution = []
     for sublist in Sol: #Flattening the list ( from [[ ]] to [ ])
         for item in sublist:
