@@ -214,7 +214,7 @@ input[type="radio"] {
   height: 1.6vw;
   margin-left: 0;
   margin-right: 0.6vw;
-  filter: invert(1);
+  filter: invert(1) hue-rotate(35deg) contrast(1.4);
 }
 
 input[type="text"] {
