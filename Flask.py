@@ -460,7 +460,7 @@ def background_process():
     try:
         Choice = request.form['Method']
     except:
-        return jsonify(error = 'Choose a Method')
+        return jsonify(error = 'Choose a Method', U = '')
 
     if Choice == "Irregular":
             #Taking the equation parameters
@@ -470,7 +470,7 @@ def background_process():
             h = float(request.form['h_step'])
             k = float(request.form['k_step'])
         except:
-            return jsonify(error = 'Enter h and k')
+            return jsonify(error = 'Enter h and k', U = '')
 
         dxx = request.form['dxx']
         dyy = request.form['dyy']
@@ -480,7 +480,7 @@ def background_process():
         function = request.form['Function']
 
         if not(dxx and dyy and dx and dy and u_coeff and function):
-            return jsonify(error = 'Enter Equation')
+            return jsonify(error = 'Enter Equation', U = '')
 
         boundaries=[]
         for i in range(12):
@@ -510,14 +510,15 @@ def background_process():
                 bound = boundry(y_i, y_f, x_i, x_f, f,u)
                 boundaries.append(bound)
         try:
-            grid=Grid(boundaries,h,k)
+            grid = Grid(boundaries,h,k)
+            grid.Plot_Region()
         except:
-            return jsonify(error = 'Invalid Boundaries')
+            return jsonify(error = 'Invalid Boundaries', U = '')
 
         try:
             points = grid.get_points(grid.get_boundry_rows_points(),grid.get_boundry_cols_points())
         except:
-            return jsonify(error = 'Invalid Boundaries')
+            return jsonify(error = 'Invalid Boundaries', U = '')
 
         pde = PDE_Solver(points,grid)
         pde.Get_Parameters(dxx, dyy, dx, dy, u_coeff, function)
@@ -526,14 +527,16 @@ def background_process():
             x_point = float(request.form['x_cordinates'])
             y_point = float(request.form['y_cordinates'])
         except:
-            return jsonify(error = 'Enter x any y Values')
+            return jsonify(error = 'Enter x any y Values', U = '')
 
         _point = point(x_point,y_point,False)
 
         try:
             U_Value = pde.Solve_At_Point(_point)
+        except ValueError:
+            return jsonify(error = 'Invalid Point', U = '')
         except:
-            return jsonify(error = 'Could not Solve at This Point')
+            return jsonify(error = 'Could not Solve at This Point', U = '')
 
         return jsonify(U = U_Value)
     else :
@@ -541,7 +544,7 @@ def background_process():
             h = float(request.form['h_step'])
             k = float(request.form['k_step'])
         except:
-            return jsonify(error = 'Enter h and k')
+            return jsonify(error = 'Enter h and k', U = '')
 
         try:
             dxx = float(request.form['dxx'])
@@ -552,7 +555,7 @@ def background_process():
             u_coeff = float(request.form['U_Coeff'])
             function = request.form['Function']
         except:
-            return jsonify(error = 'Enter Equation')
+            return jsonify(error = 'Enter Equation', U = '')
 
         xi_list = []
         xf_list = []
@@ -600,10 +603,10 @@ def background_process():
                     Rows = int(y_f)
                     Value = int(u)
         except:
-            return jsonify(error = 'Invalid Boundaries')
+            return jsonify(error = 'Invalid Boundaries', U = '')
 
         if boundry_counter != 4 and boundry_counter != 3:
-            return jsonify(error = 'Invalid Number of Boundaries')
+            return jsonify(error = 'Invalid Number of Boundaries', U = '')
 
         #Getting the boundaries and their values from the previous loop then find The x_range and y_range
         x1=min(xi_list)
@@ -621,7 +624,7 @@ def background_process():
                 x_point = float(request.form['x_cordinates'])
                 y_point = float(request.form['y_cordinates'])
             except:
-                return jsonify(error = 'Enter x any y Values')
+                return jsonify(error = 'Enter x any y Values', U = '')
 
             print(UList)
             x_index = (x_point-x1)/h
@@ -630,7 +633,7 @@ def background_process():
             try:
                 U = UList[x_index][y_index]
             except:
-                return jsonify(error = 'Invalid Point')
+                return jsonify(error = 'Invalid Point', U = '')
 
             return jsonify(U = U)
 
@@ -640,7 +643,7 @@ def background_process():
                 x_point = float(request.form['x_cordinates'])
                 y_point = float(request.form['y_cordinates'])
             except:
-                return jsonify(error = 'Invalid Point')
+                return jsonify(error = 'Invalid Point', U = '')
 
             x_index = (x_point-x1) / h
             y_index = (y_point-y1) / k
@@ -650,16 +653,16 @@ def background_process():
                 UList = Open_Region(value_list[0], value_list[1], value_list[2], h, k, x1, x2,
                                     y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, Number_Of_Rows)
             except:
-                return jsonify(error = 'Could not Solve')
+                return jsonify(error = 'Could not Solve', U = '')
 
             try:
                 U = UList[x_index][y_index]
             except:
-                return jsonify(error = 'Could not Solve at This Point')
+                return jsonify(error = 'Could not Solve at This Point', U = '')
 
             return jsonify(U = U_Value)
         else:
-            return jsonify(error = 'Invalid Number of Boundaries')
+            return jsonify(error = 'Invalid Number of Boundaries', U = '')
 
 @app.route("/PDE", methods=['GET'])
 def PDE():
