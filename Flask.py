@@ -349,28 +349,22 @@ def Integration():
 @app.route("/ODERK", methods=['GET', 'POST'])
 def ODERK():
     if request.method == 'POST':
-        equation = ''
-        x0 = ''
-        fx0 = ''
-        h = ''
-        xn = ''
         equation = request.form['equation']
-        if equation:
-            equation = request.form['equation']
-        x0 = request.form['x0']
-        if x0:
-            x0 = float(request.form['x0'])
-        fx0 = request.form['fx0']
-        if fx0:
-            fx0 = float(request.form['fx0'])
-        h = request.form['h']
-        if h:
-            h = float(request.form['h'])
-        xn = request.form['xn']
-        if xn:
-            xn = float(request.form['xn'])
+        if not(equation):
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Equation')
 
-        result = rungeKutta(x0, fx0, xn, h, equation)
+        try:
+            x0 = float(request.form['x0'])
+            fx0 = float(request.form['fx0'])
+            h = float(request.form['h'])
+            xn = float(request.form['xn'])
+        except:
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Valid Parameters')
+
+        try:
+            result = rungeKutta(x0, fx0, xn, h, equation)
+        except:
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error =  'Can not Solve at This Point')
 
         return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
 
@@ -894,7 +888,7 @@ def linearvideo():
 def nonlinearvideo():
     return render_template('nonlinearvideo.html', title='Nonlinear System Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
-  
+
 @app.route("/differentiationvideo")
 def differentiationvideo():
     return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
