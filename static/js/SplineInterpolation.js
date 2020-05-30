@@ -51,13 +51,13 @@ function Expand(el, x, intervals ,eq) {
       input.setAttribute("disabled", true);
 
 
-      span.innerHTML = '[' + intervals[i] + ']';
+      span.innerHTML = intervals[i];
 
       label.setAttribute("for", "interval" + i);
 
-      div.style.cssText = "margin: 1.2vw; color: white; top: 3.5vw; position: relative; width: 24vw;";
+      div.style.cssText = "margin: 1.2vw; color: white; top: 3.5vw; position: relative; width: 24vw; font-size: calc(20vw/" +  span.innerHTML.length + ");";
 
-      input.style.cssText = "text-align: left; margin-right: 1vw; width: 19vw;";
+      input.style.cssText = "text-align: left; margin-right: 1vw; width: 15vw;";
 
       con.childNodes[3].appendChild(div);
       div.appendChild(input);

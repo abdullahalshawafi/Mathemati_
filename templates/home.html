@@ -116,9 +116,15 @@
 						<span>|</span><span style="font-size:6.5vw;color:rgba(255,109,28,1);">Differential Eqs.</span>
 					</div>
 					<img id="DE4" src="{{url_for('static', filename='images/DE4.png')}}">
-					<div id="ODEI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
-						<div id="ODE___Iterative_methods">
+					<div id="ODERK" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
+						<div class="ODE___Iterative_methods">
 							<a href="{{url_for('ODERK')}}"><span>ODE - Runge-Kutta</span></a>
+						</div>
+						<img id="ODERK0000" src="{{url_for('static', filename='HoverAnimations/ODERK/ODERK0000.png')}}">
+					</div>
+					<div id="ODEI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
+						<div class="ODE___Iterative_methods">
+							<a href="{{url_for('ODEEH')}}"><span>ODE - Euler-Huen</span></a>
 						</div>
 						<img id="ODEI0000" src="{{url_for('static', filename='HoverAnimations/ODEI/ODEI0000.png')}}">
 					</div>

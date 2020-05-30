@@ -508,18 +508,27 @@ a {
 	overflow: visible;
 	mix-blend-mode: screen;
 }
+#ODERK {
+	position: absolute;
+	width: calc(450vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(834vw / 15.36);
+	top: calc(357vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
 
 #ODEI {
 	position: absolute;
 	width: calc(450vw / 15.36);
 	height: calc(100vw / 15.36);
 	left: calc(834vw / 15.36);
-	top: calc(380vw / 15.36);
+	top: calc(440vw / 15.36);
 	overflow: visible;
 	cursor: pointer;
 }
 
-#ODE___Iterative_methods {
+.ODE___Iterative_methods {
 	position: absolute;
 	left: calc(110vw / 15.36);
 	top: calc(30vw / 15.36);
@@ -536,11 +545,20 @@ a {
 	transition: 0.1s;
 }
 
-	#ODE___Iterative_methods:hover {
-		font-size: calc(35vw / 15.36);
-		color: #FF6D1C;
-		transition: 0.1s;
-	}
+.ODE___Iterative_methods:hover {
+	font-size: calc(35vw / 15.36);
+	color: #FF6D1C;
+	transition: 0.1s;
+}
+
+#ODERK0000 {
+	position: absolute;
+	width: calc(123vw / 15.36);
+	height: calc(123vw / 15.36);
+	left: -0.68vw;
+	top: -0.68vw;
+	overflow: visible;
+}
 
 #ODEI0000 {
 	position: absolute;
@@ -556,7 +574,7 @@ a {
 	width: calc(600vw / 15.36);
 	height: calc(100vw / 15.36);
 	left: calc(834vw / 15.36);
-	top: calc(471vw / 15.36);
+	top: calc(521vw / 15.36);
 	overflow: visible;
 	cursor: pointer;
 }
@@ -599,7 +617,7 @@ a {
 	width: calc(450vw / 15.36);
 	height: calc(100vw / 15.36);
 	left: calc(834vw / 15.36);
-	top: calc(563vw / 15.36);
+	top: calc(603vw / 15.36);
 	overflow: visible;
 	cursor: pointer;
 }

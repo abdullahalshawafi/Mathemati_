@@ -159,7 +159,7 @@ input[type=radio] {
 	height: 1.6vw;
 	margin-left: 0;
 	margin-right: 0.6vw;
-	filter: invert(1);
+	filter: invert(1) hue-rotate(-50deg) saturate(1.9);
 }
 
 input[type=text] {

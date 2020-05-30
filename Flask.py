@@ -371,6 +371,12 @@ def ODERK():
     else:
         return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
+@app.route("/ODEEH", methods=['GET', 'POST'])
+def ODEEH():
+    if request.method == 'POST':
+        pass
+    return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
+
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
     if request.method == 'POST':
@@ -710,11 +716,11 @@ def LinearSystem():
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
             Length = len(result[0])
             if Length:
-                 return render_template('LinearSystem.html', title='Linear Systems - SOR', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
+                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
         return redirect(url_for('LinearSystem'))
 
     else:
-        return render_template('LinearSystem.html', title='Linear Systems - SOR', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():
