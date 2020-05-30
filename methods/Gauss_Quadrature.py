@@ -8,8 +8,10 @@ from sympy import cos, sin, tan,acos, asin, atan, cosh, sinh, tanh, acosh, asinh
 #from numpy import sinh
 #from numpy import cosh
 #from numpy import tanh
-#from numpy import exp
-#from numpy import log                   #ln
+from numpy import exp
+from numpy import log                   #ln
+from numpy import log10
+from numpy import log2
 #from numpy import arcsin
 #from numpy import arctan
 #from numpy import arccos
