@@ -682,18 +682,16 @@ def PDE():
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
-    Length = 0
-    temp_to_test = 0
-    inputs = []
-    result = []
-    n = 0
-    choice = 0
-    iterations = 0
-    StoppingCriteria = 0.0
-    w = 1
-
     if request.method == 'POST':
-
+        Length = 0
+        temp_to_test = 0
+        inputs = []
+        result = []
+        n = 0
+        choice = 0
+        iterations = 0
+        StoppingCriteria = 0.0
+        w = 1
         temp_to_test = request.form['Stopping Criteria']
         if not temp_to_test == '':
             StoppingCriteria = float(request.form['Stopping Criteria'])
@@ -894,7 +892,7 @@ def linearvideo():
 def nonlinearvideo():
     return render_template('nonlinearvideo.html', title='Nonlinear System Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
-  
+
 @app.route("/differentiationvideo")
 def differentiationvideo():
     return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
