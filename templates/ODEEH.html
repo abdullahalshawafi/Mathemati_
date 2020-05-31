@@ -62,6 +62,79 @@
 					<div id="x4__E">
 						<span>Error = </span>
 					</div>
+					{% if results and Method==1 and num_eqs==1  %}
+					<input type="text" class="Rectangle_32" disabled value="{{results[1]}}"/>
+					<input type="text" class="Rectangle_33" disabled value="{{results[0]}}"/>
+					<input type="text" class="Rectangle_34" disabled />
+					<input type="text" class="Rectangle_35" disabled />
+					<input type="text" class="Rectangle_41" disabled />
+					<input type="text" class="Rectangle_42" disabled />
+					<input type="text" class="Rectangle_42E" disabled value="y={{results[5]}}%"/>
+					{% elif results and Method==1 and num_eqs==2 %}
+					<input type="text" class="Rectangle_32" disabled value="{{results[1]}}" />
+					<input type="text" class="Rectangle_33" disabled value="{{results[0]}}"/>
+					<input type="text" class="Rectangle_34" disabled />
+					<input type="text" class="Rectangle_35" disabled />
+					<input type="text" class="Rectangle_41" disabled value="{{results[2]}}"/>
+					<input type="text" class="Rectangle_42" disabled />
+					<input type="text" class="Rectangle_42E" disabled value="y={{results[5]}}%,z={{results[6]}}%"/>
+					{% elif results and Method==1 and num_eqs==3 %}
+					<input type="text" class="Rectangle_32" disabled value="{{results[1]}}" />
+					<input type="text" class="Rectangle_33" disabled value="{{results[0]}}"/>
+					<input type="text" class="Rectangle_34" disabled />
+					<input type="text" class="Rectangle_35" disabled />
+					<input type="text" class="Rectangle_41" disabled value="{{results[2]}}"/>
+					<input type="text" class="Rectangle_42" disabled value="{{results[3]}}"/>
+					<input type="text" class="Rectangle_42E" disabled value=""y={{results[5]}}%,z={{results[6]}}%,t={{results[4]}}%"/>
+					{% elif results and Method==2 and ODE_dim==1 and num_eqs==1 %}
+					<input type="text" class="Rectangle_32" disabled value="{{results[0]}}" />
+					<input type="text" class="Rectangle_33" disabled value="{{results[8]}}"/>
+					<input type="text" class="Rectangle_34" disabled />
+					<input type="text" class="Rectangle_35" disabled />
+					<input type="text" class="Rectangle_41" disabled />
+					<input type="text" class="Rectangle_42" disabled />
+					 {% if results[12] %}
+					  <input type="text" class="Rectangle_42E" disabled value="{{results[12]}}%"/>
+					 {% else %}
+					  <input type="text" class="Rectangle_42E" disabled />
+					 {% endif %}
+					{% elif results and Method==2 and ODE_dim==1 and num_eqs==2 %}
+					<input type="text" class="Rectangle_32" disabled value="{{results[0]}}" />
+					<input type="text" class="Rectangle_33" disabled value="{{results[8]}}"/>
+					<input type="text" class="Rectangle_34" disabled />
+					<input type="text" class="Rectangle_35" disabled />
+					<input type="text" class="Rectangle_41" disabled value="{{results[9]}}"/>
+					<input type="text" class="Rectangle_42" disabled />
+					  {% if results[12] %}
+					  <input type="text" class="Rectangle_42E" disabled value="{{results[12]}}%"/>
+					  {% else %}
+					  <input type="text" class="Rectangle_42E" disabled />
+					  {% endif %}
+					{% elif results and Method==2 and ODE_dim==2 %}
+					<input type="text" class="Rectangle_32" disabled value="{{results[0]}}" />
+					<input type="text" class="Rectangle_33" disabled value="{{results[8]}}"/>
+					<input type="text" class="Rectangle_34" disabled value="{{results[10]}}"/>
+					<input type="text" class="Rectangle_35" disabled />
+					<input type="text" class="Rectangle_41" disabled/>
+					<input type="text" class="Rectangle_42" disabled/>
+					 {% if results[12] %}
+					  <input type="text" class="Rectangle_42E" disabled value="{{results[12]}}%"/>
+					 {% else %}
+					  <input type="text" class="Rectangle_42E" disabled />
+					 {% endif %}
+					{% elif results and Method==2 and ODE_dim==3 %}
+					<input type="text" class="Rectangle_32" disabled value="{{results[0]}}" />
+					<input type="text" class="Rectangle_33" disabled value="{{results[8]}}"/>
+					<input type="text" class="Rectangle_34" disabled value="{{results[10]}}"/>
+					<input type="text" class="Rectangle_35" disabled value="{{results[11]}}"/>
+					<input type="text" class="Rectangle_41" disabled/>
+					<input type="text" class="Rectangle_42" disabled />
+					 {% if results[12] %}
+					  <input type="text" class="Rectangle_42E" disabled value="{{results[12]}}%"/>
+					  {% else %}
+					  <input type="text" class="Rectangle_42E" disabled />
+					  {% endif %}
+					{% else %}
 					<input type="text" class="Rectangle_32" disabled />
 					<input type="text" class="Rectangle_33" disabled />
 					<input type="text" class="Rectangle_34" disabled />
@@ -69,9 +142,11 @@
 					<input type="text" class="Rectangle_41" disabled />
 					<input type="text" class="Rectangle_42" disabled />
 					<input type="text" class="Rectangle_42E" disabled />
+					{% endif %}
 				</div>
 			</div>
 			<div id="ExTab">
+				<form action="{{url_for('ODEEH')}}" method="POST">
 				<svg class="Rectangle_100">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.49vw" ry="1.49vw" x="0" y="0" width="21.48vw" height="4vw">
 					</rect>
@@ -79,12 +154,97 @@
 				<div id="Yexact">
 					<span>y<span style="font-size: 1vw">Exact</span> (x) =</span>
 				</div>
-				<input type="text" class="Rectangle_Ex" />
+				<input type="text" class="Rectangle_Ex" name="yex"/>
 			</div>
-			<div id="Answer">
-				<textarea class="Rectangle_9" disabled>> [ x y z ], λ, εs%  </textarea>
-				<div class="Rectangle_9over"> </div>
 
+			<div id="Answer">
+				{% if results and Method==1 and (num_eqs ==1) %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y and εs%
+					 {% for i in range((iterations)-0) %}
+					 >> at x ={{ results[7][i]}} -->
+					       y= {{ results[8][i]}},
+					       εs% = {{results[10][i]}}%
+					 ---
+					 {% endfor %}
+				 </textarea>
+				{% elif results and Method==1 and (num_eqs ==2) %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z and εs%
+
+					 >> at x ={{ results[1]}} -->
+					       y= {{ results[0]}},
+					       z= {{ results[2]}},
+					 εs % (y) = {{results[5]}}%,
+					 εs % (z) = {{results[6]}}%,
+					 ---
+
+				 </textarea>
+				{% elif results and Method==1 and (num_eqs ==3) %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z,t and εs%
+
+					 >> at x ={{ results[1]}} -->
+					       y= {{ results[0]}},
+					       z= {{ results[2]}},
+					       t= {{ results[3]}},
+					 εs % (y) = {{results[5]}}%,
+					 εs % (z) = {{results[6]}}%,
+					 εs % (t) = {{results[4]}}%,
+					 ---
+
+				 </textarea>
+				{% elif results and Method==2 and ODE_dim==1 and num_eqs==1 %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y and εs%
+
+					 {% for i in range((iterations)-0) %}
+					 >> at i ={{ results[1][i]}} -->
+					       y= {{ results[2][i]}},
+					       εs% = {{results[4][i]}}%
+					 ---
+					 {% endfor %}
+
+				 </textarea>
+				{% elif results and Method==2 and ODE_dim==1 and num_eqs==2 %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,z and εs%
+
+					 {% for i in range((iterations)-0) %}
+					 >> at i ={{ results[1][i]}} -->
+					       y= {{ results[2][i]}},
+					       z={{ results[3][i]}},
+					       εs% ->y = {{results[4][i]}}%,
+					       εs% ->z= {{ results[5][i]}}%,
+					 ---
+					 {% endfor %}
+
+				 </textarea>
+				{% elif results and Method==2 and ODE_dim==2  %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y' and εs%
+
+					 {% for i in range((iterations)-0) %}
+					 >> at i ={{ results[1][i]}} -->
+					       y= {{ results[2][i]}},
+					       y'={{ results[6][i]}},
+					       εs% ->y = {{results[4][i]}}
+					 ---
+					 {% endfor %}
+
+				 </textarea>
+				{% elif results and Method==2 and ODE_dim==3  %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y',y" and εs%
+
+					 {% for i in range((iterations)-0) %}
+					 >> at i ={{ results[1][i]}} -->
+					       y= {{ results[2][i]}},
+					       y'={{ results[6][i]}},
+					       y"={{ results[7][i]}},
+					       εs% ->y = {{results[4][i]}}%
+					 ---
+					 {% endfor %}
+
+				 </textarea>
+				{% else %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: ..
+				 </textarea>
+				 {% endif %}
+				<div class="Rectangle_9over"> </div>
 			</div>
 			<div id="LeftTap">
 				<svg class="Rectangle_3">
@@ -123,32 +283,33 @@
 				</div>
 			</div>
 			<div id="LeffTapCon">
+				<form action="{{url_for('ODEEH')}}" method="POST">
 				<div id="Newton_Raphson">
-					<input type="radio" id="NewtonRaphson" name="Method" value="NewtonRaphson" checked onchange="DimInput()"><label for="NewtonRaphson"><span>Euler</span></label>
+					<input type="radio" id="Euler" name="Method" value="Euler" checked onchange="DimInput()"><label for="Euler"><span>Euler</span></label>
 				</div>
 				<div id="Fixed_Point">
-					<input type="radio" id="FixedPoint" name="Method" value="FixedPoint" onchange="DimInput()"><label for="FixedPoint"><span>Heun</span></label>
+					<input type="radio" id="Heun" name="Method" value="Heun" onchange="DimInput()"><label for="Heun"><span>Heun</span></label>
 				</div>
 				<div class="ODEDIM" style="filter: contrast(0.2);">
 					<div id="ID1_ODEs_">
-						<input type="radio" id="1ODEs" name="ODim" value="1ODEs" disabled onchange="DimInput()"><label for="1ODEs"><span>1<span style="font-size: 1.2vw">ODE</span></span></label>
+						<input type="radio" id="1ODEs" name="ODim" value="1" disabled onchange="DimInput()"><label for="1ODEs"><span>1<span style="font-size: 1.2vw">ODE</span></span></label>
 					</div>
 					<div id="ID2_ODEs_">
-						<input type="radio" id="2ODEs" name="ODim" value="2ODEs" disabled onchange="DimInput()"><label for="2ODEs"><span>2<span style="font-size: 1.2vw">ODEs</span></span></label>
+						<input type="radio" id="2ODEs" name="ODim" value="2" disabled onchange="DimInput()"><label for="2ODEs"><span>2<span style="font-size: 1.2vw">ODEs</span></span></label>
 					</div>
 					<div id="ID3_ODEs_">
-						<input type="radio" id="3ODEs" name="ODim" value="3ODEs" disabled onchange="DimInput()"><label for="3ODEs"><span>3<span style="font-size: 1.2vw">ODEs</span></span></label>
+						<input type="radio" id="3ODEs" name="ODim" value="3" disabled onchange="DimInput()"><label for="3ODEs"><span>3<span style="font-size: 1.2vw">ODEs</span></span></label>
 					</div>
 				</div>
 
 				<div id="ID1_eqs_">
-					<input type="radio" id="1eqs" name="Dim" value="1eqs" onchange="DimInput()"><label for="1eqs"><span>1eq</span></label>
+					<input type="radio" id="1eqs" name="Dim" value="1" onchange="DimInput()"><label for="1eqs"><span>1eq</span></label>
 				</div>
 				<div id="ID2_eqs_">
-					<input type="radio" id="2eqs" name="Dim" value="2eqs" onchange="DimInput()"><label for="2eqs"><span>2eqs</span></label>
+					<input type="radio" id="2eqs" name="Dim" value="2" onchange="DimInput()"><label for="2eqs"><span>2eqs</span></label>
 				</div>
 				<div id="ID3_eqs_">
-					<input type="radio" id="3eqs" name="Dim" value="3eqs" onchange="DimInput()"><label for="3eqs"><span>3eqs</span></label>
+					<input type="radio" id="3eqs" name="Dim" value="3" onchange="DimInput()"><label for="3eqs"><span>3eqs</span></label>
 				</div>
 
 				<div id="Number_of_iterations__">
@@ -162,14 +323,14 @@
 				</div>
 
 
-				<input type="text" class="Path_6" />
-				<input type="text" class="Rectangle_18" />
-				<input type="text" class="Path_62" />
-				<input type="text" class="Y1" style="text-align: left" />
-				<input type="text" class="Y2" style="text-align: left" />
-				<input type="text" class="Y3" style="text-align: left" />
-				<input type="text" class="Z1" style="text-align: left" />
-				<input type="text" class="T1" style="text-align: left" />
+				<input type="text" class="Path_6" name="Stopping Criteria" />
+				<input type="text" class="Rectangle_18" name="Number of iterations" />
+				<input type="text" class="Path_62" name="Atx"/>
+				<input type="text" class="Y1" style="text-align: left" name="Y1" />
+				<input type="text" class="Y2" style="text-align: left" name="Y2"/>
+				<input type="text" class="Y3" style="text-align: left" name="Y3"/>
+				<input type="text" class="Z1" style="text-align: left" name="Z1"/>
+				<input type="text" class="T1" style="text-align: left" name="T1"/>
 				<div id="y1">
 					<span>y' (z, y, t) =</span>
 				</div>
@@ -191,12 +352,12 @@
 				<!--<input type="text" class="Rectangle_29" style="text-align: left" onfocusout="addtograph()" />-->
 				<!--<input type="text" class="Rectangle_30" style="text-align: left" />-->
 
-				<input type="text" class="Rectangle_32I" />
-				<input type="text" class="Rectangle_33I" />
-				<input type="text" class="Rectangle_332I" />
-				<input type="text" class="Rectangle_34I" />
-				<input type="text" class="Rectangle_35I" />
-				<input type="text" class="Rectangle_352I" />
+				<input type="text" class="Rectangle_32I" name="x"/> <!--x-->
+				<input type="text" class="Rectangle_33I" name="y"/> <!--y-->
+				<input type="text" class="Rectangle_332I" name="ydash" /> <!--y'-->
+				<input type="text" class="Rectangle_34I" name="z" /> <!--z-->
+				<input type="text" class="Rectangle_35I" name="t"/> <!--t-->
+				<input type="text" class="Rectangle_352I" name="yddash"/> <!--y"-->
 
 				<div id="x___I">
 					<span>x</span><span style="font-size:1.2vw;">o</span><span> = </span>

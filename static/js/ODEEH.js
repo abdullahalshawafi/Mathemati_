@@ -4,14 +4,14 @@ function DimInput() {
 
   document.getElementsByClassName("Rectangle_42E")[0].setAttribute("style", "filter: contrast(1);");
   document.getElementById("x4__E").setAttribute("style", "filter: contrast(1);");
-  document.getElementById("ExTab").setAttribute("style", "opacity: 1;	pointer-events: visible;");
+  document.getElementById("ExTab").setAttribute("style", "opacity: 1;");
 
 
   if (Eu) {
 
     document.getElementsByClassName("Rectangle_42E")[0].setAttribute("style", "filter: contrast(0.9);");
     document.getElementById("x4__E").setAttribute("style", "filter: contrast(0.4);");
-    document.getElementById("ExTab").setAttribute("style", "opacity: 0;	pointer-events: none;");
+    document.getElementById("ExTab").setAttribute("style", "opacity: 0;	");
 
 
     document.getElementById("Number_of_iterations__").innerHTML = 'Number of steps (n) =';

@@ -16,6 +16,7 @@ from methods.LinearSystems import solve_linear_systems
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
+from methods.ODE_EulerAndHeun  import Solve_Euler ,Solve_Heun
 import numpy as np
 
 app = Flask(__name__)
@@ -373,9 +374,110 @@ def ODERK():
 
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():
+    #*********
+    Method =1
+    O_Dim = 0
+    Eqs_No = 0
+    temp_to_test=0
+    h_or_n=''
+    iter_or_stoppingC=''
+    StoppingCriteria = 0.0
+    num_iteration=0
+    List_initial_values=['']*7 # [0]->x0 ,[1]-> y0 ,[2]->z0 ,[3]->t0 ,[4]->y'0 ,[5]->y"0 ,[6]->x_at
+    List_eqs = ['']*5 #[0]-> y',[1]->y",[2]->y"',[3]->z',[4]->t'
+    y_exact=''
+    Length = 0
+    result = []
+    #*****************************
     if request.method == 'POST':
-        pass
-    return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
+        if 'Method' in request.form:
+            temp_to_test  = request.form['Method']
+            if temp_to_test=='Euler':
+                Method=1
+            if temp_to_test=='Heun':
+                Method=2
+        if 'ODim' in request.form:
+            O_Dim = int(request.form['ODim'])
+        if 'Dim' in request.form:
+            Eqs_No = int(request.form['Dim'])
+        if Method==2:
+         temp_to_test = request.form['Stopping Criteria']
+         if not temp_to_test == '':
+            StoppingCriteria = float(temp_to_test)
+            iter_or_stoppingC ='s'
+         else:
+            temp_to_test = request.form['Number of iterations']
+            if not temp_to_test == '':
+             num_iteration=int(temp_to_test)
+             iter_or_stoppingC = 'n'
+        else:
+             temp_to_test = request.form['Stopping Criteria']
+             if not temp_to_test == '':
+                 StoppingCriteria = float(temp_to_test)
+                 h_or_n = 'h'
+             else:
+                 temp_to_test = request.form['Number of iterations']
+                 if not temp_to_test == '':
+                  num_iteration = int(temp_to_test)
+                  iter_or_stoppingC = 'n'
+                  h_or_n = 'n'
+ #******************************
+        temp_to_test = float(request.form['Atx'])
+        if not temp_to_test == '':
+            List_initial_values[6] = temp_to_test  # x to evaluate at =
+        if Method==2:
+         temp_to_test = (request.form['yex'])
+         if not temp_to_test == '':
+                y_exact = temp_to_test  # func to calc exact value of y:
+    #***********
+        temp_to_test = float(request.form['x'])
+        if not temp_to_test == '':
+            List_initial_values[0] = float(temp_to_test)
+        if (Method==1 and (Eqs_No==1 or Eqs_No==2 or Eqs_No==3 )) or (Method==2 and O_Dim==1 and Eqs_No==1) or (Method==2 and (O_Dim==2 or O_Dim==3)):
+            temp_to_test = float(request.form['y'])
+            if not temp_to_test == '':
+                List_initial_values[1] = float(temp_to_test)
+        if (Method==1 and (Eqs_No==2 or Eqs_No==3))or (Method==2 and O_Dim==1 and Eqs_No==2):
+            temp_to_test = float(request.form['z'])
+            if not temp_to_test == '':
+                List_initial_values[2] = float(temp_to_test)
+        if (Method==1 and Eqs_No==3):
+            temp_to_test = float(request.form['t'])
+            if not temp_to_test == '':
+                List_initial_values[3] = float(temp_to_test)
+        if (Method==2 and (O_Dim==3 or O_Dim==2)):
+            temp_to_test = float(request.form['ydash'])
+            if not temp_to_test == '':
+                List_initial_values[4] = float(temp_to_test)
+        if (Method==2 and  O_Dim==3):
+            temp_to_test = float(request.form['yddash'])
+            if not temp_to_test == '':
+                List_initial_values[5] = float(temp_to_test)
+         #*********************************************
+        List_eqs[0] = str(request.form['Y1'])
+        if (Method == 2 and (O_Dim == 2 or O_Dim==3)):
+         List_eqs[1] = request.form['Y2']
+        if (Method == 2 and ( O_Dim == 3)):
+         List_eqs[2] = request.form['Y3']
+        if (Method == 2 and (O_Dim ==1) and Eqs_No==2) or (Method == 1 and ( Eqs_No==2 or Eqs_No==3)):
+         List_eqs[3] = request.form['Z1']
+        if(Method == 1 and Eqs_No == 3):
+         List_eqs[4] = request.form['T1']
+        if Method == 1:
+            result=Solve_Euler(Eqs_No,List_eqs[0],List_eqs[3],List_eqs[4],List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[3],List_initial_values[6],h_or_n,StoppingCriteria,num_iteration)
+            Length = len(result[8])
+        else:
+            result=Solve_Heun(O_Dim,Eqs_No,List_eqs[0],List_eqs[3],List_eqs[1], List_eqs[2],y_exact,List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[4],List_initial_values[5],List_initial_values[6],iter_or_stoppingC,num_iteration,StoppingCriteria)
+            Length=len(result[1])
+        if result:
+                return render_template('ODEEH.html', title='ODE Euler&Huen',
+                                       css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",
+                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim)
+
+        return redirect(url_for('ODEEH'))
+
+    else:
+      return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
 
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
