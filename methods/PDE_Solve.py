@@ -546,6 +546,6 @@ class PDE_Solver :
         for p in self.list_points:
             if p.x==x and p.y==y:
                 Point=p
-                break
-        Sol_Vector=self.Solve()
-        return Sol_Vector[Point.index]
+                Sol_Vector=self.Solve()
+                return Sol_Vector[Point.index]
+        raise ValueError('Invaid Point')

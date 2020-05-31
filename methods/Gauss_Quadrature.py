@@ -48,6 +48,8 @@ numberOfVariables=1
 #important (note that even in one varibles integration leave (ay) and (by) with intial valuses)
 # input one or two varible function must be string and every function has (np.) before the function except for Power function use (x**2) insted of (np.pow(x,2)) as (pow(x,2)) is not exist in numpy library and normal varibles are written as normal without (np.)examples{x*np.sin(x)-x*x, 1/x**2, np.cosh(x)*y*np.sin(y)}d
 def Exact(f,ax,bx,ay,by,az,bz,numberOfVariables):
+    f.replace("exp", "np.exp")
+    f.replace("log", "np.log")
     if(numberOfVariables==1):
         fe = lambda x: eval(f)
         exact=integrate.quad(fe, ax, bx)
@@ -63,8 +65,11 @@ def Exact(f,ax,bx,ay,by,az,bz,numberOfVariables):
         exact=integrate.tplquad(fe, ax, bx, lambda x: ay, lambda x: by, lambda x,y:az, lambda x,y:bz)
         exact=exact[0]
         return exact
+
 def myfun(F,x1,x2,y1,y2,N):
     f=F
+    f.replace("exp", "np.exp")
+    f.replace("log", "np.log")
     ax=x1
     bx=x2
     numberOfVariables=1
@@ -103,7 +108,7 @@ def myfun(F,x1,x2,y1,y2,N):
     #ci -> c[n-2][i+1]
     c[0][0]=1
     c[0][1]=1
-    c[1][0]=0.8888888888888888	
+    c[1][0]=0.8888888888888888
     c[1][1]=0.5555555555555556
     c[1][2]=0.5555555555555556
     c[2][0]=0.6521451548625461
