@@ -676,18 +676,16 @@ def PDE():
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
-    Length = 0
-    temp_to_test = 0
-    inputs = []
-    result = []
-    n = 0
-    choice = 0
-    iterations = 0
-    StoppingCriteria = 0.0
-    w = 1
-
     if request.method == 'POST':
-
+        Length = 0
+        temp_to_test = 0
+        inputs = []
+        result = []
+        n = 0
+        choice = 0
+        iterations = 0
+        StoppingCriteria = 0.0
+        w = 1
         temp_to_test = request.form['Stopping Criteria']
         if not temp_to_test == '':
             StoppingCriteria = float(request.form['Stopping Criteria'])
@@ -869,16 +867,13 @@ def EigenvalueProblem():
 def sfvideo():
     return render_template('sfvideo.html', title='Surface Fitting Instructions', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
 
-
 @app.route("/leastsquarevideo")
 def leastsquarevideo():
     return render_template('leastsquarevideo.html', title='Least Square Instructions', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
 
-
 @app.route("/eigenvideo")
 def eigenvideo():
     return render_template('eigenvideo.html', title='Eigen Value Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
-
 
 @app.route("/linearvideo")
 def linearvideo():
@@ -888,10 +883,17 @@ def linearvideo():
 def nonlinearvideo():
     return render_template('nonlinearvideo.html', title='Nonlinear System Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
-
 @app.route("/differentiationvideo")
 def differentiationvideo():
     return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
+
+@app.route("/polynomialvideo")
+def polynomialvideo():
+        return render_template('polynomialvideo.html', title='Polynomial Instructions', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/odekuttavideo")
+def odekuttavideo():
+        return render_template('odekuttavideo.html', title='ODE Runge-Kutta Instructions', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
 
 if __name__ == '__main__':
