@@ -433,7 +433,7 @@ def ODEEH():
         temp_to_test = float(request.form['x'])
         if not temp_to_test == '':
             List_initial_values[0] = float(temp_to_test)
-        if (Method==1 and (Eqs_No==1 or Eqs_No==2 or Eqs_No==3 )) or (Method==2 and O_Dim==1 and Eqs_No==1) or (Method==2 and (O_Dim==2 or O_Dim==3)):
+        if (Method==1 and (Eqs_No==1 or Eqs_No==2 or Eqs_No==3 )) or (Method==2 and O_Dim==1 and (Eqs_No==1 or Eqs_No==2)) or (Method==2 and (O_Dim==2 or O_Dim==3)):
             temp_to_test = float(request.form['y'])
             if not temp_to_test == '':
                 List_initial_values[1] = float(temp_to_test)
