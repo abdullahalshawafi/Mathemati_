@@ -1,5 +1,6 @@
 * {
 	box-sizing: content-box;
+	transition: 0s;
 }
 
 body {
@@ -216,7 +217,7 @@ a {
 .Rectangle_8 {
 	position: absolute;
 	z-index: 2;
-	overflow: visible;
+	overflow: hidden;
 	background: #3C3C3C;
 	width: 25.25vw;
 	height: 5.66vw;
@@ -230,13 +231,28 @@ a {
 	color: rgba(255,255,255,1);
 	padding: 1vw;
 	border-radius: 4vw;
-	transition: 0.4s;
 	cursor: pointer;
+	transition: 1s all ease;
+}
 
+.Rectangle_8::before {
+	background: #1ffa;
+	content: "";
+	position: absolute;
+	z-index: -1;
+	width: 25.25vw;
+	height: 0;
+	left: 0px;
+	top: 0px;
+	transition: all 0.2s ease;
+}
+
+.Rectangle_8:hover::before {
+	height: 5.66vw;
 }
 
 .Rectangle_8:hover {
-    animation: hover1 0.2s forwards 0.2s ease-in-out;
+    animation: hover1 0.2s forwards 0s ease-in-out;
 }
 
 @keyframes hover1{
@@ -245,8 +261,7 @@ a {
         }
     100%{
         transform: rotate(0) scale(1.05);
-        color: #1ffa;
-        box-shadow: 1px 1px 15px #1ffa, -1px -1px 15px #1ffa ;
+        box-shadow: 1px 1px 15px #11aaee, -1px -1px 15px #11aaee ;
         }
 }
 
