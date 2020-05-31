@@ -128,6 +128,13 @@ def SplineInterpolation():
     else:
         return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
+@app.route("/BilinearInterpolation", methods=['GET', 'POST'])
+def BilinearInterpolation():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+
 @app.route("/LeastSquareReg", methods=['GET', 'POST'])
 def LeastSquareReg():
     if request.method == 'POST':

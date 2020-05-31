@@ -13,9 +13,6 @@
       href="https://fonts.googleapis.com/css2?family=Radley:ital@1&display=swap"
       rel="stylesheet"
     />
-    <script src="{{url_for('static', filename='js/Script1.js')}}"></script>
-    <script src="{{url_for('static', filename='js/Script2.js')}}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
       * {
         box-sizing: content-box;
@@ -26,6 +23,10 @@
       }
     </style>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + css) }}">
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="Script1.js"></script>
+    <script src="Script2.js"></script>
     <title>{{title}}</title>
   </head>
   <body>
@@ -57,6 +58,7 @@
             <div class="dropdown_content">
               <a href="{{url_for('PolynomialInterpolation')}}">Polynomial Int.</a>
               <a href="{{url_for('SplineInterpolation')}}">Spline Int.</a>
+              <a href="{{url_for('BilinearInterpolation')}}">Bilinear Int.</a>
               <a href="{{url_for('LeastSquareReg')}}">Least Square Reg.</a>
               <a href="{{url_for('SurfaceFitting')}}">Surface Fitting</a>
             </div>
