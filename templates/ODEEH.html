@@ -145,257 +145,257 @@
 					{% endif %}
 				</div>
 			</div>
-			<form action="{{url_for('ODEEH')}}" method="POST">
-				<div id="ExTab">
-					<svg class="Rectangle_100">
-						<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.49vw" ry="1.49vw" x="0" y="0" width="21.48vw" height="4vw">
-						</rect>
-					</svg>
-					<div id="Yexact">
-						<span>y<span style="font-size: 1vw">Exact</span> (x) =</span>
-					</div>
-					<input type="text" class="Rectangle_Ex" name="yex"/>
+			<div id="ExTab">
+				<form action="{{url_for('ODEEH')}}" method="POST">
+				<svg class="Rectangle_100">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.49vw" ry="1.49vw" x="0" y="0" width="21.48vw" height="4vw">
+					</rect>
+				</svg>
+				<div id="Yexact">
+					<span>y<span style="font-size: 1vw">Exact</span> (x) =</span>
 				</div>
+				<input type="text" class="Rectangle_Ex" name="yex"/>
+			</div>
 
-				<div id="Answer">
-					{% if results and Method==1 and (num_eqs ==1) %}
-					 <textarea class="Rectangle_9" disabled>> Outputs: x,y and εs%
-						 {% for i in range((iterations)-0) %}
-						 >> at x ={{ results[7][i]}} -->
-						       y= {{ results[8][i]}},
-						       εs% = {{results[10][i]}}%
-						 ---
-						 {% endfor %}
-					 </textarea>
-					{% elif results and Method==1 and (num_eqs ==2) %}
-					 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z and εs%
+			<div id="Answer">
+				{% if results and Method==1 and (num_eqs ==1) %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y and εs%
+					 {% for i in range((iterations)-0) %}
+					 >> at x ={{ results[7][i]}} -->
+					       y= {{ results[8][i]}},
+					       εs% = {{results[10][i]}}%
+					 ---
+					 {% endfor %}
+				 </textarea>
+				{% elif results and Method==1 and (num_eqs ==2) %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z and εs%
 
-						 >> at x ={{ results[1]}} -->
-						       y= {{ results[0]}},
-						       z= {{ results[2]}},
-						 εs % (y) = {{results[5]}}%,
-						 εs % (z) = {{results[6]}}%,
-						 ---
+					 >> at x ={{ results[1]}} -->
+					       y= {{ results[0]}},
+					       z= {{ results[2]}},
+					 εs % (y) = {{results[5]}}%,
+					 εs % (z) = {{results[6]}}%,
+					 ---
 
-					 </textarea>
-					{% elif results and Method==1 and (num_eqs ==3) %}
-					 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z,t and εs%
+				 </textarea>
+				{% elif results and Method==1 and (num_eqs ==3) %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z,t and εs%
 
-						 >> at x ={{ results[1]}} -->
-						       y= {{ results[0]}},
-						       z= {{ results[2]}},
-						       t= {{ results[3]}},
-						 εs % (y) = {{results[5]}}%,
-						 εs % (z) = {{results[6]}}%,
-						 εs % (t) = {{results[4]}}%,
-						 ---
+					 >> at x ={{ results[1]}} -->
+					       y= {{ results[0]}},
+					       z= {{ results[2]}},
+					       t= {{ results[3]}},
+					 εs % (y) = {{results[5]}}%,
+					 εs % (z) = {{results[6]}}%,
+					 εs % (t) = {{results[4]}}%,
+					 ---
 
-					 </textarea>
-					{% elif results and Method==2 and ODE_dim==1 and num_eqs==1 %}
-					 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y and εs%
+				 </textarea>
+				{% elif results and Method==2 and ODE_dim==1 and num_eqs==1 %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y and εs%
 
-						 {% for i in range((iterations)-0) %}
-						 >> at i ={{ results[1][i]}} -->
-						       y= {{ results[2][i]}},
-						       εs% = {{results[4][i]}}%
-						 ---
-						 {% endfor %}
+					 {% for i in range((iterations)-0) %}
+					 >> at i ={{ results[1][i]}} -->
+					       y= {{ results[2][i]}},
+					       εs% = {{results[4][i]}}%
+					 ---
+					 {% endfor %}
 
-					 </textarea>
-					{% elif results and Method==2 and ODE_dim==1 and num_eqs==2 %}
-					 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,z and εs%
+				 </textarea>
+				{% elif results and Method==2 and ODE_dim==1 and num_eqs==2 %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,z and εs%
 
-						 {% for i in range((iterations)-0) %}
-						 >> at i ={{ results[1][i]}} -->
-						       y= {{ results[2][i]}},
-						       z={{ results[3][i]}},
-						       εs% ->y = {{results[4][i]}}%,
-						       εs% ->z= {{ results[5][i]}}%,
-						 ---
-						 {% endfor %}
+					 {% for i in range((iterations)-0) %}
+					 >> at i ={{ results[1][i]}} -->
+					       y= {{ results[2][i]}},
+					       z={{ results[3][i]}},
+					       εs% ->y = {{results[4][i]}}%,
+					       εs% ->z= {{ results[5][i]}}%,
+					 ---
+					 {% endfor %}
 
-					 </textarea>
-					{% elif results and Method==2 and ODE_dim==2  %}
-					 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y' and εs%
+				 </textarea>
+				{% elif results and Method==2 and ODE_dim==2  %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y' and εs%
 
-						 {% for i in range((iterations)-0) %}
-						 >> at i ={{ results[1][i]}} -->
-						       y= {{ results[2][i]}},
-						       y'={{ results[6][i]}},
-						       εs% ->y = {{results[4][i]}}
-						 ---
-						 {% endfor %}
+					 {% for i in range((iterations)-0) %}
+					 >> at i ={{ results[1][i]}} -->
+					       y= {{ results[2][i]}},
+					       y'={{ results[6][i]}},
+					       εs% ->y = {{results[4][i]}}
+					 ---
+					 {% endfor %}
 
-					 </textarea>
-					{% elif results and Method==2 and ODE_dim==3  %}
-					 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y',y" and εs%
+				 </textarea>
+				{% elif results and Method==2 and ODE_dim==3  %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y',y" and εs%
 
-						 {% for i in range((iterations)-0) %}
-						 >> at i ={{ results[1][i]}} -->
-						       y= {{ results[2][i]}},
-						       y'={{ results[6][i]}},
-						       y"={{ results[7][i]}},
-						       εs% ->y = {{results[4][i]}}%
-						 ---
-						 {% endfor %}
+					 {% for i in range((iterations)-0) %}
+					 >> at i ={{ results[1][i]}} -->
+					       y= {{ results[2][i]}},
+					       y'={{ results[6][i]}},
+					       y"={{ results[7][i]}},
+					       εs% ->y = {{results[4][i]}}%
+					 ---
+					 {% endfor %}
 
-					 </textarea>
-					{% else %}
-					 <textarea class="Rectangle_9" disabled>> Outputs: ..
-					 </textarea>
-					 {% endif %}
-					<div class="Rectangle_9over"> </div>
-				</div>
-				<div id="LeftTap">
-					<svg class="Rectangle_3">
-						<rect fill="rgba(60,60,60,1)" id="Rectangle_3" rx="1.49vw" ry="1.49vw" x="0" y="0" width="22.98vw" height="35.28vw">
-						</rect>
+				 </textarea>
+				{% else %}
+				 <textarea class="Rectangle_9" disabled>> Outputs: ..
+				 </textarea>
+				 {% endif %}
+				<div class="Rectangle_9over"> </div>
+			</div>
+			<div id="LeftTap">
+				<svg class="Rectangle_3">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_3" rx="1.49vw" ry="1.49vw" x="0" y="0" width="22.98vw" height="35.28vw">
+					</rect>
+				</svg>
+				<svg class="Rectangle_2">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_2" rx="1.49vw" ry="1.49vw" x="0" y="0" width="7.06vw" height="4.2vw">
+					</rect>
+				</svg>
+				<svg class="Path_1" viewBox="127.353 288 21.742 20.791">
+					<path fill="rgba(60,60,60,1)" id="Path_1" d="M 127.3529815673828 288 C 139.6577301025391 288.034423828125 149.3477172851563 294.8020629882813 149.0894622802734 306.1839294433594 C 148.8312377929688 317.5657653808594 149.0894622802734 288 149.0894622802734 288 L 127.3529815673828 288 Z">
+					</path>
+				</svg>
+				<svg class="Path_2" viewBox="127.353 288 21.742 20.791">
+					<path fill="rgba(60,60,60,1)" id="Path_2" d="M 149.0945129394531 288 C 136.7897644042969 288.034423828125 127.0997924804688 294.8020629882813 127.358024597168 306.1839294433594 C 127.6162490844727 317.5657653808594 127.358024597168 288 127.358024597168 288 L 149.0945129394531 288 Z">
+					</path>
+				</svg>
+				<svg class="Rectangle_4">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.49vw" ry="1.49vw" x="0" y="0" width="3.9vw" height="15.039vw">
+					</rect>
+				</svg>
+				<div id="System">
+					<svg class="Ellipse_3_bv">
+						<radialGradient id="Ellipse_3_bv" spreadMethod="pad" x1="0" x2="0" y1="0" y2="0">
+							<stop offset="0" stop-color="#151515" stop-opacity="1"></stop>
+							<stop offset="1" stop-color="#1c1c1c" stop-opacity="0"></stop>
+						</radialGradient>
+						<ellipse fill="url(#Ellipse_3_bv)" id="Ellipse_3_bv" rx="1.725vw" ry="1.82vw" cx="1.725vw" cy="1.82vw">
+						</ellipse>
 					</svg>
-					<svg class="Rectangle_2">
-						<rect fill="rgba(60,60,60,1)" id="Rectangle_2" rx="1.49vw" ry="1.49vw" x="0" y="0" width="7.06vw" height="4.2vw">
-						</rect>
-					</svg>
-					<svg class="Path_1" viewBox="127.353 288 21.742 20.791">
-						<path fill="rgba(60,60,60,1)" id="Path_1" d="M 127.3529815673828 288 C 139.6577301025391 288.034423828125 149.3477172851563 294.8020629882813 149.0894622802734 306.1839294433594 C 148.8312377929688 317.5657653808594 149.0894622802734 288 149.0894622802734 288 L 127.3529815673828 288 Z">
+					<svg class="Polygon_23" viewBox="2.845 2.887 26.917 31.081">
+						<path fill="transparent" stroke="rgba(255,109,28,1)" stroke-width="0.4vw" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Polygon_23" d="M 2.844559907913208 10.65699577331543 L 16.30296897888184 2.886750221252441 L 29.7613353729248 10.65699577331543 L 29.7613353729248 26.1973819732666 L 16.30296897888184 33.96767807006836 L 2.844559907913208 26.1973819732666 L 2.844559907913208 10.65699577331543 Z">
 						</path>
 					</svg>
-					<svg class="Path_2" viewBox="127.353 288 21.742 20.791">
-						<path fill="rgba(60,60,60,1)" id="Path_2" d="M 149.0945129394531 288 C 136.7897644042969 288.034423828125 127.0997924804688 294.8020629882813 127.358024597168 306.1839294433594 C 127.6162490844727 317.5657653808594 127.358024597168 288 127.358024597168 288 L 149.0945129394531 288 Z">
-						</path>
-					</svg>
-					<svg class="Rectangle_4">
-						<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.49vw" ry="1.49vw" x="0" y="0" width="3.9vw" height="15.039vw">
-						</rect>
-					</svg>
-					<div id="System">
-						<svg class="Ellipse_3_bv">
-							<radialGradient id="Ellipse_3_bv" spreadMethod="pad" x1="0" x2="0" y1="0" y2="0">
-								<stop offset="0" stop-color="#151515" stop-opacity="1"></stop>
-								<stop offset="1" stop-color="#1c1c1c" stop-opacity="0"></stop>
-							</radialGradient>
-							<ellipse fill="url(#Ellipse_3_bv)" id="Ellipse_3_bv" rx="1.725vw" ry="1.82vw" cx="1.725vw" cy="1.82vw">
-							</ellipse>
-						</svg>
-						<svg class="Polygon_23" viewBox="2.845 2.887 26.917 31.081">
-							<path fill="transparent" stroke="rgba(255,109,28,1)" stroke-width="0.4vw" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" shape-rendering="auto" id="Polygon_23" d="M 2.844559907913208 10.65699577331543 L 16.30296897888184 2.886750221252441 L 29.7613353729248 10.65699577331543 L 29.7613353729248 26.1973819732666 L 16.30296897888184 33.96767807006836 L 2.844559907913208 26.1973819732666 L 2.844559907913208 10.65699577331543 Z">
-							</path>
-						</svg>
+				</div>
+			</div>
+			<div id="LeffTapCon">
+				<form action="{{url_for('ODEEH')}}" method="POST">
+				<div id="Newton_Raphson">
+					<input type="radio" id="Euler" name="Method" value="Euler" checked onchange="DimInput()"><label for="Euler"><span>Euler</span></label>
+				</div>
+				<div id="Fixed_Point">
+					<input type="radio" id="Heun" name="Method" value="Heun" onchange="DimInput()"><label for="Heun"><span>Heun</span></label>
+				</div>
+				<div class="ODEDIM" style="filter: contrast(0.2);">
+					<div id="ID1_ODEs_">
+						<input type="radio" id="1ODEs" name="ODim" value="1" disabled onchange="DimInput()"><label for="1ODEs"><span>1<span style="font-size: 1.2vw">ODE</span></span></label>
+					</div>
+					<div id="ID2_ODEs_">
+						<input type="radio" id="2ODEs" name="ODim" value="2" disabled onchange="DimInput()"><label for="2ODEs"><span>2<span style="font-size: 1.2vw">ODEs</span></span></label>
+					</div>
+					<div id="ID3_ODEs_">
+						<input type="radio" id="3ODEs" name="ODim" value="3" disabled onchange="DimInput()"><label for="3ODEs"><span>3<span style="font-size: 1.2vw">ODEs</span></span></label>
 					</div>
 				</div>
-				<div id="LeffTapCon">
-					<div id="Newton_Raphson">
-						<input type="radio" id="Euler" name="Method" value="Euler" checked onchange="DimInput()"><label for="Euler"><span>Euler</span></label>
-					</div>
-					<div id="Fixed_Point">
-						<input type="radio" id="Heun" name="Method" value="Heun" onchange="DimInput()"><label for="Heun"><span>Heun</span></label>
-					</div>
-					<div class="ODEDIM" style="filter: contrast(0.2);">
-						<div id="ID1_ODEs_">
-							<input type="radio" id="1ODEs" name="ODim" value="1" disabled onchange="DimInput()"><label for="1ODEs"><span>1<span style="font-size: 1.2vw">ODE</span></span></label>
-						</div>
-						<div id="ID2_ODEs_">
-							<input type="radio" id="2ODEs" name="ODim" value="2" disabled onchange="DimInput()"><label for="2ODEs"><span>2<span style="font-size: 1.2vw">ODEs</span></span></label>
-						</div>
-						<div id="ID3_ODEs_">
-							<input type="radio" id="3ODEs" name="ODim" value="3" disabled onchange="DimInput()"><label for="3ODEs"><span>3<span style="font-size: 1.2vw">ODEs</span></span></label>
-						</div>
-					</div>
 
-					<div id="ID1_eqs_">
-						<input type="radio" id="1eqs" name="Dim" value="1" onchange="DimInput()"><label for="1eqs"><span>1eq</span></label>
-					</div>
-					<div id="ID2_eqs_">
-						<input type="radio" id="2eqs" name="Dim" value="2" onchange="DimInput()"><label for="2eqs"><span>2eqs</span></label>
-					</div>
-					<div id="ID3_eqs_">
-						<input type="radio" id="3eqs" name="Dim" value="3" onchange="DimInput()"><label for="3eqs"><span>3eqs</span></label>
-					</div>
+				<div id="ID1_eqs_">
+					<input type="radio" id="1eqs" name="Dim" value="1" onchange="DimInput()"><label for="1eqs"><span>1eq</span></label>
+				</div>
+				<div id="ID2_eqs_">
+					<input type="radio" id="2eqs" name="Dim" value="2" onchange="DimInput()"><label for="2eqs"><span>2eqs</span></label>
+				</div>
+				<div id="ID3_eqs_">
+					<input type="radio" id="3eqs" name="Dim" value="3" onchange="DimInput()"><label for="3eqs"><span>3eqs</span></label>
+				</div>
 
-					<div id="Number_of_iterations__">
-						Number of steps (n) =
-					</div>
-					<div id="Stopping_Criteria__s___">
-						Step size (h) =
-					</div>
-					<div id="Atx">
-						<span>Evaluate at: x =</span>
-					</div>
+				<div id="Number_of_iterations__">
+					Number of steps (n) =
+				</div>
+				<div id="Stopping_Criteria__s___">
+					Step size (h) =
+				</div>
+				<div id="Atx">
+					<span>Evaluate at: x =</span>
+				</div>
 
 
-					<input type="text" class="Path_6" name="Stopping Criteria" />
-					<input type="text" class="Rectangle_18" name="Number of iterations" />
-					<input type="text" class="Path_62" name="Atx"/>
-					<input type="text" class="Y1" style="text-align: left" name="Y1" />
-					<input type="text" class="Y2" style="text-align: left" name="Y2"/>
-					<input type="text" class="Y3" style="text-align: left" name="Y3"/>
-					<input type="text" class="Z1" style="text-align: left" name="Z1"/>
-					<input type="text" class="T1" style="text-align: left" name="T1"/>
-					<div id="y1">
-						<span>y' (z, y, t) =</span>
-					</div>
-					<div id="y2">
-						<span>y" (x, y, y') =</span>
-					</div>
-					<div id="y3">
-						<span>y"'(x,y,y',y")=</span>
-					</div>
-					<div id="z1">
-						<span>z' (z, y, t) =</span>
-					</div>
-					<div id="t1">
-						<span>t' (z, y, t) =</span>
-					</div>
+				<input type="text" class="Path_6" name="Stopping Criteria" />
+				<input type="text" class="Rectangle_18" name="Number of iterations" />
+				<input type="text" class="Path_62" name="Atx"/>
+				<input type="text" class="Y1" style="text-align: left" name="Y1" />
+				<input type="text" class="Y2" style="text-align: left" name="Y2"/>
+				<input type="text" class="Y3" style="text-align: left" name="Y3"/>
+				<input type="text" class="Z1" style="text-align: left" name="Z1"/>
+				<input type="text" class="T1" style="text-align: left" name="T1"/>
+				<div id="y1">
+					<span>y' (z, y, t) =</span>
+				</div>
+				<div id="y2">
+					<span>y" ( y, y') =</span>
+				</div>
+				<div id="y3">
+					<span>y"'(y,y',y")=</span>
+				</div>
+				<div id="z1">
+					<span>z' (z, y, t) =</span>
+				</div>
+				<div id="t1">
+					<span>t' (z, y, t) =</span>
+				</div>
 
 
-					<!--<input type="text" class="Rectangle_19" style="text-align: left" onfocusout="addtograph()" />-->
-					<!--<input type="text" class="Rectangle_29" style="text-align: left" onfocusout="addtograph()" />-->
-					<!--<input type="text" class="Rectangle_30" style="text-align: left" />-->
+				<!--<input type="text" class="Rectangle_19" style="text-align: left" onfocusout="addtograph()" />-->
+				<!--<input type="text" class="Rectangle_29" style="text-align: left" onfocusout="addtograph()" />-->
+				<!--<input type="text" class="Rectangle_30" style="text-align: left" />-->
 
-					<input type="text" class="Rectangle_32I" name="x"/> <!--x-->
-					<input type="text" class="Rectangle_33I" name="y"/> <!--y-->
-					<input type="text" class="Rectangle_332I" name="ydash" /> <!--y'-->
-					<input type="text" class="Rectangle_34I" name="z" /> <!--z-->
-					<input type="text" class="Rectangle_35I" name="t"/> <!--t-->
-					<input type="text" class="Rectangle_352I" name="yddash"/> <!--y"-->
+				<input type="text" class="Rectangle_32I" name="x"/> <!--x-->
+				<input type="text" class="Rectangle_33I" name="y"/> <!--y-->
+				<input type="text" class="Rectangle_332I" name="ydash" /> <!--y'-->
+				<input type="text" class="Rectangle_34I" name="z" /> <!--z-->
+				<input type="text" class="Rectangle_35I" name="t"/> <!--t-->
+				<input type="text" class="Rectangle_352I" name="yddash"/> <!--y"-->
 
-					<div id="x___I">
-						<span>x</span><span style="font-size:1.2vw;">o</span><span> = </span>
-					</div>
-					<div id="y___I">
-						<span>y</span><span style="font-size:1.2vw;">o</span><span> = </span>
-					</div>
-					<div id="y2___I">
-						<span>y'</span><span style="font-size:1.2vw;">o</span><span>= </span>
-					</div>
-					<div id="z___I">
-						<span>z</span><span style="font-size:1.2vw;">o</span><span> = </span>
-					</div>
-					<div id="_s___I">
-						<span>t</span><span style="font-size:1.2vw;">o</span><span> = </span>
-					</div>
-					<div id="_s2___I">
-						<span>y"</span><span style="font-size:1.2vw;">o</span><span>= </span>
-					</div>
+				<div id="x___I">
+					<span>x</span><span style="font-size:1.2vw;">o</span><span> = </span>
+				</div>
+				<div id="y___I">
+					<span>y</span><span style="font-size:1.2vw;">o</span><span> = </span>
+				</div>
+				<div id="y2___I">
+					<span>y'</span><span style="font-size:1.2vw;">o</span><span>= </span>
+				</div>
+				<div id="z___I">
+					<span>z</span><span style="font-size:1.2vw;">o</span><span> = </span>
+				</div>
+				<div id="_s___I">
+					<span>t</span><span style="font-size:1.2vw;">o</span><span> = </span>
+				</div>
+				<div id="_s2___I">
+					<span>y"</span><span style="font-size:1.2vw;">o</span><span>= </span>
+				</div>
 
-					<div class="Rectangle_28">
-						<div class="button-div">
-							<button type="submit" class="table-button" id="calc">
-								<img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" fill="none" aria-hidden="true">
-							</button>
-							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<button class="table-button" id="save">
-								<img src="{{url_for('static', filename='Assets/Save.svg')}}">
-							</button>
-							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<button class="table-button" id="load">
-								<img src="{{url_for('static', filename='Assets/Load.svg')}}">
-							</button>
-							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<button class="table-button" id="clear">
-								<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
-							</button>
-						</div>
-					</form>
+				<div class="Rectangle_28">
+					<div class="button-div">
+						<button class="table-button" id="calc">
+							<img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" fill="none" aria-hidden="true">
+						</button>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button class="table-button" id="save">
+							<img src="{{url_for('static', filename='Assets/Save.svg')}}">
+						</button>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button class="table-button" id="load">
+							<img src="{{url_for('static', filename='Assets/Load.svg')}}">
+						</button>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button class="table-button" id="clear">
+							<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
+						</button>
+					</div>
 				</div>
 				<!--<div id="F_x_y_z____0__">
 					F(x,y,z) = 0 =

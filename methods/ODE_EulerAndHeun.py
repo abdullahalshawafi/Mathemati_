@@ -188,13 +188,13 @@ def Solve_Euler(num_eqs,eq1,eq2,eq3,xnod,ynod,znod,tnod,X_at,h_Or_n,h,n):
       # Initial Values
       if (num_eqs == 1):
         equation = str(eq1)
-        x0 =xnod
+        x0 =float(xnod)
         #x0 = float("{:.1f}".format(x0))
-        y0 =ynod
+        y0 =float(ynod)
         #y0 = float("{:.1f}".format(y0))
         # *******************************
         # Value of x at which we need approximation
-        xt =X_at
+        xt =float(X_at)
         #xt = float("{:.1f}".format(xt))  # round to one decimal
         # ***************************************
         choice = str(h_Or_n)
@@ -202,7 +202,7 @@ def Solve_Euler(num_eqs,eq1,eq2,eq3,xnod,ynod,znod,tnod,X_at,h_Or_n,h,n):
             h =h
             n = 0
         elif choice == "n":
-            n =n
+            n =float(n)
             h = float(xt - x0) / float(n)
             # **********************************
         (y_out, x_out,List_x_values,List_y_values,List_approx_y_error,y_error) = euler(Error_num_steps,equation, x0, y0, h, xt)
@@ -457,16 +457,16 @@ def Heun1_2(eq1, eq2, x0, y0, z0, xf, h, m, n, e):
         y1 = 0
         z2 = y0
         z1 = 0
-        r01 = f1.subs({y: y0, z: z0})
-        r02 = f2.subs({y: y0, z: z0})
+        r01 = f1.subs({x:x0,y: y0, z: z0})
+        r02 = f2.subs({x:x0,y: y0, z: z0})
         r1 = r01
         r2 = r02
         if (m == 'n'):
             for i in range(n):
                 y2 = y0 + h * r1
                 z2 = z0 + h * r2
-                r1 = (r01 + f1.subs({y: y2, z: z2})) / 2.0
-                r2 = (r02 + f2.subs({y: y2, z: z2})) / 2.0
+                r1 = (r01 + f1.subs({x:xf,y: y2, z: z2})) / 2.0
+                r2 = (r02 + f2.subs({x:xf,y: y2, z: z2})) / 2.0
                 ea1 = fabs((y2 - y1) / y2) * 100
                 ea2 = fabs((z2 - z1) / z2) * 100
                 #print("At i={} --> y={} ,  Ea%={}%".format(i + 1, y2, ea1))
@@ -485,8 +485,8 @@ def Heun1_2(eq1, eq2, x0, y0, z0, xf, h, m, n, e):
             while ea1 > e and ea2 > e:
                 y2 = y0 + h * r1
                 z2 = z0 + h * r2
-                r1 = (r01 + f1.subs({y: y2, z: z2})) / 2.0
-                r2 = (r02 + f2.subs({y: y2, z: z2})) / 2.0
+                r1 = (r01 + f1.subs({x:xf,y: y2, z: z2})) / 2.0
+                r2 = (r02 + f2.subs({x:xf,y: y2, z: z2})) / 2.0
                 ea1 = fabs((y2 - y1) / y2) * 100
                 ea2 = fabs((z2 - z1) / z2) * 100
                 #print("At i={} --> y={} ,  Ea%={}%".format(i, y2, ea1))
