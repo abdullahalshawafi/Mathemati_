@@ -332,7 +332,7 @@ a {
 	color: rgba(255,255,255,1);
 }
 
-#_s________________________ {
+#es {
 	position: absolute;
 	left: 0.3255208333vw;
 	top: 6.0546875vw;
@@ -433,7 +433,7 @@ a {
 
 #_________________________ {
 	position: absolute;
-	left: 0.4557291667vw;
+	left: -0.544271vw;
 	top: 3.64583333vw;
 	overflow: visible;
 	width: 6.901041667vw;
@@ -442,8 +442,9 @@ a {
 	font-family: Radley;
 	font-style: italic;
 	font-weight: normal;
-	font-size: 1.171875vw;
+	font-size: 2.171875vw;
 	color: rgba(255,255,255,1);
+	padding: 0.5vw;
 }
 
 #_s_________________________ {
@@ -500,10 +501,11 @@ a {
 .Rectangle_14_bc {
 	position: absolute;
 	overflow: visible;
-	width: 5.533854167vw;
+	width: 7.533854vw;
 	height: 1.822916667vw;
-	left: 4.557291667vw;
+	left: 2.557292vw;
 	top: 3.77604167vw;
+	margin: 1vw;
 }
 
 #Group_4 {
@@ -547,7 +549,7 @@ a {
 
 #_________________________bg {
 	position: absolute;
-	left: 0.1302083333vw;
+	left: -0.544271vw;
 	top: 3.77604167vw;
 	overflow: visible;
 	width: 6.901041667vw;
@@ -556,8 +558,9 @@ a {
 	font-family: Radley;
 	font-style: italic;
 	font-weight: normal;
-	font-size: 1.171875vw;
+	font-size: 2.171875vw;
 	color: rgba(255,255,255,1);
+	padding: 0.5vw;
 }
 
 #_s_________________________bh {
@@ -614,10 +617,11 @@ a {
 .Rectangle_14_bm {
 	position: absolute;
 	overflow: visible;
-	width: 5.533854167vw;
+	width: 7.533854vw;
 	height: 1.7578125vw;
-	left: 4.231770833vw;
+	left: 2.557292vw;
 	top: 3.9713vw;
+	margin: 1vw;
 }
 
 #LeftTap {
@@ -1034,7 +1038,7 @@ input[type=radio] {
 	height: 1.6vw;
 	margin-left: 0;
 	margin-right: 0.6vw;
-	filter: invert(1);
+	filter: invert(1) hue-rotate(35deg) contrast(1.4);
 }
 
 input[type=text] {

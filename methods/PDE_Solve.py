@@ -11,8 +11,9 @@ from sympy import symbols, solve
 import math
 from decimal import *
 from fractions import Fraction
-import matplotlib.pylab as plt
-#%matplotlib inline
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use('Agg')
 x = symbols('x')
 y = symbols('y')
 
@@ -201,7 +202,7 @@ class Grid():
         return y_f
 
     def Plot_Region(self):
-        plt.plt.style.use('dark_background')
+        plt.style.use('dark_background')
         plt.figure(figsize=(18,9),dpi =200)
         for bound in self.boundries:
             x_data = np.linspace(bound.lx, bound.mx, 10000)
@@ -545,6 +546,6 @@ class PDE_Solver :
         for p in self.list_points:
             if p.x==x and p.y==y:
                 Point=p
-                break
-        Sol_Vector=self.Solve()
-        return Sol_Vector[Point.index]
+                Sol_Vector=self.Solve()
+                return Sol_Vector[Point.index]
+        raise ValueError('Invaid Point')

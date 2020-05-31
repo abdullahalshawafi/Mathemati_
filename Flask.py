@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, jsonify
 from methods.PolynomialInterpolation import Newton, LaGrange
 from methods.Bezier import bezier_curve_bin
 from methods.SplineInterpolation import linear_spline, quad_spline,cubic_spline, get_interval_list
@@ -16,6 +16,7 @@ from methods.LinearSystems import solve_linear_systems
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
+from methods.ODE_EulerAndHeun  import Solve_Euler ,Solve_Heun
 import numpy as np
 
 app = Flask(__name__)
@@ -71,7 +72,7 @@ def PolynomialInterpolation():
 
 
         NumPoints=len(X_Points)
-        if Method and NumPoints > 0 and (Degree>-1 or Method=='Lagrange') and (NumPoints)>= (Degree+1):
+        if ((Method=='Lagrange' and NumPoints > 0) or (Method=='Newton' and NumPoints > 1) ) and (Degree>-1 or Method=='Lagrange') and (NumPoints)>= (Degree+1):
 
             X_val = 0
             if Method == "Newton":
@@ -92,6 +93,10 @@ def PolynomialInterpolation():
                 Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
                 ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
                 return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
+        else:
+            return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation',
+                                   css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg",
+                                   Method=Method, PolynomialFunction="Invalid input")
         return redirect(url_for('PolynomialInterpolation'))
     else:
         return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
@@ -107,17 +112,19 @@ def SplineInterpolation():
            NumPoints +=1
 
         print(NumPoints,Numbers)
-
-        LinearSpline = linear_spline(NumPoints,Numbers)
-        IntervalList = get_interval_list(NumPoints,Numbers)
-        QuadraticSpline = quad_spline(NumPoints,Numbers)
-        CubicSpline = cubic_spline(NumPoints,Numbers)
-        print(LinearSpline)
-        print(QuadraticSpline)
-        print(CubicSpline)
-        print(IntervalList)
-        return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
-
+        if NumPoints>1:
+            LinearSpline = linear_spline(NumPoints,Numbers)
+            IntervalList = get_interval_list(NumPoints,Numbers)
+            QuadraticSpline = quad_spline(NumPoints,Numbers)
+            CubicSpline = cubic_spline(NumPoints,Numbers)
+            print(LinearSpline)
+            print(QuadraticSpline)
+            print(CubicSpline)
+            print(IntervalList)
+            return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
+        else:
+            return render_template('SplineInterpolation.html', title='Spline Interpolation',
+                                   css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg", eq="")
     else:
         return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
@@ -343,33 +350,134 @@ def Integration():
 @app.route("/ODERK", methods=['GET', 'POST'])
 def ODERK():
     if request.method == 'POST':
-        equation = ''
-        x0 = ''
-        fx0 = ''
-        h = ''
-        xn = ''
         equation = request.form['equation']
-        if equation:
-            equation = request.form['equation']
-        x0 = request.form['x0']
-        if x0:
-            x0 = float(request.form['x0'])
-        fx0 = request.form['fx0']
-        if fx0:
-            fx0 = float(request.form['fx0'])
-        h = request.form['h']
-        if h:
-            h = float(request.form['h'])
-        xn = request.form['xn']
-        if xn:
-            xn = float(request.form['xn'])
+        if not(equation):
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Equation')
 
-        result = rungeKutta(x0, fx0, xn, h, equation)
+        try:
+            x0 = float(request.form['x0'])
+            fx0 = float(request.form['fx0'])
+            h = float(request.form['h'])
+            xn = float(request.form['xn'])
+        except:
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Valid Parameters')
+
+        try:
+            result = rungeKutta(x0, fx0, xn, h, equation)
+        except:
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error =  'Can not Solve at This Point')
 
         return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
 
     else:
         return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
+
+@app.route("/ODEEH", methods=['GET', 'POST'])
+def ODEEH():
+    #*********
+    Method =1
+    O_Dim = 0
+    Eqs_No = 0
+    temp_to_test=0
+    h_or_n=''
+    iter_or_stoppingC=''
+    StoppingCriteria = 0.0
+    num_iteration=0
+    List_initial_values=['']*7 # [0]->x0 ,[1]-> y0 ,[2]->z0 ,[3]->t0 ,[4]->y'0 ,[5]->y"0 ,[6]->x_at
+    List_eqs = ['']*5 #[0]-> y',[1]->y",[2]->y"',[3]->z',[4]->t'
+    y_exact=''
+    Length = 0
+    result = []
+    #*****************************
+    if request.method == 'POST':
+        if 'Method' in request.form:
+            temp_to_test  = request.form['Method']
+            if temp_to_test=='Euler':
+                Method=1
+            if temp_to_test=='Heun':
+                Method=2
+        if 'ODim' in request.form:
+            O_Dim = int(request.form['ODim'])
+        if 'Dim' in request.form:
+            Eqs_No = int(request.form['Dim'])
+        if Method==2:
+         temp_to_test = request.form['Stopping Criteria']
+         if not temp_to_test == '':
+            StoppingCriteria = float(temp_to_test)
+            iter_or_stoppingC ='s'
+         else:
+            temp_to_test = request.form['Number of iterations']
+            if not temp_to_test == '':
+             num_iteration=int(temp_to_test)
+             iter_or_stoppingC = 'n'
+        else:
+             temp_to_test = request.form['Stopping Criteria']
+             if not temp_to_test == '':
+                 StoppingCriteria = float(temp_to_test)
+                 h_or_n = 'h'
+             else:
+                 temp_to_test = request.form['Number of iterations']
+                 if not temp_to_test == '':
+                  num_iteration = int(temp_to_test)
+                  iter_or_stoppingC = 'n'
+                  h_or_n = 'n'
+ #******************************
+        temp_to_test = float(request.form['Atx'])
+        if not temp_to_test == '':
+            List_initial_values[6] = temp_to_test  # x to evaluate at =
+        if Method==2:
+         temp_to_test = (request.form['yex'])
+         if not temp_to_test == '':
+                y_exact = temp_to_test  # func to calc exact value of y:
+    #***********
+        temp_to_test = float(request.form['x'])
+        if not temp_to_test == '':
+            List_initial_values[0] = float(temp_to_test)
+        if (Method==1 and (Eqs_No==1 or Eqs_No==2 or Eqs_No==3 )) or (Method==2 and O_Dim==1 and (Eqs_No==1 or Eqs_No==2)) or (Method==2 and (O_Dim==2 or O_Dim==3)):
+            temp_to_test = float(request.form['y'])
+            if not temp_to_test == '':
+                List_initial_values[1] = float(temp_to_test)
+        if (Method==1 and (Eqs_No==2 or Eqs_No==3))or (Method==2 and O_Dim==1 and Eqs_No==2):
+            temp_to_test = float(request.form['z'])
+            if not temp_to_test == '':
+                List_initial_values[2] = float(temp_to_test)
+        if (Method==1 and Eqs_No==3):
+            temp_to_test = float(request.form['t'])
+            if not temp_to_test == '':
+                List_initial_values[3] = float(temp_to_test)
+        if (Method==2 and (O_Dim==3 or O_Dim==2)):
+            temp_to_test = float(request.form['ydash'])
+            if not temp_to_test == '':
+                List_initial_values[4] = float(temp_to_test)
+        if (Method==2 and  O_Dim==3):
+            temp_to_test = float(request.form['yddash'])
+            if not temp_to_test == '':
+                List_initial_values[5] = float(temp_to_test)
+         #*********************************************
+        List_eqs[0] = str(request.form['Y1'])
+        if (Method == 2 and (O_Dim == 2 or O_Dim==3)):
+         List_eqs[1] = request.form['Y2']
+        if (Method == 2 and ( O_Dim == 3)):
+         List_eqs[2] = request.form['Y3']
+        if (Method == 2 and (O_Dim ==1) and Eqs_No==2) or (Method == 1 and ( Eqs_No==2 or Eqs_No==3)):
+         List_eqs[3] = request.form['Z1']
+        if(Method == 1 and Eqs_No == 3):
+         List_eqs[4] = request.form['T1']
+        if Method == 1:
+            result=Solve_Euler(Eqs_No,List_eqs[0],List_eqs[3],List_eqs[4],List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[3],List_initial_values[6],h_or_n,StoppingCriteria,num_iteration)
+            Length = len(result[8])
+        else:
+            result=Solve_Heun(O_Dim,Eqs_No,List_eqs[0],List_eqs[3],List_eqs[1], List_eqs[2],y_exact,List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[4],List_initial_values[5],List_initial_values[6],iter_or_stoppingC,num_iteration,StoppingCriteria)
+            Length=len(result[1])
+        if result:
+                return render_template('ODEEH.html', title='ODE Euler&Huen',
+                                       css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",
+                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim)
+
+        return redirect(url_for('ODEEH'))
+
+    else:
+      return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
 
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
@@ -455,170 +563,231 @@ def ODEPC():
     else:
         return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg")
 
-@app.route("/PDE", methods=['GET', 'POST'])
-def PDE():
-    if request.method == 'POST':
-        Choice="Regular"
-        Choice=request.form['Method']
-        U=''
-        if Choice == "Irregular":
+@app.route('/_background_process_PDE', methods=['POST', 'GET'])
+def background_process():
+    try:
+        Choice = request.form['Method']
+    except:
+        return jsonify(error = 'Choose a Method', U = '')
+
+    if Choice == "Irregular":
             #Taking the equation parameters
-            h=k=0
-            dxx=dyy=dx=dy=u_coeff=function=''
-            dxx=request.form['dxx']
-            dyy=request.form['dyy']
-            dx=request.form['dx']
-            dy=request.form['dy']
-            u_coeff=request.form['U_Coeff']
-            function=request.form['Function']
-            h=float(request.form['h_step'])
-            k=float(request.form['k_step'])
-            boundaries=[]
-            for i in range(12):
-             #Strings for table records :
+        #h = k = 0
+        #dxx = dyy = dx = dy = u_coeff = function = ''
+        try:
+            h = float(request.form['h_step'])
+            k = float(request.form['k_step'])
+        except:
+            return jsonify(error = 'Enter h and k', U = '')
 
-                f_str='function'+str(i)
-                x_i_str='xi'+str(i)
-                x_f_str='xf'+str(i)
-                y_i_str='yi'+str(i)
-                y_f_str='yf'+str(i)
-                u_str='u'+str(i)
-                #Parameters
-                f=request.form[f_str]
-                x_i=request.form[x_i_str]
-                x_f=request.form[x_f_str]
-                y_i=request.form[y_i_str]
-                y_f=request.form[y_f_str]
-                u=request.form[u_str]
+        dxx = request.form['dxx']
+        dyy = request.form['dyy']
+        dx = request.form['dx']
+        dy = request.form['dy']
+        u_coeff = request.form['U_Coeff']
+        function = request.form['Function']
 
-                #Check that the table record is not empty
+        if not(dxx and dyy and dx and dy and u_coeff and function):
+            return jsonify(error = 'Enter Equation', U = '')
 
-                if not f=="" and not x_i=="" and not x_f=="" and not y_i=="" and not y_f=="" and not u=="":
-                    x_i=float(request.form[x_i_str])
-                    x_f=float(request.form[x_f_str])
-                    y_i=float(request.form[y_i_str])
-                    y_f=float(request.form[y_f_str])
-                    bound=boundry(y_i,y_f,x_i,x_f,f,u)
-                    boundaries.append(bound)
-            if dxx and dyy and dx and dy and u_coeff and function :
-                grid=Grid(boundaries,h,k)
-                points=grid.get_points(grid.get_boundry_rows_points(),grid.get_boundry_cols_points())
-                pde=PDE_Solver(points,grid)
-                pde.Get_Parameters(dxx,dyy,dx,dy,u_coeff,function)
-                x_point=float(request.form['x_cordinates'])
-                y_point=float(request.form['y_cordinates'])
-                _point=point(x_point,y_point,False)
-                grid.Plot_Region()
-                U_Value=pde.Solve_At_Point(_point)
-                U=U_Value
-            else :
-                U="There is empty inputs"
-            return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U,Choice=Choice)
+        boundaries=[]
+        for i in range(12):
+         #Strings for table records :
 
-        else :
-            h=k=0
-            dxx=dyy=dx=dy=dxy=u_coeff=0
-            function=''
-            dxx=float(request.form['dxx'])
-            dyy=float(request.form['dyy'])
-            dx=float(request.form['dx'])
-            dy=float(request.form['dy'])
-            dxy=float(request.form['dxy'])
-            u_coeff=float(request.form['U_Coeff'])
-            function=request.form['Function']
-            h=float(request.form['h_step'])
-            k=float(request.form['k_step'])
-            xi_list=[]
-            xf_list=[]
-            yi_list=[]
-            yf_list=[]
-            value_list=[]
-            function_list=[]
-            boundry_counter=0
-            U=''
-            yy=0
-            Rows=0
-            Value=0
+            f_str = 'function'+str(i)
+            x_i_str = 'xi' + str(i)
+            x_f_str = 'xf' + str(i)
+            y_i_str = 'yi' + str(i)
+            y_f_str = 'yf' + str(i)
+            u_str = 'u' + str(i)
+            #Parameters
+            f = request.form[f_str]
+            x_i = request.form[x_i_str]
+            x_f = request.form[x_f_str]
+            y_i = request.form[y_i_str]
+            y_f = request.form[y_f_str]
+            u = request.form[u_str]
+
+            #Check that the table record is not empty
+
+            if not f=="" and not x_i=="" and not x_f=="" and not y_i=="" and not y_f=="" and not u=="":
+                x_i = float(request.form[x_i_str])
+                x_f = float(request.form[x_f_str])
+                y_i = float(request.form[y_i_str])
+                y_f = float(request.form[y_f_str])
+                bound = boundry(y_i, y_f, x_i, x_f, f,u)
+                boundaries.append(bound)
+        try:
+            grid = Grid(boundaries,h,k)
+            grid.Plot_Region()
+        except:
+            return jsonify(error = 'Invalid Boundaries', U = '')
+
+        try:
+            points = grid.get_points(grid.get_boundry_rows_points(),grid.get_boundry_cols_points())
+        except:
+            return jsonify(error = 'Invalid Boundaries', U = '')
+
+        pde = PDE_Solver(points,grid)
+        pde.Get_Parameters(dxx, dyy, dx, dy, u_coeff, function)
+
+        try:
+            x_point = float(request.form['x_cordinates'])
+            y_point = float(request.form['y_cordinates'])
+        except:
+            return jsonify(error = 'Enter x any y Values', U = '')
+
+        _point = point(x_point,y_point,False)
+
+        try:
+            U_Value = pde.Solve_At_Point(_point)
+        except ValueError:
+            return jsonify(error = 'Invalid Point', U = '')
+        except:
+            return jsonify(error = 'Could not Solve at This Point', U = '')
+
+        return jsonify(U = U_Value)
+    else :
+        try:
+            h = float(request.form['h_step'])
+            k = float(request.form['k_step'])
+        except:
+            return jsonify(error = 'Enter h and k', U = '')
+
+        try:
+            dxx = float(request.form['dxx'])
+            dyy = float(request.form['dyy'])
+            dx = float(request.form['dx'])
+            dy = float(request.form['dy'])
+            dxy = float(request.form['dxy'])
+            u_coeff = float(request.form['U_Coeff'])
+            function = request.form['Function']
+        except:
+            return jsonify(error = 'Enter Equation', U = '')
+
+        xi_list = []
+        xf_list = []
+        yi_list = []
+        yf_list = []
+        value_list = []
+        function_list = []
+        boundry_counter = 0
+        U = ''
+        yy = 0
+        Rows = 0
+        Value = 0
+
+        try:
             for i in range(4) :
-                f_str='function'+str(i)
-                x_i_str='xi'+str(i)
-                x_f_str='xf'+str(i)
-                y_i_str='yi'+str(i)
-                y_f_str='yf'+str(i)
-                u_str='u'+str(i)
+                f_str = 'function' + str(i)
+                x_i_str = 'xi' + str(i)
+                x_f_str = 'xf' + str(i)
+                y_i_str = 'yi' + str(i)
+                y_f_str ='yf' + str(i)
+                u_str ='u' + str(i)
                 #Parameters
-                f=request.form[f_str]
-                x_i=request.form[x_i_str]
-                x_f=request.form[x_f_str]
-                y_i=request.form[y_i_str]
-                y_f=request.form[y_f_str]
-                u=request.form[u_str]
+                f = request.form[f_str]
+                x_i = request.form[x_i_str]
+                x_f = request.form[x_f_str]
+                y_i = request.form[y_i_str]
+                y_f = request.form[y_f_str]
+                u = request.form[u_str]
                 if not f=="" and not x_i=="" and not x_f=="" and not y_i=="" and not y_f=="" and not u=="":
-                    x_i=float(request.form[x_i_str])
-                    x_f=float(request.form[x_f_str])
-                    y_i=float(request.form[y_i_str])
-                    y_f=float(request.form[y_f_str])
+                    x_i = float(request.form[x_i_str])
+                    x_f = float(request.form[x_f_str])
+                    y_i = float(request.form[y_i_str])
+                    y_f = float(request.form[y_f_str])
                     xi_list.append(x_i)
                     xf_list.append(x_f)
                     yi_list.append(y_i)
                     yf_list.append(y_f)
                     function_list.append(f)
                     value_list.append(u)
-                    boundry_counter=boundry_counter+1
+                    boundry_counter = boundry_counter + 1
 
-                elif f=="" and x_i=="" and x_f=="" and not y_i=="" and not y_f=="" and not u=="": #Open Boundary Condition
-                    yy=int(y_i)
-                    Rows=int(y_f)
-                    Value=int(u)
+                #Open Boundary Condition
+                elif f=="" and x_i=="" and x_f=="" and not y_i=="" and not y_f=="" and not u=="":
+                    yy = int(y_i)
+                    Rows = int(y_f)
+                    Value = int(u)
+        except:
+            return jsonify(error = 'Invalid Boundaries', U = '')
 
-                #Getting the boundaries and their values from the previous loop then find The x_range and y_range
-            x1=min(xi_list)
-            x2=max(xf_list)
-            y1=min(yi_list)
-            y2=max(yf_list)
+        if boundry_counter != 4 and boundry_counter != 3:
+            return jsonify(error = 'Invalid Number of Boundaries', U = '')
 
+        #Getting the boundaries and their values from the previous loop then find The x_range and y_range
+        x1=min(xi_list)
+        x2=max(xf_list)
+        y1=min(yi_list)
+        y2=max(yf_list)
 
-                #If There is 4 Boundries --> Closed Region
-            if boundry_counter==4:
-                UList=Closed_Region(value_list[0],value_list[1],value_list[2],value_list[3],h,k,x1,x2,y1,y2,dxx,dyy,dx,dy,u_coeff,dxy,function)
-                x_point=float(request.form['x_cordinates'])
-                y_point=float(request.form['y_cordinates'])
-                x_index=(x_point-x1)/h
-                y_index=(y_point-y1)/k
-                U=UList[x_index][y_index]
-                return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
+        if boundry_counter==4:
+            try:
+                UList = Closed_Region(value_list[0], value_list[1], value_list[2], value_list[3], h, k,
+                                      x1, x2, y1, y2, dxx, dyy, dx, dy, u_coeff, dxy, function)
+            except:
+                return jsonify(error = 'Could not Solve')
+            try:
+                x_point = float(request.form['x_cordinates'])
+                y_point = float(request.form['y_cordinates'])
+            except:
+                return jsonify(error = 'Enter x any y Values', U = '')
 
-            elif boundry_counter==3: #Indication to open boundries --->
-                x_point=float(request.form['x_cordinates'])
-                y_point=float(request.form['y_cordinates'])
-                x_index=(x_point-x1)/h
-                y_index=(y_point-y1)/k
-                Number_Of_Rows=y_index+1
+            print(UList)
+            x_index = (x_point-x1)/h
+            y_index = (y_point-y1)/k
 
-                UList=Open_Region(value_list[0],value_list[1],value_list[2],h,k,x1,x2,y1,dxx,dyy,dx,dy,u_coeff,dxy,function,Value,yy,Number_Of_Rows)
-                U=UList[x_index][y_index]
-                return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
+            try:
+                U = UList[x_index][y_index]
+            except:
+                return jsonify(error = 'Invalid Point', U = '')
 
+            return jsonify(U = U)
 
+        #Indication to open boundries --->
+        elif boundry_counter==3:
+            try:
+                x_point = float(request.form['x_cordinates'])
+                y_point = float(request.form['y_cordinates'])
+            except:
+                return jsonify(error = 'Invalid Point', U = '')
 
-        return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg",U=U)
-    else:
-        return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
+            x_index = (x_point-x1) / h
+            y_index = (y_point-y1) / k
+            Number_Of_Rows = y_index + 1
+
+            try:
+                UList = Open_Region(value_list[0], value_list[1], value_list[2], h, k, x1, x2,
+                                    y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, Number_Of_Rows)
+            except:
+                return jsonify(error = 'Could not Solve', U = '')
+
+            try:
+                U = UList[x_index][y_index]
+            except:
+                return jsonify(error = 'Could not Solve at This Point', U = '')
+
+            return jsonify(U = U_Value)
+        else:
+            return jsonify(error = 'Invalid Number of Boundaries', U = '')
+
+@app.route("/PDE", methods=['GET'])
+def PDE():
+    return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
-    Length = 0
-    temp_to_test = 0
-    inputs = []
-    result = []
-    n = 0
-    choice = 0
-    iterations = 0
-    StoppingCriteria = 0.0
-    w = 1
-
     if request.method == 'POST':
-
+        Length = 0
+        temp_to_test = 0
+        inputs = []
+        result = []
+        n = 0
+        choice = 0
+        iterations = 0
+        StoppingCriteria = 0.0
+        w = 1
         temp_to_test = request.form['Stopping Criteria']
         if not temp_to_test == '':
             StoppingCriteria = float(request.form['Stopping Criteria'])
@@ -795,6 +964,38 @@ def EigenvalueProblem():
     else:
         return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",
                                wing="SE - copy2.png", logo="Logo Greeny.svg")
+
+@app.route("/sfvideo")
+def sfvideo():
+    return render_template('sfvideo.html', title='Surface Fitting Instructions', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/leastsquarevideo")
+def leastsquarevideo():
+    return render_template('leastsquarevideo.html', title='Least Square Instructions', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/eigenvideo")
+def eigenvideo():
+    return render_template('eigenvideo.html', title='Eigen Value Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+
+@app.route("/linearvideo")
+def linearvideo():
+    return render_template('linearvideo.html', title='Linear System Instructions', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" )
+
+@app.route("/nonlinearvideo")
+def nonlinearvideo():
+    return render_template('nonlinearvideo.html', title='Nonlinear System Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+
+@app.route("/differentiationvideo")
+def differentiationvideo():
+    return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
+
+@app.route("/polynomialvideo")
+def polynomialvideo():
+        return render_template('polynomialvideo.html', title='Polynomial Instructions', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/odekuttavideo")
+def odekuttavideo():
+        return render_template('odekuttavideo.html', title='ODE Runge-Kutta Instructions', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
 
 if __name__ == '__main__':

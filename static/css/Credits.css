@@ -1,5 +1,6 @@
 ﻿* {
 	box-sizing: content-box;
+	transition: 0s;
 }
 
 body {
@@ -103,7 +104,7 @@ header {
 	color: #808080;
 	transition: 0.15s;
 }
-/* 
+/*
 .Wing {
 } */
 
@@ -1381,7 +1382,7 @@ header {
 	letter-spacing: 0.01953vw;
 }
 
-#ODEI_ {
+#ODERK {
 	position: absolute;
 	width: 27.1484vw;
 	height: 24.4791667vw;
@@ -1425,6 +1426,15 @@ header {
 	height: 3.0334635vw;
 	left: 1.004296785vw;
 	top: 0.91582vw;
+}
+
+#ODERK0000 {
+	position: absolute;
+	width: 6vw;
+	height: 6vw;
+	left: -0.5vw;
+	top: -0.67vw;
+	overflow: visible;
 }
 
 #ODEI_0000 {
