@@ -873,16 +873,13 @@ def EigenvalueProblem():
 def sfvideo():
     return render_template('sfvideo.html', title='Surface Fitting Instructions', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
 
-
 @app.route("/leastsquarevideo")
 def leastsquarevideo():
     return render_template('leastsquarevideo.html', title='Least Square Instructions', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
 
-
 @app.route("/eigenvideo")
 def eigenvideo():
     return render_template('eigenvideo.html', title='Eigen Value Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
-
 
 @app.route("/linearvideo")
 def linearvideo():
@@ -892,11 +889,9 @@ def linearvideo():
 def nonlinearvideo():
     return render_template('nonlinearvideo.html', title='Nonlinear System Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
-
 @app.route("/differentiationvideo")
 def differentiationvideo():
     return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
-
 
 @app.route("/polynomialvideo")
 def polynomialvideo():
