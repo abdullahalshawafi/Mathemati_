@@ -55,7 +55,8 @@ $(document).ready(function() {
               success: function (data) {
                 if (data.error)
                 {
-                  alert(data.error)
+                  alert(data.error);
+                  $('#res').html(data.U);
                 }
                 else {
                   alert(data.U);

@@ -16,6 +16,7 @@ from methods.LinearSystems import solve_linear_systems
 from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
+from methods.ODE_EulerAndHeun  import Solve_Euler ,Solve_Heun
 import numpy as np
 
 app = Flask(__name__)
@@ -349,28 +350,22 @@ def Integration():
 @app.route("/ODERK", methods=['GET', 'POST'])
 def ODERK():
     if request.method == 'POST':
-        equation = ''
-        x0 = ''
-        fx0 = ''
-        h = ''
-        xn = ''
         equation = request.form['equation']
-        if equation:
-            equation = request.form['equation']
-        x0 = request.form['x0']
-        if x0:
-            x0 = float(request.form['x0'])
-        fx0 = request.form['fx0']
-        if fx0:
-            fx0 = float(request.form['fx0'])
-        h = request.form['h']
-        if h:
-            h = float(request.form['h'])
-        xn = request.form['xn']
-        if xn:
-            xn = float(request.form['xn'])
+        if not(equation):
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Equation')
 
-        result = rungeKutta(x0, fx0, xn, h, equation)
+        try:
+            x0 = float(request.form['x0'])
+            fx0 = float(request.form['fx0'])
+            h = float(request.form['h'])
+            xn = float(request.form['xn'])
+        except:
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Valid Parameters')
+
+        try:
+            result = rungeKutta(x0, fx0, xn, h, equation)
+        except:
+            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error =  'Can not Solve at This Point')
 
         return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
 
@@ -380,9 +375,158 @@ def ODERK():
 
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():
+    #*********
+    Method =1
+    O_Dim = 0
+    Eqs_No = 0
+    temp_to_test=0
+    h_or_n=''
+    iter_or_stoppingC=''
+    StoppingCriteria = 0.0
+    num_iteration=0
+    List_initial_values=['']*7 # [0]->x0 ,[1]-> y0 ,[2]->z0 ,[3]->t0 ,[4]->y'0 ,[5]->y"0 ,[6]->x_at
+    List_eqs = ['']*5 #[0]-> y',[1]->y",[2]->y"',[3]->z',[4]->t'
+    y_exact=''
+    Length = 0
+    result = []
+    #*****************************
     if request.method == 'POST':
-        pass
-    return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
+        if 'Method' in request.form:
+            temp_to_test  = request.form['Method']
+            if temp_to_test=='Euler':
+                Method=1
+            if temp_to_test=='Heun':
+                Method=2
+        if 'ODim' in request.form:
+            O_Dim = int(request.form['ODim'])
+        if 'Dim' in request.form:
+            Eqs_No = int(request.form['Dim'])
+        if Method==2:
+         if not request.form['Stopping Criteria']=='':
+          temp_to_test = request.form['Stopping Criteria']
+          if not temp_to_test == '':
+            StoppingCriteria = float(temp_to_test)
+            iter_or_stoppingC ='s'
+         elif not request.form['Number of iterations']=='':
+            temp_to_test = request.form['Number of iterations']
+            if not temp_to_test == '':
+             num_iteration=int(temp_to_test)
+             iter_or_stoppingC = 'n'
+         else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                    logo="Logo.svg", error="Ops!, Enter all required data")
+        else:
+            if not request.form['Stopping Criteria']=='':
+             temp_to_test = request.form['Stopping Criteria']
+             if not temp_to_test == '':
+                 StoppingCriteria = float(temp_to_test)
+                 h_or_n = 'h'
+            elif not request.form['Number of iterations']=='':
+                 temp_to_test = request.form['Number of iterations']
+                 if not temp_to_test == '':
+                  num_iteration = int(temp_to_test)
+                  h_or_n = 'n'
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
+ #******************************
+
+        if not request.form['Atx'] =='':
+           temp_to_test = float(request.form['Atx'])
+           if not temp_to_test == '':
+            List_initial_values[6] = temp_to_test  # x to evaluate at =
+        else:
+            return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+        if Method==2:
+         temp_to_test = (request.form['yex'])
+         if not temp_to_test == '':
+                y_exact = temp_to_test  # func to calc exact value of y:
+    #***********
+        if not request.form['x'] == '':
+          temp_to_test = float(request.form['x'])
+          List_initial_values[0] = float(temp_to_test)
+        else:
+            return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+        if (Method==1 and (Eqs_No==1 or Eqs_No==2 or Eqs_No==3 )) or (Method==2 and O_Dim==1 and (Eqs_No==1 or Eqs_No==2)) or (Method==2 and (O_Dim==2 or O_Dim==3)):
+            temp_to_test = (request.form['y'])
+            if not temp_to_test == '':
+                List_initial_values[1] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+        if (Method==1 and (Eqs_No==2 or Eqs_No==3))or (Method==2 and O_Dim==1 and Eqs_No==2):
+            temp_to_test = (request.form['z'])
+            if not temp_to_test == '':
+                List_initial_values[2] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+        if (Method==1 and Eqs_No==3):
+            temp_to_test = (request.form['t'])
+            if not temp_to_test == '':
+                List_initial_values[3] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+        if (Method==2 and (O_Dim==3 or O_Dim==2)):
+            temp_to_test = (request.form['ydash'])
+            if not temp_to_test == '':
+                List_initial_values[4] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+        if (Method==2 and  O_Dim==3):
+            temp_to_test = (request.form['yddash'])
+            if not temp_to_test == '':
+                List_initial_values[5] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+         #*********************************************
+        if (Method == 1 and (Eqs_No == 2 or Eqs_No==1 or Eqs_No==3)) or (Method ==2 and O_Dim==1 and(Eqs_No == 1 or Eqs_No==2 )):
+         if not request.form['Y1']== '':
+          List_eqs[0] = str(request.form['Y1'])
+         else:
+          return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                               logo="Logo.svg", error="Ops!, Enter all required data")
+        if (Method == 2 and (O_Dim == 2 )):
+            temp_to_test = (request.form['Y2'])
+            if not temp_to_test == '':
+                List_eqs[1] = request.form['Y2']
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
+        if (Method == 2 and ( O_Dim == 3)):
+            temp_to_test = (request.form['Y3'])
+            if not temp_to_test == '':
+                List_eqs[2] = request.form['Y3']
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
+        if (Method == 2 and (O_Dim ==1) and Eqs_No==2) or (Method == 1 and ( Eqs_No==2 or Eqs_No==3)):
+            temp_to_test = ( request.form['Z1'])
+            if not temp_to_test == '':
+                List_eqs[3] = request.form['Z1']
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
+        if(Method == 1 and Eqs_No == 3):
+            temp_to_test = (request.form['T1'])
+            if not temp_to_test == '':
+                List_eqs[4] = request.form['T1']
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
+        if Method == 1:
+            result=Solve_Euler(Eqs_No,List_eqs[0],List_eqs[3],List_eqs[4],List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[3],List_initial_values[6],h_or_n,StoppingCriteria,num_iteration)
+            Length = len(result[8])
+        else:
+            result=Solve_Heun(O_Dim,Eqs_No,List_eqs[0],List_eqs[3],List_eqs[1], List_eqs[2],y_exact,List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[4],List_initial_values[5],List_initial_values[6],iter_or_stoppingC,num_iteration,StoppingCriteria)
+            Length=len(result[1])
+        if result:
+                return render_template('ODEEH.html', title='ODE Euler&Huen',
+                                       css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",
+                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim)
+
+        return redirect(url_for('ODEEH'))
+
+    else:
+      return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
 
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
@@ -473,7 +617,7 @@ def background_process():
     try:
         Choice = request.form['Method']
     except:
-        return jsonify(error = 'Choose a Method')
+        return jsonify(error = 'Choose a Method', U = '')
 
     if Choice == "Irregular":
             #Taking the equation parameters
@@ -483,7 +627,7 @@ def background_process():
             h = float(request.form['h_step'])
             k = float(request.form['k_step'])
         except:
-            return jsonify(error = 'Enter h and k')
+            return jsonify(error = 'Enter h and k', U = '')
 
         dxx = request.form['dxx']
         dyy = request.form['dyy']
@@ -493,7 +637,7 @@ def background_process():
         function = request.form['Function']
 
         if not(dxx and dyy and dx and dy and u_coeff and function):
-            return jsonify(error = 'Enter Equation')
+            return jsonify(error = 'Enter Equation', U = '')
 
         boundaries=[]
         for i in range(12):
@@ -523,14 +667,15 @@ def background_process():
                 bound = boundry(y_i, y_f, x_i, x_f, f,u)
                 boundaries.append(bound)
         try:
-            grid=Grid(boundaries,h,k)
+            grid = Grid(boundaries,h,k)
+            grid.Plot_Region()
         except:
-            return jsonify(error = 'Invalid Boundaries')
+            return jsonify(error = 'Invalid Boundaries', U = '')
 
         try:
             points = grid.get_points(grid.get_boundry_rows_points(),grid.get_boundry_cols_points())
         except:
-            return jsonify(error = 'Invalid Boundaries')
+            return jsonify(error = 'Invalid Boundaries', U = '')
 
         pde = PDE_Solver(points,grid)
         pde.Get_Parameters(dxx, dyy, dx, dy, u_coeff, function)
@@ -539,14 +684,16 @@ def background_process():
             x_point = float(request.form['x_cordinates'])
             y_point = float(request.form['y_cordinates'])
         except:
-            return jsonify(error = 'Enter x any y Values')
+            return jsonify(error = 'Enter x any y Values', U = '')
 
         _point = point(x_point,y_point,False)
 
         try:
             U_Value = pde.Solve_At_Point(_point)
+        except ValueError:
+            return jsonify(error = 'Invalid Point', U = '')
         except:
-            return jsonify(error = 'Could not Solve at This Point')
+            return jsonify(error = 'Could not Solve at This Point', U = '')
 
         return jsonify(U = U_Value)
     else :
@@ -554,7 +701,7 @@ def background_process():
             h = float(request.form['h_step'])
             k = float(request.form['k_step'])
         except:
-            return jsonify(error = 'Enter h and k')
+            return jsonify(error = 'Enter h and k', U = '')
 
         try:
             dxx = float(request.form['dxx'])
@@ -565,7 +712,7 @@ def background_process():
             u_coeff = float(request.form['U_Coeff'])
             function = request.form['Function']
         except:
-            return jsonify(error = 'Enter Equation')
+            return jsonify(error = 'Enter Equation', U = '')
 
         xi_list = []
         xf_list = []
@@ -613,10 +760,10 @@ def background_process():
                     Rows = int(y_f)
                     Value = int(u)
         except:
-            return jsonify(error = 'Invalid Boundaries')
+            return jsonify(error = 'Invalid Boundaries', U = '')
 
         if boundry_counter != 4 and boundry_counter != 3:
-            return jsonify(error = 'Invalid Number of Boundaries')
+            return jsonify(error = 'Invalid Number of Boundaries', U = '')
 
         #Getting the boundaries and their values from the previous loop then find The x_range and y_range
         x1=min(xi_list)
@@ -634,7 +781,7 @@ def background_process():
                 x_point = float(request.form['x_cordinates'])
                 y_point = float(request.form['y_cordinates'])
             except:
-                return jsonify(error = 'Enter x any y Values')
+                return jsonify(error = 'Enter x any y Values', U = '')
 
             print(UList)
             x_index = (x_point-x1)/h
@@ -643,7 +790,7 @@ def background_process():
             try:
                 U = UList[x_index][y_index]
             except:
-                return jsonify(error = 'Invalid Point')
+                return jsonify(error = 'Invalid Point', U = '')
 
             return jsonify(U = U)
 
@@ -653,7 +800,7 @@ def background_process():
                 x_point = float(request.form['x_cordinates'])
                 y_point = float(request.form['y_cordinates'])
             except:
-                return jsonify(error = 'Invalid Point')
+                return jsonify(error = 'Invalid Point', U = '')
 
             x_index = (x_point-x1) / h
             y_index = (y_point-y1) / k
@@ -663,16 +810,16 @@ def background_process():
                 UList = Open_Region(value_list[0], value_list[1], value_list[2], h, k, x1, x2,
                                     y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, Number_Of_Rows)
             except:
-                return jsonify(error = 'Could not Solve')
+                return jsonify(error = 'Could not Solve', U = '')
 
             try:
                 U = UList[x_index]
             except:
-                return jsonify(error = 'Could not Solve at This Point')
+                return jsonify(error = 'Could not Solve at This Point', U = '')
 
             return jsonify(U = U_Value)
         else:
-            return jsonify(error = 'Invalid Number of Boundaries')
+            return jsonify(error = 'Invalid Number of Boundaries', U = '')
 
 @app.route("/PDE", methods=['GET'])
 def PDE():
@@ -680,18 +827,16 @@ def PDE():
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
-    Length = 0
-    temp_to_test = 0
-    inputs = []
-    result = []
-    n = 0
-    choice = 0
-    iterations = 0
-    StoppingCriteria = 0.0
-    w = 1
-
     if request.method == 'POST':
-
+        Length = 0
+        temp_to_test = 0
+        inputs = []
+        result = []
+        n = 0
+        choice = 0
+        iterations = 0
+        StoppingCriteria = 0.0
+        w = 1
         temp_to_test = request.form['Stopping Criteria']
         if not temp_to_test == '':
             StoppingCriteria = float(request.form['Stopping Criteria'])
@@ -873,20 +1018,33 @@ def EigenvalueProblem():
 def sfvideo():
     return render_template('sfvideo.html', title='Surface Fitting Instructions', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
 
-
 @app.route("/leastsquarevideo")
 def leastsquarevideo():
     return render_template('leastsquarevideo.html', title='Least Square Instructions', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
-
 
 @app.route("/eigenvideo")
 def eigenvideo():
     return render_template('eigenvideo.html', title='Eigen Value Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
-
 @app.route("/linearvideo")
 def linearvideo():
     return render_template('linearvideo.html', title='Linear System Instructions', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" )
+
+@app.route("/nonlinearvideo")
+def nonlinearvideo():
+    return render_template('nonlinearvideo.html', title='Nonlinear System Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+
+@app.route("/differentiationvideo")
+def differentiationvideo():
+    return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
+
+@app.route("/polynomialvideo")
+def polynomialvideo():
+        return render_template('polynomialvideo.html', title='Polynomial Instructions', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
+
+@app.route("/odekuttavideo")
+def odekuttavideo():
+        return render_template('odekuttavideo.html', title='ODE Runge-Kutta Instructions', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
 
 if __name__ == '__main__':
