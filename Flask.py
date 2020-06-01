@@ -377,6 +377,7 @@ def ODERK():
     else:
         return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
+
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():
     if request.method == 'POST':
@@ -665,7 +666,7 @@ def background_process():
                 return jsonify(error = 'Could not Solve')
 
             try:
-                U = UList[x_index][y_index]
+                U = UList[x_index]
             except:
                 return jsonify(error = 'Could not Solve at This Point')
 
