@@ -26,7 +26,8 @@ def Plot_3D_RHS(xdata,ydata,zdata,RHS):
     x,y = symbols('x y')
     rhs=sympy.sympify(RHS)
     RHS=sympy.lambdify([x,y], rhs)
-    plot3d(rhs, (x, -5+min(xdata), 5+max(xdata)), (y, -5+min(ydata), 5+max(ydata)))
+    z=plot3d(rhs, (x, -5+min(xdata), 5+max(xdata)), (y, -5+min(ydata), 5+max(ydata)))
+    plt.savefig('ThreeD.png')
     #3D graphing is pretty straight forward using Sympy, in contrast to how it's only done through parametric
     #equations in MPL, however it does not do scatter plots...
     #fig = plt.figure()
@@ -146,8 +147,10 @@ def Surface_Fit_Beta(xdata, ydata, zdata, Function,r):
 
 
 def Nonlinear_Regression(xdata,ydata,NonlinearFunction,r): #takes x,y lists and a nonlinear function string
+  if('d' in NonlinearFunction):
+      return Nonlinear_Regression_d(xdata,ydata,NonlinearFunction,r)
   x,a,b,c=symbols('x a b c')
-  Function=sympy.sympify(NonlinearFunction)
+  Function=sympy.sympify(NonlinearFunction) 
   true_len=len(Function.atoms(sympy.Symbol))
   if(len(xdata)<true_len-1):
      Sol=''

@@ -17,6 +17,7 @@ from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
 from methods.ODE_EulerAndHeun  import Solve_Euler ,Solve_Heun
+from methods.Surface_Interpolation import Surface_Interpolation
 import numpy as np
 
 app = Flask(__name__)
@@ -127,6 +128,42 @@ def SplineInterpolation():
                                    css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg", eq="")
     else:
         return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+
+@app.route("/BilinearInterpolation", methods=['GET', 'POST'])
+def BilinearInterpolation():
+    if request.method == 'POST':
+        points = []
+        Z = []
+
+        for i in range(25):
+            x = request.form['x' + str(i)]
+            y = request.form['y' + str(i)]
+            z = request.form['z' + str(i)]
+
+            if x and y and z:
+                try:
+                    points.append([float(x), float(y)])
+                    Z.append(float(z))
+                except:
+                    pass
+
+        try:
+            surface = Surface_Interpolation(points, Z)
+            Surf, GriX, GriY, GriZ = surface.BiLinearInt()
+            GriZ = GriZ.transpose()
+            x1 = list(GriX)
+            y1 = list(GriY)
+            z1 = []
+
+            for i in range(np.shape(GriZ)[0]):
+                z1.append(list(GriZ[i]))
+        except:
+            return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1)
+
+    else:
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
 @app.route("/LeastSquareReg", methods=['GET', 'POST'])
 def LeastSquareReg():
@@ -401,68 +438,116 @@ def ODEEH():
         if 'Dim' in request.form:
             Eqs_No = int(request.form['Dim'])
         if Method==2:
-         temp_to_test = request.form['Stopping Criteria']
-         if not temp_to_test == '':
+         if not request.form['Stopping Criteria']=='':
+          temp_to_test = request.form['Stopping Criteria']
+          if not temp_to_test == '':
             StoppingCriteria = float(temp_to_test)
             iter_or_stoppingC ='s'
-         else:
+         elif not request.form['Number of iterations']=='':
             temp_to_test = request.form['Number of iterations']
             if not temp_to_test == '':
              num_iteration=int(temp_to_test)
              iter_or_stoppingC = 'n'
+         else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                    logo="Logo.svg", error="Ops!, Enter all required data")
         else:
+            if not request.form['Stopping Criteria']=='':
              temp_to_test = request.form['Stopping Criteria']
              if not temp_to_test == '':
                  StoppingCriteria = float(temp_to_test)
                  h_or_n = 'h'
-             else:
+            elif not request.form['Number of iterations']=='':
                  temp_to_test = request.form['Number of iterations']
                  if not temp_to_test == '':
                   num_iteration = int(temp_to_test)
-                  iter_or_stoppingC = 'n'
                   h_or_n = 'n'
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
  #******************************
-        temp_to_test = float(request.form['Atx'])
-        if not temp_to_test == '':
+
+        if not request.form['Atx'] =='':
+           temp_to_test = float(request.form['Atx'])
+           if not temp_to_test == '':
             List_initial_values[6] = temp_to_test  # x to evaluate at =
+        else:
+            return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if Method==2:
          temp_to_test = (request.form['yex'])
          if not temp_to_test == '':
                 y_exact = temp_to_test  # func to calc exact value of y:
     #***********
-        temp_to_test = float(request.form['x'])
-        if not temp_to_test == '':
-            List_initial_values[0] = float(temp_to_test)
-        if (Method==1 and (Eqs_No==1 or Eqs_No==2 or Eqs_No==3 )) or (Method==2 and O_Dim==1 and Eqs_No==1) or (Method==2 and (O_Dim==2 or O_Dim==3)):
-            temp_to_test = float(request.form['y'])
+        if not request.form['x'] == '':
+          temp_to_test = float(request.form['x'])
+          List_initial_values[0] = float(temp_to_test)
+        else:
+            return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+        if (Method==1 and (Eqs_No==1 or Eqs_No==2 or Eqs_No==3 )) or (Method==2 and O_Dim==1 and (Eqs_No==1 or Eqs_No==2)) or (Method==2 and (O_Dim==2 or O_Dim==3)):
+            temp_to_test = (request.form['y'])
             if not temp_to_test == '':
                 List_initial_values[1] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==1 and (Eqs_No==2 or Eqs_No==3))or (Method==2 and O_Dim==1 and Eqs_No==2):
-            temp_to_test = float(request.form['z'])
+            temp_to_test = (request.form['z'])
             if not temp_to_test == '':
                 List_initial_values[2] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==1 and Eqs_No==3):
-            temp_to_test = float(request.form['t'])
+            temp_to_test = (request.form['t'])
             if not temp_to_test == '':
                 List_initial_values[3] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==2 and (O_Dim==3 or O_Dim==2)):
-            temp_to_test = float(request.form['ydash'])
+            temp_to_test = (request.form['ydash'])
             if not temp_to_test == '':
                 List_initial_values[4] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==2 and  O_Dim==3):
-            temp_to_test = float(request.form['yddash'])
+            temp_to_test = (request.form['yddash'])
             if not temp_to_test == '':
                 List_initial_values[5] = float(temp_to_test)
+            else:
+             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
          #*********************************************
-        List_eqs[0] = str(request.form['Y1'])
-        if (Method == 2 and (O_Dim == 2 or O_Dim==3)):
-         List_eqs[1] = request.form['Y2']
+        if (Method == 1 and (Eqs_No == 2 or Eqs_No==1 or Eqs_No==3)) or (Method ==2 and O_Dim==1 and(Eqs_No == 1 or Eqs_No==2 )):
+         if not request.form['Y1']== '':
+          List_eqs[0] = str(request.form['Y1'])
+         else:
+          return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                               logo="Logo.svg", error="Ops!, Enter all required data")
+        if (Method == 2 and (O_Dim == 2 )):
+            temp_to_test = (request.form['Y2'])
+            if not temp_to_test == '':
+                List_eqs[1] = request.form['Y2']
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
         if (Method == 2 and ( O_Dim == 3)):
-         List_eqs[2] = request.form['Y3']
+            temp_to_test = (request.form['Y3'])
+            if not temp_to_test == '':
+                List_eqs[2] = request.form['Y3']
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
         if (Method == 2 and (O_Dim ==1) and Eqs_No==2) or (Method == 1 and ( Eqs_No==2 or Eqs_No==3)):
-         List_eqs[3] = request.form['Z1']
+            temp_to_test = ( request.form['Z1'])
+            if not temp_to_test == '':
+                List_eqs[3] = request.form['Z1']
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
         if(Method == 1 and Eqs_No == 3):
-         List_eqs[4] = request.form['T1']
+            temp_to_test = (request.form['T1'])
+            if not temp_to_test == '':
+                List_eqs[4] = request.form['T1']
+            else:
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
         if Method == 1:
             result=Solve_Euler(Eqs_No,List_eqs[0],List_eqs[3],List_eqs[4],List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[3],List_initial_values[6],h_or_n,StoppingCriteria,num_iteration)
             Length = len(result[8])
