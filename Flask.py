@@ -904,8 +904,11 @@ def LinearSystem():
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
             Length = len(result[0])
             if Length:
-                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
-        return redirect(url_for('LinearSystem'))
+                return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
+                                       wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
+                                       inputs=inputs, choice=choice, iterations=iterations,
+                                       StoppingCriteria=StoppingCriteria, w=w)
+            return redirect(url_for('LinearSystem'))
 
     else:
         return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
@@ -1044,8 +1047,11 @@ def EigenvalueProblem():
             if Length:
                 return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
                                        css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
-                                       Length=size, Method=Method, iterations=Length, results=result)
-        return redirect(url_for('EigenvalueProblem'))
+                                       Length=size, Method=Method, iterations=Length, results=result,
+                                       iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
+                                       StoppingCriteria=StoppingCriteria, list_init_vector=list_init_vector,
+                                       list_of_entires=list_of_entires)
+            return redirect(url_for('EigenvalueProblem'))
     else:
         return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",
                                wing="SE - copy2.png", logo="Logo Greeny.svg")
