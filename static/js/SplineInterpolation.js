@@ -1,80 +1,118 @@
+
 x = 0;
 var parameters = {
-  target: '#myFunction',
-  data: [
-    {
-      fn: '',
-      color: "hsl(" + ((x * 3.6 + 180)) + ", 100%, 60%)",
-      range: [0, Math.PI / 2],
-      closed: false
-    },
-    {
-      x: '',
-      y: '',
-      fnType: 'parametric',
-      graphType: 'polyline'
-    },
-    {
-      fn: '',
-      fnType: 'implicit'
-    }
-  ],
-  grid: true,
-  yAxis: { domain: [-3, 3] },
-  xAxis: { domain: [-3, 3] },
-  height: window.innerWidth / 100 * 18.45,
-  width: window.innerWidth / 100 * 19.13
+    target: '#myFunction',
+    data: [{
+        points: [
+        ],
+        fnType: 'points',
+        graphType: 'scatter',
+        color: "#000000"
+    }],
+    grid: true,
+    yAxis: { domain: [-10, 10] },
+    xAxis: { domain: [-10, 10] },
+    height: window.innerWidth / 100 * 18.45,
+    width: window.innerWidth / 100 * 19.13
 };
 functionPlot(parameters);
 
+var x = [];
 
-function Expand(el, x, intervals ,eq) {
-  {
-    document.querySelector('#FORM').submit();
-  }
-  // var con = document.getElementsByClassName("Quadratic")[0];
-
-  con = el.parentElement.parentElement;
-  el.classList.toggle("CC")
-
-  if (!el.classList.contains("CC")) {
-    el.classList.add("CC");
-    con.innerHTML = con.innerHTML.replace('width="25.98vw" height="4.56vw"', "width='25.98vw' height='" + (4.6 + x * 3) + "vw'");
-    con.innerHTML = con.innerHTML.replace('viewBox="127.353 308 21.741 23.895"', 'viewBox="127.353 288 21.741 23.895"');
-    con.childNodes[3].setAttribute("style", "height:" + (x * 3 + 9) + "vw");
-    for (var i = 0; i < x; i++) {
-      var div = document.createElement("div");
-      var input = document.createElement("input");
-      var label = document.createElement("label");
-      var span = document.createElement("span");
-
-      input.setAttribute("type", "text");
-      input.setAttribute("name", "interval" + i);
-      input.setAttribute("value", eq[i]);
-      input.setAttribute("disabled", true);
-
-
-      span.innerHTML = intervals[i];
-
-      label.setAttribute("for", "interval" + i);
-
-      div.style.cssText = "margin: 1.2vw; color: white; top: 3.5vw; position: relative; width: 24vw; font-size: calc(20vw/" +  span.innerHTML.length + ");";
-
-      input.style.cssText = "text-align: left; margin-right: 1vw; width: 15vw;";
-
-      con.childNodes[3].appendChild(div);
-      div.appendChild(input);
-      div.appendChild(label);
-      label.appendChild(span);
+window.onload = function () {
+    for (var i = 0; i <= 14; i++) {
+        Scatter(document.getElementsByName("x_coordinates" + i)[0]);
+        Scatter(document.getElementsByName("y_coordinates" + i)[0]);
     }
-    con.innerHTML = con.innerHTML.replace(`<img src="static/Assets/Expand.svg">`, `<img src="static/Assets/Expand.svg" style="transform: scaleY(-1)">`);
-  }
-  else {
+};
 
-    con.innerHTML = con.innerHTML.replace('width="25.98vw" height="' + (4.6 + x * 3) + 'vw"', 'width="25.98vw" height="4.56vw"');
-    con.innerHTML = con.innerHTML.replace('viewBox="127.353 288 21.741 23.895"', 'viewBox="127.353 308 21.741 23.895"');
-    con.childNodes[3].setAttribute("style", "height:" + 9 + "vw");
-    con.childNodes[3].innerHTML = `<button class="Expand" onclick="Expand(this, 9)">	<img src="static/Assets/Expand.svg"> 	</button> <div id="Best_fitting_curves_are__"> 	<span>` + con.className + ' Spline: </span> 	</div> 	<div id="R___"> 		<span>' + con.className[0] + ' ( </span> 	</div> <div id="____"> <span>) = </span> </div> <input type="text" class="Rectangle_41" /> <input type="text" class="Rectangle_42" />';
+/*
+function substitute(el) {
 
-  }
+    var x = parseFloat(el.value);
+    var F = document.getElementsByClassName(box1)[0].value;
+    F = F.replace(/\^/g, '**');
+    var con = el.parentElement
+    for (var i = 0; i < x; i++)
+
+    if (box1 == "Rectangle_32") {
+        if (eval(F).toFixed(4) != "NaN")
+            document.getElementsByClassName('Rectangle_42')[0].value = eval(F).toFixed(4);
+        else
+            document.getElementsByClassName('Rectangle_42')[0].value = '';
+    } else if (box1 == "Rectangle_32D") {
+        if (eval(F).toFixed(4) != "NaN")
+            document.getElementsByClassName('Rectangle_42D')[0].value = eval(F).toFixed(4);
+        else
+            document.getElementsByClassName('Rectangle_42D')[0].value = '';
+    }
+}*/
+
+
+function Scatter(el) {
+    var elx = el.parentElement.parentElement.childNodes[1].childNodes[0];
+    var ely = el.parentElement.parentElement.childNodes[3].childNodes[0];
+
+
+    if (elx.value && ely.value) {
+        var point = [parseFloat(elx.value), parseFloat(ely.value)];
+        parameters.data[0].points.push(point);
+    }
+
+    functionPlot(parameters);
+};
+
+function Expand(el, x, intervals, eq) {
+
+    // var con = document.getElementsByClassName("Quadratic")[0];
+
+    con = el.parentElement.parentElement;
+
+    console.log(con.childNodes[3].innerHTML);
+
+    if (!con.childNodes[3].innerHTML.includes("label")) {
+        con.innerHTML = con.innerHTML.replace('width="25.98vw" height="4.56vw"', "width='25.98vw' height='" + (4.6 + x * 3.1) + "vw'");
+        con.innerHTML = con.innerHTML.replace('viewBox="127.353 308 21.741 23.895"', 'viewBox="127.353 288 21.741 23.895"');
+        con.childNodes[3].setAttribute("style", "height:" + (x * 3.1 + 9) + "vw");
+        for (var i = 0; i < x; i++) {
+            var div = document.createElement("div");
+            var input = document.createElement("input");
+            var label = document.createElement("label");
+            var span = document.createElement("span");
+
+            input.setAttribute("type", "text");
+            input.setAttribute("name", "interval" + i);
+            input.setAttribute("value", eq[i]);
+            input.setAttribute("disabled", true);
+
+            var f = 0;
+            var l = 0;
+
+            f = parseFloat(intervals[i].split("<")[0].slice(1));
+            l = parseFloat(intervals[i].split("<")[2].split("}")[0]);
+
+            if (con.innerHTML.includes("Linear")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "Red" });
+            if (con.innerHTML.includes("Quadratic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "Orange" });
+            if (con.innerHTML.includes("Cubic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "#ff5500" });
+
+
+
+            span.innerHTML = intervals[i];
+
+            label.setAttribute("for", "interval" + i);
+
+            div.style.cssText = "margin: 1.2vw; color: white; top: 3.5vw; position: relative; width: 24vw; font-size: calc(20vw/" + span.innerHTML.length + ");";
+
+            input.style.cssText = "text-align: left; margin-right: 1vw; width: 15vw;";
+
+            con.childNodes[3].appendChild(div);
+            div.appendChild(input);
+            div.appendChild(label);
+            label.appendChild(span);
+
+        }
+        con.innerHTML = con.innerHTML.replace(`<img src="static/Assets/Expand.svg">`, ``);
+        functionPlot(parameters);
+
+    }
 }
