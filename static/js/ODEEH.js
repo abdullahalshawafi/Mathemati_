@@ -1,4 +1,4 @@
-﻿DimInput();
+DimInput();
 function DimInput() {
   var Eu = document.getElementsByName("Method")[0].checked;
 

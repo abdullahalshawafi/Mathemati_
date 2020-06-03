@@ -201,7 +201,9 @@
 					       εs% = {{results[4][i]}}%
 					 ---
 					 {% endfor %}
+					 {% if results[13]%}
 					 Y_exact value ={{results[13]}}
+					 {% endif %}
 					 ---
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==1 and num_eqs==2 %}
@@ -227,7 +229,9 @@
 					       εs% ->y = {{results[4][i]}}
 					 ---
 					 {% endfor %}
+					 {% if results[13]%}
 					 Y_exact value ={{results[13]}}
+					 {% endif %}
 					 ---
 
 				 </textarea>
@@ -242,7 +246,9 @@
 					       εs% ->y = {{results[4][i]}}%
 					 ---
 					 {% endfor %}
+					 {% if results[13]%}
 					 Y_exact value ={{results[13]}}
+					 {% endif %}
 					 ---
 
 				 </textarea>
