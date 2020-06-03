@@ -157,7 +157,7 @@ def BilinearInterpolation():
         except:
             return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
-        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1)
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1,function=surface.GetPlane_of_P)
 
     else:
         return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
@@ -807,8 +807,11 @@ def background_process():
 
         if boundry_counter==4:
             try:
-                UList = Closed_Region(value_list[0], value_list[1], value_list[2], value_list[3], h, k,
+                # L R U D
+                #print("You Are in this Region")
+                UList = Closed_Region(value_list[1], value_list[2], value_list[0], value_list[3], h, k,
                                       x1, x2, y1, y2, dxx, dyy, dx, dy, u_coeff, dxy, function)
+                #print(UList)
             except:
                 return jsonify(error = 'Could not Solve')
             try:
@@ -817,12 +820,14 @@ def background_process():
             except:
                 return jsonify(error = 'Enter x any y Values', U = '')
 
-            print(UList)
+            
             x_index = (x_point-x1)/h
             y_index = (y_point-y1)/k
-
+            print(x_index)
+            print(y_index)
             try:
-                U = UList[x_index][y_index]
+                U = UList[int(x_index)][int(y_index)]
+                print(U)
             except:
                 return jsonify(error = 'Invalid Point', U = '')
 
@@ -841,17 +846,19 @@ def background_process():
             Number_Of_Rows = y_index + 1
 
             try:
+                
                 UList = Open_Region(value_list[0], value_list[1], value_list[2], h, k, x1, x2,
-                                    y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, Number_Of_Rows)
+                                    y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, int(Number_Of_Rows))
+                
             except:
                 return jsonify(error = 'Could not Solve', U = '')
 
             try:
-                U = UList[x_index]
+                U = UList[int(x_index)][int(y_index)]
             except:
                 return jsonify(error = 'Could not Solve at This Point', U = '')
 
-            return jsonify(U = U_Value)
+            return jsonify(U = U)
         else:
             return jsonify(error = 'Invalid Number of Boundaries', U = '')
 
