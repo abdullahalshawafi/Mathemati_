@@ -1,51 +1,51 @@
 {% extends "layout.html" %}
 {% block content %}
 
-	<main>
-		<div id="Web_1920___1">
-			<div id="MidTab">
+<main>
+	<div id="Web_1920___1">
+		<div id="MidTab">
 
-				<svg class="Rectangle_8">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="21.5vw" height="21.65vw">
-					</rect>
-				</svg>
-				<svg class="Rectangle_8-5">
-					<rect fill="#282828" id="Rectangle_8.5" rx="0.8vw" ry="0.8vw" x="0" y="0" width="18.5vw" height="18.65vw">
-					</rect>
-				</svg>
-				<section id="plot">
-					<div id="myFunction" class="Rectangle_8"></div>
-				</section>
-			</div>
-			<div id="LeftTap">
-				<svg class="Rectangle_3">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_3" rx="1.5vw" ry="1.5vw" x="0" y="0" width="22.98vw" height="35.9vw">
-					</rect>
-				</svg>
-				<svg class="Rectangle_2">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_2" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.1vw" height="4.23vw">
-					</rect>
-				</svg>
-				<svg class="Path_1" viewBox="127.353 288 21.742 20.791">
-					<path fill="rgba(60,60,60,1)" id="Path_1" d="M 127.3529815673828 288 C 139.6577301025391 288.034423828125 149.3477172851563 294.8020629882813 149.0894622802734 306.1839294433594 C 148.8312377929688 317.5657653808594 149.0894622802734 288 149.0894622802734 288 L 127.3529815673828 288 Z">
-					</path>
-				</svg>
-				<svg class="Path_2" viewBox="127.353 288 21.742 20.791">
-					<path fill="rgba(60,60,60,1)" id="Path_2" d="M 149.0945129394531 288 C 136.7897644042969 288.034423828125 127.0997924804688 294.8020629882813 127.358024597168 306.1839294433594 C 127.6162490844727 317.5657653808594 127.358024597168 288 127.358024597168 288 L 149.0945129394531 288 Z">
-					</path>
-				</svg>
-				<svg class="Rectangle_4">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="17.5vw">
-					</rect>
-				</svg>
-				<div id="System">
-					<div class="GraphOptions">
-						<div class="Slider-Container"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
-						<img class="points" id="Points" src="{{url_for('static', filename='Assets/Points.svg')}}">
-					</div>
+			<svg class="Rectangle_8">
+				<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="21.5vw" height="21.65vw">
+				</rect>
+			</svg>
+			<svg class="Rectangle_8-5">
+				<rect fill="#282828" id="Rectangle_8.5" rx="0.8vw" ry="0.8vw" x="0" y="0" width="18.5vw" height="18.65vw">
+				</rect>
+			</svg>
+			<section id="plot">
+				<div id="myFunction" class="Rectangle_8"></div>
+			</section>
+		</div>
+		<div id="LeftTap">
+			<svg class="Rectangle_3">
+				<rect fill="rgba(60,60,60,1)" id="Rectangle_3" rx="1.5vw" ry="1.5vw" x="0" y="0" width="22.98vw" height="35.9vw">
+				</rect>
+			</svg>
+			<svg class="Rectangle_2">
+				<rect fill="rgba(60,60,60,1)" id="Rectangle_2" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.1vw" height="4.23vw">
+				</rect>
+			</svg>
+			<svg class="Path_1" viewBox="127.353 288 21.742 20.791">
+				<path fill="rgba(60,60,60,1)" id="Path_1" d="M 127.3529815673828 288 C 139.6577301025391 288.034423828125 149.3477172851563 294.8020629882813 149.0894622802734 306.1839294433594 C 148.8312377929688 317.5657653808594 149.0894622802734 288 149.0894622802734 288 L 127.3529815673828 288 Z">
+				</path>
+			</svg>
+			<svg class="Path_2" viewBox="127.353 288 21.742 20.791">
+				<path fill="rgba(60,60,60,1)" id="Path_2" d="M 149.0945129394531 288 C 136.7897644042969 288.034423828125 127.0997924804688 294.8020629882813 127.358024597168 306.1839294433594 C 127.6162490844727 317.5657653808594 127.358024597168 288 127.358024597168 288 L 149.0945129394531 288 Z">
+				</path>
+			</svg>
+			<svg class="Rectangle_4">
+				<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="18vw">
+				</rect>
+			</svg>
+			<div id="System">
+				<div class="GraphOptions">
+					<div class="Slider-Container"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
+					<img class="points" id="Points" src="{{url_for('static', filename='Assets/Points.svg')}}">
 				</div>
 			</div>
-			<form action="{{url_for('SurfaceFitting')}}" method="post">
+		</div>
+		<form action="{{url_for('SurfaceFitting')}}" method="post">
 			<div id="LeffTapCon">
 				<svg class="Rectangle_18">
 					<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="25.53vw">
@@ -53,23 +53,29 @@
 				</svg>
 				<div class="Rectangle_28">
 					<div class="button-div">
-						<button class="table-button" type="submit" id="calc" >
+						<button class="table-button" type="submit" id="calc">
 							<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+<<<<<<< HEAD
 						<button class="table-button" id="save">
 							<img src="{{url_for('static', filename='Assets/Load.svg')}}">
 						</button>
+=======
+						<a class="table-button" href="{{url_for('sfvideo')}}">
+							<img src="{{url_for('static', filename='Assets/Vid.svg')}}">
+						</a>
+>>>>>>> 5c99ef90b73891cb457b2dc78e98db21ac8de121
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="save">
+						<button type="button" class="table-button" id="save">
 							<img src="{{url_for('static', filename='Assets/Save.svg')}}">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="load">
+						<button type="button" class="table-button" id="load">
 							<img src="{{url_for('static', filename='Assets/Load.svg')}}">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="clear">
+						<button type="button" class="table-button" id="clear">
 							<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
 						</button>
 					</div>
@@ -253,76 +259,91 @@
 
 				</div>
 			</div>
-			</form>
-			<div id="AnswerTab">
-				<svg class="Rectangle_6">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_6" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.16vw" height="4.56vw">
-					</rect>
-				</svg>
-				<svg class="Rectangle_7">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="25.98vw" height="11.76vw">
-					</rect>
-				</svg>
-				<svg class="Path_3" viewBox="127.353 288 21.741 23.895">
-					<path fill="rgba(60,60,60,1)" id="Path_3" d="M 149.094482421875 288 C 136.7897644042969 288.0395812988281 127.0997924804688 295.8175354003906 127.358024597168 308.8985900878906 C 127.6162490844727 321.9796142578125 127.358024597168 288 127.358024597168 288 L 149.094482421875 288 Z">
-					</path>
-				</svg>
-				<div id="Brackets">
-					<div class="GraphOptions-Polynomial">
-						<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
-						<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
-					</div>
+		</form>
+		<div id="AnswerTab">
+			<svg class="Rectangle_6">
+				<rect fill="rgba(60,60,60,1)" id="Rectangle_6" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.16vw" height="4.56vw">
+				</rect>
+			</svg>
+			<svg class="Rectangle_7">
+				<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="25.98vw" height="11.76vw">
+				</rect>
+			</svg>
+			<svg class="Path_3" viewBox="127.353 288 21.741 23.895">
+				<path fill="rgba(60,60,60,1)" id="Path_3" d="M 149.094482421875 288 C 136.7897644042969 288.0395812988281 127.0997924804688 295.8175354003906 127.358024597168 308.8985900878906 C 127.6162490844727 321.9796142578125 127.358024597168 288 127.358024597168 288 L 149.094482421875 288 Z">
+				</path>
+			</svg>
+			<div id="Brackets">
+				<div class="GraphOptions-Polynomial">
+					<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
+					<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 				</div>
-			</div>
-			<div id="Answer">
-				{% if results %}
-				<input type="text" class="Rectangle_32" onmouseout="addtograph()" value="{{results}}" disabled style="text-align: left">
-				{% else %}
-				<input type="text" class="Rectangle_32" onmouseout="addtograph()" disabled style="text-align: left">
-				{% endif %}
-				<div id="R__x____">
-					<span>Z(x,y)= </span>
-				</div>
-
-
-
-				<div id="Sr___">
-					<span>Sᵣ = </span>
-				</div>
-
-				<div id="R___">
-					<span>Z (&emsp;&emsp;&emsp;&emsp;,</span>
-				</div>
-				<div id="____">
-					<span>) = </span>
-				</div>
-				{% if not Error == '' %}
-				<input type="text" class="Rectangle_34" value="{{Error}}" disabled style="text-align: left" />
-				{% else %}
-				<input type="text" class="Rectangle_34" disabled style="text-align: left" />
-				{% endif %}
-				<input type="text" class="Rectangle_41" />
-				<input type="text" class="Rectangle_43" onkeyup="substitute(this)" />
-				<input type="text" class="Rectangle_42" disabled />
 			</div>
 		</div>
-		 
-			   <a  href="{{url_for('sfvideo')}}">
-		       <svg style = "           top: 38.2vw;
+		<div id="Answer">
+			{% if results %}
+			<input type="text" class="Rectangle_32" onmouseout="addtograph()" value="{{results}}" disabled style="text-align: left">
+			{% else %}
+			<input type="text" class="Rectangle_32" onmouseout="addtograph()" disabled style="text-align: left">
+			{% endif %}
+			<div id="R__x____">
+				<span>Z(x,y)= </span>
+			</div>
+
+
+
+			<div id="Sr___">
+				<span>Sᵣ = </span>
+			</div>
+
+			<div id="R___">
+				<span>Z (&emsp;&emsp;&emsp;&emsp;,</span>
+			</div>
+			<div id="____">
+				<span>) = </span>
+			</div>
+			{% if not Error == '' %}
+			<input type="text" class="Rectangle_34" value="{{Error}}" disabled style="text-align: left" />
+			{% else %}
+			<input type="text" class="Rectangle_34" disabled style="text-align: left" />
+			{% endif %}
+			<input type="text" class="Rectangle_41" />
+			<input type="text" class="Rectangle_43" onkeyup="substitute(this)" />
+			<input type="text" class="Rectangle_42" disabled />
+		</div>
+	</div>
+
+	<a href="{{url_for('sfvideo')}}">
+		<svg style="           top: 38.2vw;
     left: 85.3vw;
     width: 8vw;
     height: 6vw;
     position: absolute;
-		    "id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 575 623.42">
-		    	
-		      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 649.37 623.42"><defs><style>.cls-1,.cls-2,.cls-3{stroke:#000;stroke-miterlimit:10;}.cls-2{fill:#1ca0ff;}.cls-3{fill:#f2f2f2;}</style></defs><path class="cls-1" d="M436.5,1044.5l6-73v-75l-52,67-143-74,11-32-17-21-38-6-11-7-54-16v-8l77,2-19-19,6-4,25,10,13,4,16,19,9,4,2-3,111,61,37-78,19-91,15-20,52-28,11-13-26,3c-1.49-.84-8.69-5.09-10-13a15.77,15.77,0,0,1,0-5l-7-16,4-4-7-7,3-9-7-7v-7l2-7,4-13,1-2v-15l-1-16,7-23,2-7-4-4-6-13-1-15c4.74-23.16,17.18-37.59,28-37l40-4a36,36,0,0,1,11,0c15.46,2.42,24.53,14.46,27,18a129.11,129.11,0,0,1,14,24,134.51,134.51,0,0,1,11,64l-18,73-1,3,14,27,9,10,80,47,10,102,17,192v13l-14,49h-65l19-66-8-56-19,122Z" transform="translate(-59.63 -421.58)"/><path class="cls-2" d="M68.53,602.62c18.73-5.21,148.23-40.68,200.41-27.84,5.82,1.43,15.62,4.68,23.76,17,15.89,24,19.49,73.42,10.39,106.5-13.42,48.73-75,55.08-198.18,67.78-7.19.74-19.64,1.74-29.7-10.89C48,721,65.22,621.07,68.53,602.62Z" transform="translate(-59.63 -421.58)"/><polygon class="cls-3" points="97.86 213.23 97.86 274.63 143.53 243.93 97.86 213.23"/></svg>
+		    " id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 575 623.42">
 
-     	 <h1  style="
-			  position: absolute; top: 43vw; left: 76vw">Page <a href="{{url_for('sfvideo')}}" style="color: #1ca0ff">Instructions</a></h1>
-     
-    
-	</main>
+			<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 649.37 623.42"><defs><style>
+																														   .cls-1, .cls-2, .cls-3 {
+																															stroke: #000;
+																															stroke-miterlimit: 10;
+																														   }
 
-	<script src="{{url_for('static', filename='js/SurfaceFitting.js')}}" charset="utf-8"></script>
+																														   .cls-2 {
+																															fill: #1ca0ff;
+																														   }
+
+																														   .cls-3 {
+																															fill: #f2f2f2;
+																														   }
+			</style></defs><path class="cls-1" d="M436.5,1044.5l6-73v-75l-52,67-143-74,11-32-17-21-38-6-11-7-54-16v-8l77,2-19-19,6-4,25,10,13,4,16,19,9,4,2-3,111,61,37-78,19-91,15-20,52-28,11-13-26,3c-1.49-.84-8.69-5.09-10-13a15.77,15.77,0,0,1,0-5l-7-16,4-4-7-7,3-9-7-7v-7l2-7,4-13,1-2v-15l-1-16,7-23,2-7-4-4-6-13-1-15c4.74-23.16,17.18-37.59,28-37l40-4a36,36,0,0,1,11,0c15.46,2.42,24.53,14.46,27,18a129.11,129.11,0,0,1,14,24,134.51,134.51,0,0,1,11,64l-18,73-1,3,14,27,9,10,80,47,10,102,17,192v13l-14,49h-65l19-66-8-56-19,122Z" transform="translate(-59.63 -421.58)" /><path class="cls-2" d="M68.53,602.62c18.73-5.21,148.23-40.68,200.41-27.84,5.82,1.43,15.62,4.68,23.76,17,15.89,24,19.49,73.42,10.39,106.5-13.42,48.73-75,55.08-198.18,67.78-7.19.74-19.64,1.74-29.7-10.89C48,721,65.22,621.07,68.53,602.62Z" transform="translate(-59.63 -421.58)" /><polygon class="cls-3" points="97.86 213.23 97.86 274.63 143.53 243.93 97.86 213.23" /></svg>
+
+			<h1 style="
+			  position: absolute; top: 43vw; left: 76vw">
+				Page <a href="{{url_for('sfvideo')}}" style="color: #1ca0ff">Instructions</a>
+			</h1>
+
+
+</main>
+
+<script src="{{url_for('static', filename='js/SurfaceFitting.js')}}" charset="utf-8"></script>
 
 {% endblock content %}

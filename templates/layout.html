@@ -15,15 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Radley:ital@1&display=swap"
       rel="stylesheet"
     />
-    <style>
-      * {
-        box-sizing: content-box;
-        transition: 0.3s;
-      }
-      #credits:hover, #contact:hover {
-        color: #00FF88;
-      }
-    </style>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + css) }}">
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -87,10 +79,8 @@
 
       {% block content %}{% endblock content %}
 
-      <script src="/static/js/wow.min.js"></script>
-      <script>
-      new WOW().init();
-      </script>
+      <script src="{{url_for('static', filename='js/wow.min.js')}}"></script>
+      <script src="{{url_for('static', filename='js/layout.js')}}"></script>
   </body>
 
 </html>

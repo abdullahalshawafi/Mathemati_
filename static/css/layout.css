@@ -1,0 +1,8 @@
+* {
+  box-sizing: content-box;
+  transition: 0.3s;
+}
+
+#credits:hover, #contact:hover {
+  color: #00FF88;
+}
