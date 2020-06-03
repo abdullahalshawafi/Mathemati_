@@ -129,11 +129,18 @@ def Closed_Region(L,R,U,D,H,K,X1,X2,Y1,Y2,a,b,c,d,e,f,EQN):
 
 
      coef_line=0 
+     x_index=1
+     y_inedx=0
      result=np.linalg.inv(coefmatrix).dot(outmatrix)
      for y in range(1,Ysize-1):
+       y_inedx=y_inedx+1
+       x_index=1
        for x in range(1,Xsize-1):
-           print('U' +str(x*10 +y)+'= '+str(result[coef_line]))
+           #print('U' +str(x*10 +y)+'= '+str(result[coef_line]))
+           GRID[x_index][y_inedx]=result[coef_line]
+           x_index=x_index+1
            coef_line=coef_line+1
+       
 
      return GRID
      
@@ -267,32 +274,19 @@ def Open_Region(L,R,D,H,K,X1,X2,Y1,a,b,c,d,e,f,EQN,FD_val,YY,rows):
 
 
      coef_line=0 
+     x_index=1
+     y_inedx=0
+     
      result=np.linalg.inv(coefmatrix).dot(outmatrix)
      for y in range(1,Ysize-1):
+       y_inedx=y_inedx+1
+       x_index=0
        for x in range(1,Xsize-1):
-           print('U' +str(x*10 +y+1)+'= '+str(result[coef_line]))
+           #print('U' +str(x*10 +y+1)+'= '+str(result[coef_line]))
+           #GRID[x_index][y_inedx]=result[coef_line]
+           x_index=x_index+1
            coef_line=coef_line+1
-
+     
      return GRID
   
  
-###########################         Main Functino       #############################
-
-"""
-
-mode = (int)(input("Enter 1 for Mode 1 (Closed Region), 2 for Mode 2 (Open Region) :\n"))
-
-if mode==1 :
-    #Closed_Region(L,R,U,D,H,K,X1,X2,Y1,Y2,a,b,c,d,e,f,EQN)
-    Closed_Region('3','4','5','7', 0.33333333 ,0.33333333, 0 ,1, 0, 1, 1, 1, 0 ,0, 0, 0, '0')
-
-elif mode==2 :
-     #Open_Region(L,R,D,H,K,X1,X2,Y1,a,b,c,d,e,f,EQN,FD_val,YY,rows)
-     Open_Region ('3','4*Y','7',1/3,1/5,0,1,0,-1,1,1,0,0,0,'0',5,0,1)
-
-######  Interface team should take the input 
-
-# L,R,U,D,    EQN                                          Strings
-# H,K,X1,X2,Y1,Y2,a,b,c,d,e,f,   FD_val,YY,rows            Integers
-# 
-"""
