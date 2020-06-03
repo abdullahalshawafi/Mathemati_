@@ -3,6 +3,11 @@
 
 	<main>
 		<div id="Web_1920___1">
+			{% if anyErrorsInPosting==1 %}
+				<script>
+					alert("INVALID INPUTS !!!");
+				</script>
+			{% endif %}
 			<div id="RightTab">
 				<svg class="Rectangle_6">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_6" rx="1.49vw" ry="1.49vw" x="0" y="0" width="7.16vw" height="4.557vw">
@@ -12,7 +17,7 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.49vw" ry="1.49vw" x="0" y="0" width="25.976vw" height="35.28vw">
 					</rect>
 				</svg>
-				{%if Length == 2  %}
+				{%if Length == 2 and anyErrorsInPosting==0  %}
 				<textarea class="Rectangle_9" disabled>>>[ x y ],
 					λ,
 					εs%
@@ -30,7 +35,7 @@
 					{% endfor %}
 					{% endif %}
         </textarea>
-				{%elif Length == 3  %}
+				{%elif Length == 3 and anyErrorsInPosting==0 %}
 				<textarea class="Rectangle_9" disabled>>>[ x y z],
 					λ,
 					εs%
@@ -98,13 +103,13 @@
 					</div>
 
 					<!--          -->
-					{% if results and ( Length ==3 or Length==2)and( Method == 1 or Method == 2 ) %}
+					{% if results and anyErrorsInPosting==0 and ( Length ==3 or Length==2)and( Method == 1 or Method == 2 ) %}
 					<input type="text" class="Rectangle_10" disabled value ="{{results[4][0]}}"  />
 					<input type="text" class="Rectangle_11" disabled value ="{{results[4][1]}}"  />
 					<input type="text" class="Rectangle_12" disabled value ="{{results[4][2]}}" />
 					<input type="text" class="Rectangle_13" disabled value ="{{results[5]}}" />
 					<input type="text" class="Rectangle_14" disabled value ="{{results[3]}}" />
-					{% elif results and ( Length ==3 or Length==2) and ( Method == 3) %}
+					{% elif results and anyErrorsInPosting==0 and ( Length ==3 or Length==2) and ( Method == 3) %}
 					<input type="text" class="Rectangle_10" disabled value ="{{results[1][0][0]}}"  />
 					<input type="text" class="Rectangle_11" disabled value ="{{results[1][0][1]}}"  />
 					<input type="text" class="Rectangle_12" disabled value ="{{results[1][0][2]}}" />
@@ -129,7 +134,7 @@
 						<span>λ =                     </span>
 					</div>
 
-					{% if results and (Length==3 or Length==2) and( Method == 3) %}
+					{% if results and anyErrorsInPosting==0 and (Length==3 or Length==2) and( Method == 3) %}
 					<input type="text" class="Rectangle_10_" disabled value ="{{results[1][1][0]}}"  />
 					<input type="text" class="Rectangle_11_" disabled value ="{{results[1][1][1]}}"  />
 					<input type="text" class="Rectangle_12_ba" disabled value ="{{results[1][1][2]}}"  />
@@ -154,7 +159,7 @@
 						<span>λ =                     </span>
 					</div>
 
-					{% if results and (Length==3)and( Method == 3) %}
+					{% if results and anyErrorsInPosting==0 and (Length==3)and( Method == 3) %}
 					<input type="text" class="Rectangle_10_bi" disabled value ="{{results[1][2][0]}}"  />
 					<input type="text" class="Rectangle_11_bj" disabled value ="{{results[1][2][1]}}"  />
 					<input type="text" class="Rectangle_12_bk" disabled value ="{{results[1][2][2]}}"  />
