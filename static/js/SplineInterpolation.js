@@ -2,8 +2,13 @@
 x = 0;
 var parameters = {
     target: '#myFunction',
-    data: [
-    ],
+    data: [{
+        points: [
+        ],
+        fnType: 'points',
+        graphType: 'scatter',
+        color: "#000000"
+    }],
     grid: true,
     yAxis: { domain: [-3, 3] },
     xAxis: { domain: [-3, 3] },
@@ -14,7 +19,25 @@ functionPlot(parameters);
 
 var x = [];
 
+window.onload = function () {
+    for (var i = 0; i <= 14; i++) {
+        Scatter(document.getElementsByName("x_coordinates" + i)[0]);
+        Scatter(document.getElementsByName("y_coordinates" + i)[0]);
+    }
+};
 
+function Scatter(el) {
+    var elx = el.parentElement.parentElement.childNodes[1].childNodes[0];
+    var ely = el.parentElement.parentElement.childNodes[3].childNodes[0];
+
+
+    if (elx.value && ely.value) {
+        var point = [parseFloat(elx.value), parseFloat(ely.value)];
+        parameters.data[1].points.push(point);
+    }
+
+    functionPlot(parameters);
+};
 
 function Expand(el, x, intervals, eq) {
 
@@ -39,6 +62,17 @@ function Expand(el, x, intervals, eq) {
             input.setAttribute("value", eq[i]);
             input.setAttribute("disabled", true);
 
+            var f = 0;
+            var l = 0;
+
+            f = parseFloat(intervals[i].split("<")[0].slice(1));
+            l = parseFloat(intervals[i].split("<")[2].split("}")[0]);
+
+            if (con.innerHTML.includes("Linear")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "cyan" });
+            if (con.innerHTML.includes("Quadratic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "blue" });
+            if (con.innerHTML.includes("Cubic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "#00aaff" });
+
+
 
             span.innerHTML = intervals[i];
 
@@ -52,7 +86,10 @@ function Expand(el, x, intervals, eq) {
             div.appendChild(input);
             div.appendChild(label);
             label.appendChild(span);
+
         }
         con.innerHTML = con.innerHTML.replace(`<img src="static/Assets/Expand.svg">`, ``);
+        functionPlot(parameters);
+
     }
 }
