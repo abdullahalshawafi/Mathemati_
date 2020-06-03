@@ -33,7 +33,7 @@ function Scatter(el) {
 
     if (elx.value && ely.value) {
         var point = [parseFloat(elx.value), parseFloat(ely.value)];
-        parameters.data[1].points.push(point);
+        parameters.data[0].points.push(point);
     }
 
     functionPlot(parameters);
@@ -48,9 +48,9 @@ function Expand(el, x, intervals, eq) {
     console.log(con.childNodes[3].innerHTML);
 
     if (!con.childNodes[3].innerHTML.includes("label")) {
-        con.innerHTML = con.innerHTML.replace('width="25.98vw" height="4.56vw"', "width='25.98vw' height='" + (4.6 + x * 3) + "vw'");
+        con.innerHTML = con.innerHTML.replace('width="25.98vw" height="4.56vw"', "width='25.98vw' height='" + (4.6 + x * 3.1) + "vw'");
         con.innerHTML = con.innerHTML.replace('viewBox="127.353 308 21.741 23.895"', 'viewBox="127.353 288 21.741 23.895"');
-        con.childNodes[3].setAttribute("style", "height:" + (x * 3 + 9) + "vw");
+        con.childNodes[3].setAttribute("style", "height:" + (x * 3.1 + 9) + "vw");
         for (var i = 0; i < x; i++) {
             var div = document.createElement("div");
             var input = document.createElement("input");
@@ -68,9 +68,9 @@ function Expand(el, x, intervals, eq) {
             f = parseFloat(intervals[i].split("<")[0].slice(1));
             l = parseFloat(intervals[i].split("<")[2].split("}")[0]);
 
-            if (con.innerHTML.includes("Linear")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "cyan" });
-            if (con.innerHTML.includes("Quadratic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "blue" });
-            if (con.innerHTML.includes("Cubic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "#00aaff" });
+            if (con.innerHTML.includes("Linear")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "Red" });
+            if (con.innerHTML.includes("Quadratic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "Orange" });
+            if (con.innerHTML.includes("Cubic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "#ff5500" });
 
 
 
