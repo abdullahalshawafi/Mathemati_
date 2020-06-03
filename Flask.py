@@ -861,7 +861,9 @@ def PDE():
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
+    anyErrorsInPosting = 0
     if request.method == 'POST':
+        anyErrorsInPosting = 0
         Length = 0
         temp_to_test = 0
         inputs = []
@@ -897,17 +899,32 @@ def LinearSystem():
                         temp_to_test = request.form[temp]
                         if not temp_to_test == '':
                               inputs.append(request.form[temp])
+            for x in inputs:
+                try:
+                    float(x)
+                except ValueError:
+                    anyErrorsInPosting=1
+                    break
 ##########################################################################
-        if (n*(n+1)==len(inputs)) and (StoppingCriteria or iterations) and w and choice:
+        if (n*(n+1)==len(inputs)) and (StoppingCriteria or iterations) and w and choice and (not anyErrorsInPosting):
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
             Length = len(result[0])
+            errorOccInCalc=result[1]
             if Length:
                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
                                        wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
                                        inputs=inputs, choice=choice, iterations=iterations,
-                                       StoppingCriteria=StoppingCriteria, w=w)
-        return redirect(url_for('LinearSystem'))
+                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting)
+            else:
+                anyErrorsInPosting = 1
+        else:
+            anyErrorsInPosting = 1  # as it will enter 'else' only if an error has occurred
 
+        if anyErrorsInPosting:
+            return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
+                                   wing="SE - copy2.png", logo="Logo Greeny.svg", inputs=inputs, choice=choice, iterations=iterations,
+                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting)
+        return redirect(url_for('LinearSystem'))
     else:
         return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 

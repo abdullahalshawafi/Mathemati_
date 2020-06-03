@@ -148,12 +148,17 @@ def solve_linear_systems(n,list_of_inputs,w,choice,num_iterations,error):
                 if x[k] == 0:
                     continue
                 all_errors_in_one_iteration.append((x[k] - x_old[k]) / x[k])
-            abs_errors = list(map(abs, all_errors_in_one_iteration))
-            max_error = max(abs_errors) * 1
-            if max(all_errors_in_one_iteration) == max_error:
-                max_error = max_error * 1
+
+            if all_errors_in_one_iteration:
+                abs_errors = list(map(abs, all_errors_in_one_iteration))
+                max_error = max(abs_errors) * 1
+                if max(all_errors_in_one_iteration) == max_error:
+                    max_error = max_error * 1
+                else:
+                    max_error = -max_error * 1
             else:
-                max_error = -max_error * 1
+                max_error = 0  # if the list of errors was empty then, the error equals zero
+
             all_errors_in_one_iteration = []
             max_error_each_iteration.append(max_error)
             x_old = x * 1

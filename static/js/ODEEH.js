@@ -105,8 +105,8 @@ function DimInput() {
       document.getElementById("x4__").setAttribute("style", "filter: contrast(0.4);");
       document.getElementById("x3__").setAttribute("style", "filter: contrast(0.4);");
 
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("z, y, t", "x, y");
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("z, y", "x, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("Xzyt", "x, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("Xzy", "x, y");
 
     }
     else if (eqDim2) {
