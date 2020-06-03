@@ -135,24 +135,4 @@ function substitute(el, box1="", box2="") {
     }
 }
 
- document.getElementById('save').addEventListener('click', function () {
-    inputs = document.getElementsByTagName("input");
-   var textToSave = document.getElementById("inputTextToSave").value;
-    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
-    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
-     for (var i = 0; i < lengthInputs; i++) {
-    if (!inputs[i].disabled) {
-     document.getElementById("inputTextToSave").innerHTML = inputs[i].name + " = " + inputs[i].value + "\n"
-    }
-  }
-
-    var downloadLink = document.createElement("a");
-    downloadLink.download = fileNameToSaveAs;
-    downloadLink.innerHTML = "Download File";
-    downloadLink.href = textToSaveAsURL;
-    downloadLink.onclick = destroyClickedElement;
-    downloadLink.style.display = "none";
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-});
+ 
