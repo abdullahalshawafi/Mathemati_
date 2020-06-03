@@ -1,4 +1,3 @@
-
 x = 0;
 var parameters = {
     target: '#myFunction',
@@ -14,15 +13,52 @@ functionPlot(parameters);
 
 var x = [];
 
+window.onload = function () {
+    for (var i = 0; i <= 14; i++) {
+        Scatter(document.getElementsByName("x_coordinates" + i)[0]);
+        Scatter(document.getElementsByName("y_coordinates" + i)[0]);
+    }
+};
+
+function substitute(el, type, intervals) {
+    var x = parseFloat(el.value);
+    var f = 0;
+    var l = 0;
+    f = parseFloat(intervals[0].split("<")[0].slice(1));
+    l = parseFloat(intervals[intervals.length - 1].split("<")[2].split("}")[0]);
+    if (x <= l && x >= f) {
+      let i;
+      for(i = 0; i < intervals.length; i++) {
+        f = parseFloat(intervals[i].split("<")[0].slice(1));
+        l = parseFloat(intervals[i].split("<")[2].split("}")[0]);
+        if (x < l && x >= f)
+          break;
+      }
+
+      var F = document.getElementsByName('interval' + i)[type].value;
+      F = F.replace(/\^/g, '**');
+
+      if (eval(F).toFixed(4) != "NaN")
+          document.getElementsByClassName('Rectangle_42')[type].value = eval(F).toFixed(4);
+      else
+          document.getElementsByClassName('Rectangle_42')[type].value = '';
+    } else {
+      document.getElementsByClassName('Rectangle_42')[type].value = 'out of range';
+    }
+}
+
+function Scatter(el) {
+    var elx = el.parentElement.parentElement.childNodes[1].childNodes[0];
+    var ely = el.parentElement.parentElement.childNodes[3].childNodes[0];
+
+    if (elx.value && ely.value) {
+        var point = [parseFloat(elx.value), parseFloat(ely.value)];
+        parameters.data[0].points.push(point);
+    }
 
 
 function Expand(el, x, intervals, eq) {
-
-    // var con = document.getElementsByClassName("Quadratic")[0];
-
     con = el.parentElement.parentElement;
-
-    console.log(con.childNodes[3].innerHTML);
 
     if (!con.childNodes[3].innerHTML.includes("label")) {
         con.innerHTML = con.innerHTML.replace('width="25.98vw" height="4.56vw"', "width='25.98vw' height='" + (4.6 + x * 3) + "vw'");

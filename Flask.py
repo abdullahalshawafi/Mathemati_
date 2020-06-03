@@ -157,7 +157,7 @@ def BilinearInterpolation():
         except:
             return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
-        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1)
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1,function=surface.GetPlane_of_P)
 
     else:
         return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
@@ -410,7 +410,7 @@ def ODERK():
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():
     #*********
-    Method =1
+    Method =0
     O_Dim = 0
     Eqs_No = 0
     temp_to_test=0
@@ -440,11 +440,13 @@ def ODEEH():
           temp_to_test = request.form['Stopping Criteria']
           if not temp_to_test == '':
             StoppingCriteria = float(temp_to_test)
+            num_iteration=''
             iter_or_stoppingC ='s'
          elif not request.form['Number of iterations']=='':
             temp_to_test = request.form['Number of iterations']
             if not temp_to_test == '':
              num_iteration=int(temp_to_test)
+             StoppingCriteria=''
              iter_or_stoppingC = 'n'
          else:
              return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
@@ -454,15 +456,18 @@ def ODEEH():
              temp_to_test = request.form['Stopping Criteria']
              if not temp_to_test == '':
                  StoppingCriteria = float(temp_to_test)
+                 num_iteration=''
                  h_or_n = 'h'
             elif not request.form['Number of iterations']=='':
                  temp_to_test = request.form['Number of iterations']
                  if not temp_to_test == '':
                   num_iteration = int(temp_to_test)
+                  StoppingCriteria=''
                   h_or_n = 'n'
             else:
-                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
-                                       logo="Logo.svg", error="Ops!, Enter all required data")
+              StoppingCriteria = ''
+              num_iteration = ''
+
  #******************************
 
         if not request.form['Atx'] =='':
@@ -471,10 +476,10 @@ def ODEEH():
             List_initial_values[6] = temp_to_test  # x to evaluate at =
         else:
             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
-        if Method==2:
+        if Method==2 :
          temp_to_test = (request.form['yex'])
          if not temp_to_test == '':
-                y_exact = temp_to_test  # func to calc exact value of y:
+          y_exact = temp_to_test  # func to calc exact value of y:
     #***********
         if not request.form['x'] == '':
           temp_to_test = float(request.form['x'])
@@ -555,7 +560,7 @@ def ODEEH():
         if result:
                 return render_template('ODEEH.html', title='ODE Euler&Huen',
                                        css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",
-                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim)
+                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim,Atx=List_initial_values[6],Y_eq=List_eqs[0],Ydash_eq=List_eqs[1],Yddash_eq=List_eqs[2],Z_eq=List_eqs[3],T_eq=List_eqs[4],StoppingCriteria=StoppingCriteria,num_iteration=num_iteration,x=List_initial_values[0],y=List_initial_values[1],z=List_initial_values[2],t=List_initial_values[3],ydash=List_initial_values[4],yddash=List_initial_values[5],y_exact=y_exact)
 
         return redirect(url_for('ODEEH'))
 
@@ -807,8 +812,11 @@ def background_process():
 
         if boundry_counter==4:
             try:
-                UList = Closed_Region(value_list[0], value_list[1], value_list[2], value_list[3], h, k,
+                # L R U D
+                #print("You Are in this Region")
+                UList = Closed_Region(value_list[1], value_list[2], value_list[0], value_list[3], h, k,
                                       x1, x2, y1, y2, dxx, dyy, dx, dy, u_coeff, dxy, function)
+                #print(UList)
             except:
                 return jsonify(error = 'Could not Solve')
             try:
@@ -817,12 +825,14 @@ def background_process():
             except:
                 return jsonify(error = 'Enter x any y Values', U = '')
 
-            print(UList)
+            
             x_index = (x_point-x1)/h
             y_index = (y_point-y1)/k
-
+            print(x_index)
+            print(y_index)
             try:
-                U = UList[x_index][y_index]
+                U = UList[int(x_index)][int(y_index)]
+                print(U)
             except:
                 return jsonify(error = 'Invalid Point', U = '')
 
@@ -841,17 +851,19 @@ def background_process():
             Number_Of_Rows = y_index + 1
 
             try:
+                
                 UList = Open_Region(value_list[0], value_list[1], value_list[2], h, k, x1, x2,
-                                    y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, Number_Of_Rows)
+                                    y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, int(Number_Of_Rows))
+                
             except:
                 return jsonify(error = 'Could not Solve', U = '')
 
             try:
-                U = UList[x_index]
+                U = UList[int(x_index)][int(y_index)]
             except:
                 return jsonify(error = 'Could not Solve at This Point', U = '')
 
-            return jsonify(U = U_Value)
+            return jsonify(U = U)
         else:
             return jsonify(error = 'Invalid Number of Boundaries', U = '')
 
@@ -1122,6 +1134,9 @@ def polynomialvideo():
 def odekuttavideo():
         return render_template('odekuttavideo.html', title='ODE Runge-Kutta Instructions', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
+@app.route("/odeehvideo")
+def odeehvideo():
+        return render_template('odeehvideo.html', title='ODE Euler Instructions', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
 
 if __name__ == '__main__':
     app.run(debug=True)

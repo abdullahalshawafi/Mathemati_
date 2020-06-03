@@ -18,7 +18,7 @@ var parameters = {
             fn: 'x * x + y * y - 2',
             fnType: 'implicit'
         }
-    ],
+    ], 
     grid: true,
     yAxis: { domain: [-3, 3] },
     xAxis: { domain: [-3, 3] },
@@ -51,4 +51,3 @@ function substitute(el) {
         document.getElementsByClassName('Rectangle_42')[0].value = '';
 }
 
- 
