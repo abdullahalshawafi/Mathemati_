@@ -326,6 +326,7 @@ def Heun3(eq,exact_y,x0,y0,z0,w0,xf,h,m,n,e):
         y_value=y2
         y_dash=z1
         y_d_dash=w1
+        yp=0
         if not exact_y=='':
          t = simplify(exact_y)
          yp = t.subs({x: xf})
@@ -382,6 +383,7 @@ def Heun2(eq,exact_y,x0,y0,z0,xf,h,m,n,e):
         #print("y({})={} , y'({})={}".format(xf, y2, xf, z1))
         y_value =y2
         y_dash = z1
+        yp=0
         if not exact_y == '':
          t = simplify(exact_y)
          yp = t.subs({x: xf})
@@ -435,6 +437,7 @@ def Heun1(eq1,exact_y, x0, y0, xf, h, m, n, e):
         #print("y({})={}".format(xf, y2))
         y_value=y2
         et=0
+        yp=0
         if not exact_y == '':
          t = simplify(exact_y)
          yp = t.subs({x: xf})
