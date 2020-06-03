@@ -160,45 +160,45 @@
 
 			<div id="Answer">
 				{% if results and Method==1 and (num_eqs ==1) %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: x,y and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y and es%
 					 {% for i in range((iterations)-0) %}
 					 >> at x ={{ results[7][i]}} -->
 					       y= {{ results[8][i]}},
-					       εs% = {{results[10][i]}}%
+					       es% = {{results[10][i]}}%
 					 ---
 					 {% endfor %}
 				 </textarea>
 				{% elif results and Method==1 and (num_eqs ==2) %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z and es%
 
 					 >> at x ={{ results[1]}} -->
 					       y= {{ results[0]}},
 					       z= {{ results[2]}},
-					 εs % (y) = {{results[5]}}%,
-					 εs % (z) = {{results[6]}}%,
+					 es % (y) = {{results[5]}}%,
+					 es % (z) = {{results[6]}}%,
 					 ---
 
 				 </textarea>
 				{% elif results and Method==1 and (num_eqs ==3) %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z,t and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z,t and es%
 
 					 >> at x ={{ results[1]}} -->
 					       y= {{ results[0]}},
 					       z= {{ results[2]}},
 					       t= {{ results[3]}},
-					 εs % (y) = {{results[5]}}%,
-					 εs % (z) = {{results[6]}}%,
-					 εs % (t) = {{results[4]}}%,
+					 es % (y) = {{results[5]}}%,
+					 es % (z) = {{results[6]}}%,
+					 es % (t) = {{results[4]}}%,
 					 ---
 
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==1 and num_eqs==1 %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y and es%
 
 					 {% for i in range((iterations)-0) %}
 					 >> at i ={{ results[1][i]}} -->
 					       y= {{ results[2][i]}},
-					       εs% = {{results[4][i]}}%
+					       es% = {{results[4][i]}}%
 					 ---
 					 {% endfor %}
 					 {% if results[13]%}
@@ -207,26 +207,26 @@
 					 ---
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==1 and num_eqs==2 %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,z and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,z and es%
 
 					 {% for i in range((iterations)-0) %}
 					 >> at i ={{ results[1][i]}} -->
 					       y= {{ results[2][i]}},
 					       z={{ results[3][i]}},
-					       εs% ->y = {{results[4][i]}}%,
-					       εs% ->z= {{ results[5][i]}}%,
+					       es% ->y = {{results[4][i]}}%,
+					       es% ->z= {{ results[5][i]}}%,
 					 ---
 					 {% endfor %}
 
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==2  %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y' and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y' and es%
 
 					 {% for i in range((iterations)-0) %}
 					 >> at i ={{ results[1][i]}} -->
 					       y= {{ results[2][i]}},
 					       y'={{ results[6][i]}},
-					       εs% ->y = {{results[4][i]}}
+					       es% ->y = {{results[4][i]}}
 					 ---
 					 {% endfor %}
 					 {% if results[13]%}
@@ -236,14 +236,14 @@
 
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==3  %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y',y" and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y',y" and es%
 
 					 {% for i in range((iterations)-0) %}
 					 >> at i ={{ results[1][i]}} -->
 					       y= {{ results[2][i]}},
 					       y'={{ results[6][i]}},
 					       y"={{ results[7][i]}},
-					       εs% ->y = {{results[4][i]}}%
+					       es% ->y = {{results[4][i]}}%
 					 ---
 					 {% endfor %}
 					 {% if results[13]%}

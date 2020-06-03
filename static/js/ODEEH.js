@@ -174,7 +174,7 @@ function DimInput() {
   else {
 
     document.getElementById("Number_of_iterations__").innerHTML = 'Number of iterations =';
-    document.getElementById("Stopping_Criteria__s___").innerHTML = "Stopping Criteria εs% =";
+    document.getElementById("Stopping_Criteria__s___").innerHTML = "Stopping Criteria es% =";
 
     document.getElementById("1ODEs").removeAttribute("disabled");
     document.getElementById("2ODEs").removeAttribute("disabled");

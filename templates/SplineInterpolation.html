@@ -40,6 +40,7 @@
 				</svg>
 				<div id="System">
 					<div class="GraphOptions">
+						<div class="Slider-Container"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 						<img class="points" id="Points" src="{{url_for('static', filename='Assets/Points.svg')}}">
 					</div>
 				</div>
@@ -86,79 +87,79 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><input name="x_coordinates0" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates0']}}" type="text" /></td>
-								<td><input name="y_coordinates0" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates0']}}" type="text" /></td>
+								<td><input name="x_coordinates0"  value="{{request.form['x_coordinates0']}}" type="text" /></td>
+								<td><input name="y_coordinates0"  value="{{request.form['y_coordinates0']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates1" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates1']}}" type="text" /></td>
-								<td><input name="y_coordinates1" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates1']}}" type="text" /></td>
+								<td><input name="x_coordinates1"  value="{{request.form['x_coordinates1']}}" type="text" /></td>
+								<td><input name="y_coordinates1"  value="{{request.form['y_coordinates1']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates2" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates2']}}" type="text" /></td>
-								<td><input name="y_coordinates2" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates2']}}" type="text" /></td>
+								<td><input name="x_coordinates2"  value="{{request.form['x_coordinates2']}}" type="text" /></td>
+								<td><input name="y_coordinates2"  value="{{request.form['y_coordinates2']}}" type="text" /></td>
 							</tr>
 							<tr>
-								<td><input name="x_coordinates3" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates3']}}" type="text" /></td>
-								<td><input name="y_coordinates3" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates3']}}" type="text" /></td>
+								<td><input name="x_coordinates3"  value="{{request.form['x_coordinates3']}}" type="text" /></td>
+								<td><input name="y_coordinates3"  value="{{request.form['y_coordinates3']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates4" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates4']}}" type="text" /></td>
-								<td><input name="y_coordinates4" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates4']}}" type="text" /></td>
+								<td><input name="x_coordinates4"  value="{{request.form['x_coordinates4']}}" type="text" /></td>
+								<td><input name="y_coordinates4"  value="{{request.form['y_coordinates4']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates5" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates5']}}" type="text" /></td>
-								<td><input name="y_coordinates5" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates5']}}" type="text" /></td>
+								<td><input name="x_coordinates5"  value="{{request.form['x_coordinates5']}}" type="text" /></td>
+								<td><input name="y_coordinates5"  value="{{request.form['y_coordinates5']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates6" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates6']}}" type="text" /></td>
-								<td><input name="y_coordinates6" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates6']}}" type="text" /></td>
+								<td><input name="x_coordinates6"  value="{{request.form['x_coordinates6']}}" type="text" /></td>
+								<td><input name="y_coordinates6"  value="{{request.form['y_coordinates6']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates7" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates7']}}" type="text" /></td>
-								<td><input name="y_coordinates7" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates7']}}" type="text" /></td>
+								<td><input name="x_coordinates7"  value="{{request.form['x_coordinates7']}}" type="text" /></td>
+								<td><input name="y_coordinates7"  value="{{request.form['y_coordinates7']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates8" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates8']}}" type="text" /></td>
-								<td><input name="y_coordinates8" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates8']}}" type="text" /></td>
+								<td><input name="x_coordinates8"  value="{{request.form['x_coordinates8']}}" type="text" /></td>
+								<td><input name="y_coordinates8"  value="{{request.form['y_coordinates8']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates9" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates9']}}" type="text" /></td>
-								<td><input name="y_coordinates9" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates9']}}" type="text" /></td>
+								<td><input name="x_coordinates9"  value="{{request.form['x_coordinates9']}}" type="text" /></td>
+								<td><input name="y_coordinates9"  value="{{request.form['y_coordinates9']}}" type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates10" onfocusout="Scatter(this)" value="{{request.form['x_coordinates10']}}"  type="text" /></td>
-								<td><input name="y_coordinates10" onfocusout="Scatter(this)" value="{{request.form['y_coordinates10']}}"  type="text" /></td>
+								<td><input name="x_coordinates10" value="{{request.form['x_coordinates10']}}"  type="text" /></td>
+								<td><input name="y_coordinates10" value="{{request.form['y_coordinates10']}}"  type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates11" onfocusout="Scatter(this)" value="{{request.form['x_coordinates11']}}"  type="text" /></td>
-								<td><input name="y_coordinates11" onfocusout="Scatter(this)" value="{{request.form['y_coordinates11']}}"  type="text" /></td>
+								<td><input name="x_coordinates11" value="{{request.form['x_coordinates11']}}"  type="text" /></td>
+								<td><input name="y_coordinates11" value="{{request.form['y_coordinates11']}}"  type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates12" onfocusout="Scatter(this)" value="{{request.form['x_coordinates12']}}"  type="text" /></td>
-								<td><input name="y_coordinates12" onfocusout="Scatter(this)" value="{{request.form['y_coordinates12']}}"  type="text" /></td>
+								<td><input name="x_coordinates12" value="{{request.form['x_coordinates12']}}"  type="text" /></td>
+								<td><input name="y_coordinates12" value="{{request.form['y_coordinates12']}}"  type="text" /></td>
 
 							</tr>
 							<tr>
-								<td><input name="x_coordinates13" onfocusout="Scatter(this)" value="{{request.form['x_coordinates13']}}"  type="text" /></td>
-								<td><input name="y_coordinates13" onfocusout="Scatter(this)" value="{{request.form['y_coordinates13']}}"  type="text" /></td>
+								<td><input name="x_coordinates13" value="{{request.form['x_coordinates13']}}"  type="text" /></td>
+								<td><input name="y_coordinates13" value="{{request.form['y_coordinates13']}}"  type="text" /></td>
 
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td><input name="x_coordinates14" onfocusout="Scatter(this)" value="{{request.form['x_coordinates14']}}"  type="text" /></td>
-								<td><input name="y_coordinates14" onfocusout="Scatter(this)" value="{{request.form['y_coordinates14']}}"  type="text" /></td>
+								<td><input name="x_coordinates14" value="{{request.form['x_coordinates14']}}"  type="text" /></td>
+								<td><input name="y_coordinates14" value="{{request.form['y_coordinates14']}}"  type="text" /></td>
 
 							</tr>
 						</tfoot>
@@ -184,6 +185,7 @@
 						<div id="Brackets">
 							<div class="GraphOptions-Polynomial">
 								<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
+								<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 							</div>
 						</div>
 					</div>
@@ -223,6 +225,7 @@
 						<div id="Brackets">
 							<div class="GraphOptions-Polynomial">
 								<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
+								<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 							</div>
 						</div>
 					</div>
@@ -261,6 +264,7 @@
 						<div id="Brackets">
 							<div class="GraphOptions-Polynomial">
 								<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
+								<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 							</div>
 						</div>
 					</div>

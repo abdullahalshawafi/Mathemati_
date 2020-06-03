@@ -3,6 +3,26 @@
 
 	<main>
 		<div id="Web_1920___1">
+			{% if anyErrorsInPosting==1 %}
+				<script>
+					alert("INVALID INPUTS !!!");
+				</script>
+			{% endif %}
+			<!-- not working as expected , to be checked later
+			{% if anyErrorsInPosting==10 %}
+			<script>
+				alert("some inputs are missing !!!");
+			</script>
+			{%elif anyErrorsInPosting==2 %}
+			<script>
+				alert("equations are parallel an can't be solved !!!");
+			</script>
+			{%elif anyErrorsInPosting==1%}
+			<script>
+				alert("equations can't form a diagonally dominant matrix and can't be solved using this method !!!");
+			</script>
+			{% endif %}
+			-->
 			<div id="RightTab">
 				<svg class="Rectangle_6">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_6" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.16vw" height="4.557vw">
@@ -12,50 +32,54 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="26vw" height="22.2vw">
 					</rect>
 				</svg>
-				{%if Eqs_No == 2  %}
-				<textarea class="Rectangle_9" disabled>> [ x1 x2 ], εs%
-					{% if results %}
-					initial guess >>{{ results[2][0]}}
-					{% for i in range(results[4]-1) %}
-					>>{{ results[2][i+1]}},
-					εs% = {{ results[3][i]}}
-					---
-					{% endfor %}
+				{% if anyErrorsInPosting==0 %}
+					{%if Eqs_No == 2  %}
+					<textarea class="Rectangle_9" disabled>> [ x1 x2 ], εs%
+						{% if results %}
+						initial guess >>{{ results[2][0]}}
+						{% for i in range(results[4]-1) %}
+						>>{{ results[2][i+1]}},
+						εs% = {{ results[3][i]}}
+						---
+						{% endfor %}
+						{% endif %}
+					</textarea>
+					{%elif Eqs_No == 3  %}
+					<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 ], εs%
+						{% if results %}
+						initial guess >>{{ results[2][0]}}
+						{% for i in range(results[4]-1) %}
+						>>{{ results[2][i+1]}},
+						εs% = {{ results[3][i]}}
+						---
+						{% endfor %}
+						{% endif %}
+					 </textarea>
+					{%elif Eqs_No == 4  %}
+					<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 ], εs%
+						{% if results %}
+						initial guess >>{{ results[2][0]}}
+						{% for i in range(results[4]-1) %}
+						>>{{ results[2][i+1]}},
+						εs% = {{ results[3][i]}}
+						---
+						{% endfor %}
+						{% endif %}
+					</textarea>
+					{%elif Eqs_No == 5  %}
+					<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 x5 ], εs%
+						{% if results %}
+						initial guess >>{{ results[2][0]}}
+						{% for i in range(results[4]-1) %}
+						>>{{ results[2][i+1]}},
+						εs% = {{ results[3][i]}}
+						---
+						{% endfor %}
+						{% endif %}
+					</textarea>
+					{% else %}
+					<textarea class="Rectangle_9" disabled>  </textarea>
 					{% endif %}
-				</textarea>
-				{%elif Eqs_No == 3  %}
-				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 ], εs%
-					{% if results %}
-					initial guess >>{{ results[2][0]}}
-					{% for i in range(results[4]-1) %}
-					>>{{ results[2][i+1]}},
-					εs% = {{ results[3][i]}}
-					---
-					{% endfor %}
-					{% endif %}
-				 </textarea>
-				{%elif Eqs_No == 4  %}
-				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 ], εs%
-					{% if results %}
-					initial guess >>{{ results[2][0]}}
-					{% for i in range(results[4]-1) %}
-					>>{{ results[2][i+1]}},
-					εs% = {{ results[3][i]}}
-					---
-					{% endfor %}
-					{% endif %}
-				</textarea>
-				{%elif Eqs_No == 5  %}
-				<textarea class="Rectangle_9" disabled>> [ x1 x2 x3 x4 x5 ], εs%
-					{% if results %}
-					initial guess >>{{ results[2][0]}}
-					{% for i in range(results[4]-1) %}
-					>>{{ results[2][i+1]}},
-					εs% = {{ results[3][i]}}
-					---
-					{% endfor %}
-					{% endif %}
-				</textarea>
 				{% else %}
 				<textarea class="Rectangle_9" disabled>  </textarea>
 				{% endif %}
@@ -198,15 +222,15 @@
 						</div>
             {% if results %}
             {% if Eqs_No == 2 %}
-						<input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}} />
-						<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value ={{inputs[1]}}  />
-						<input type="text" class="Rectangle_37" name="x02" />
-						<input type="text" class="Rectangle_38" name="x03" />
-						<input type="text" class="Rectangle_39" name="x04" />
-						<input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value ={{inputs[2]}}  />
+			<input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}} />
+			<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value ={{inputs[1]}}  />
+			<input type="text" class="Rectangle_37" name="x02" />
+			<input type="text" class="Rectangle_38" name="x03" />
+			<input type="text" class="Rectangle_39" name="x04" />
+			<input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value ={{inputs[2]}}  />
             {% elif Eqs_No == 3 %}
             <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}} />
-						<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value ={{inputs[1]}}  />
+			<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value ={{inputs[1]}}  />
             <input type="text" class="Rectangle_37" name="x02" value = {{inputs[2]}} />
             <input type="text" class="Rectangle_38" name="x03"  />
             <input type="text" class="Rectangle_39" name="x04"  />
@@ -497,42 +521,50 @@
 				<div id="x4__">
 					<span>x4= </span>
 				</div>
-
-				{% if results and Eqs_No == 2 %}
-				<input type="text" class="Rectangle_32" disabled value ="{{results[0][0]}}"  />
-				<input type="text" class="Rectangle_33" disabled value ="{{results[0][1]}}" />
-				<input type="text" class="Rectangle_34" disabled />
-				<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}" />
-				<input type="text" class="Rectangle_41" disabled />
-				<input type="text" class="Rectangle_42" disabled />
-				{% elif results and Eqs_No == 3 %}
-				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
-				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
-				<input type="text" class="Rectangle_34" disabled />
-				<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
-				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
-				<input type="text" class="Rectangle_42" disabled />
-				{% elif results and Eqs_No == 4 %}
-				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
-				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
-				<input type="text" class="Rectangle_34" disabled />
-				<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
-				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
-				<input type="text" class="Rectangle_42" disabled value= {{results[0][3]}}/>
-				{% elif results and Eqs_No == 5 %}
-				<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
-				<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
-				<input type="text" class="Rectangle_34" disabled value ={{results[0][4]}} />
-				<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
-				<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
-				<input type="text" class="Rectangle_42" disabled value= {{results[0][3]}}/>
+				{% if anyErrorsInPosting==0 %}
+					{% if results and Eqs_No == 2 %}
+					<input type="text" class="Rectangle_32" disabled value ="{{results[0][0]}}"  />
+					<input type="text" class="Rectangle_33" disabled value ="{{results[0][1]}}" />
+					<input type="text" class="Rectangle_34" disabled />
+					<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}" />
+					<input type="text" class="Rectangle_41" disabled />
+					<input type="text" class="Rectangle_42" disabled />
+					{% elif results and Eqs_No == 3 %}
+					<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
+					<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
+					<input type="text" class="Rectangle_34" disabled />
+					<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
+					<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
+					<input type="text" class="Rectangle_42" disabled />
+					{% elif results and Eqs_No == 4 %}
+					<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
+					<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
+					<input type="text" class="Rectangle_34" disabled />
+					<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
+					<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
+					<input type="text" class="Rectangle_42" disabled value= {{results[0][3]}}/>
+					{% elif results and Eqs_No == 5 %}
+					<input type="text" class="Rectangle_32" disabled value ={{results[0][0]}}  />
+					<input type="text" class="Rectangle_33" disabled value ={{results[0][1]}} />
+					<input type="text" class="Rectangle_34" disabled value ={{results[0][4]}} />
+					<input type="text" class="Rectangle_35" disabled value ="{{results[-2][-1]}}"/>
+					<input type="text" class="Rectangle_41" disabled value= {{results[0][2]}}/>
+					<input type="text" class="Rectangle_42" disabled value= {{results[0][3]}}/>
+					{%else %} <!-- we can remove this else statement -->
+					<input type="text" class="Rectangle_32" disabled/>
+					<input type="text" class="Rectangle_33" disabled/>
+					<input type="text" class="Rectangle_34" disabled/>
+					<input type="text" class="Rectangle_35" disabled/>
+					<input type="text" class="Rectangle_41" disabled/>
+					<input type="text" class="Rectangle_42" disabled/>
+					{% endif %}
 				{%else %}
-				<input type="text" class="Rectangle_32" disabled/>
-				<input type="text" class="Rectangle_33" disabled/>
-				<input type="text" class="Rectangle_34" disabled/>
-				<input type="text" class="Rectangle_35" disabled/>
-				<input type="text" class="Rectangle_41" disabled/>
-				<input type="text" class="Rectangle_42" disabled/>
+					<input type="text" class="Rectangle_32" disabled/>
+					<input type="text" class="Rectangle_33" disabled/>
+					<input type="text" class="Rectangle_34" disabled/>
+					<input type="text" class="Rectangle_35" disabled/>
+					<input type="text" class="Rectangle_41" disabled/>
+					<input type="text" class="Rectangle_42" disabled/>
 				{% endif %}
 			</div>
 
