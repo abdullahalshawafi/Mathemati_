@@ -154,90 +154,102 @@
 				<div id="Yexact">
 					<span>y<span style="font-size: 1vw">Exact</span> (x) =</span>
 				</div>
-				<input type="text" class="Rectangle_Ex" name="yex"/>
+				<input type="text" class="Rectangle_Ex" name="yex" value="{{y_exact}}"/>
+
 			</div>
 
 			<div id="Answer">
 				{% if results and Method==1 and (num_eqs ==1) %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: x,y and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y and es%
 					 {% for i in range((iterations)-0) %}
 					 >> at x ={{ results[7][i]}} -->
 					       y= {{ results[8][i]}},
-					       εs% = {{results[10][i]}}%
+					       es% = {{results[10][i]}}%
 					 ---
 					 {% endfor %}
 				 </textarea>
 				{% elif results and Method==1 and (num_eqs ==2) %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z and es%
 
 					 >> at x ={{ results[1]}} -->
 					       y= {{ results[0]}},
 					       z= {{ results[2]}},
-					 εs % (y) = {{results[5]}}%,
-					 εs % (z) = {{results[6]}}%,
+					 es % (y) = {{results[5]}}%,
+					 es % (z) = {{results[6]}}%,
 					 ---
 
 				 </textarea>
 				{% elif results and Method==1 and (num_eqs ==3) %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z,t and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: x,y,z,t and es%
 
 					 >> at x ={{ results[1]}} -->
 					       y= {{ results[0]}},
 					       z= {{ results[2]}},
 					       t= {{ results[3]}},
-					 εs % (y) = {{results[5]}}%,
-					 εs % (z) = {{results[6]}}%,
-					 εs % (t) = {{results[4]}}%,
+					 es % (y) = {{results[5]}}%,
+					 es % (z) = {{results[6]}}%,
+					 es % (t) = {{results[4]}}%,
 					 ---
 
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==1 and num_eqs==1 %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y and es%
 
 					 {% for i in range((iterations)-0) %}
 					 >> at i ={{ results[1][i]}} -->
 					       y= {{ results[2][i]}},
-					       εs% = {{results[4][i]}}%
+					       es% = {{results[4][i]}}%
 					 ---
 					 {% endfor %}
-
+					 {% if results[13]%}
+					 Y_exact value ={{results[13]}}
+					 {% endif %}
+					 ---
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==1 and num_eqs==2 %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,z and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,z and es%
 
 					 {% for i in range((iterations)-0) %}
 					 >> at i ={{ results[1][i]}} -->
 					       y= {{ results[2][i]}},
 					       z={{ results[3][i]}},
-					       εs% ->y = {{results[4][i]}}%,
-					       εs% ->z= {{ results[5][i]}}%,
+					       es% ->y = {{results[4][i]}}%,
+					       es% ->z= {{ results[5][i]}}%,
 					 ---
 					 {% endfor %}
 
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==2  %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y' and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y' and es%
 
 					 {% for i in range((iterations)-0) %}
 					 >> at i ={{ results[1][i]}} -->
 					       y= {{ results[2][i]}},
 					       y'={{ results[6][i]}},
-					       εs% ->y = {{results[4][i]}}
+					       es% ->y = {{results[4][i]}}
 					 ---
 					 {% endfor %}
+					 {% if results[13]%}
+					 Y_exact value ={{results[13]}}
+					 {% endif %}
+					 ---
 
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==3  %}
-				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y',y" and εs%
+				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,y',y" and es%
 
 					 {% for i in range((iterations)-0) %}
 					 >> at i ={{ results[1][i]}} -->
 					       y= {{ results[2][i]}},
 					       y'={{ results[6][i]}},
 					       y"={{ results[7][i]}},
-					       εs% ->y = {{results[4][i]}}%
+					       es% ->y = {{results[4][i]}}%
 					 ---
 					 {% endfor %}
+					 {% if results[13]%}
+					 Y_exact value ={{results[13]}}
+					 {% endif %}
+					 ---
 
 				 </textarea>
 				{% else %}
@@ -323,22 +335,22 @@
 				</div>
 
 
-				<input type="text" class="Path_6" name="Stopping Criteria" />
-				<input type="text" class="Rectangle_18" name="Number of iterations" />
-				<input type="text" class="Path_62" name="Atx"/>
-				<input type="text" class="Y1" style="text-align: left" name="Y1" />
-				<input type="text" class="Y2" style="text-align: left" name="Y2"/>
-				<input type="text" class="Y3" style="text-align: left" name="Y3"/>
-				<input type="text" class="Z1" style="text-align: left" name="Z1"/>
-				<input type="text" class="T1" style="text-align: left" name="T1"/>
+				<input type="text" class="Path_6" name="Stopping Criteria" value="{{StoppingCriteria}}" />
+				<input type="text" class="Rectangle_18" name="Number of iterations" value="{{num_iteration}}"/>
+				<input type="text" class="Path_62" name="Atx" value="{{Atx}}"/>
+				<input type="text" class="Y1" style="text-align: left" name="Y1" value="{{Y_eq}}"/>
+				<input type="text" class="Y2" style="text-align: left" name="Y2" value="{{Ydash_eq}}"/>
+				<input type="text" class="Y3" style="text-align: left" name="Y3" value="{{Yddash_eq}}"/>
+				<input type="text" class="Z1" style="text-align: left" name="Z1" value="{{Z_eq}}"/>
+				<input type="text" class="T1" style="text-align: left" name="T1" value="{{T_eq}}"/>
 				<div id="y1">
-					<span>y' (x,z, y) =</span>
+					<span>y' (x,z,y,t) =</span>
 				</div>
 				<div id="y2">
 					<span>y" ( x,y, y') =</span>
 				</div>
 				<div id="y3">
-					<span>y"'(x,y,y, y")=</span>
+					<span>y"'(x,y,y',y")=</span>
 				</div>
 				<div id="z1">
 					<span>z' (x,z, y) =</span>
@@ -352,12 +364,12 @@
 				<!--<input type="text" class="Rectangle_29" style="text-align: left" onfocusout="addtograph()" />-->
 				<!--<input type="text" class="Rectangle_30" style="text-align: left" />-->
 
-				<input type="text" class="Rectangle_32I" name="x"/> <!--x-->
-				<input type="text" class="Rectangle_33I" name="y"/> <!--y-->
-				<input type="text" class="Rectangle_332I" name="ydash" /> <!--y'-->
-				<input type="text" class="Rectangle_34I" name="z" /> <!--z-->
-				<input type="text" class="Rectangle_35I" name="t"/> <!--t-->
-				<input type="text" class="Rectangle_352I" name="yddash"/> <!--y"-->
+				<input type="text" class="Rectangle_32I" name="x" value="{{x}}"/> <!--x-->
+				<input type="text" class="Rectangle_33I" name="y" value="{{y}}"/> <!--y-->
+				<input type="text" class="Rectangle_332I" name="ydash" value="{{ydash}}" /> <!--y'-->
+				<input type="text" class="Rectangle_34I" name="z" value="{{z}}"/> <!--z-->
+				<input type="text" class="Rectangle_35I" name="t" value="{{t}}"/> <!--t-->
+				<input type="text" class="Rectangle_352I" name="yddash" value="{{yddash}}"/> <!--y"-->
 
 				<div id="x___I">
 					<span>x</span><span style="font-size:1.2vw;">o</span><span> = </span>
@@ -408,8 +420,9 @@
 								<span>G(x,y,z) = 0 =</span>
 							</div>
 							<div id="H_x_y_z____0__">
-								<span>H(x,y,z) = 0 =</span>
+							<span>H(x,y,z) = 0 =</span>
 							</div>-->
+			 </form>
 			</div>
 		</div>
 

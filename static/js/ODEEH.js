@@ -105,8 +105,8 @@ function DimInput() {
       document.getElementById("x4__").setAttribute("style", "filter: contrast(0.4);");
       document.getElementById("x3__").setAttribute("style", "filter: contrast(0.4);");
 
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("Xzyt", "x, y");
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("Xzy", "x, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x,z, y, t", "x, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x,z, y", "x, y");
 
     }
     else if (eqDim2) {
@@ -135,8 +135,8 @@ function DimInput() {
 
       document.getElementById("z1").innerHTML = document.getElementById("z1").innerHTML.replace("z, y, t", "z, y");
 
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("z, y, t", "z, y");
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x, y", "z, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x,z, y, t", "x,z, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x, y", "x,z, y");
 
     }
     else if (eqDim3) {
@@ -165,8 +165,8 @@ function DimInput() {
 
       document.getElementById("z1").innerHTML = document.getElementById("z1").innerHTML.replace("z, y", "z, y, t");
 
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("z, y", "z, y, t");
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x, y", "z, y, t");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x,z, y", "x,z, y, t");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x, y", "x,z, y, t");
 
     }
 
@@ -174,7 +174,7 @@ function DimInput() {
   else {
 
     document.getElementById("Number_of_iterations__").innerHTML = 'Number of iterations =';
-    document.getElementById("Stopping_Criteria__s___").innerHTML = "Stopping Criteria εs% =";
+    document.getElementById("Stopping_Criteria__s___").innerHTML = "Stopping Criteria es% =";
 
     document.getElementById("1ODEs").removeAttribute("disabled");
     document.getElementById("2ODEs").removeAttribute("disabled");
