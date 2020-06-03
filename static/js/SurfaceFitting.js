@@ -51,4 +51,3 @@ function substitute(el) {
         document.getElementsByClassName('Rectangle_42')[0].value = '';
 }
 
- 
