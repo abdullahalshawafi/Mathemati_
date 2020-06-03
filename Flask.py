@@ -410,7 +410,7 @@ def ODERK():
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():
     #*********
-    Method =1
+    Method =0
     O_Dim = 0
     Eqs_No = 0
     temp_to_test=0
@@ -440,11 +440,13 @@ def ODEEH():
           temp_to_test = request.form['Stopping Criteria']
           if not temp_to_test == '':
             StoppingCriteria = float(temp_to_test)
+            num_iteration=''
             iter_or_stoppingC ='s'
          elif not request.form['Number of iterations']=='':
             temp_to_test = request.form['Number of iterations']
             if not temp_to_test == '':
              num_iteration=int(temp_to_test)
+             StoppingCriteria=''
              iter_or_stoppingC = 'n'
          else:
              return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
@@ -454,15 +456,18 @@ def ODEEH():
              temp_to_test = request.form['Stopping Criteria']
              if not temp_to_test == '':
                  StoppingCriteria = float(temp_to_test)
+                 num_iteration=''
                  h_or_n = 'h'
             elif not request.form['Number of iterations']=='':
                  temp_to_test = request.form['Number of iterations']
                  if not temp_to_test == '':
                   num_iteration = int(temp_to_test)
+                  StoppingCriteria=''
                   h_or_n = 'n'
             else:
-                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
-                                       logo="Logo.svg", error="Ops!, Enter all required data")
+              StoppingCriteria = ''
+              num_iteration = ''
+
  #******************************
 
         if not request.form['Atx'] =='':
@@ -471,10 +476,10 @@ def ODEEH():
             List_initial_values[6] = temp_to_test  # x to evaluate at =
         else:
             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
-        if Method==2:
+        if Method==2 :
          temp_to_test = (request.form['yex'])
          if not temp_to_test == '':
-                y_exact = temp_to_test  # func to calc exact value of y:
+          y_exact = temp_to_test  # func to calc exact value of y:
     #***********
         if not request.form['x'] == '':
           temp_to_test = float(request.form['x'])
@@ -555,7 +560,7 @@ def ODEEH():
         if result:
                 return render_template('ODEEH.html', title='ODE Euler&Huen',
                                        css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",
-                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim)
+                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim,Atx=List_initial_values[6],Y_eq=List_eqs[0],Ydash_eq=List_eqs[1],Yddash_eq=List_eqs[2],Z_eq=List_eqs[3],T_eq=List_eqs[4],StoppingCriteria=StoppingCriteria,num_iteration=num_iteration,x=List_initial_values[0],y=List_initial_values[1],z=List_initial_values[2],t=List_initial_values[3],ydash=List_initial_values[4],yddash=List_initial_values[5],y_exact=y_exact)
 
         return redirect(url_for('ODEEH'))
 
@@ -861,7 +866,9 @@ def PDE():
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
+    anyErrorsInPosting = 0
     if request.method == 'POST':
+        anyErrorsInPosting = 0
         Length = 0
         temp_to_test = 0
         inputs = []
@@ -897,17 +904,32 @@ def LinearSystem():
                         temp_to_test = request.form[temp]
                         if not temp_to_test == '':
                               inputs.append(request.form[temp])
+            for x in inputs:
+                try:
+                    float(x)
+                except ValueError:
+                    anyErrorsInPosting=1
+                    break
 ##########################################################################
-        if (n*(n+1)==len(inputs)) and (StoppingCriteria or iterations) and w and choice:
+        if (n*(n+1)==len(inputs)) and (StoppingCriteria or iterations) and w and choice and (not anyErrorsInPosting):
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
             Length = len(result[0])
+            errorOccInCalc=result[1]
             if Length:
                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
                                        wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
                                        inputs=inputs, choice=choice, iterations=iterations,
-                                       StoppingCriteria=StoppingCriteria, w=w)
-        return redirect(url_for('LinearSystem'))
+                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting)
+            else:
+                anyErrorsInPosting = 1
+        else:
+            anyErrorsInPosting = 1  # as it will enter 'else' only if an error has occurred
 
+        if anyErrorsInPosting:
+            return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
+                                   wing="SE - copy2.png", logo="Logo Greeny.svg", inputs=inputs, choice=choice, iterations=iterations,
+                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting)
+        return redirect(url_for('LinearSystem'))
     else:
         return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
