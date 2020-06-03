@@ -77,10 +77,10 @@
                     </rect>
                 </svg>
                 <input type="text" name="xn" value="{{request.form['xn']}}" class="Rectangle_32" />
-                {% if results %}
-                <input type="text" name="yn" value="{{results[-2]}}" class="Rectangle_33"  />
+                {% if Method=="AdamBackward" %}
+                <input type="text" name="yn" value="{{results[-2]}}" class="Rectangle_33" id='yn' disabled  />
                 {% else %}
-                <input type="text" name="yn" class="Rectangle_33"  />
+                <input type="text" name="yn" class="Rectangle_33" id='yn'  />
                 {% endif %}
                 <div id="x___">
                     <span>x<span style="font-size:0.8vw">n</span> = </span>
