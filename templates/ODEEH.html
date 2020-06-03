@@ -154,8 +154,7 @@
 				<div id="Yexact">
 					<span>y<span style="font-size: 1vw">Exact</span> (x) =</span>
 				</div>
-				<input type="text" class="Rectangle_Ex" name="yex" value="{{y_exact}}"/>
-
+				<input type="text" class="Rectangle_Ex" name="yex"/>
 			</div>
 
 			<div id="Answer">
@@ -201,10 +200,7 @@
 					       εs% = {{results[4][i]}}%
 					 ---
 					 {% endfor %}
-					 {% if results[13]%}
-					 Y_exact value ={{results[13]}}
-					 {% endif %}
-					 ---
+
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==1 and num_eqs==2 %}
 				 <textarea class="Rectangle_9" disabled>> Outputs: iteration,y,z and εs%
@@ -229,10 +225,6 @@
 					       εs% ->y = {{results[4][i]}}
 					 ---
 					 {% endfor %}
-					 {% if results[13]%}
-					 Y_exact value ={{results[13]}}
-					 {% endif %}
-					 ---
 
 				 </textarea>
 				{% elif results and Method==2 and ODE_dim==3  %}
@@ -246,10 +238,6 @@
 					       εs% ->y = {{results[4][i]}}%
 					 ---
 					 {% endfor %}
-					 {% if results[13]%}
-					 Y_exact value ={{results[13]}}
-					 {% endif %}
-					 ---
 
 				 </textarea>
 				{% else %}
@@ -335,30 +323,22 @@
 				</div>
 
 
-				<input type="text" class="Path_6" name="Stopping Criteria" value="{{StoppingCriteria}}" />
-				<input type="text" class="Rectangle_18" name="Number of iterations" value="{{num_iteration}}"/>
-				<input type="text" class="Path_62" name="Atx" value="{{Atx}}"/>
-				<input type="text" class="Y1" style="text-align: left" name="Y1" value="{{Y_eq}}"/>
-				<input type="text" class="Y2" style="text-align: left" name="Y2" value="{{Ydash_eq}}"/>
-				<input type="text" class="Y3" style="text-align: left" name="Y3" value="{{Yddash_eq}}"/>
-				<input type="text" class="Z1" style="text-align: left" name="Z1" value="{{Z_eq}}"/>
-				<input type="text" class="T1" style="text-align: left" name="T1" value="{{T_eq}}"/>
+				<input type="text" class="Path_6" name="Stopping Criteria" />
+				<input type="text" class="Rectangle_18" name="Number of iterations" />
+				<input type="text" class="Path_62" name="Atx"/>
+				<input type="text" class="Y1" style="text-align: left" name="Y1" />
+				<input type="text" class="Y2" style="text-align: left" name="Y2"/>
+				<input type="text" class="Y3" style="text-align: left" name="Y3"/>
+				<input type="text" class="Z1" style="text-align: left" name="Z1"/>
+				<input type="text" class="T1" style="text-align: left" name="T1"/>
 				<div id="y1">
-<<<<<<< HEAD
 					<span>y' (x,z, y) =</span>
-=======
-					<span>y' (x,z,y,t) =</span>
->>>>>>> 627799f0bdfb0ecce125db34d707e94b2eae7257
 				</div>
 				<div id="y2">
 					<span>y" ( x,y, y') =</span>
 				</div>
 				<div id="y3">
-<<<<<<< HEAD
 					<span>y"'(x,y,y, y")=</span>
-=======
-					<span>y"'(x,y,y',y")=</span>
->>>>>>> 627799f0bdfb0ecce125db34d707e94b2eae7257
 				</div>
 				<div id="z1">
 					<span>z' (x,z, y) =</span>
@@ -372,12 +352,12 @@
 				<!--<input type="text" class="Rectangle_29" style="text-align: left" onfocusout="addtograph()" />-->
 				<!--<input type="text" class="Rectangle_30" style="text-align: left" />-->
 
-				<input type="text" class="Rectangle_32I" name="x" value="{{x}}"/> <!--x-->
-				<input type="text" class="Rectangle_33I" name="y" value="{{y}}"/> <!--y-->
-				<input type="text" class="Rectangle_332I" name="ydash" value="{{ydash}}" /> <!--y'-->
-				<input type="text" class="Rectangle_34I" name="z" value="{{z}}"/> <!--z-->
-				<input type="text" class="Rectangle_35I" name="t" value="{{t}}"/> <!--t-->
-				<input type="text" class="Rectangle_352I" name="yddash" value="{{yddash}}"/> <!--y"-->
+				<input type="text" class="Rectangle_32I" name="x"/> <!--x-->
+				<input type="text" class="Rectangle_33I" name="y"/> <!--y-->
+				<input type="text" class="Rectangle_332I" name="ydash" /> <!--y'-->
+				<input type="text" class="Rectangle_34I" name="z" /> <!--z-->
+				<input type="text" class="Rectangle_35I" name="t"/> <!--t-->
+				<input type="text" class="Rectangle_352I" name="yddash"/> <!--y"-->
 
 				<div id="x___I">
 					<span>x</span><span style="font-size:1.2vw;">o</span><span> = </span>
@@ -428,9 +408,8 @@
 								<span>G(x,y,z) = 0 =</span>
 							</div>
 							<div id="H_x_y_z____0__">
-							<span>H(x,y,z) = 0 =</span>
+								<span>H(x,y,z) = 0 =</span>
 							</div>-->
-			 </form>
 			</div>
 		</div>
 

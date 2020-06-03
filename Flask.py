@@ -410,7 +410,7 @@ def ODERK():
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():
     #*********
-    Method =0
+    Method =1
     O_Dim = 0
     Eqs_No = 0
     temp_to_test=0
@@ -440,13 +440,11 @@ def ODEEH():
           temp_to_test = request.form['Stopping Criteria']
           if not temp_to_test == '':
             StoppingCriteria = float(temp_to_test)
-            num_iteration=''
             iter_or_stoppingC ='s'
          elif not request.form['Number of iterations']=='':
             temp_to_test = request.form['Number of iterations']
             if not temp_to_test == '':
              num_iteration=int(temp_to_test)
-             StoppingCriteria=''
              iter_or_stoppingC = 'n'
          else:
              return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
@@ -456,18 +454,15 @@ def ODEEH():
              temp_to_test = request.form['Stopping Criteria']
              if not temp_to_test == '':
                  StoppingCriteria = float(temp_to_test)
-                 num_iteration=''
                  h_or_n = 'h'
             elif not request.form['Number of iterations']=='':
                  temp_to_test = request.form['Number of iterations']
                  if not temp_to_test == '':
                   num_iteration = int(temp_to_test)
-                  StoppingCriteria=''
                   h_or_n = 'n'
             else:
-              StoppingCriteria = ''
-              num_iteration = ''
-
+                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                                       logo="Logo.svg", error="Ops!, Enter all required data")
  #******************************
 
         if not request.form['Atx'] =='':
@@ -476,10 +471,10 @@ def ODEEH():
             List_initial_values[6] = temp_to_test  # x to evaluate at =
         else:
             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
-        if Method==2 :
+        if Method==2:
          temp_to_test = (request.form['yex'])
          if not temp_to_test == '':
-          y_exact = temp_to_test  # func to calc exact value of y:
+                y_exact = temp_to_test  # func to calc exact value of y:
     #***********
         if not request.form['x'] == '':
           temp_to_test = float(request.form['x'])
@@ -560,7 +555,7 @@ def ODEEH():
         if result:
                 return render_template('ODEEH.html', title='ODE Euler&Huen',
                                        css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",
-                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim,Atx=List_initial_values[6],Y_eq=List_eqs[0],Ydash_eq=List_eqs[1],Yddash_eq=List_eqs[2],Z_eq=List_eqs[3],T_eq=List_eqs[4],StoppingCriteria=StoppingCriteria,num_iteration=num_iteration,x=List_initial_values[0],y=List_initial_values[1],z=List_initial_values[2],t=List_initial_values[3],ydash=List_initial_values[4],yddash=List_initial_values[5],y_exact=y_exact)
+                                        Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim)
 
         return redirect(url_for('ODEEH'))
 
