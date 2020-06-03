@@ -10,8 +10,8 @@ var parameters = {
         color: "#000000"
     }],
     grid: true,
-    yAxis: { domain: [-3, 3] },
-    xAxis: { domain: [-3, 3] },
+    yAxis: { domain: [-10, 10] },
+    xAxis: { domain: [-10, 10] },
     height: window.innerWidth / 100 * 18.45,
     width: window.innerWidth / 100 * 19.13
 };
@@ -25,6 +25,29 @@ window.onload = function () {
         Scatter(document.getElementsByName("y_coordinates" + i)[0]);
     }
 };
+
+/*
+function substitute(el) {
+
+    var x = parseFloat(el.value);
+    var F = document.getElementsByClassName(box1)[0].value;
+    F = F.replace(/\^/g, '**');
+    var con = el.parentElement
+    for (var i = 0; i < x; i++)
+
+    if (box1 == "Rectangle_32") {
+        if (eval(F).toFixed(4) != "NaN")
+            document.getElementsByClassName('Rectangle_42')[0].value = eval(F).toFixed(4);
+        else
+            document.getElementsByClassName('Rectangle_42')[0].value = '';
+    } else if (box1 == "Rectangle_32D") {
+        if (eval(F).toFixed(4) != "NaN")
+            document.getElementsByClassName('Rectangle_42D')[0].value = eval(F).toFixed(4);
+        else
+            document.getElementsByClassName('Rectangle_42D')[0].value = '';
+    }
+}*/
+
 
 function Scatter(el) {
     var elx = el.parentElement.parentElement.childNodes[1].childNodes[0];

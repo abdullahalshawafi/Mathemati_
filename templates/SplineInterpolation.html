@@ -40,7 +40,6 @@
 				</svg>
 				<div id="System">
 					<div class="GraphOptions">
-						<div class="Slider-Container"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 						<img class="points" id="Points" src="{{url_for('static', filename='Assets/Points.svg')}}">
 					</div>
 				</div>
@@ -185,7 +184,6 @@
 						<div id="Brackets">
 							<div class="GraphOptions-Polynomial">
 								<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
-								<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 							</div>
 						</div>
 					</div>
@@ -203,8 +201,8 @@
 							<span>) = </span>
 						</div>
 
-						<input type="text" class="Rectangle_41" />
-						<input type="text" class="Rectangle_42" />
+						<input type="text" class="Rectangle_41"  />
+						<input type="text" class="Rectangle_42" disabled />
 					</div>
 				</div>
 				<div class="Quadratic">
@@ -225,7 +223,6 @@
 						<div id="Brackets">
 							<div class="GraphOptions-Polynomial">
 								<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
-								<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 							</div>
 						</div>
 					</div>
@@ -244,7 +241,7 @@
 						</div>
 
 						<input type="text" class="Rectangle_41" />
-						<input type="text" class="Rectangle_42" />
+						<input type="text" class="Rectangle_42" disabled />
 					</div>
 				</div>
 				<div class="Cubic">
@@ -264,7 +261,6 @@
 						<div id="Brackets">
 							<div class="GraphOptions-Polynomial">
 								<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
-								<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
 							</div>
 						</div>
 					</div>
@@ -283,7 +279,7 @@
 						</div>
 
 						<input type="text" class="Rectangle_41" />
-						<input type="text" class="Rectangle_42" />
+						<input type="text" class="Rectangle_42" disabled />
 					</div>
 				</div>
 			</div>
