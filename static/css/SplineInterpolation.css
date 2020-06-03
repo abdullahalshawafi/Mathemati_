@@ -1072,11 +1072,9 @@ height: 0;
 
 
 .GraphOptions {
-	display: inline;
-	cursor: pointer;
 	text-align: right;
 	align-items: end;
-	pointer-events: visible;
+	pointer-events: none;
 }
 
 	.GraphOptions:hover .Slider-Container {
@@ -1087,6 +1085,7 @@ height: 0;
 
 .points {
 	width: 4vw;
+	margin-left: 6vw;
 }
 .linesicon {
 	width: 4vw;
