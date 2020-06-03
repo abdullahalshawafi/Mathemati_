@@ -17,6 +17,7 @@ from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
 from methods.ODE_EulerAndHeun  import Solve_Euler ,Solve_Heun
+from methods.Surface_Interpolation import Surface_Interpolation
 import numpy as np
 
 app = Flask(__name__)
@@ -27,9 +28,6 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 @app.route("/home")
 def home():
     return render_template('Home.html')
-
-#def reset():
-#    return redirect ("/")
 
 @app.route("/Credits")
 def Credits():
@@ -127,6 +125,42 @@ def SplineInterpolation():
                                    css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg", eq="")
     else:
         return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+
+@app.route("/BilinearInterpolation", methods=['GET', 'POST'])
+def BilinearInterpolation():
+    if request.method == 'POST':
+        points = []
+        Z = []
+
+        for i in range(25):
+            x = request.form['x' + str(i)]
+            y = request.form['y' + str(i)]
+            z = request.form['z' + str(i)]
+
+            if x and y and z:
+                try:
+                    points.append([float(x), float(y)])
+                    Z.append(float(z))
+                except:
+                    pass
+
+        try:
+            surface = Surface_Interpolation(points, Z)
+            Surf, GriX, GriY, GriZ = surface.BiLinearInt()
+            GriZ = GriZ.transpose()
+            x1 = list(GriX)
+            y1 = list(GriY)
+            z1 = []
+
+            for i in range(np.shape(GriZ)[0]):
+                z1.append(list(GriZ[i]))
+        except:
+            return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1)
+
+    else:
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
 @app.route("/LeastSquareReg", methods=['GET', 'POST'])
 def LeastSquareReg():
@@ -868,7 +902,10 @@ def LinearSystem():
             result = solve_linear_systems(n,inputs,w,choice,iterations,StoppingCriteria)
             Length = len(result[0])
             if Length:
-                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" , Eqs_No=n, results=result)
+                return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
+                                       wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
+                                       inputs=inputs, choice=choice, iterations=iterations,
+                                       StoppingCriteria=StoppingCriteria, w=w)
         return redirect(url_for('LinearSystem'))
 
     else:
@@ -1008,8 +1045,11 @@ def EigenvalueProblem():
             if Length:
                 return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
                                        css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
-                                       Length=size, Method=Method, iterations=Length, results=result)
-        return redirect(url_for('EigenvalueProblem'))
+                                       Length=size, Method=Method, iterations=Length, results=result,
+                                       iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
+                                       StoppingCriteria=StoppingCriteria, list_init_vector=list_init_vector,
+                                       list_of_entires=list_of_entires)
+            return redirect(url_for('EigenvalueProblem'))
     else:
         return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",
                                wing="SE - copy2.png", logo="Logo Greeny.svg")

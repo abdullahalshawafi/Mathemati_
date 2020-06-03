@@ -11,6 +11,8 @@
 		<link href="https://fonts.googleapis.com/css2?family=Radley:ital@1&display=swap"
 			  rel="stylesheet" />
 		<link rel="stylesheet" href="{{url_for('static', filename='css/Home.css')}}" />
+		<link rel="stylesheet" href="/static/css/animate.css">
+
 		<title>MatheMati_</title>
 	</head>
 	<body>
@@ -33,7 +35,8 @@
 				<div id="We_find_x_for_you">
 					<span>We find</span><span style="font-family:Radley;font-style:italic;font-weight:normal;"> </span><span style="font-family:Radley;font-style:italic;font-weight:normal;color:rgba(255,255,255,1);">x</span><span> for you</span>
 				</div>
-				<div id="CF">
+				<div class = "wow fadeInRightBig
+ "      id="CF">
 					<svg class="Rectangle_2_n">
 						<linearGradient id="Rectangle_2_n" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
 							<stop offset="0" stop-color="#002c4b" stop-opacity="1"></stop>
@@ -70,11 +73,18 @@
 						</div>
 						<img id="SR0000" src="{{url_for('static', filename='HoverAnimations/SR/SR0000.png')}}">
 					</div>
+					<div id="BI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
+						<div id="Bilinear_Interpolation">
+							<a href="{{url_for('BilinearInterpolation')}}"><span>Bilinear Interpolation</span></a>
+						</div>
+						<img id="BI0000" src="{{url_for('static', filename='HoverAnimations/BI/BI0000.png')}}">
+					</div>
 					<div id="Data_is_often_given_for_discre">
 						<span>Data is often given for discrete values along a continuum. This section  offers  techniques  to  fit  curves  to such data to obatain intermediate estimites. Through Interpolation and Regression.</span>
 					</div>
 				</div>
-				<div id="NC">
+				<div class = "wow fadeInLeftBig
+ "      id="NC">
 					<svg class="Rectangle_2_ba">
 						<linearGradient id="Rectangle_2_ba" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
 							<stop offset="0" stop-color="#3f0034" stop-opacity="1"></stop>
@@ -103,7 +113,8 @@
 						<span>Calculus is the mathematics of change. Because engineers continuously deal with systems and processes that change, calculus is an essential tool of our profession. This section provides various techniques for numerical Differentiation and Integration.</span>
 					</div>
 				</div>
-				<div id="DE">
+				<div class = "wow fadeInRightBig
+ "     id="DE">
 					<svg class="Rectangle_2_bh">
 						<linearGradient id="Rectangle_2_bh" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
 							<stop offset="0" stop-color="#421c00" stop-opacity="1"></stop>
@@ -144,7 +155,8 @@
 						<span>A differential equation is an equation that relates one or more functions and their derivatives. This is heavily applied to the most of physical sciences. We provide a wide range of numerical methods to solve Ordinary and Partial Differential equations.  </span>
 					</div>
 				</div>
-				<div id="SE">
+				<div class = "wow fadeInLeftBig
+ "     id="SE">
 					<svg class="Rectangle_2_bw">
 						<linearGradient id="Rectangle_2_bw" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
 							<stop offset="0" stop-color="#312c00" stop-opacity="1"></stop>
@@ -184,10 +196,15 @@
 				<img id="DE_cb" src="{{url_for('static', filename='images/DE_cb.png')}}" >
 				<img id="SE_cc" src="{{url_for('static', filename='images/SE_cc.png')}}" >
 				<div id="Credits_______________________">
-					<a href="{{url_for('Credits')}}" id="credits"><span>Credits</span></a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="{{url_for('Contact')}}" id="contact"><span>Contact</span></a>
+					<a href="{{url_for('Credits')}}" id="credits"><span>Credits</span></a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+					<a href="{{url_for('Contact')}}" id="contact"><span>Contact</span></a>
 				</div>
 				<img id="backblue2" src="{{url_for('static', filename='images/backblue2.png')}}">
 			</div>
 	</body>
 	<script src="{{url_for('static', filename='js/Home.js')}}" charset="utf-8"></script>
+	 <script src="/static/js/wow.min.js"></script>
+      <script>
+      new WOW().init();
+      </script>
 </html>

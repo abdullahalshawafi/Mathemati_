@@ -2,7 +2,7 @@ from typing import Any
 from math import pow,log,exp,sin,cos,tan,atan,acos,asin,sqrt,log10
 from sympy import *
 from sympy import symbols
-import plotly.graph_objects as go
+#import plotly.graph_objects as go
 import numpy as np
 from sympy.interactive import printing
 #printing.init_printing(use_latex=True)
@@ -713,7 +713,3 @@ def Solve_Heun(ode_choice, num_eqs,ode1_eq1,ode1_eq2,ode2_eq,ode3_eq,exact_y,xno
 # print(List_approx_z_error)
 # print(List_approx_t_error)
 #
-
-
-
-

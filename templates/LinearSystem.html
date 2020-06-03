@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
- 
+
 	<main>
 		<div id="Web_1920___1">
 			<div id="RightTab">
@@ -115,7 +115,7 @@
 					</path>
 				</svg>
 				<svg class="Rectangle_4">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="15.04vw">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="18vw">
 					</rect>
 				</svg>
 				<div id="System">
@@ -152,28 +152,42 @@
 				<div id="Stopping_Criteria__s___">
 					<span>Stopping Criteria εs% =</span>
 				</div>
-				<input type="text" class="Path_6" name ="Stopping Criteria"  />
-				<input type="text" class="Rectangle_18" name = "Number of iterations" />
+        {% if results %}
+       {% if choice == 1 %}
+       <input type="text" class="Path_6" name ="Stopping Criteria"  />
+       <input type="text" class="Rectangle_18" name = "Number of iterations" value = {{iterations}} />
+       {% else %}
+       <input type="text" class="Path_6" name ="Stopping Criteria" value= {{StoppingCriteria}}  />
+       <input type="text" class="Rectangle_18" name = "Number of iterations" />
+       {% endif %}
+       {% else %}
+       <input type="text" class="Path_6" name ="Stopping Criteria"  />
+       <input type="text" class="Rectangle_18" name = "Number of iterations" />
+       {% endif %}
 				<div class="Rectangle_28">
 					<div class="button-div">
 						<button type="submit" class="table-button" id="calc">
 							<img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}">
 						</button>
-						<embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="save">
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<a class="table-button" href="{{url_for('sfvideo')}}">
+							<img src="{{url_for('static', filename='Assets/Vid.svg')}}">
+						</a>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button type="button" class="table-button" id="save">
 							<img src="{{url_for('static', filename='Assets/Save.svg')}}">
 						</button>
-						<embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="load">
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button type="button" class="table-button" id="load">
 							<img src="{{url_for('static', filename='Assets/Load.svg')}}">
 						</button>
-						<embed class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button class="table-button" id="clear">
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button type="button" class="table-button" id="clear">
 							<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
 						</button>
 					</div>
 				</div>
-				<div class="EquationsContainer">
+        <div class="EquationsContainer">
 					<div id="x1_______x2_______x3_______x4_">
 						<span>x1&emsp;&nbsp;&nbsp;&nbsp;x2&emsp;&nbsp;&nbsp;&nbsp;x3&emsp;&nbsp;&nbsp;&nbsp;x4&emsp;&nbsp;&nbsp;&nbsp;x5&emsp;&nbsp;&nbsp;&nbsp;c</span>
 					</div>
@@ -182,12 +196,44 @@
 						<div id="______________________________">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-						<input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" />
-						<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" />
-						<input type="text" class="Rectangle_37" name="x02"/>
-						<input type="text" class="Rectangle_38" name="x03"/>
-						<input type="text" class="Rectangle_39" name="x04"/>
-						<input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" />
+            {% if results %}
+            {% if Eqs_No == 2 %}
+						<input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}} />
+						<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value ={{inputs[1]}}  />
+						<input type="text" class="Rectangle_37" name="x02" />
+						<input type="text" class="Rectangle_38" name="x03" />
+						<input type="text" class="Rectangle_39" name="x04" />
+						<input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value ={{inputs[2]}}  />
+            {% elif Eqs_No == 3 %}
+            <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}} />
+						<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value ={{inputs[1]}}  />
+            <input type="text" class="Rectangle_37" name="x02" value = {{inputs[2]}} />
+            <input type="text" class="Rectangle_38" name="x03"  />
+            <input type="text" class="Rectangle_39" name="x04"  />
+            <input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value ={{inputs[3]}}  />
+            {% elif Eqs_No == 4 %}
+            <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value = {{inputs[0]}} />
+            <input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value =  {{inputs[1]}}  />
+            <input type="text" class="Rectangle_37" name="x02" value = {{inputs[2]}} />
+            <input type="text" class="Rectangle_38" name="x03" value = {{inputs[3]}} />
+            <input type="text" class="Rectangle_39" name="x04" />
+            <input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value = {{inputs[4]}} />
+            {% elif Eqs_No == 5 %}
+            <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}}  />
+            <input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value = {{inputs[1]}} />
+            <input type="text" class="Rectangle_37" name="x02" value = {{inputs[2]}} />
+            <input type="text" class="Rectangle_38" name="x03" value = {{inputs[3]}} />
+            <input type="text" class="Rectangle_39" name="x04" value = {{inputs[4]}} />
+            <input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value = {{inputs[5]}} />
+            {% endif %}
+            {% else %}
+            <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00"   />
+            <input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01"   />
+            <input type="text" class="Rectangle_37" name="x02" />
+            <input type="text" class="Rectangle_38" name="x03" />
+            <input type="text" class="Rectangle_39" name="x04" />
+            <input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0"  />
+            {% endif %}
 					</div>
 					<div id="Line1_bn">
 
@@ -196,12 +242,44 @@
 						<div id="_______________________________bp">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-						<input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" />
-						<input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" />
+            {% if results %}
+            {% if Eqs_No == 2 %}
+						<input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10"  value ={{inputs[3]}} />
+						<input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value ={{inputs[4]}} />
 						<input type="text" class="Rectangle_37_br" name="x12"/>
 						<input type="text" class="Rectangle_38_bs" name="x13" />
 						<input type="text" class="Rectangle_39_bt" name="x14"/>
-						<input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" />
+						<input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" value ={{inputs[5]}} />
+            {% elif Eqs_No == 3 %}
+            <input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" value ={{inputs[4]}} />
+            <input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value ={{inputs[5]}} />
+            <input type="text" class="Rectangle_37_br" name="x12" value ={{inputs[6]}} />
+            <input type="text" class="Rectangle_38_bs" name="x13" />
+            <input type="text" class="Rectangle_39_bt" name="x14"/>
+            <input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" value ={{inputs[7]}} />
+            {% elif Eqs_No == 4 %}
+            <input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" value ={{inputs[5]}} />
+            <input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value ={{inputs[6]}} />
+            <input type="text" class="Rectangle_37_br" name="x12" value ={{inputs[7]}} />
+            <input type="text" class="Rectangle_38_bs" name="x13" value ={{inputs[8]}} />
+            <input type="text" class="Rectangle_39_bt" name="x14"/>
+            <input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1"value ={{inputs[9]}} />
+            {% elif Eqs_No == 5 %}
+            <input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" value ={{inputs[6]}} />
+            <input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value ={{inputs[7]}} />
+            <input type="text" class="Rectangle_37_br" name="x12" value ={{inputs[8]}} />
+            <input type="text" class="Rectangle_38_bs" name="x13" value ={{inputs[9]}} />
+            <input type="text" class="Rectangle_39_bt" name="x14" value ={{inputs[10]}} />
+            <input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" value ={{inputs[11]}} />
+            {% endif %}
+            {% else %}
+            <input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" />
+            <input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" />
+            <input type="text" class="Rectangle_37_br" name="x12"/>
+            <input type="text" class="Rectangle_38_bs" name="x13" />
+            <input type="text" class="Rectangle_39_bt" name="x14"/>
+            <input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" />
+            {% endif %}
 
 					</div>
 					<div id="Line1_bv">
@@ -209,36 +287,113 @@
 						<div id="_______________________________bx">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
+            {% if results %}
+            {% if Eqs_No == 2 %}
 						<input type="text" class="Rectangle_19_bw"name="x20" />
 						<input type="text" class="Rectangle_36_by" name="x21"/>
 						<input type="text" class="Rectangle_37_bz"name="x22" />
 						<input type="text" class="Rectangle_38_b" name="x23"/>
 						<input type="text" class="Rectangle_39_b"name="x24" />
 						<input type="text" class="Rectangle_40_b"name="c2"  />
+            {% elif Eqs_No == 3 %}
+						<input type="text" class="Rectangle_19_bw"name="x20" value ={{inputs[8]}} />
+						<input type="text" class="Rectangle_36_by" name="x21"value ={{inputs[9]}} />
+						<input type="text" class="Rectangle_37_bz"name="x22" value ={{inputs[10]}} />
+						<input type="text" class="Rectangle_38_b" name="x23"/>
+						<input type="text" class="Rectangle_39_b"name="x24" />
+						<input type="text" class="Rectangle_40_b"name="c2"  value ={{inputs[11]}} />
+            {% elif Eqs_No == 4 %}
+						<input type="text" class="Rectangle_19_bw"name="x20" value ={{inputs[10]}} />
+						<input type="text" class="Rectangle_36_by" name="x21"value ={{inputs[11]}} />
+						<input type="text" class="Rectangle_37_bz"name="x22" value ={{inputs[12]}} />
+						<input type="text" class="Rectangle_38_b" name="x23"value ={{inputs[13]}} />
+						<input type="text" class="Rectangle_39_b"name="x24" />
+						<input type="text" class="Rectangle_40_b"name="c2"  value ={{inputs[14]}} />
+            {% elif Eqs_No == 5 %}
+						<input type="text" class="Rectangle_19_bw"name="x20" value ={{inputs[12]}} />
+						<input type="text" class="Rectangle_36_by" name="x21"value ={{inputs[13]}} />
+						<input type="text" class="Rectangle_37_bz"name="x22" value ={{inputs[14]}} />
+						<input type="text" class="Rectangle_38_b" name="x23"value ={{inputs[15]}} />
+						<input type="text" class="Rectangle_39_b"name="x24" value ={{inputs[16]}} />
+						<input type="text" class="Rectangle_40_b"name="c2"  value ={{inputs[17]}} />
+            {% endif %}
+            {% else %}
+						<input type="text" class="Rectangle_19_bw"name="x20" />
+						<input type="text" class="Rectangle_36_by" name="x21"/>
+						<input type="text" class="Rectangle_37_bz"name="x22" />
+						<input type="text" class="Rectangle_38_b" name="x23"/>
+						<input type="text" class="Rectangle_39_b"name="x24" />
+						<input type="text" class="Rectangle_40_b"name="c2"  />
+            {% endif %}
 
 					</div>
 					<div id="Line1_b">
 						<div id="_______________________________b">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
+            {% if results %}
+            {% if Eqs_No == 4 %}
+						<input type="text" class="Rectangle_19_b" name="x30"  value ={{inputs[15]}} />
+						<input type="text" class="Rectangle_36_b" name="x31"  value ={{inputs[16]}} />
+						<input type="text" class="Rectangle_37_b" name="x32"  value ={{inputs[17]}} />
+						<input type="text" class="Rectangle_38_ca" name="x33" value ={{inputs[18]}} />
+						<input type="text" class="Rectangle_39_ca" name="x34"/>
+						<input type="text" class="Rectangle_40_ca" name="c3"  value ={{inputs[19]}} />
+            {% elif Eqs_No == 5 %}
+						<input type="text" class="Rectangle_19_b" name="x30" value ={{inputs[18]}} />
+						<input type="text" class="Rectangle_36_b" name="x31" value ={{inputs[19]}} />
+						<input type="text" class="Rectangle_37_b" name="x32" value ={{inputs[20]}} />
+						<input type="text" class="Rectangle_38_ca" name="x33"value ={{inputs[21]}} />
+						<input type="text" class="Rectangle_39_ca" name="x34"value ={{inputs[22]}} />
+						<input type="text" class="Rectangle_40_ca" name="c3" value ={{inputs[23]}} />
+            {% else %}
 						<input type="text" class="Rectangle_19_b" name="x30"/>
 						<input type="text" class="Rectangle_36_b" name="x31" />
 						<input type="text" class="Rectangle_37_b" name="x32"/>
 						<input type="text" class="Rectangle_38_ca" name="x33"/>
 						<input type="text" class="Rectangle_39_ca" name="x34"/>
 						<input type="text" class="Rectangle_40_ca" name="c3"/>
+            {% endif %}
+            {% else %}
+            <input type="text" class="Rectangle_19_b" name="x30"/>
+            <input type="text" class="Rectangle_36_b" name="x31" />
+            <input type="text" class="Rectangle_37_b" name="x32"/>
+            <input type="text" class="Rectangle_38_ca" name="x33"/>
+            <input type="text" class="Rectangle_39_ca" name="x34"/>
+            <input type="text" class="Rectangle_40_ca" name="c3"/>
+            {% endif %}
+
 
 					</div>
 					<div id="Line1_cb">
 						<div id="_______________________________cd">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-						<input type="text" class="Rectangle_19_cc" name="x40"/>
-						<input type="text" class="Rectangle_36_ce" name="x41"/>
-						<input type="text" class="Rectangle_37_cf" name="x42"/>
-						<input type="text" class="Rectangle_38_cg" name="x43"/>
-						<input type="text" class="Rectangle_39_ch" name="x44"/>
-						<input type="text" class="Rectangle_40_ci" name="c4"/>
+            {% if results %}
+            {% if Eqs_No == 5 %}
+						<input type="text" class="Rectangle_19_cc" name="x40" value ={{inputs[24]}} />
+						<input type="text" class="Rectangle_36_ce" name="x41" value ={{inputs[25]}} />
+						<input type="text" class="Rectangle_37_cf" name="x42" value ={{inputs[26]}} />
+						<input type="text" class="Rectangle_38_cg" name="x43" value ={{inputs[27]}} />
+						<input type="text" class="Rectangle_39_ch" name="x44" value ={{inputs[28]}} />
+						<input type="text" class="Rectangle_40_ci" name="c4"  value ={{inputs[29]}} />
+            {% else %}
+            <input type="text" class="Rectangle_19_cc" name="x40"/>
+            <input type="text" class="Rectangle_36_ce" name="x41"/>
+            <input type="text" class="Rectangle_37_cf" name="x42"/>
+            <input type="text" class="Rectangle_38_cg" name="x43"/>
+            <input type="text" class="Rectangle_39_ch" name="x44"/>
+            <input type="text" class="Rectangle_40_ci" name="c4"/>
+           {% endif %}
+           {% else %}
+           <input type="text" class="Rectangle_19_cc" name="x40"/>
+           <input type="text" class="Rectangle_36_ce" name="x41"/>
+           <input type="text" class="Rectangle_37_cf" name="x42"/>
+           <input type="text" class="Rectangle_38_cg" name="x43"/>
+           <input type="text" class="Rectangle_39_ch" name="x44"/>
+           <input type="text" class="Rectangle_40_ci" name="c4"/>
+          {% endif %}
+
 					</div>
 				</div>
 				<div id="ID2_eqs_">
@@ -248,19 +403,46 @@
 					 name="Dim"
 					 value=2
 					 onchange="DimInput()"
+          {% if results %}
+          {% if Eqs_No == 2 %}
+          checked
+          {% endif %}
+          {% endif %}
 					 >
 					<label for="2eqs"><span>2eqs</span></label>
 				</div>
 				<div id="ID3_eqs_">
-					<input type="radio" id="3eqs" name="Dim" value=3 onchange="DimInput()" ><label for="3eqs"><span>3eqs</span></label>
+					<input type="radio" id="3eqs" name="Dim" value=3 onchange="DimInput()"
+          {% if results %}
+          {% if Eqs_No == 3 %}
+          checked
+          {% endif %}
+          {% endif %}
+           ><label for="3eqs"><span>3eqs</span></label>
 				</div>
 				<div id="ID4_eqs_">
-					<input type="radio" id="4eqs" name="Dim" value=4 onchange="DimInput()"><label for="4eqs"><span>4eqs</span></label>
+					<input type="radio" id="4eqs" name="Dim" value=4 onchange="DimInput()"
+          {% if results %}
+          {% if Eqs_No == 4 %}
+          checked
+          {% endif %}
+          {% endif %}
+          ><label for="4eqs"><span>4eqs</span></label>
 				</div>
 				<div id="ID5_eqs_">
-					<input type="radio" id="5eqs" name="Dim" value=5 onchange="DimInput()"><label for="5eqs"><span>5eqs</span></label>
+					<input type="radio" id="5eqs" name="Dim" value=5 onchange="DimInput()"
+          {% if results %}
+          {% if Eqs_No == 5 %}
+          checked
+          {% endif %}
+          {% endif %}
+          ><label for="5eqs"><span>5eqs</span></label>
 				</div>
-				<input type="text" class="Rectangle_43" name="w"/>
+				<input type="text" class="Rectangle_43" name="w"
+        {% if results%}
+        value = {{w}}
+        {%endif%}
+        />
      </form>
 			</div>
 			<div id="AnswerTab">
@@ -358,17 +540,16 @@
 		</div>
 
 			 <a href="{{url_for('linearvideo')}}">
-          
+
            <svg style = "    top: 40.9vw;
         left: 54.5vw;
         width: 5vw;
         height: 5vw;
         position: absolute;"id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 575 623.42">
-        <defs>
-          <style>.cls-1{stroke:white;}.cls-1,.cls-3{stroke-miterlimit:10;}.cls-2{fill:#dfff1c;}.cls-3{fill:none;stroke:#dfff1c;stroke-width:16px;}</style></defs><path class="cls-1" d="M390.5,1044.5l6-73v-75l-52,67-143-74,11-32-17-21-38-6-11-7-54-16v-8l77,2-19-19,6-4,25,10,13,4,16,19,9,4,2-3,111,61,37-78,19-91,15-20,52-28,11-13-26,3c-1.49-.84-8.69-5.09-10-13a15.77,15.77,0,0,1,0-5l-7-16,4-4-7-7,3-9-7-7v-7l2-7,4-13,1-2v-15l-1-16,7-23,2-7-4-4-6-13-1-15c4.74-23.16,17.18-37.59,28-37l40-4a36,36,0,0,1,11,0c15.46,2.42,24.53,14.46,27,18a129.11,129.11,0,0,1,14,24,134.51,134.51,0,0,1,11,64l-18,73-1,3,14,27,9,10,80,47,10,102,17,192v13l-14,49h-65l19-66-8-56-19,122Z" transform="translate(-88 -421.58)"/><rect class="cls-2" x="118" y="740" width="16" height="22" transform="translate(164 1080.42) rotate(180)"/><path class="cls-3" d="M126,733V710l-15-23c-5.18-11.84-15-27.37-15-45v-1c0-21.54,16.43-39,33-39s29,20.46,29,42" transform="translate(-88 -421.58)"/></svg>
-       
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 649.37 623.42"><defs><style>.cls-1,.cls-2,.cls-3{stroke:#000;stroke-miterlimit:10;}.cls-2{fill:#9eb60a;}.cls-3{fill:#f2f2f2;}</style></defs><path class="cls-1" d="M436.5,1044.5l6-73v-75l-52,67-143-74,11-32-17-21-38-6-11-7-54-16v-8l77,2-19-19,6-4,25,10,13,4,16,19,9,4,2-3,111,61,37-78,19-91,15-20,52-28,11-13-26,3c-1.49-.84-8.69-5.09-10-13a15.77,15.77,0,0,1,0-5l-7-16,4-4-7-7,3-9-7-7v-7l2-7,4-13,1-2v-15l-1-16,7-23,2-7-4-4-6-13-1-15c4.74-23.16,17.18-37.59,28-37l40-4a36,36,0,0,1,11,0c15.46,2.42,24.53,14.46,27,18a129.11,129.11,0,0,1,14,24,134.51,134.51,0,0,1,11,64l-18,73-1,3,14,27,9,10,80,47,10,102,17,192v13l-14,49h-65l19-66-8-56-19,122Z" transform="translate(-59.63 -421.58)"/><path class="cls-2" d="M68.53,602.62c18.73-5.21,148.23-40.68,200.41-27.84,5.82,1.43,15.62,4.68,23.76,17,15.89,24,19.49,73.42,10.39,106.5-13.42,48.73-75,55.08-198.18,67.78-7.19.74-19.64,1.74-29.7-10.89C48,721,65.22,621.07,68.53,602.62Z" transform="translate(-59.63 -421.58)"/><polygon class="cls-3" points="97.86 213.23 97.86 274.63 143.53 243.93 97.86 213.23"/></svg>
 
-    
+
+
        <h1  style="
                position: absolute;
     top: 41vw;

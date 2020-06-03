@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09a87ae4-c4a5-4096-9cfa-bf15d3e19bb8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Mathemati_.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Mathemati_.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/methods/ODE_EulerAndHeun.py" beforeDir="false" afterPath="$PROJECT_DIR$/methods/ODE_EulerAndHeun.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ODEEH.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ODEEH.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Flask.py" beforeDir="false" afterPath="$PROJECT_DIR$/Flask.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/EigenvalueProblem.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/EigenvalueProblem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LinearSystem.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LinearSystem.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,21 +135,25 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="171" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590944914622" />
-    <state width="1515" height="316" key="GridCell.Tab.0.bottom" timestamp="1590945598423">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1345" height="159" key="GridCell.Tab.0.bottom" timestamp="1591041610515">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1345" height="159" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591041610515" />
     <state width="1515" height="316" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590945598423" />
-    <state width="1515" height="316" key="GridCell.Tab.0.center" timestamp="1590945598423">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1345" height="159" key="GridCell.Tab.0.center" timestamp="1591041610515">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1345" height="159" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591041610515" />
     <state width="1515" height="316" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590945598423" />
-    <state width="1515" height="316" key="GridCell.Tab.0.left" timestamp="1590945598422">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1345" height="159" key="GridCell.Tab.0.left" timestamp="1591041610515">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1345" height="159" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591041610515" />
     <state width="1515" height="316" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590945598422" />
-    <state width="1515" height="316" key="GridCell.Tab.0.right" timestamp="1590945598423">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1345" height="159" key="GridCell.Tab.0.right" timestamp="1591041610515">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1345" height="159" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591041610515" />
     <state width="1515" height="316" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590945598423" />
     <state width="1515" height="395" key="GridCell.Tab.1.bottom" timestamp="1590923322832">
       <screen x="0" y="0" width="1536" height="824" />
@@ -173,9 +175,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="279" y="58" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1590945111189" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1590923351877">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="414" y="210" key="com.intellij.ide.util.TipDialog" timestamp="1591040740320">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="414" y="210" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1591040740320" />
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1590923351877" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1590945209331">
       <screen x="0" y="0" width="1536" height="824" />

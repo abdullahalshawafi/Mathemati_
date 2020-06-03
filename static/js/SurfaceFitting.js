@@ -50,3 +50,5 @@ function substitute(el) {
     else
         document.getElementsByClassName('Rectangle_42')[0].value = '';
 }
+
+ 

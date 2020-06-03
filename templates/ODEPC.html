@@ -24,26 +24,26 @@
 
 					 {%if Method=="MilneMethod"%}
 					 {%if OK==True%}
-					 yp = 
+					 yp =
 					{%print(yp)%}
-					YC Iterations : 
+					YC Iterations :
 					{%for i in range (4)%}
 					{%print(YC[i])%}
 					{%endfor%}
-					
-					relative error = 
+
+					relative error =
 					{%print(Error)%}
 					{%endif%}
 					{%if OK==False%}
 					{%print("Some Fields are empty or incorrect Try again")%}
 					{%endif%}
 					{%endif%}
-					 
+
 					 {%if Method==""%}
-					 > [ x y z ], λ, εs%  
+					 > [ x y z ], λ, εs%
 					 {%endif%}
 
-			
+
 				</textarea>
 
                 <div class="Rectangle_9over"> </div>
@@ -88,7 +88,7 @@
                 <div id="y___">
                     <span>f(x<span style="font-size:0.8vw">n</span>)= </span>
                 </div>
-              
+
             </div>
             <div id="LeftTap">
                 <svg class="Rectangle_3">
@@ -108,7 +108,7 @@
                     </path>
                 </svg>
                 <svg class="Rectangle_4">
-                    <rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.49vw" ry="1.49vw" x="0" y="0" width="3.9vw" height="15.039vw">
+                    <rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.49vw" ry="1.49vw" x="0" y="0" width="3.9vw" height="18vw">
                     </rect>
                 </svg>
                 <div id="System">
@@ -220,15 +220,19 @@
                             <img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}">
                         </button>
                         <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                        <button class="table-button" id="save">
+                        <a class="table-button" href="{{url_for('sfvideo')}}">
+                            <img src="{{url_for('static', filename='Assets/Vid.svg')}}">
+                        </a>
+                        <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                        <button type="button" class="table-button" id="save">
                             <img src="{{url_for('static', filename='Assets/Save.svg')}}">
                         </button>
                         <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                        <button class="table-button" id="load">
+                        <button type="button" class="table-button" id="load">
                             <img src="{{url_for('static', filename='Assets/Load.svg')}}">
                         </button>
                         <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                        <button class="table-button" id="clear"> 
+                        <button type="button" class="table-button" id="clear">
                             <img src="{{url_for('static', filename='Assets/Clear.svg')}}">
                         </button>
                     </div>
