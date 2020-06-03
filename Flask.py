@@ -1108,6 +1108,9 @@ def polynomialvideo():
 def odekuttavideo():
         return render_template('odekuttavideo.html', title='ODE Runge-Kutta Instructions', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
+@app.route("/odeehvideo")
+def odeehvideo():
+        return render_template('odeehvideo.html', title='ODE Euler Instructions', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
 
 if __name__ == '__main__':
     app.run(debug=True)
