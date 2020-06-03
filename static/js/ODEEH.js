@@ -1,4 +1,4 @@
-DimInput();
+﻿DimInput();
 function DimInput() {
   var Eu = document.getElementsByName("Method")[0].checked;
 
@@ -105,8 +105,8 @@ function DimInput() {
       document.getElementById("x4__").setAttribute("style", "filter: contrast(0.4);");
       document.getElementById("x3__").setAttribute("style", "filter: contrast(0.4);");
 
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("z, y, t", "x, y");
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("z, y", "x, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x,z, y, t", "x, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x,z, y", "x, y");
 
     }
     else if (eqDim2) {
@@ -135,8 +135,8 @@ function DimInput() {
 
       document.getElementById("z1").innerHTML = document.getElementById("z1").innerHTML.replace("z, y, t", "z, y");
 
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("z, y, t", "z, y");
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x, y", "z, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x,z, y, t", "x,z, y");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x, y", "x,z, y");
 
     }
     else if (eqDim3) {
@@ -165,8 +165,8 @@ function DimInput() {
 
       document.getElementById("z1").innerHTML = document.getElementById("z1").innerHTML.replace("z, y", "z, y, t");
 
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("z, y", "z, y, t");
-      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x, y", "z, y, t");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x,z, y", "x,z, y, t");
+      document.getElementById("y1").innerHTML = document.getElementById("y1").innerHTML.replace("x, y", "x,z, y, t");
 
     }
 
