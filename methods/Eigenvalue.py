@@ -55,8 +55,6 @@ def main():
             print ("\u03BB = " ,Eval[i])
             print ("Eigen vector : ")
             print (Evec[i])
-       
-        
 
 def Whole_Problem(Matrix,Vector,n,re , Size):
      Valuez=[]
@@ -85,9 +83,6 @@ def Whole_Problem(Matrix,Vector,n,re , Size):
           print (temp)
           temp=temp+1
      return Valuez,Vectorz
-    
-
-    
 
 def ListToMatrix(Size, Matrix, Guess):
     matrix = np.array(Matrix).reshape(Size, Size)
@@ -154,8 +149,7 @@ def LeastDominant(Matrix,  Guess, Iterations , re) :
     return itvectors , itvalues,itrError ,(1/Evalue) ,Evector, True
     
 def nrm(x):
-	return x/np.linalg.norm(x)
-
+    return x/np.linalg.norm(x)
 
 def deflate(A,curr_Evalue,x):
     if is_symmetric(A):
@@ -164,7 +158,7 @@ def deflate(A,curr_Evalue,x):
         return False
     
 def is_symmetric(A):
-	return np.array_equal(A,np.transpose(A))
+    return np.array_equal(A,np.transpose(A))
 
 def TrueError (Matrix , Evalu , Evalumn):
     w, v = np.linalg.eig(Matrix )
@@ -186,7 +180,7 @@ def Signular (Matrix):
         return True
     else:
         return False
-#main()
+
 
 def solve_Eigenvalue(size,list_of_entires,list_init_vector,Choice,iter_or_stoppingC,num_iteration,StoppingCriteria):
 

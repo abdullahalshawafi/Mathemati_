@@ -926,7 +926,7 @@ def LinearSystem():
                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
                                        wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
                                        inputs=inputs, choice=choice, iterations=iterations,
-                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting)
+                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=0)
             else:
                 anyErrorsInPosting = 1
         else:
@@ -1007,21 +1007,18 @@ def NonlinearSystem():
 
 @app.route("/EigenvalueProblem", methods=['GET', 'POST'])
 def EigenvalueProblem():
+    anyErrorsInPosting = 0
+
     Length = 0
     temp_to_test = 0
-
     size = 0
     list_of_entires = []
     list_init_vector = []
-
     iter_or_stoppingC = 0
     num_iteration = 0
     StoppingCriteria = 0
-
     Method = ''  # Choice
-
     result = []
-
     if request.method == 'POST':
 
         if 'Method' in request.form:
@@ -1058,11 +1055,21 @@ def EigenvalueProblem():
                             temp_to_test = request.form[temp]
                             if not temp_to_test == '':
                                 list_init_vector.append(request.form[temp])
+        for x in list_of_entires:
+            try:
+                float(x)
+            except ValueError:
+                anyErrorsInPosting = 1
+                break
+        for x in list_init_vector:
+            try:
+                float(x)
+            except ValueError:
+                anyErrorsInPosting = 1
+                break
 
         if size and (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
-            result = solve_Eigenvalue(size, list_of_entires, list_init_vector, Method, iter_or_stoppingC, num_iteration,
-                                      StoppingCriteria)
-
+            result = solve_Eigenvalue(size, list_of_entires, list_init_vector, Method, iter_or_stoppingC, num_iteration, StoppingCriteria)
             # result[0] List_Eig_values-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
             # result[1] List_Eig_vectors-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
             # result[2] List_relative_error-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
@@ -1077,8 +1084,20 @@ def EigenvalueProblem():
                                        Length=size, Method=Method, iterations=Length, results=result,
                                        iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
                                        StoppingCriteria=StoppingCriteria, list_init_vector=list_init_vector,
-                                       list_of_entires=list_of_entires)
-            return redirect(url_for('EigenvalueProblem'))
+                                       list_of_entires=list_of_entires,anyErrorsInPosting=0)
+            else:
+                anyErrorsInPosting = 1
+        else:
+            anyErrorsInPosting = 1  # as it will enter 'else' only if an error has occurred
+
+        if anyErrorsInPosting:
+            return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
+                                   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
+                                   Length=size, Method=Method, iterations=Length, results=result,
+                                   iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
+                                   StoppingCriteria=StoppingCriteria, list_init_vector=list_init_vector,
+                                   list_of_entires=list_of_entires, anyErrorsInPosting=anyErrorsInPosting)
+        return redirect(url_for('EigenvalueProblem'))
     else:
         return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",
                                wing="SE - copy2.png", logo="Logo Greeny.svg")
