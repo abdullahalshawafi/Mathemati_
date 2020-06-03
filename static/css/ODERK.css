@@ -25,14 +25,14 @@ a {
 	z-index: 1;
 }
 
-	.Nav-Bar li {
-		color: white;
-		margin: 0;
-		width: 10.8vw;
-		display: inline-block;
-		transition: 0.15s;
-		cursor: pointer;
-	}
+.Nav-Bar li {
+	color: white;
+	margin: 0;
+	width: 10.8vw;
+	display: inline-block;
+	transition: 0.15s;
+	cursor: pointer;
+}
 
 #DE-Menu .dropdown_content a:hover {
 	color: rgb(255, 109, 28);
@@ -84,9 +84,9 @@ a {
 	font-size: 1vw;
 }
 
-	.dropdown_content a:hover {
-		background: radial-gradient(rgb(45, 45, 45), #3f3f3f 59%);
-	}
+.dropdown_content a:hover {
+	background: radial-gradient(rgb(45, 45, 45), #3f3f3f 59%);
+}
 
 .dropdown:hover .dropdown_content {
 	display: block;
@@ -97,9 +97,6 @@ a {
 	color: #808080;
 	transition: 0.15s;
 }
-/*
-.Wing {
-} */
 
 .WingSrc {
 	width: 25vw;

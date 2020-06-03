@@ -29,9 +29,6 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 def home():
     return render_template('Home.html')
 
-#def reset():
-#    return redirect ("/")
-
 @app.route("/Credits")
 def Credits():
     return render_template('Credits.html', title='Credits', css="Credits.css", wing="Neon Green Header.svg", logo="Logo.svg")
@@ -908,7 +905,7 @@ def LinearSystem():
                                        wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
                                        inputs=inputs, choice=choice, iterations=iterations,
                                        StoppingCriteria=StoppingCriteria, w=w)
-            return redirect(url_for('LinearSystem'))
+        return redirect(url_for('LinearSystem'))
 
     else:
         return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
