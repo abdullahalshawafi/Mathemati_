@@ -1,14 +1,8 @@
-
 x = 0;
 var parameters = {
     target: '#myFunction',
-    data: [{
-        points: [
-        ],
-        fnType: 'points',
-        graphType: 'scatter',
-        color: "#000000"
-    }],
+    data: [
+    ],
     grid: true,
     yAxis: { domain: [-3, 3] },
     xAxis: { domain: [-3, 3] },
@@ -26,26 +20,45 @@ window.onload = function () {
     }
 };
 
+function substitute(el, type, intervals) {
+    var x = parseFloat(el.value);
+    var f = 0;
+    var l = 0;
+    f = parseFloat(intervals[0].split("<")[0].slice(1));
+    l = parseFloat(intervals[intervals.length - 1].split("<")[2].split("}")[0]);
+    if (x <= l && x >= f) {
+      let i;
+      for(i = 0; i < intervals.length; i++) {
+        f = parseFloat(intervals[i].split("<")[0].slice(1));
+        l = parseFloat(intervals[i].split("<")[2].split("}")[0]);
+        if (x < l && x >= f)
+          break;
+      }
+
+      var F = document.getElementsByName('interval' + i)[type].value;
+      F = F.replace(/\^/g, '**');
+
+      if (eval(F).toFixed(4) != "NaN")
+          document.getElementsByClassName('Rectangle_42')[type].value = eval(F).toFixed(4);
+      else
+          document.getElementsByClassName('Rectangle_42')[type].value = '';
+    } else {
+      document.getElementsByClassName('Rectangle_42')[type].value = 'out of range';
+    }
+}
+
 function Scatter(el) {
     var elx = el.parentElement.parentElement.childNodes[1].childNodes[0];
     var ely = el.parentElement.parentElement.childNodes[3].childNodes[0];
 
-
     if (elx.value && ely.value) {
         var point = [parseFloat(elx.value), parseFloat(ely.value)];
-        parameters.data[1].points.push(point);
+        parameters.data[0].points.push(point);
     }
 
-    functionPlot(parameters);
-};
 
 function Expand(el, x, intervals, eq) {
-
-    // var con = document.getElementsByClassName("Quadratic")[0];
-
     con = el.parentElement.parentElement;
-
-    console.log(con.childNodes[3].innerHTML);
 
     if (!con.childNodes[3].innerHTML.includes("label")) {
         con.innerHTML = con.innerHTML.replace('width="25.98vw" height="4.56vw"', "width='25.98vw' height='" + (4.6 + x * 3) + "vw'");
@@ -62,17 +75,6 @@ function Expand(el, x, intervals, eq) {
             input.setAttribute("value", eq[i]);
             input.setAttribute("disabled", true);
 
-            var f = 0;
-            var l = 0;
-
-            f = parseFloat(intervals[i].split("<")[0].slice(1));
-            l = parseFloat(intervals[i].split("<")[2].split("}")[0]);
-
-            if (con.innerHTML.includes("Linear")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "cyan" });
-            if (con.innerHTML.includes("Quadratic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "blue" });
-            if (con.innerHTML.includes("Cubic")) parameters.data.push({ fn: eq[i], range: [f, l], graphType: 'polyline', color: "#00aaff" });
-
-
 
             span.innerHTML = intervals[i];
 
@@ -86,10 +88,7 @@ function Expand(el, x, intervals, eq) {
             div.appendChild(input);
             div.appendChild(label);
             label.appendChild(span);
-
         }
         con.innerHTML = con.innerHTML.replace(`<img src="static/Assets/Expand.svg">`, ``);
-        functionPlot(parameters);
-
     }
 }

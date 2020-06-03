@@ -204,8 +204,11 @@ def Solve_Euler(num_eqs,eq1,eq2,eq3,xnod,ynod,znod,tnod,X_at,h_Or_n,h,n):
         elif choice == "n":
             n =float(n)
             h = float(xt - x0) / float(n)
+        else:
+            h=float(xt - x_out)
             # **********************************
         (y_out, x_out,List_x_values,List_y_values,List_approx_y_error,y_error) = euler(Error_num_steps,equation, x0, y0, h, xt)
+
 
       elif (num_eqs == 2):
         equation1 =eq1
@@ -323,13 +326,14 @@ def Heun3(eq,exact_y,x0,y0,z0,w0,xf,h,m,n,e):
         y_value=y2
         y_dash=z1
         y_d_dash=w1
+        yp=0
         if not exact_y=='':
          t = simplify(exact_y)
          yp = t.subs({x: xf})
          et = fabs((yp - y2) / yp) * 100
         #print("y({})={} ,Et%={}%".format(xf, yp, et))
          true_error =et
-        return xf, List_num_iterations,List_y_values,List_relative_y_errors,List_y_dash_values,List_y_d_dash_values,y_value,y_dash,y_d_dash,true_error
+        return xf, List_num_iterations,List_y_values,List_relative_y_errors,List_y_dash_values,List_y_d_dash_values,y_value,y_dash,y_d_dash,true_error,yp
     ##############################for Heun 2 ODE###########################################
 def Heun2(eq,exact_y,x0,y0,z0,xf,h,m,n,e):
         # ********
@@ -379,13 +383,14 @@ def Heun2(eq,exact_y,x0,y0,z0,xf,h,m,n,e):
         #print("y({})={} , y'({})={}".format(xf, y2, xf, z1))
         y_value =y2
         y_dash = z1
+        yp=0
         if not exact_y == '':
          t = simplify(exact_y)
          yp = t.subs({x: xf})
          et = fabs((yp - y2) / yp) * 100
         #print("y({})={} ,Et%={}%".format(xf, yp, et))
          true_error =et
-        return xf, List_num_iterations,List_y_values,List_relative_y_errors,List_y_dash_values,y_value,y_dash,true_error
+        return xf, List_num_iterations,List_y_values,List_relative_y_errors,List_y_dash_values,y_value,y_dash,true_error,yp
     #******************************for Heun 1 ODE---> 1eq************************************
 def Heun1(eq1,exact_y, x0, y0, xf, h, m, n, e):
         # ********
@@ -432,13 +437,14 @@ def Heun1(eq1,exact_y, x0, y0, xf, h, m, n, e):
         #print("y({})={}".format(xf, y2))
         y_value=y2
         et=0
+        yp=0
         if not exact_y == '':
          t = simplify(exact_y)
          yp = t.subs({x: xf})
          et = fabs((yp - y2) / yp) * 100
         #print("y({})={} ,Et%={}%".format(xf, yp, et))
          true_error=et
-        return xf, List_num_iterations,List_y_values,List_relative_y_errors,y_value,true_error
+        return xf, List_num_iterations,List_y_values,List_relative_y_errors,y_value,true_error,yp
 #********************************for Huen 1 ODE ---> 2eq***********************************************
 def Heun1_2(eq1, eq2, x0, y0, z0, xf, h, m, n, e):
         # ********
@@ -520,6 +526,7 @@ def Solve_Heun(ode_choice, num_eqs,ode1_eq1,ode1_eq2,ode2_eq,ode3_eq,exact_y,xno
     y_dash = 0
     y_d_dash = 0
     true_error = 0
+    y_exact_value=0
     # *********
  #2--> asking for the degree of the ODE
     l=int(ode_choice)
@@ -545,7 +552,7 @@ def Solve_Heun(ode_choice, num_eqs,ode1_eq1,ode1_eq2,ode2_eq,ode3_eq,exact_y,xno
     #2.1.2.1--> enter stoping error
                 e = float(stoppingC)
 
-            (xf, List_num_iterations,List_y_values,List_relative_y_errors,y_value,true_error) = Heun1(f,exact_y, x0, y0, x1, h, m, n, e)
+            (xf, List_num_iterations,List_y_values,List_relative_y_errors,y_value,true_error,y_exact_value) = Heun1(f,exact_y, x0, y0, x1, h, m, n, e)
         else:
             f1 = ode1_eq1
             f2 = ode1_eq2
@@ -583,7 +590,7 @@ def Solve_Heun(ode_choice, num_eqs,ode1_eq1,ode1_eq2,ode2_eq,ode3_eq,exact_y,xno
             # solving until stopping error e%
             e = float(stoppingC)
 
-        (xf, List_num_iterations,List_y_values,List_relative_y_errors,List_y_dash_values,y_value,y_dash,true_error)=Heun2(f,exact_y,x0,y0,z0,x1,h,m,n,e)
+        (xf, List_num_iterations,List_y_values,List_relative_y_errors,List_y_dash_values,y_value,y_dash,true_error,y_exact_value)=Heun2(f,exact_y,x0,y0,z0,x1,h,m,n,e)
 
     elif l == 3:
         f = ode3_eq
@@ -612,7 +619,7 @@ def Solve_Heun(ode_choice, num_eqs,ode1_eq1,ode1_eq2,ode2_eq,ode3_eq,exact_y,xno
         y_value,
         y_dash,
         y_d_dash,
-        true_error) = Heun3(f,exact_y, x0, y0, z0, w0, x1, h, m, n, e)
+        true_error,y_exact_value) = Heun3(f,exact_y, x0, y0, z0, w0, x1, h, m, n, e)
 
     return (xf,
     List_num_iterations,
@@ -626,7 +633,7 @@ def Solve_Heun(ode_choice, num_eqs,ode1_eq1,ode1_eq2,ode2_eq,ode3_eq,exact_y,xno
     z_value,
     y_dash,
     y_d_dash,
-    true_error)
+    true_error,y_exact_value)
 #***************************************************************************************
 #********************** for testing heun //passed*************************
 # ode_choice=2
