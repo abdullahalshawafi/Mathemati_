@@ -109,16 +109,16 @@ def SplineInterpolation():
            Numbers.append([float((request.form['x_coordinates'+str(NumPoints)])),float((request.form['y_coordinates'+str(NumPoints)]))])
            NumPoints +=1
 
-        print(NumPoints,Numbers)
+        #print(NumPoints,Numbers)
         if NumPoints>1:
             LinearSpline = linear_spline(NumPoints,Numbers)
             IntervalList = get_interval_list(NumPoints,Numbers)
             QuadraticSpline = quad_spline(NumPoints,Numbers)
             CubicSpline = cubic_spline(NumPoints,Numbers)
-            print(LinearSpline)
-            print(QuadraticSpline)
-            print(CubicSpline)
-            print(IntervalList)
+           # print(LinearSpline)
+            #print(QuadraticSpline)
+            #print(CubicSpline)
+            #print(IntervalList)
             return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
         else:
             return render_template('SplineInterpolation.html', title='Spline Interpolation',
@@ -166,10 +166,10 @@ def BilinearInterpolation():
 def LeastSquareReg():
     if request.method == 'POST':
         Method = ''
-        print("Method=", Method)
+        #print("Method=", Method)
         if 'Method' in request.form:
             Method  = request.form['Method']
-            print("Method=", Method)
+           # print("Method=", Method)
         if Method == 'Nonlinear':
             Equation = request.form['Nonlinear_Equation']
             i = 0
@@ -262,7 +262,7 @@ def SurfaceFitting():
             LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 4)
 
         if LHS and not Sr == '':
-            print(LHS, Sr)
+            #print(LHS, Sr)
             return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results=RHS, Error=Sr)
         elif not xdata:
             return redirect(url_for('SurfaceFitting'))
@@ -873,9 +873,10 @@ def PDE():
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
-    anyErrorsInPosting = 0
+
     if request.method == 'POST':
         anyErrorsInPosting = 0
+        errorMSG=''
         Length = 0
         temp_to_test = 0
         inputs = []
@@ -914,8 +915,9 @@ def LinearSystem():
             for x in inputs:
                 try:
                     float(x)
-                except ValueError:
+                except :
                     anyErrorsInPosting=1
+                    errorMSG="please enter numbers only"
                     break
 ##########################################################################
         if (n*(n+1)==len(inputs)) and (StoppingCriteria or iterations) and w and choice and (not anyErrorsInPosting):
@@ -926,16 +928,18 @@ def LinearSystem():
                 return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
                                        wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
                                        inputs=inputs, choice=choice, iterations=iterations,
-                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=0)
+                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=0,errorMSG=errorMSG)
             else:
                 anyErrorsInPosting = 1
+                errorMSG = "can't be solved using this method !"
         else:
             anyErrorsInPosting = 1  # as it will enter 'else' only if an error has occurred
+            errorMSG = "please fill all the inputs !"
 
         if anyErrorsInPosting:
             return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
                                    wing="SE - copy2.png", logo="Logo Greeny.svg", inputs=inputs, choice=choice, iterations=iterations,
-                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting)
+                                       StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting,errorMSG=errorMSG)
         return redirect(url_for('LinearSystem'))
     else:
         return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
@@ -1008,7 +1012,7 @@ def NonlinearSystem():
 @app.route("/EigenvalueProblem", methods=['GET', 'POST'])
 def EigenvalueProblem():
     anyErrorsInPosting = 0
-
+    errorMSG = ''
     Length = 0
     temp_to_test = 0
     size = 0
@@ -1058,17 +1062,19 @@ def EigenvalueProblem():
         for x in list_of_entires:
             try:
                 float(x)
-            except ValueError:
+            except :
                 anyErrorsInPosting = 1
+                errorMSG = "please enter numbers only"
                 break
         for x in list_init_vector:
             try:
                 float(x)
             except ValueError:
                 anyErrorsInPosting = 1
+                errorMSG = "please enter numbers only"
                 break
 
-        if size and (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
+        if not anyErrorsInPosting and size and (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
             result = solve_Eigenvalue(size, list_of_entires, list_init_vector, Method, iter_or_stoppingC, num_iteration, StoppingCriteria)
             # result[0] List_Eig_values-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
             # result[1] List_Eig_vectors-> if method == 1 or 2: carries the iterations, if method==3: carries the value to be displayed
@@ -1078,17 +1084,19 @@ def EigenvalueProblem():
             # result[5] True_error ->if method == 1 or 2 : carries the value to be displayed
             # result[6] test -> if false then there was an error in the calculations of the power method
             Length = len(result[0])
-            if Length:
+            if Length :
                 return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
                                        css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
                                        Length=size, Method=Method, iterations=Length, results=result,
                                        iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
                                        StoppingCriteria=StoppingCriteria, list_init_vector=list_init_vector,
-                                       list_of_entires=list_of_entires,anyErrorsInPosting=0)
+                                       list_of_entires=list_of_entires,anyErrorsInPosting=0,errorMSG=errorMSG)
             else:
                 anyErrorsInPosting = 1
+                errorMSG = "can't be solved using this method !"
         else:
             anyErrorsInPosting = 1  # as it will enter 'else' only if an error has occurred
+            errorMSG = "Please fill all the inputs !"
 
         if anyErrorsInPosting:
             return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
@@ -1096,7 +1104,7 @@ def EigenvalueProblem():
                                    Length=size, Method=Method, iterations=Length, results=result,
                                    iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
                                    StoppingCriteria=StoppingCriteria, list_init_vector=list_init_vector,
-                                   list_of_entires=list_of_entires, anyErrorsInPosting=anyErrorsInPosting)
+                                   list_of_entires=list_of_entires, anyErrorsInPosting=anyErrorsInPosting,errorMSG=errorMSG)
         return redirect(url_for('EigenvalueProblem'))
     else:
         return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",

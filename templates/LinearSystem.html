@@ -5,7 +5,7 @@
 		<div id="Web_1920___1">
 			{% if anyErrorsInPosting==1 %}
 				<script>
-					alert("INVALID INPUTS !!!");
+					alert("{{errorMSG}}");
 				</script>
 			{% endif %}
 			<!-- not working as expected , to be checked later
