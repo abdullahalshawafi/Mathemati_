@@ -20,3 +20,25 @@ document.getElementById('clear').addEventListener('click', function () {
   }
 });
 
+function showVideo(url) {
+  document.getElementsByTagName('main')[0].style.filter = "blur(1px)";
+  document.getElementsByTagName('header')[0].style.filter = "blur(1px)";
+  var video = document.getElementsByClassName('video')[0];
+  var iframe = document.createElement("iframe");
+  iframe.setAttribute("style", "position: absolute; left: 15.5vw; top: 12.2vw; width: 69vw; height: 33vw;");
+  iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
+  iframe.setAttribute("src", "https://www.youtube.com/embed/" + url);
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("allowfullscreen", "1");
+  video.appendChild(iframe);
+  video.style.display = "block";
+  console.log(document.getElementsByTagName('main')[0]);
+}
+
+document.getElementsByClassName('video')[0].addEventListener('click', function () {
+  document.getElementsByTagName('main')[0].style.filter = null;
+  document.getElementsByTagName('header')[0].style.filter = null;
+  var video = document.getElementsByClassName('video')[0];
+  video.removeChild(video.childNodes[0]);
+  video.style.display = "none";
+});

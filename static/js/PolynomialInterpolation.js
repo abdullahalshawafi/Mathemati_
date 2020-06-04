@@ -7,8 +7,7 @@ var parameters = {
             graphType: 'polyline'
         },
         {
-            points: [
-            ],
+            points: [],
             fnType: 'points',
             graphType: 'scatter',
             color: "#000000"
@@ -33,11 +32,11 @@ var parameters = {
 functionPlot(parameters);
 
 window.onload = function () {
+    addtograph();
     for(var i = 0; i < 20; i++){
         Scatter(document.getElementsByName("X_" + i)[0]);
         Scatter(document.getElementsByName("Y_" + i)[0]);
     }
-    addtograph();
 };
 function GetHue(el) {
       console.log(el.parentElement.parentElement.childNodes);
@@ -134,5 +133,3 @@ function substitute(el, box1="", box2="") {
       }
     }
 }
-
- 

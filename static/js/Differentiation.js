@@ -4,6 +4,12 @@ var parameters = {
 		fn: '0',
 		color: "rgba(0,0,0,0)",
 		range: [-10, 10]
+	},
+	{
+		points: [],
+		fnType: 'points',
+		graphType: 'scatter',
+		color: "#000000"
 	}],
 	grid: true,
 	yAxis: { domain: [-5, 5] },
@@ -21,6 +27,26 @@ function addtograph() {
 	functionPlot(parameters);
 }
 
+function Scatter(el) {
+    var elx = el.parentElement.parentElement.childNodes[1].childNodes[0];
+    var ely = el.parentElement.parentElement.childNodes[3].childNodes[0];
+
+    if (elx.value && ely.value) {
+        var point = [parseFloat(elx.value), parseFloat(ely.value)];
+        parameters.data[1].points.push(point);
+    }
+    functionPlot(parameters);
+}
+
+document.getElementById('clear').addEventListener('click', function () {
+	parameters.data[1].points = [];
+	functionPlot(parameters);
+});
+
 window.onload = function() {
     addtograph();
+		for (var i = 0; i <= 14; i++) {
+        Scatter(document.getElementsByName("x" + i)[0]);
+        Scatter(document.getElementsByName("y" + i)[0]);
+    }
 }

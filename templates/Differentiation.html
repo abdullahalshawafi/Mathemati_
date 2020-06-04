@@ -63,10 +63,9 @@
 								<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}" title="Calculate">
 							</button>
 							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<a class="table-button" href="{{url_for('polynomialvideo')}}">
+							<button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
 								<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-
-							</a>
+							</button>
 							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
 								<button type="button" class="table-button" id="save">
 								<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
@@ -105,8 +104,7 @@
 					{% if Method=="Table" %}
 		      checked
 		      {% endif %}>
-					<label for="
-					Linearized"
+					<label for="Linearized"
 					name="Table"
 					value="Table"
 					><span>Table:</span></label>
@@ -137,89 +135,89 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td><input type="text" name="x0"  value="{{request.form['x0']}}" /></td>
-								<td><input type="text" name="y0" value="{{request.form['y0']}}"/> </td>
+								<td><input type="text" name="x0" onkeyup="Scatter(this)" value="{{request.form['x0']}}" /></td>
+								<td><input type="text" name="y0" onkeyup="Scatter(this)" value="{{request.form['y0']}}"/> </td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x1" value="{{request.form['x1']}}"/></td>
-								<td><input type="text" name="y1" value="{{request.form['y1']}}"/></td>
+								<td><input type="text" name="x1" onkeyup="Scatter(this)" value="{{request.form['x1']}}"/></td>
+								<td><input type="text" name="y1" onkeyup="Scatter(this)" value="{{request.form['y1']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x2"/ value="{{request.form['x2']}}"></td>
-								<td><input type="text" name="y2" value="{{request.form['y2']}}"/></td>
+								<td><input type="text" name="x2" onkeyup="Scatter(this)" value="{{request.form['x2']}}"></td>
+								<td><input type="text" name="y2" onkeyup="Scatter(this)" value="{{request.form['y2']}}"/></td>
 							</tr>
 							<tr>
-								<td><input type="text" name="x3" value="{{request.form['x3']}}"/></td>
-								<td><input type="text" name="y3" value="{{request.form['y3']}}"/></td>
+								<td><input type="text" name="x3" onkeyup="Scatter(this)" value="{{request.form['x3']}}"/></td>
+								<td><input type="text" name="y3" onkeyup="Scatter(this)" value="{{request.form['y3']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x4" value="{{request.form['x4']}}"/></td>
-								<td><input type="text" name="y4" value="{{request.form['y4']}}"/></td>
+								<td><input type="text" name="x4" onkeyup="Scatter(this)" value="{{request.form['x4']}}"/></td>
+								<td><input type="text" name="y4" onkeyup="Scatter(this)" value="{{request.form['y4']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x5" value="{{request.form['x5']}}"/></td>
-								<td><input type="text" name="y5" value="{{request.form['y5']}}"/></td>
+								<td><input type="text" name="x5" onkeyup="Scatter(this)" value="{{request.form['x5']}}"/></td>
+								<td><input type="text" name="y5" onkeyup="Scatter(this)" value="{{request.form['y5']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x6" value="{{request.form['x6']}}"/></td>
-								<td><input type="text" name="y6" value="{{request.form['y6']}}"/></td>
+								<td><input type="text" name="x6" onkeyup="Scatter(this)" value="{{request.form['x6']}}"/></td>
+								<td><input type="text" name="y6" onkeyup="Scatter(this)" value="{{request.form['y6']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x7" value="{{request.form['x7']}}"/></td>
-								<td><input type="text" name="y7" value="{{request.form['y7']}}"/></td>
+								<td><input type="text" name="x7" onkeyup="Scatter(this)" value="{{request.form['x7']}}"/></td>
+								<td><input type="text" name="y7" onkeyup="Scatter(this)" value="{{request.form['y7']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x8" value="{{request.form['x8']}}"/></td>
-								<td><input type="text" name="y8" value="{{request.form['y8']}}"/></td>
+								<td><input type="text" name="x8" onkeyup="Scatter(this)" value="{{request.form['x8']}}"/></td>
+								<td><input type="text" name="y8" onkeyup="Scatter(this)" value="{{request.form['y8']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x9" value="{{request.form['x9']}}"/></td>
-								<td><input type="text" name="y9" value="{{request.form['y9']}}"/></td>
+								<td><input type="text" name="x9" onkeyup="Scatter(this)" value="{{request.form['x9']}}"/></td>
+								<td><input type="text" name="y9" onkeyup="Scatter(this)" value="{{request.form['y9']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x10" value="{{request.form['x10']}}"/></td>
-								<td><input type="text" name="y10" value="{{request.form['y10']}}"/></td>
+								<td><input type="text" name="x10" onkeyup="Scatter(this)" value="{{request.form['x10']}}"/></td>
+								<td><input type="text" name="y10" onkeyup="Scatter(this)" value="{{request.form['y10']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x11" value="{{request.form['x11']}}"/></td>
-								<td><input type="text" name="y11" value="{{request.form['y11']}}"/></td>
+								<td><input type="text" name="x11" onkeyup="Scatter(this)" value="{{request.form['x11']}}"/></td>
+								<td><input type="text" name="y11" onkeyup="Scatter(this)" value="{{request.form['y11']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x12" value="{{request.form['x12']}}"/></td>
-								<td><input type="text" name="y12" value="{{request.form['y12']}}"/></td>
+								<td><input type="text" name="x12" onkeyup="Scatter(this)" value="{{request.form['x12']}}"/></td>
+								<td><input type="text" name="y12" onkeyup="Scatter(this)" value="{{request.form['y12']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x13" value="{{request.form['x13']}}"/></td>
-								<td><input type="text" name="y13" value="{{request.form['y13']}}"/></td>
+								<td><input type="text" name="x13" onkeyup="Scatter(this)" value="{{request.form['x13']}}"/></td>
+								<td><input type="text" name="y13" onkeyup="Scatter(this)" value="{{request.form['y13']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x14" value="{{request.form['x14']}}"/></td>
-								<td><input type="text" name="y14" value="{{request.form['y14']}}"/></td>
+								<td><input type="text" name="x14" onkeyup="Scatter(this)" value="{{request.form['x14']}}"/></td>
+								<td><input type="text" name="y14" onkeyup="Scatter(this)" value="{{request.form['y14']}}"/></td>
 
 							</tr>
 							<tr>
-								<td><input type="text" name="x15" value="{{request.form['x15']}}"/></td>
-								<td><input type="text" name="y15" value="{{request.form['y15']}}"/></td>
+								<td><input type="text" name="x15" onkeyup="Scatter(this)" value="{{request.form['x15']}}"/></td>
+								<td><input type="text" name="y15" onkeyup="Scatter(this)" value="{{request.form['y15']}}"/></td>
 
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td><input type="text" name="x16" value="{{request.form['x16']}}"/></td>
-								<td><input type="text" name="y16" value="{{request.form['y16']}}"/></td>
+								<td><input type="text" name="x16" onkeyup="Scatter(this)" value="{{request.form['x16']}}"/></td>
+								<td><input type="text" name="y16" onkeyup="Scatter(this)" value="{{request.form['y16']}}"/></td>
 							</tr>
 						</tfoot>
 					</table>
@@ -366,7 +364,7 @@
 			</div>
 		</div>
 
-			
+
 	</main>
 
 	<script src="{{url_for('static', filename='js/Differentiation.js')}}" charset="utf-8"></script>

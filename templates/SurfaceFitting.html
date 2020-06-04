@@ -50,17 +50,16 @@
 				<svg class="Rectangle_18">
 					<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="25.53vw">
 					</rect>
-				</svg> 
+				</svg>
 				<div class="Rectangle_28">
 					<div class="button-div">
               <button type="submit" class="table-button" id="calc">
                 <img src="{{url_for('static', filename='Assets/Calc Button.svg')}}" title="Calculate">
               </button>
               <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-              <a class="table-button" href="{{url_for('nonlinearvideo')}}">
+              <button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
                 <img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-
-              </a>
+              </button>
               <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
                 <button type="button" class="table-button" id="save">
                 <img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
@@ -159,7 +158,7 @@
 								<th>y</th>
 								<th>z</th>
 							</tr>
-						</thead> 
+						</thead>
 						<tbody>
 							<tr>
 								<td><input name="x_coordinates0" value="{{request.form['x_coordinates0']}}" type="text" /></td>
@@ -308,7 +307,7 @@
 		</div>
 	</div>
 
-	
+
 
 </main>
 
