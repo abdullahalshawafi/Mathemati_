@@ -3148,24 +3148,7 @@ header {
 }
 
 #__Mostafa_Mahmoud_Kamal {
-	position: absolute;
-	left: 25.84635vw;
-	top: 6.2265625vw;
-	overflow: visible;
-	width: 17.12239vw;
-	white-space: nowrap;
-	line-height: 2.34375vw;
-	margin-top: -0.325520833vw;
-	text-align: left;
-	font-family: Reem Kufi;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 1.36718vw;
-	color: rgba(255,255,255,1);
-	letter-spacing: 0.01953vw;
-}
 
-#__Osama_Magdy_Aied {
 	position: absolute;
 	left: 25.78125vw;
 	top: 8.700520833vw;
@@ -3183,44 +3166,8 @@ header {
 	letter-spacing: 0.01953vw;
 }
 
-#__Ziyad_Hassan_Abdelmaqsoud_gx {
-	position: absolute;
-	left: 25.84635vw;
-	top: 11.17447vw;
-	overflow: visible;
-	width: 18.75vw;
-	white-space: nowrap;
-	line-height: 2.34375vw;
-	margin-top: -0.325520833vw;
-	text-align: left;
-	font-family: Reem Kufi;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 1.36718vw;
-	color: rgba(255,255,255,1);
-	letter-spacing: 0.01953vw;
-}
-
-#__Essam_Wisam_Fouad_ {
-	position: absolute;
-	left: 25.78125vw;
-	top: 13.6484375vw;
-	overflow: visible;
-	width: 14.1276vw;
-	white-space: nowrap;
-	line-height: 2.34375vw;
-	margin-top: -0.325520833vw;
-	text-align: left;
-	font-family: Reem Kufi;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 1.36718vw;
-	color: rgba(255,255,255,1);
-	letter-spacing: 0.01953vw;
-}
-
-#__Mostafa_Mohamed_El_Gendy__gz {
-	position: absolute;
+#__Osama_Magdy_Aied {
+position: absolute;
 	left: 25.84635vw;
 	top: 16.05729167vw;
 	overflow: visible;
@@ -3235,9 +3182,30 @@ header {
 	font-size: 1.36718vw;
 	color: rgba(255,255,255,1);
 	letter-spacing: 0.01953vw;
+
+	
 }
 
-#__Menna_Allah_Ahmed_Ali__gz {
+#__Ziyad_Hassan_Abdelmaqsoud_gx {
+		position: absolute;
+	left: 47.8515625vw;
+	top: 7.2265625vw;
+	overflow: visible;
+	width: 13.8020833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+
+}
+
+#__Essam_Wisam_Fouad_ {
 	position: absolute;
 	left: 25.84635vw;
 	top: 18.55729167vw;
@@ -3255,12 +3223,53 @@ header {
 	letter-spacing: 0.01953vw;
 }
 
-#__Mostafa_Wael_Kamal_g {
-	position: absolute;
-	left: 47.8515625vw;
-	top: 7.2265625vw;
+#__Mostafa_Mohamed_El_Gendy__gz {
+position: absolute;
+	left: 25.84635vw;
+	top: 6.2265625vw;
 	overflow: visible;
-	width: 13.8020833vw;
+	width: 17.12239vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+
+	
+}
+
+#__Menna_Allah_Ahmed_Ali__gz {
+position: absolute;
+	left: 25.78125vw;
+	top: 13.6484375vw;
+	overflow: visible;
+	width: 14.1276vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+	
+	
+}
+
+#__Mostafa_Wael_Kamal_g {
+
+	position: absolute;
+	left: 25.84635vw;
+	top: 11.17447vw;
+	overflow: visible;
+	width: 18.75vw;
 	white-space: nowrap;
 	line-height: 2.34375vw;
 	margin-top: -0.325520833vw;
