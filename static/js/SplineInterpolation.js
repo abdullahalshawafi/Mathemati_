@@ -55,7 +55,7 @@ function Scatter(el) {
         var point = [parseFloat(elx.value), parseFloat(ely.value)];
         parameters.data[0].points.push(point);
     }
-
+}
 
 function Expand(el, x, intervals, eq) {
     con = el.parentElement.parentElement;
