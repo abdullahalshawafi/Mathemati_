@@ -25,29 +25,33 @@ window.onload = function () {
 };
 
 function substitute(el, type, intervals) {
-    var x = parseFloat(el.value);
-    var f = 0;
-    var l = 0;
-    f = parseFloat(intervals[0].split("<")[0].slice(1));
-    l = parseFloat(intervals[intervals.length - 1].split("<")[2].split("}")[0]);
-    if (x <= l && x >= f) {
-      let i;
-      for(i = 0; i < intervals.length; i++) {
-        f = parseFloat(intervals[i].split("<")[0].slice(1));
-        l = parseFloat(intervals[i].split("<")[2].split("}")[0]);
-        if (x < l && x >= f)
-          break;
+    if (el.value != '') {
+      var x = parseFloat(el.value);
+      var f = 0;
+      var l = 0;
+      f = parseFloat(intervals[0].split("<")[0].slice(1));
+      l = parseFloat(intervals[intervals.length - 1].split("<")[2].split("}")[0]);
+      if (x <= l && x >= f) {
+        let i;
+        for(i = 0; i < intervals.length; i++) {
+          f = parseFloat(intervals[i].split("<")[0].slice(1));
+          l = parseFloat(intervals[i].split("<")[2].split("}")[0]);
+          if (x < l && x >= f)
+            break;
+        }
+
+        var F = document.getElementsByName('interval' + i)[type].value;
+        F = F.replace(/\^/g, '**');
+
+        if (eval(F).toFixed(4) != "NaN")
+            document.getElementsByClassName('Rectangle_42')[type].value = eval(F).toFixed(4);
+        else
+            document.getElementsByClassName('Rectangle_42')[type].value = 'NaN';
+      } else {
+        document.getElementsByClassName('Rectangle_42')[type].value = 'out of range';
       }
-
-      var F = document.getElementsByName('interval' + i)[type].value;
-      F = F.replace(/\^/g, '**');
-
-      if (eval(F).toFixed(4) != "NaN")
-          document.getElementsByClassName('Rectangle_42')[type].value = eval(F).toFixed(4);
-      else
-          document.getElementsByClassName('Rectangle_42')[type].value = '';
     } else {
-      document.getElementsByClassName('Rectangle_42')[type].value = 'out of range';
+      document.getElementsByClassName('Rectangle_42')[type].value = '';
     }
 }
 

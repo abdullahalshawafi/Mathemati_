@@ -19,6 +19,10 @@ var parameters = {
 };
 functionPlot(parameters);
 
+window.onload = function () {
+  addtograph();
+  DimInput();
+}
 
 function addtograph() {
   if (document.getElementsByClassName("Rectangle_19")[0].value && document.getElementsByClassName("Rectangle_36")[0].value
