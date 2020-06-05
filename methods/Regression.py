@@ -14,6 +14,7 @@ from sympy.plotting import plot
 from mpl_toolkits.mplot3d import Axes3D
 from sympy.plotting import plot3d
 
+
 def Sround(x,n):
     if(x==0):
         return 0;
@@ -21,6 +22,58 @@ def Sround(x,n):
         return 9e99;
     else:
         return  round(x, -int(math.floor(math.log10(abs(x)))) + (n - 1));
+
+def zEvalList(X,Y,RHS):
+    x,y = symbols('x y');
+    rhs=sympy.sympify(RHS)  
+    RHS=sympy.lambdify([x,y], rhs)
+    Answer = np.zeros((X.shape[0],X.shape[1]))
+    for i in range(X.shape[0]):
+        for j in range(X.shape[1]):
+            Answer[i][j] = RHS(X[i][j],Y[i][j])
+
+    return Answer
+
+
+def PointsFor3DSF(xdata,ydata,RHS):
+    Po = np.zeros((len(xdata),2))
+    for i in range(len(xdata)):
+        Po[i][0] = xdata[i]
+        Po[i][1] = ydata[i]
+
+    n1 = len(xdata)
+    xmin = Po[0][0]
+    xmax = Po[0][0]
+    ymin = Po[0][1]
+    ymax = Po[0][1]
+
+    for i in range(1, n1):
+        if Po[i][0] < xmin:
+            xmin = Po[i][0]
+        if Po[i][0] > xmax:
+            xmax = Po[i][0]
+        if Po[i][1] < ymin:
+            ymin = Po[i][1]
+        if Po[i][1] > ymax:
+            ymax = Po[i][1]
+
+    nx = 100
+    ny = 200
+
+    grid_x, grid_y = np.mgrid[xmin:xmax:((nx + 1) * 1j), ymin:ymax:((ny + 1) * 1j)]
+    grid_x_out = np.mgrid[xmin:xmax:((nx + 1) * 1j)]
+    grid_y_out = np.mgrid[ymin:ymax:((ny + 1) * 1j)]
+
+    RangePo = np.zeros(((nx+1)*(ny+1),2))
+    for i in range(nx+1):
+        for j in range(ny+1):
+            RangePo[i+(nx+1)*j][0] = grid_x[i][j]
+            RangePo[i+(nx+1)*j][1] = grid_y[i][j]
+
+    grid_z1 = zEvalList(grid_x, grid_y,RHS)
+
+    return grid_x_out, grid_y_out, grid_z1
+
 
 def Plot_3D_RHS(xdata,ydata,zdata,RHS):
     x,y = symbols('x y')

@@ -1156,9 +1156,11 @@ textarea:focus, input:focus {
 .table-button {
 	background: unset;
 	border: unset;
+	outline: none;
 	width: 3.255208333vw;
 	margin-bottom: 0.651041667vw;
 	pointer-events: visible;
+	cursor: pointer;
 }
 
 .button-div {
@@ -1177,6 +1179,7 @@ textarea:focus, input:focus {
 .button-div button img {
 	height: 2.5vw;
 	transition: 0.2s;
+
 }
 
 	.button-div button img:hover {

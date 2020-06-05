@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect, jsonify
 from methods.PolynomialInterpolation import Newton, LaGrange
 from methods.Bezier import bezier_curve_bin
 from methods.SplineInterpolation import linear_spline, quad_spline,cubic_spline, get_interval_list
-from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta
+from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta, PointsFor3DSF, zEvalList 
 from methods.Differentiation import  TableDeriv, FuncDeriv
 from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoidal_Double_Integ, single_mixe_rule, double_mixed_rule, triple_mixed_rule
 from methods.Romberg import RombergRule
@@ -82,7 +82,7 @@ def PolynomialInterpolation():
                  #   X_val = float(request.form["Xvalue"])
                 DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
                 ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
-                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction, ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolationL.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction, ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
 
             elif Method == "Lagrange":
                 #if request.form["Xvalue"]:
@@ -90,14 +90,14 @@ def PolynomialInterpolation():
                  #   X_val = float(request.form["Xvalue"])
                 Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
                 ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
-                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
+                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolationL.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
         else:
             return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation',
                                    css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg",
                                    Method=Method, PolynomialFunction="Invalid input")
         return redirect(url_for('PolynomialInterpolation'))
     else:
-        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
+        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolationL.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
@@ -261,9 +261,21 @@ def SurfaceFitting():
         if xdata and Fdata:
             LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 4)
 
-        if LHS and not Sr == '':
+        if RHS:
+            GriX, GriY, GriZ = PointsFor3DSF(xdata,ydata,RHS)
+            GriZ = GriZ.transpose()
+            x1 = list(GriX)
+            y1 = list(GriY)
+            z1 = []
+
+            for i in range(np.shape(GriZ)[0]):
+                z1.append(list(GriZ[i]))
+
+
+
+        if LHS and RHS and not Sr == '':
             #print(LHS, Sr)
-            return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results=RHS, Error=Sr)
+            return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results=RHS, Error=Sr, x1 = x1, y1 = y1, z1 = z1)
         elif not xdata:
             return redirect(url_for('SurfaceFitting'))
         else:
