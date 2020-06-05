@@ -2,9 +2,9 @@ from flask import Flask, render_template, url_for, request, redirect, jsonify
 from methods.PolynomialInterpolation import Newton, LaGrange
 from methods.Bezier import bezier_curve_bin
 from methods.SplineInterpolation import linear_spline, quad_spline,cubic_spline, get_interval_list
-from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta, PointsFor3DSF, zEvalList 
+from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta, PointsFor3DSF, zEvalList
 from methods.Differentiation import  TableDeriv, FuncDeriv
-from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoidal_Double_Integ, single_mixe_rule, double_mixed_rule, triple_mixed_rule
+from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoidal_Double_Integ, single_mixe_rule, double_mixed_rule, triple_mixed_rule, Trapezoidal_Triple_Integ
 from methods.Romberg import RombergRule
 from methods.Gauss_Quadrature import myfun, Exact
 from methods.ODE_Kutta import rungeKutta
