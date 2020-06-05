@@ -82,7 +82,8 @@ def PolynomialInterpolation():
                  #   X_val = float(request.form["Xvalue"])
                 DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
                 ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
-                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolationL.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction, ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
+
+                return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction, ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
 
             elif Method == "Lagrange":
                 #if request.form["Xvalue"]:
@@ -90,14 +91,16 @@ def PolynomialInterpolation():
                  #   X_val = float(request.form["Xvalue"])
                 Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
                 ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
-                return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolationL.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
+
+                return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
         else:
-            return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation',
+            return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation',
                                    css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg",
                                    Method=Method, PolynomialFunction="Invalid input")
         return redirect(url_for('PolynomialInterpolation'))
     else:
-        return render_template('PolynomialInterpolation.html', title='Polynomial Interpolation', css="PolynomialInterpolationL.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
+
+        return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
@@ -190,7 +193,7 @@ def LeastSquareReg():
                 r='...'
 
             if result and TrueErr:
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r)
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r)
         elif Method == 'Linearized':
             i = 0
             xdata = []
@@ -210,11 +213,11 @@ def LeastSquareReg():
             if  ydata and xdata and LHS !="" :
                 TrueErr = TrueError(ydata, 4)
                 r=round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
             elif not ydata or not xdata:
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points.', Error='...', TrueErr='...', r='...')
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points.', Error='...', TrueErr='...', r='...')
             elif xdata and ydata:
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular/Out of Domain Matrix', Error='...', TrueErr='...', r='...')
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular/Out of Domain Matrix', Error='...', TrueErr='...', r='...')
 
         elif Method == 'Best-Fitting-Family-of-Curves':
             i = 0
@@ -228,15 +231,15 @@ def LeastSquareReg():
             TrueErr = TrueError(ydata, 4);
             r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
             if result !="" and Error !="" :
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
             elif not xdata or not ydata:
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points', Error='...', TrueErr='...', r='...', family= ' ...')
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points', Error='...', TrueErr='...', r='...', family= ' ...')
             elif xdata and ydata:
-                return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix/ Out of Domain Matrix', Error='...', TrueErr='...', r='...', family= ' ...')
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix/ Out of Domain Matrix', Error='...', TrueErr='...', r='...', family= ' ...')
 
         return redirect(url_for('LeastSquareReg'))
     else:
-        return render_template('LeastSquareReg.html', title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
+        return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
 
 @app.route("/SurfaceFitting", methods=['GET', 'POST'])
 def SurfaceFitting():
@@ -275,13 +278,13 @@ def SurfaceFitting():
 
         if LHS and RHS and not Sr == '':
             #print(LHS, Sr)
-            return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results=RHS, Error=Sr, x1 = x1, y1 = y1, z1 = z1)
+            return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",  title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results=RHS, Error=Sr, x1 = x1, y1 = y1, z1 = z1)
         elif not xdata:
             return redirect(url_for('SurfaceFitting'))
         else:
-            return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results='Singular Matrix', Error='...')
+            return render_template('SurfaceFitting.html', url="mRjVy0MSUI0", title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results='Singular Matrix', Error='...')
     else:
-        return render_template('SurfaceFitting.html', title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
+        return render_template('SurfaceFitting.html', url="mRjVy0MSUI0", title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
 
 @app.route("/Differentiation", methods=['GET', 'POST'])
 def Differentiation():
@@ -311,10 +314,10 @@ def Differentiation():
             order = float(request.form['order'])
             results = FuncDeriv(Function, h, order, Calculation_Point)
 
-        return render_template('Differentiation.html', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" , results = results , Method = Method)
+        return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" , results = results , Method = Method)
 
     else:
-        return render_template('Differentiation.html', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
+        return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
 
 @app.route("/Integration", methods=['GET', 'POST'])
 def Integration():
@@ -398,7 +401,7 @@ def ODERK():
     if request.method == 'POST':
         equation = request.form['equation']
         if not(equation):
-            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Equation')
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Equation')
 
         try:
             x0 = float(request.form['x0'])
@@ -406,18 +409,17 @@ def ODERK():
             h = float(request.form['h'])
             xn = float(request.form['xn'])
         except:
-            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Valid Parameters')
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Valid Parameters')
 
         try:
             result = rungeKutta(x0, fx0, xn, h, equation)
         except:
-            return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error =  'Can not Solve at This Point')
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error =  'Can not Solve at This Point')
 
-        return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
+        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
 
     else:
-        return render_template('ODERK.html', title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
-
+        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():
@@ -461,7 +463,7 @@ def ODEEH():
              StoppingCriteria=''
              iter_or_stoppingC = 'n'
          else:
-             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+             return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
                                     logo="Logo.svg", error="Ops!, Enter all required data")
         else:
             if not request.form['Stopping Criteria']=='':
@@ -487,7 +489,7 @@ def ODEEH():
            if not temp_to_test == '':
             List_initial_values[6] = temp_to_test  # x to evaluate at =
         else:
-            return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+            return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if Method==2 :
          temp_to_test = (request.form['yex'])
          if not temp_to_test == '':
@@ -497,71 +499,71 @@ def ODEEH():
           temp_to_test = float(request.form['x'])
           List_initial_values[0] = float(temp_to_test)
         else:
-            return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+            return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==1 and (Eqs_No==1 or Eqs_No==2 or Eqs_No==3 )) or (Method==2 and O_Dim==1 and (Eqs_No==1 or Eqs_No==2)) or (Method==2 and (O_Dim==2 or O_Dim==3)):
             temp_to_test = (request.form['y'])
             if not temp_to_test == '':
                 List_initial_values[1] = float(temp_to_test)
             else:
-             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+             return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==1 and (Eqs_No==2 or Eqs_No==3))or (Method==2 and O_Dim==1 and Eqs_No==2):
             temp_to_test = (request.form['z'])
             if not temp_to_test == '':
                 List_initial_values[2] = float(temp_to_test)
             else:
-             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+             return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==1 and Eqs_No==3):
             temp_to_test = (request.form['t'])
             if not temp_to_test == '':
                 List_initial_values[3] = float(temp_to_test)
             else:
-             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+             return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==2 and (O_Dim==3 or O_Dim==2)):
             temp_to_test = (request.form['ydash'])
             if not temp_to_test == '':
                 List_initial_values[4] = float(temp_to_test)
             else:
-             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+             return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
         if (Method==2 and  O_Dim==3):
             temp_to_test = (request.form['yddash'])
             if not temp_to_test == '':
                 List_initial_values[5] = float(temp_to_test)
             else:
-             return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
+             return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",error="Ops!, Enter all required data")
          #*********************************************
         if (Method == 1 and (Eqs_No == 2 or Eqs_No==1 or Eqs_No==3)) or (Method ==2 and O_Dim==1 and(Eqs_No == 1 or Eqs_No==2 )):
          if not request.form['Y1']== '':
           List_eqs[0] = str(request.form['Y1'])
          else:
-          return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+          return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
                                logo="Logo.svg", error="Ops!, Enter all required data")
         if (Method == 2 and (O_Dim == 2 )):
             temp_to_test = (request.form['Y2'])
             if not temp_to_test == '':
                 List_eqs[1] = request.form['Y2']
             else:
-                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
                                        logo="Logo.svg", error="Ops!, Enter all required data")
         if (Method == 2 and ( O_Dim == 3)):
             temp_to_test = (request.form['Y3'])
             if not temp_to_test == '':
                 List_eqs[2] = request.form['Y3']
             else:
-                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
                                        logo="Logo.svg", error="Ops!, Enter all required data")
         if (Method == 2 and (O_Dim ==1) and Eqs_No==2) or (Method == 1 and ( Eqs_No==2 or Eqs_No==3)):
             temp_to_test = ( request.form['Z1'])
             if not temp_to_test == '':
                 List_eqs[3] = request.form['Z1']
             else:
-                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
                                        logo="Logo.svg", error="Ops!, Enter all required data")
         if(Method == 1 and Eqs_No == 3):
             temp_to_test = (request.form['T1'])
             if not temp_to_test == '':
                 List_eqs[4] = request.form['T1']
             else:
-                return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
+                return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png",
                                        logo="Logo.svg", error="Ops!, Enter all required data")
         if Method == 1:
             result=Solve_Euler(Eqs_No,List_eqs[0],List_eqs[3],List_eqs[4],List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[3],List_initial_values[6],h_or_n,StoppingCriteria,num_iteration)
@@ -570,14 +572,14 @@ def ODEEH():
             result=Solve_Heun(O_Dim,Eqs_No,List_eqs[0],List_eqs[3],List_eqs[1], List_eqs[2],y_exact,List_initial_values[0],List_initial_values[1],List_initial_values[2],List_initial_values[4],List_initial_values[5],List_initial_values[6],iter_or_stoppingC,num_iteration,StoppingCriteria)
             Length=len(result[1])
         if result:
-                return render_template('ODEEH.html', title='ODE Euler&Huen',
+                return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen',
                                        css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg",
                                         Method=Method, iterations=Length,num_eqs=Eqs_No, results=result,ODE_dim=O_Dim,Atx=List_initial_values[6],Y_eq=List_eqs[0],Ydash_eq=List_eqs[1],Yddash_eq=List_eqs[2],Z_eq=List_eqs[3],T_eq=List_eqs[4],StoppingCriteria=StoppingCriteria,num_iteration=num_iteration,x=List_initial_values[0],y=List_initial_values[1],z=List_initial_values[2],t=List_initial_values[3],ydash=List_initial_values[4],yddash=List_initial_values[5],y_exact=y_exact)
 
         return redirect(url_for('ODEEH'))
 
     else:
-      return render_template('ODEEH.html', title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
+      return render_template('ODEEH.html', url="pntenkMEUyk", title='ODE Euler&Huen', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
 
 @app.route("/ODEPC", methods=['GET', 'POST'])
 def ODEPC():
@@ -837,7 +839,7 @@ def background_process():
             except:
                 return jsonify(error = 'Enter x any y Values', U = '')
 
-            
+
             x_index = (x_point-x1)/h
             y_index = (y_point-y1)/k
             print(x_index)
@@ -863,10 +865,10 @@ def background_process():
             Number_Of_Rows = y_index + 1
 
             try:
-                
+
                 UList = Open_Region(value_list[0], value_list[1], value_list[2], h, k, x1, x2,
                                     y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, int(Number_Of_Rows))
-                
+
             except:
                 return jsonify(error = 'Could not Solve', U = '')
 
@@ -937,7 +939,7 @@ def LinearSystem():
             Length = len(result[0])
             errorOccInCalc=result[1]
             if Length:
-                return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
+                return render_template('LinearSystem.html', url="h_UP4CVuQeE", title='Linear Systems', css="LinearSystem.css",
                                        wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
                                        inputs=inputs, choice=choice, iterations=iterations,
                                        StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=0,errorMSG=errorMSG)
@@ -949,12 +951,12 @@ def LinearSystem():
             errorMSG = "please fill all the inputs !"
 
         if anyErrorsInPosting:
-            return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css",
+            return render_template('LinearSystem.html', url="h_UP4CVuQeE", title='Linear Systems', css="LinearSystem.css",
                                    wing="SE - copy2.png", logo="Logo Greeny.svg", inputs=inputs, choice=choice, iterations=iterations,
                                        StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting,errorMSG=errorMSG)
         return redirect(url_for('LinearSystem'))
     else:
-        return render_template('LinearSystem.html', title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('LinearSystem.html', url="h_UP4CVuQeE", title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():
@@ -1016,10 +1018,10 @@ def NonlinearSystem():
                     result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0, h_xy, Z0)
                     Length = len(result[1])
             if Length:
-                return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
+                return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
         return redirect(url_for('NonlinearSystem'))
     else:
-        return render_template('NonlinearSystem.html', title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/EigenvalueProblem", methods=['GET', 'POST'])
 def EigenvalueProblem():
@@ -1097,7 +1099,7 @@ def EigenvalueProblem():
             # result[6] test -> if false then there was an error in the calculations of the power method
             Length = len(result[0])
             if Length :
-                return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
+                return render_template('EigenvalueProblem.html', url="BYwlztZrgqM", title='Eigenvalue Problem',
                                        css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
                                        Length=size, Method=Method, iterations=Length, results=result,
                                        iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
@@ -1111,7 +1113,7 @@ def EigenvalueProblem():
             errorMSG = "Please fill all the inputs !"
 
         if anyErrorsInPosting:
-            return render_template('EigenvalueProblem.html', title='Eigenvalue Problem',
+            return render_template('EigenvalueProblem.html', url="BYwlztZrgqM", title='Eigenvalue Problem',
                                    css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
                                    Length=size, Method=Method, iterations=Length, results=result,
                                    iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
@@ -1119,44 +1121,9 @@ def EigenvalueProblem():
                                    list_of_entires=list_of_entires, anyErrorsInPosting=anyErrorsInPosting,errorMSG=errorMSG)
         return redirect(url_for('EigenvalueProblem'))
     else:
-        return render_template('EigenvalueProblem.html', title='Eigenvalue Problem', css="EigenvalueProblem.css",
+        return render_template('EigenvalueProblem.html', url="BYwlztZrgqM", title='Eigenvalue Problem', css="EigenvalueProblem.css",
                                wing="SE - copy2.png", logo="Logo Greeny.svg")
 
-@app.route("/sfvideo")
-def sfvideo():
-    return render_template('sfvideo.html', title='Surface Fitting Instructions', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
-
-@app.route("/leastsquarevideo")
-def leastsquarevideo():
-    return render_template('leastsquarevideo.html', title='Least Square Instructions', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
-
-@app.route("/eigenvideo")
-def eigenvideo():
-    return render_template('eigenvideo.html', title='Eigen Value Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
-
-@app.route("/linearvideo")
-def linearvideo():
-    return render_template('linearvideo.html', title='Linear System Instructions', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg" )
-
-@app.route("/nonlinearvideo")
-def nonlinearvideo():
-    return render_template('nonlinearvideo.html', title='Nonlinear System Instructions',   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
-
-@app.route("/differentiationvideo")
-def differentiationvideo():
-    return render_template('differentiationvideo.html', title='Differentiation Instructions', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
-
-@app.route("/polynomialvideo")
-def polynomialvideo():
-        return render_template('polynomialvideo.html', title='Polynomial Instructions', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg")
-
-@app.route("/odekuttavideo")
-def odekuttavideo():
-        return render_template('odekuttavideo.html', title='ODE Runge-Kutta Instructions', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
-
-@app.route("/odeehvideo")
-def odeehvideo():
-        return render_template('odeehvideo.html', title='ODE Euler Instructions', css="ODEEH.css", wing="DE - Copy.png", logo="Logo.svg")
 
 if __name__ == '__main__':
     app.run(debug=True)

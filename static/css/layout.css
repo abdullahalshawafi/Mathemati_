@@ -9,3 +9,21 @@
 input {
 transition: 0.3s;
 }
+
+.video {
+	position: absolute;
+	width: 100%;
+	height: 48vw;
+	margin-top: -12.81vw;
+	background: radial-gradient(rgba(20, 20, 20, 0.7) 70%, rgba(10, 10, 10, 0.2));
+	z-index: 120;
+	display: none;
+	transition: 2s;
+}
+
+.video iframe {
+	position: absolute;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%, -50%);
+}

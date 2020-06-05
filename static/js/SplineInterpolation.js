@@ -2,8 +2,7 @@ x = 0;
 var parameters = {
     target: '#myFunction',
     data: [{
-        points: [
-        ],
+        points: [],
         fnType: 'points',
         graphType: 'scatter',
         color: "#000000"

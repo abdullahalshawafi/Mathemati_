@@ -396,10 +396,9 @@
 								<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}" title="Calculate">
 							</button>
 							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<a class="table-button" href="{{url_for('odeehvideo')}}">
+							<button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
 								<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-
-							</a>
+							</button>
 							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
 								<button type="button" class="table-button" id="save">
 								<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
