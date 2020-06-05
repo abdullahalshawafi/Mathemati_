@@ -314,11 +314,13 @@
 			  y1 = {{y1|tojson}};
 				{% endif %}
 
-			var data_z1 = { z: z1, x: x1, y: y1, type: 'surface', colorscale: 'Lava' };
-			var layout = {
+		var data_z1 = { z: z1, x: x1, y: y1, type: 'surface', colorscale: 'Lava'/*, colorbar: {showscale: false}*/};
+		var layout = {
+			  plot_bgcolor: "#dddddd",
+			  paper_bgcolor:"#dddddd",
 			  scene: { camera: { eye: { x: 1.8, y: 1.8, z: 1.5 } } },
-			  width: window.innerWidth / 100 * 31.5,
-			  height: window.innerWidth / 100 * 26,
+			  width: window.innerWidth / 100 * 19.2,
+			  height: window.innerWidth / 100 * 19.2,
 			  margin: {
 			    l: 0,
 			    r: 0,
