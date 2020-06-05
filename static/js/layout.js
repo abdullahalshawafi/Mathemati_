@@ -21,8 +21,8 @@ document.getElementById('clear').addEventListener('click', function () {
 });
 
 function showVideo(url) {
-  document.getElementsByTagName('main')[0].style.filter = "blur(1px)";
-  document.getElementsByTagName('header')[0].style.filter = "blur(1px)";
+  document.getElementsByTagName('main')[0].style.filter = "blur(0.5vw)";
+  document.getElementsByTagName('header')[0].style.filter = "blur(0.5vw)";
   var video = document.getElementsByClassName('video')[0];
   var iframe = document.createElement("iframe");
   iframe.setAttribute("style", "position: absolute; left: 15.5vw; top: 12.2vw; width: 69vw; height: 33vw;");
