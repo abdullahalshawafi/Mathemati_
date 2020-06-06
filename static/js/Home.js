@@ -1,7 +1,3 @@
-$(window).load(function () {
-  $("body").removeClass("Body-Class");
-});
-
 function ForwardAnimation(el) {
   const imagePath = 'static/HoverAnimations/' + el.id + '/' + el.id + '00';
   const totalFrames = 71;
@@ -35,7 +31,6 @@ function ForwardAnimation(el) {
   }
   step(0);
 
-  console.log(el.id);
 }
 
 function BackwardAnimation(el) {
@@ -45,7 +40,6 @@ function BackwardAnimation(el) {
   let timeFromLastUpdate;
   let length = document.getElementById(el.id + "0000").src.length;
   let frameNumber = parseInt(document.getElementById(el.id + "0000").src[length - 6] + document.getElementById(el.id + "0000").src[length - 5]);
-  console.log(parseInt(document.getElementById(el.id + "0000").src[length - 6] + document.getElementById(el.id + "0000").src[length - 5]));
 
   function step(startTime) {
     if (!timeWhenLastUpdate) timeWhenLastUpdate = startTime;
@@ -72,5 +66,4 @@ function BackwardAnimation(el) {
 
   step(0);
 
-  console.log(el.id + ".b");
 }
