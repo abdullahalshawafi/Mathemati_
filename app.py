@@ -883,7 +883,7 @@ def background_process():
 
 @app.route("/PDE", methods=['GET'])
 def PDE():
-    return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - copy.png", logo="Logo.svg")
+    return render_template('PDE.html', title='Numerical PDE', css="PDE.css", wing="DE - Copy.png", logo="Logo.svg")
 
 @app.route("/LinearSystem", methods=['GET', 'POST'])
 def LinearSystem():
@@ -940,7 +940,7 @@ def LinearSystem():
             errorOccInCalc=result[1]
             if Length:
                 return render_template('LinearSystem.html', url="h_UP4CVuQeE", title='Linear Systems', css="LinearSystem.css",
-                                       wing="SE - copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
+                                       wing="SE - Copy2.png", logo="Logo Greeny.svg", Eqs_No=n, results=result,
                                        inputs=inputs, choice=choice, iterations=iterations,
                                        StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=0,errorMSG=errorMSG)
             else:
@@ -952,11 +952,11 @@ def LinearSystem():
 
         if anyErrorsInPosting:
             return render_template('LinearSystem.html', url="h_UP4CVuQeE", title='Linear Systems', css="LinearSystem.css",
-                                   wing="SE - copy2.png", logo="Logo Greeny.svg", inputs=inputs, choice=choice, iterations=iterations,
+                                   wing="SE - Copy2.png", logo="Logo Greeny.svg", inputs=inputs, choice=choice, iterations=iterations,
                                        StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=anyErrorsInPosting,errorMSG=errorMSG)
         return redirect(url_for('LinearSystem'))
     else:
-        return render_template('LinearSystem.html', url="h_UP4CVuQeE", title='Linear Systems', css="LinearSystem.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('LinearSystem.html', url="h_UP4CVuQeE", title='Linear Systems', css="LinearSystem.css", wing="SE - Copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/NonlinearSystem", methods=['GET', 'POST'])
 def NonlinearSystem():
@@ -1018,10 +1018,10 @@ def NonlinearSystem():
                     result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0, h_xy, Z0)
                     Length = len(result[1])
             if Length:
-                return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
+                return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - Copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
         return redirect(url_for('NonlinearSystem'))
     else:
-        return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - copy2.png", logo="Logo Greeny.svg")
+        return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - Copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/EigenvalueProblem", methods=['GET', 'POST'])
 def EigenvalueProblem():
@@ -1100,7 +1100,7 @@ def EigenvalueProblem():
             Length = len(result[0])
             if Length :
                 return render_template('EigenvalueProblem.html', url="BYwlztZrgqM", title='Eigenvalue Problem',
-                                       css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
+                                       css="EigenvalueProblem.css", wing="SE - Copy2.png", logo="Logo Greeny.svg",
                                        Length=size, Method=Method, iterations=Length, results=result,
                                        iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
                                        StoppingCriteria=StoppingCriteria, list_init_vector=list_init_vector,
@@ -1114,7 +1114,7 @@ def EigenvalueProblem():
 
         if anyErrorsInPosting:
             return render_template('EigenvalueProblem.html', url="BYwlztZrgqM", title='Eigenvalue Problem',
-                                   css="EigenvalueProblem.css", wing="SE - copy2.png", logo="Logo Greeny.svg",
+                                   css="EigenvalueProblem.css", wing="SE - Copy2.png", logo="Logo Greeny.svg",
                                    Length=size, Method=Method, iterations=Length, results=result,
                                    iter_or_stoppingC=iter_or_stoppingC, num_iteration=num_iteration,
                                    StoppingCriteria=StoppingCriteria, list_init_vector=list_init_vector,
@@ -1122,7 +1122,7 @@ def EigenvalueProblem():
         return redirect(url_for('EigenvalueProblem'))
     else:
         return render_template('EigenvalueProblem.html', url="BYwlztZrgqM", title='Eigenvalue Problem', css="EigenvalueProblem.css",
-                               wing="SE - copy2.png", logo="Logo Greeny.svg")
+                               wing="SE - Copy2.png", logo="Logo Greeny.svg")
 
 
 if __name__ == '__main__':
