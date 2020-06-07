@@ -842,11 +842,11 @@ def background_process():
 
             x_index = (x_point-x1)/h
             y_index = (y_point-y1)/k
-            print(x_index)
-            print(y_index)
+            #print(x_index)
+            #print(y_index)
             try:
                 U = UList[int(x_index)][int(y_index)]
-                print(U)
+                #print(U)
             except:
                 return jsonify(error = 'Invalid Point', U = '')
 
@@ -1006,7 +1006,7 @@ def NonlinearSystem():
                 if Eqs_No == 2:
                     result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, 0, X0, Y0, 0, StoppingCriteria)
                     Length = len(result[1])
-                    print(result, Length)
+                    #print(result, Length)
                 elif Eqs_No == 3 and Z0 and h_xy:
                     result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
                     Length = len(result[1])
