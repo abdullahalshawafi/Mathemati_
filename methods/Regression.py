@@ -209,7 +209,7 @@ def Nonlinear_Regression(xdata,ydata,NonlinearFunction,r): #takes x,y lists and 
      Sol=''
      return Sol,0;
   F=sympy.lambdify([x, a,b,c], Function)
-  C, Covariance = curve_fit(F, xdata, ydata) #we don't need to show the covariance matrix
+  C, Covariance = curve_fit(F, xdata, ydata, maxfev=1500) #we don't need to show the covariance matrix
   Sol=Function.subs([(x, x), (a, Sround(C[0],r)), (b,Sround( C[1],r)), (c, Sround(C[2],r))])
                    #    ,(d, Sround(C[3],r))
   #,(e,Sround(C[4],r)),(f,Sround(C[5],r)),(g,Sround(C[6],r)),
@@ -230,7 +230,7 @@ def Nonlinear_Regression_d(xdata,ydata,NonlinearFunction,r): #takes x,y lists an
      Sol=''
      return Sol,0;
   F=sympy.lambdify([x, a,b,c,d], Function)
-  C, Covariance = curve_fit(F, xdata, ydata) #we don't need to show the covariance matrix
+  C, Covariance = curve_fit(F, xdata, ydata, maxfev=1500) #we don't need to show the covariance matrix
   Sol=Function.subs([(x, x), (a, Sround(C[0],r)), (b,Sround( C[1],r)), (c, Sround(C[2],r))
                        ,(d, Sround(C[3],r))])
   #,(e,Sround(C[4],r)),(f,Sround(C[5],r)),(g,Sround(C[6],r)),

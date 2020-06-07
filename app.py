@@ -17,7 +17,7 @@ from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
 from methods.ODE_EulerAndHeun  import Solve_Euler ,Solve_Heun
-from methods.Surface_Interpolation import Surface_Interpolation
+from methods.BilinearInterpolation import Surface_Interpolation
 import numpy as np
 
 app = Flask(__name__)
@@ -134,6 +134,16 @@ def BilinearInterpolation():
     if request.method == 'POST':
         points = []
         Z = []
+        x_val1=request.form['xinput']
+        y_val1=request.form['yinput']
+        x_val=0
+        y_val=0
+        if x_val and y_val:
+            try:
+                x_val=float(x_val1)
+                y_val=float(y_val1)
+            except:
+                pass
 
         for i in range(25):
             x = request.form['x' + str(i)]
@@ -144,8 +154,18 @@ def BilinearInterpolation():
                 try:
                     points.append([float(x), float(y)])
                     Z.append(float(z))
-                except:
+                except: 
                     pass
+        x_val1=request.form['xinput']
+        y_val1=request.form['yinput']
+        x_val=0
+        y_val=0
+        if x_val and y_val:
+            try:
+                x_val=float(x_val1)
+                y_val=float(y_val)
+            except:
+                pass
 
         try:
             surface = Surface_Interpolation(points, Z)
@@ -154,13 +174,16 @@ def BilinearInterpolation():
             x1 = list(GriX)
             y1 = list(GriY)
             z1 = []
-
+            plane=surface.GetPlane_of_P(x_val,y_val)
+            Z=plane[3]-x_val*plane[0]-y_val*plane[1]
+            if plane[2]:
+                Z=Z/plane[2]
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
         except:
             return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
-        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1,function=surface.GetPlane_of_P)
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1,function=surface.GetPlane_of_P,plane=plane,Z=Z)
 
     else:
         return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")

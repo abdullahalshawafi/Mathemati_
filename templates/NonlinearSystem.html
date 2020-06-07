@@ -160,7 +160,7 @@
             x="0"
             y="0"
             width="3.84vw"
-            height="18vw"
+            height="21vw"
           ></rect>
         </svg>
         <div id="System">
@@ -302,29 +302,34 @@
           <input type="text" name = "Geq" class="Rectangle_29" style="text-align: left;" value="{{request.form['Geq']}}" onfocusout="addtograph()" />
           <input type="text" name = "Heq" class="Rectangle_30" style="text-align: left;" value="{{request.form['Heq']}}" />
           <div class="Rectangle_28">
-           <div class="button-div">
-              <button type="submit" class="table-button" id="calc">
-                <img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" title="Calculate">
-              </button>
-              <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-              <button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
-                <img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-              </button>
-              <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                <button type="button" class="table-button" id="save">
-                <img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
-              </button>
-              <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-              <button type="button" class="table-button" id="load">
-                <img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
-              </button>
-              <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-              <button type="button" class="table-button" id="clear">
-                <img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
-              </button>
-            </div>
+              <div class="button-div">
+                  <button type="submit" class="table-button" id="calc">
+                      <img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" title="Calculate">
+                  </button>
+                  <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                  <button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
+                      <img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
+                  </button>
+                  <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                  <button type="button" class="table-button" onclick="DownloadGuide()">
+                      <img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
+                  </button>
+                  <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                  <button type="button" class="table-button" id="save">
+                      <img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
+                  </button>
+                  <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                  <button type="button" class="table-button" id="load">
+                      <img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
+                  </button>
+                  <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                  <button type="button" class="table-button" id="clear">
+                      <img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
+                  </button>
+              </div>
+          </div>
           </form>
-        </div>
+
         <div id="F_x_y_z____0__">
           <span>F(x,y,z) = 0 =</span>
         </div>
