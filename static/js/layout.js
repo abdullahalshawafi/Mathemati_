@@ -2,7 +2,6 @@ new WOW().init();
 
 document.getElementById('clear').addEventListener('click', function () {
   inputs = document.getElementsByTagName("input");
-  console.log(inputs);
   lengthInputs = inputs.length;
   for (var i = 0; i < lengthInputs; i++) {
     if (!inputs[i].disabled) {
@@ -32,7 +31,6 @@ function showVideo(url) {
   iframe.setAttribute("allowfullscreen", "1");
   video.appendChild(iframe);
   video.style.display = "block";
-  console.log(document.getElementsByTagName('main')[0]);
 }
 
 document.getElementsByClassName('video')[0].addEventListener('click', function () {
