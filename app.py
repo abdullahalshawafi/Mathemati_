@@ -53,20 +53,22 @@ def PolynomialInterpolation():
 
 
         if Method=="Newton" and (request.form['Degree']) :
-            Degree = int(request.form['Degree'])
+            try:
+                Degree = int(request.form['Degree'])
+            except:
+                Degree = -1
 
-        while (request.form["X_" + str(NumPoints)]) and (request.form["Y_" + str(NumPoints)]) :
+        for i in range(20):
+            if request.form["X_" + str(i)] and request.form["Y_" + str(i)]:
+                try:
+                    x_temp = float(request.form["X_" + str(i)])
 
-            Xtemp =float((request.form["X_" + str(NumPoints)]))
-            if NumPoints>0 :
-                if Xtemp != X_Points[NumPoints-1]:
-                    X_Points.append(float((request.form["X_" + str(NumPoints)])))
-                    Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
-            else:
-                X_Points.append(float((request.form["X_" + str(NumPoints)])))
-                Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
+                    if not(x_temp in X_Points):
+                        X_Points.append(float(request.form["X_" + str(i)]))
+                        Y_Points.append(float(request.form["Y_" + str(i)]))
 
-            NumPoints += 1
+                except:
+                    pass
 
 
         NumPoints=len(X_Points)
@@ -157,7 +159,7 @@ def BilinearInterpolation():
                     
                     points.append([float(x), float(y)])
                     Z.append(float(z))
-                except: 
+                except:
                     pass
 
 
@@ -867,11 +869,11 @@ def background_process():
 
             x_index = (x_point-x1)/h
             y_index = (y_point-y1)/k
-            print(x_index)
-            print(y_index)
+            #print(x_index)
+            #print(y_index)
             try:
                 U = UList[int(x_index)][int(y_index)]
-                print(U)
+                #print(U)
             except:
                 return jsonify(error = 'Invalid Point', U = '')
 
@@ -1031,7 +1033,7 @@ def NonlinearSystem():
                 if Eqs_No == 2:
                     result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, 0, X0, Y0, 0, StoppingCriteria)
                     Length = len(result[1])
-                    print(result, Length)
+                    #print(result, Length)
                 elif Eqs_No == 3 and Z0 and h_xy:
                     result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
                     Length = len(result[1])
