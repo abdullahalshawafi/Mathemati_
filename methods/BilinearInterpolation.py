@@ -161,8 +161,8 @@ class Surface_Interpolation:
             if Po1[i][1] > ymax:
                 ymax = Po1[i][1]
 
-        nx = 40
-        ny = 40
+        nx = 50
+        ny = 50
 
         grid_x, grid_y = np.mgrid[xmin:xmax:((nx + 1) * 1j), ymin:ymax:((ny + 1) * 1j)]
         grid_x_out = np.mgrid[xmin:xmax:((nx + 1) * 1j)]
@@ -207,14 +207,15 @@ class Surface_Interpolation:
         ymin = grid_y[0]
         ymax = grid_y[ycount - 1]
 
-        if xn < xmin and xn > xmax and yn < ymin and yn > ymax:
-            return "out of bounds"
-
+        #if xn < xmin and xn > xmax and yn < ymin and yn > ymax:
+            #return "out of bounds"
+       
         xstep = (xmax - xmin) / (xcount - 1)
         ystep = (ymax - ymin) / (ycount - 1)
-
+  
         xindex = int(np.trunc((xn - xmin) / xstep))
         yindex = int(np.trunc((yn - ymin) / ystep))
+
 
         planeindex = 2
         priorityindex = 2
@@ -259,4 +260,4 @@ def DEMO():
     surf=Surface_Interpolation(Po1,Z)
     w=surf.GetPlane_of_P(1,1)
     print(w)
-
+DEMO()
