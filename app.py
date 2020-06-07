@@ -53,20 +53,22 @@ def PolynomialInterpolation():
 
 
         if Method=="Newton" and (request.form['Degree']) :
-            Degree = int(request.form['Degree'])
+            try:
+                Degree = int(request.form['Degree'])
+            except:
+                Degree = -1
 
-        while (request.form["X_" + str(NumPoints)]) and (request.form["Y_" + str(NumPoints)]) :
+        for i in range(20):
+            if request.form["X_" + str(i)] and request.form["Y_" + str(i)]:
+                try:
+                    x_temp = float(request.form["X_" + str(i)])
 
-            Xtemp =float((request.form["X_" + str(NumPoints)]))
-            if NumPoints>0 :
-                if Xtemp != X_Points[NumPoints-1]:
-                    X_Points.append(float((request.form["X_" + str(NumPoints)])))
-                    Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
-            else:
-                X_Points.append(float((request.form["X_" + str(NumPoints)])))
-                Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
+                    if not(x_temp in X_Points):
+                        X_Points.append(float(request.form["X_" + str(i)]))
+                        Y_Points.append(float(request.form["Y_" + str(i)]))
 
-            NumPoints += 1
+                except:
+                    pass
 
 
         NumPoints=len(X_Points)
@@ -154,7 +156,7 @@ def BilinearInterpolation():
                 try:
                     points.append([float(x), float(y)])
                     Z.append(float(z))
-                except: 
+                except:
                     pass
         x_val1=request.form['xinput']
         y_val1=request.form['yinput']
