@@ -134,11 +134,13 @@ def BilinearInterpolation():
     if request.method == 'POST':
         points = []
         Z = []
+        plane=''
+        _Z=''
         x_val1=request.form['xinput']
         y_val1=request.form['yinput']
         x_val=0
         y_val=0
-        if x_val and y_val:
+        if x_val1 and y_val1:
             try:
                 x_val=float(x_val1)
                 y_val=float(y_val1)
@@ -152,41 +154,41 @@ def BilinearInterpolation():
 
             if x and y and z:
                 try:
+                    
                     points.append([float(x), float(y)])
                     Z.append(float(z))
                 except:
                     pass
-        x_val1=request.form['xinput']
-        y_val1=request.form['yinput']
-        x_val=0
-        y_val=0
-        if x_val and y_val:
-            try:
-                x_val=float(x_val1)
-                y_val=float(y_val)
-            except:
-                pass
 
+
+    
         try:
-            surface = Surface_Interpolation(points, Z)
+            np_points=np.array(points)
+            np_Z=np.array(Z)
+            surface = Surface_Interpolation(np_points,np_Z )
+            plane=surface.GetPlane_of_P(x_val,y_val)
+            
+
             Surf, GriX, GriY, GriZ = surface.BiLinearInt()
             GriZ = GriZ.transpose()
             x1 = list(GriX)
             y1 = list(GriY)
             z1 = []
-            plane=surface.GetPlane_of_P(x_val,y_val)
-            Z=plane[3]-x_val*plane[0]-y_val*plane[1]
+            
+
+            _Z=-1*plane[3]-x_val*plane[0]-y_val*plane[1]
             if plane[2]:
-                Z=Z/plane[2]
+                _Z=_Z/plane[2]
+
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
         except:
-            return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+            return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="",plane=[1,1,1,1],_Z="")
 
-        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1,function=surface.GetPlane_of_P,plane=plane,Z=Z)
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1,function=surface.GetPlane_of_P,plane=plane,Z=_Z)
 
     else:
-        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="",plane=[1,1,1,1],_Z="",z="")
 
 @app.route("/LeastSquareReg", methods=['GET', 'POST'])
 def LeastSquareReg():
