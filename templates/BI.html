@@ -2,6 +2,7 @@
 {% block content %}
 <main>
 	<div id="Web_1920___1">
+		<form action="/BilinearInterpolation" method="post">
 		<div class="spline-con">
 			<div class="Linear">
 				<div id="AnswerTab">
@@ -33,6 +34,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div id="MidTab">
 
 			<svg class="Rectangle_8">
@@ -43,7 +45,7 @@
 				<div id="myFunction" class="Rectangle_8_5"></div>
 			</section>
 			<div class="Con">
-				<span>At (x, y) =&emsp;&emsp; <input type="text" class="Smalltxt" /> , <input type="text" class="Smalltxt" /> : &nbsp; z = <input type="text" class="Widetxt" disabled /> Plane Eq: <input type="text" class="Widetxt" disabled /> x + <input type="text" class="Widetxt" disabled /> y + <input type="text" class="Widetxt" disabled /> z + <input type="text" class="Widetxt" disabled /> = 0 Z<span style="font-size: 1vw">x</span> = <input type="text" class="Widetxt" disabled /> Z<span style="font-size: 1vw">y</span> = <input type="text" class="Widetxt" disabled /></span>
+				<span>At (x, y) =&emsp;&emsp; <input type="text" class="Smalltxt" name="xinput" value="{{request.form['xinput']}}" /> , <input type="text" name="yinput" value="{{request.form['yinput']}}" class="Smalltxt" /> : &nbsp; z = <input type="text" class="Widetxt" value='{{Z}}' disabled /> Plane Eq: <input type="text" class="Widetxt" disabled value="{{plane[0]}}" /> x + <input type="text" class="Widetxt" value="{{plane[1]}}" disabled /> y + <input type="text" value="{{plane[2]}}" class="Widetxt" disabled /> z + <input type="text" value="{{plane[3]}}" class="Widetxt" disabled /> = 0 Z<span style="font-size: 1vw">x</span> = <input type="text" value={{-plane[0]/plane[2]}} class="Widetxt" disabled /> Z<span style="font-size: 1vw">y</span> = <input type="text" value={{-plane[1]/plane[2]}} class="Widetxt" disabled /></span>
 			</div>
 		</div>
 		<div id="LeftTap">
@@ -73,7 +75,7 @@
 				</div>
 			</div>
 		</div>
-		<form action="/BilinearInterpolation" method="post">
+		
 			<div id="LeffTapCon">
 				<svg class="Rectangle_18">
 					<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="30.93vw">
@@ -273,9 +275,9 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<td><input type="text" /></td>
-								<td><input type="text" /></td>
-								<td><input type="text" /></td>
+								<td><input type="text"  /></td>
+								<td><input type="text"  /></td>
+								<td><input type="text"  /></td>
 
 							</tr>
 						</tfoot>
