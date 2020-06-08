@@ -154,27 +154,27 @@ def BilinearInterpolation():
 
             if x and y and z:
                 try:
-                    
+
                     points.append([float(x), float(y)])
                     Z.append(float(z))
                 except:
                     pass
 
 
-    
+
         try:
             np_points=np.array(points)
             np_Z=np.array(Z)
             surface = Surface_Interpolation(np_points,np_Z )
             plane=surface.GetPlane_of_P(x_val,y_val)
-            
+
 
             Surf, GriX, GriY, GriZ = surface.BiLinearInt()
             GriZ = GriZ.transpose()
             x1 = list(GriX)
             y1 = list(GriY)
             z1 = []
-            
+
 
             _Z=-1*plane[3]-x_val*plane[0]-y_val*plane[1]
             if plane[2]:
@@ -194,76 +194,124 @@ def BilinearInterpolation():
 def LeastSquareReg():
     if request.method == 'POST':
         Method = ''
-        #print("Method=", Method)
+        error = ''
         if 'Method' in request.form:
             Method  = request.form['Method']
-           # print("Method=", Method)
         if Method == 'Nonlinear':
             Equation = request.form['Nonlinear_Equation']
             i = 0
             xdata = []
             ydata = []
             while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
-                xdata.append(float(request.form['x_coordinates' + str(i)]))
-                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                try:
+                    xdata.append(float(request.form['x_coordinates' + str(i)]))
+                    ydata.append(float(request.form['y_coordinates' + str(i)]))
+                except:
+                    pass
                 i += 1
             if len(xdata)>=3:
-                result, Error = Nonlinear_Regression(xdata, ydata, Equation, 4);
-                TrueErr = TrueError(ydata, 4);
-                r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
-            else:
-                result="The data set is too small"
-                Error='...'
-                TrueErr='...';
-                r='...'
+                try:
+                    result, Error = Nonlinear_Regression(xdata, ydata, Equation, 4)
+                    TrueErr = TrueError(ydata, 4)
+                    r = round((abs(Error-TrueErr)/TrueErr)**0.5,4)
+                except:
+                    error = "Invalid Inputs"
+                    result = "Invalid Inputs"
+                    Error = '...'
+                    TrueErr = '...'
+                    r = '...'
 
-            if result and TrueErr:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r)
+            elif len(xdata) == 0:
+                error = 'Missing Points'
+                result = "Missing Points"
+                Error = '...'
+                TrueErr = '...'
+                r = '...'
+
+            else:
+                error = "The data set is too small"
+                result = "The data set is too small"
+                Error = '...'
+                TrueErr = '...'
+                r = '...'
+
+            return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, error = error)
+
         elif Method == 'Linearized':
             i = 0
             xdata = []
             ydata = []
             while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
-                xdata.append(float(request.form['x_coordinates' + str(i)]))
-                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                try:
+                    xdata.append(float(request.form['x_coordinates' + str(i)]))
+                    ydata.append(float(request.form['y_coordinates' + str(i)]))
+                except:
+                    pass
                 i += 1
+
             j = 0
             Fdata = [request.form['Abdullah_Knows_It_All']]
             while request.form['term' + str(j)]:
                 Fdata.append(request.form['term' + str(j)])
                 j += 1
 
-            LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
+            try:
+                LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
+            except:
+                error = "Invalid Inputs"
+                result = "Invalid Inputs"
+                Error = '...'
+                TrueErr = '...'
+                r = '...'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, error = error)
 
             if  ydata and xdata and LHS !="" :
                 TrueErr = TrueError(ydata, 4)
-                r=round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
+                r = round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
                 return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
             elif not ydata or not xdata:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points.', Error='...', TrueErr='...', r='...')
+                error = 'Missing Points'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points', Error='...', TrueErr='...', r='...', error = error)
             elif xdata and ydata:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular/Out of Domain Matrix', Error='...', TrueErr='...', r='...')
+                error = 'Singular/Out of Domain Matrix'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular/Out of Domain Matrix', Error='...', TrueErr='...', r='...', error=error)
 
         elif Method == 'Best-Fitting-Family-of-Curves':
             i = 0
             xdata = []
             ydata = []
             while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
-                xdata.append(float(request.form['x_coordinates' + str(i)]))
-                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                try:
+                    xdata.append(float(request.form['x_coordinates' + str(i)]))
+                    ydata.append(float(request.form['y_coordinates' + str(i)]))
+                except:
+                    pass
                 i += 1
-            result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4);
-            TrueErr = TrueError(ydata, 4);
-            r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
+            try:
+                result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4)
+                TrueErr = TrueError(ydata, 4)
+                r = round((abs(Error-TrueErr)/TrueErr)**0.5,4)
+            except:
+                error = "Missing Points"
+                result = "Missing Points"
+                Error = '...'
+                TrueErr = '...'
+                r = '...'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, error = error)
+
             if result !="" and Error !="" :
                 return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
             elif not xdata or not ydata:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points', Error='...', TrueErr='...', r='...', family= ' ...')
+                error = 'Missing Points'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points', Error='...', TrueErr='...', r='...', family= ' ...',error = error)
             elif xdata and ydata:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix/ Out of Domain Matrix', Error='...', TrueErr='...', r='...', family= ' ...')
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix/ Out of Domain Matrix', Error='...', TrueErr='...', r='...', family= ' ...', error = error)
 
-        return redirect(url_for('LeastSquareReg'))
+        else:
+            error = 'Chose a Method'
+            return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, error = error)
     else:
+        error = 'Singular/Out of Domain Matrix'
         return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
 
 @app.route("/SurfaceFitting", methods=['GET', 'POST'])
