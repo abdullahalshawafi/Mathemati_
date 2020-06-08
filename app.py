@@ -101,7 +101,7 @@ def PolynomialInterpolation():
     else:
 
         return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
-
+ 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
     if request.method == 'POST':
