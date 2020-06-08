@@ -217,7 +217,7 @@ a {
 	width: 23.02vw;
 	height: 35.29vw;
 	left: 4.48vw;
-	top: 17.9vw;
+	top: 20.4vw;
 }
 
 .Rectangle_2 {
@@ -319,7 +319,7 @@ a {
 	overflow: visible;
 	width: 20.25vw;
 	left: 0.2vw;
-	top: 18.3vw;
+	top: 20.9vw;
 }
 
 .Rectangle_28 {
@@ -472,9 +472,9 @@ a {
 	position: absolute;
 	overflow: auto;
 	width: 49vw;
-	height: 14.9vw;
+	height: 13vw;
 	left: 1vw;
-	top: 18.1vw;
+	top: 20.8vw;
 	color: white;
 }
 
@@ -749,7 +749,7 @@ a {
 	outline: none;
 	cursor: pointer;
 	width: 3.255208333vw;
-	margin-bottom: 0.651041667vw;
+	margin-top: 0.1vw; margin-bottom: 0.3vw;
 	pointer-events: visible;
 }
 
@@ -893,7 +893,7 @@ textarea:focus, input:focus {
 	position: absolute;
 	max-width: 20.83vw;
 	left: 0px;
-	top: 6vw;
+	top: 8vw;
 }
 .Rectangle_19::-webkit-scrollbar {
 height: 0;
@@ -972,8 +972,8 @@ height: 0;
 	}
 
 	.table td {
-		padding: 0.5vw 0;
-		font-size: 1vw;
+		padding: 0.3vw 0;
+		font-size: 0.9vw;
 	}
 
 .wide-slot {
