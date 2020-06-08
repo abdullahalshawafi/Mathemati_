@@ -353,14 +353,14 @@
 
 				{% if results %}
 				{% if iter_or_stoppingC == 1 %}
-				<input type="text" class="Path_6" name ="Stopping Criteria"/>
+				<input type="text" class="Path_6" value="{{request.form['Stopping Criteria']}}" name ="Stopping Criteria"/>
 				<input type="text" class="Rectangle_18" name = "Number of iterations" value = {{num_iteration}} />
 				{% else %}
 				<input type="text" class="Path_6" name ="Stopping Criteria" value = {{StoppingCriteria}} />
 				<input type="text" class="Rectangle_18" name = "Number of iterations"  />
 				{% endif %}
 				{% else %}
-				<input type="text" class="Path_6" name ="Stopping Criteria"/>
+				<input type="text" class="Path_6" value="{{request.form['Stopping Criteria']}}" name ="Stopping Criteria"/>
 				<input type="text" class="Rectangle_18" name = "Number of iterations"/>
 				{% endif %}
 

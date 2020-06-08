@@ -456,6 +456,24 @@ def Differentiation():
 def Integration():
     if request.method == 'POST':
         Dim=''
+        function=''
+        x1=''
+        x2=''
+        y1=''
+        y2=''
+        N2=''
+        N=''
+        Result=''
+        ResultTrap=''
+        error=''
+        _error=''
+        TrapError=''
+        exact=''
+        ResultMin=''
+        ErrorMin=''
+        ResultRom=''
+        OrderOfError=''
+
         if 'Dim' in request.form:
             NumOfVar=request.form['Dim']
             if NumOfVar == '1':
@@ -465,9 +483,16 @@ def Integration():
                 try:
                     x1=float(request.form['x1'])
                     x2=float(request.form['x2'])
+                except:
+                    if _error=='':
+                        _error="Invalid x1 , or x2"
+                try:  
                     N=int(request.form['n1'])
                 except:
-                    pass
+                    if _error=='':
+                        _error="Invalid N"
+                
+                    
                 try:
                     if N > 6:
                         Result="N > 6"
@@ -478,7 +503,8 @@ def Integration():
                     try:
                         Result,error=myfun(function,x1,x2,1,1,N)
                     except:
-                        pass
+                        if _error=='':
+                            _error="Invalid Inputs"
                 try:
                     exact=Exact(function,x1,x2,1,1,1,1,1)
                     ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
@@ -490,31 +516,62 @@ def Integration():
                         ResultRom="Order of Error must be even"
                     TrapError=Trapezoidal_error(function,x1,x2,N)
                 except:
-                    pass
-                try:
-                    return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
-                except:
-                    return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
+                    if _error=='':
+                        _error="Invalid Inputs"
+                
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,_error=_error,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+                
+                  
 
             elif NumOfVar == '2':
                 try:
                     function=request.form['func']
+                except:
+                    if _error=='':
+                        _error="Invalid Function"
+                try:
                     x1=float(request.form['x1'])
+                except:
+                    if _error=='':
+                        _error="Invalid x1"
+                try:
                     x2=float(request.form['x2'])
+                except:
+                    if _error=='':
+                        _error="Invalid x2"
+                try:
                     N=int(request.form['n1'])
+                except:
+                    if _error=='':
+                        _error="Invalid N"
+                try:
                     y1=float(request.form['y1'])
+                except:
+                    if _error=='':
+                        _error="Invalid y1"
+                try:    
                     y2=float(request.form['y2'])
+                except:
+                    if _error=='':
+                        _error="Invalid y2"
+                try:
                     N2=int(request.form['n2'])
                 except:
+                    if _error=='':
+                        _error="Invalid N2"
+                try:
+                    if N > 6:
+                
+                        Result="N > 6"
+                        error=""
+                except:
                     pass
-                if N > 6:
-                    Result="N > 6"
-                    error=""
                 else:
                     try:
                         Result,error=myfun(function,x1,x2,y1,y2,N)
                     except:
-                        pass
+                        if _error=='':
+                            _error="Invalid Input"
                 try:
                     ResultMin=double_mixed_rule (function,x1,x2,N,y1,y2,N2)
                     exact=Exact(function,x1,x2,y1,y2,1,1,2)
@@ -525,38 +582,88 @@ def Integration():
                     else:
                         ResultRom="Order of Error must be even"
                 except:
-                    pass
-                try:
-                    return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,y1=y1,y2=y2,n2=N2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
-                except:
-                    return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
+                    if _error=='':
+                        _error="Invalid Input"
+                
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,y1=y1,y2=y2,n2=N2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError,_error=_error)
+               
             else:
+                z1=''
+                z2=''
+                N3=''
                 try:
                     function=request.form['func']
+                except:
+                    if _error=='':
+                        _error="Invalid function"
+                try:
                     x1=float(request.form['x1'])
+                except:
+                    if _error=='':
+                        _error="Invalid x1"
+                try:
                     x2=float(request.form['x2'])
+                except:
+                    if _error=='':
+                        _error="Invalid x2"
+                try:
                     N=int(request.form['n1'])
+                except:
+                    if _error=='':
+                        _error="Invalid N1"
+                try:
                     y1=float(request.form['y1'])
+                except:
+                    if _error=='':
+                        _error="Invalid y1"
+                try:
                     y2=float(request.form['y2'])
+                except:
+                    if _error=='':
+                        _error="Invalid y2"
+                try:
                     N2=int(request.form['n2'])
+                except:
+                    if _error=='':
+                        _error="Invalid N2"
+                try:
                     z1=float(request.form['z1'])
+                except:
+                    if _error=='':
+                        _error="Invalid z1"
+                try:
                     z2=float(request.form['z2'])
+                except:
+                    if _error=='':
+                        _error="Invalid z2"
+                try:
                     N3=int(request.form['n3'])
-                    Result="too complex"
+                except:
+                    if _error=='':
+                        _error="Invalid N3"
+                Result="too complex"
+                try:
                     exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
                     ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
                     ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)
                     OrderOfError=int(request.form['OrderOfError'])
+                except:
+                    if _error=='':
+                        _error="Invalid Inputs"
+                try:
                     if(OrderOfError%2==0):
                         ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
                     else:
                         ResultRom="Order of Error must be even"
                 except:
-                    pass
-                try:
-                    return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
-                except:
-                    return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
+                    if _error=='':
+                        _error="Invalid Inputs"
+                
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error,Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+        else:
+            _error="Chooce a Method" 
+            
+            return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error)           
     else:
         return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
