@@ -314,32 +314,44 @@ def SurfaceFitting():
 @app.route("/Differentiation", methods=['GET', 'POST'])
 def Differentiation():
     if request.method == 'POST':
-       # print(request.form)
-        Method = ''
-        Method = request.form['Method']
-        Calculation_Point = 0
-        Calculation_Point = float(request.form['Calculation Point'])
+        try:
+            Method = ''
+            Method = request.form['Method']
+            Calculation_Point = 0
+            Calculation_Point = float(request.form['Calculation Point'])
+        except:
+            pass
         if Method == 'Table' :
             x = []
             y = []
             i = 0
             while (request.form['x' + str(i)]!='' and request.form['y' + str(i)]!=''):
-                x.append(float(request.form['x' + str(i)]))
-                y.append(float(request.form['y' + str(i)]))
-                i += 1
-
-            results = TableDeriv(Calculation_Point, x, y)
+                try:
+                    x.append(float(request.form['x' + str(i)]))
+                    y.append(float(request.form['y' + str(i)]))
+                    i += 1
+                except:
+                    pass
+            try:        
+                results = TableDeriv(Calculation_Point, x, y)
+            except:
+                pass
         else:
-            Function = ''
-            Function = request.form['Function']
-            results = []
-            h = 0
-            order = 0
-            h = float(request.form['step'])
-            order = float(request.form['order'])
-            results = FuncDeriv(Function, h, order, Calculation_Point)
-
-        return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" , results = results , Method = Method)
+            try:
+                Function = ''
+                Function = request.form['Function']
+                results = []
+                h = 0
+                order = 0
+                h = float(request.form['step'])
+                order = float(request.form['order'])
+                results = FuncDeriv(Function, h, order, Calculation_Point)
+            except:
+                pass
+        try:
+            return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" , results = results , Method = Method)
+        except:
+            return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
 
     else:
         return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
