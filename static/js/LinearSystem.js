@@ -99,6 +99,13 @@ function DimInput() {
     document.getElementsByClassName("Rectangle_40_ci")[0].setAttribute("disabled", "true");
     document.getElementsByClassName("Rectangle_40_ci")[0].setAttribute("style", "background: #303030; color: #999999;");
 
+    document.getElementsByClassName("Rectangle_44")[2].setAttribute("disabled", "true");
+    document.getElementsByClassName("Rectangle_44")[2].setAttribute("style", "background: #303030; color: #999999;");
+    document.getElementsByClassName("Rectangle_44")[3].setAttribute("disabled", "true");
+    document.getElementsByClassName("Rectangle_44")[3].setAttribute("style", "background: #303030; color: #999999;");
+    document.getElementsByClassName("Rectangle_44")[4].setAttribute("disabled", "true");
+    document.getElementsByClassName("Rectangle_44")[4].setAttribute("style", "background: #303030; color: #999999;");
+
     document.getElementById("x3__").setAttribute("style", "color: #999999; text-decoration: line-through; ");
     document.getElementById("x4__").setAttribute("style", "color: #999999; text-decoration: line-through; ");
     document.getElementById("x5__").setAttribute("style", "color: #999999; text-decoration: line-through; ");
@@ -157,6 +164,13 @@ function DimInput() {
     document.getElementsByClassName("Rectangle_39_ch")[0].setAttribute("style", "background: #303030; color: #999999;");
     document.getElementsByClassName("Rectangle_40_ci")[0].setAttribute("disabled", "true");
     document.getElementsByClassName("Rectangle_40_ci")[0].setAttribute("style", "background: #303030; color: #999999;");
+
+    document.getElementsByClassName("Rectangle_44")[2].removeAttribute("disabled");
+    document.getElementsByClassName("Rectangle_44")[2].setAttribute("style", "background: #282828; color: #FFFFFF;");
+    document.getElementsByClassName("Rectangle_44")[3].removeAttribute("disabled");
+    document.getElementsByClassName("Rectangle_44")[3].setAttribute("style", "background: #282828; color: #FFFFFF;");
+    document.getElementsByClassName("Rectangle_44")[4].setAttribute("disabled", "true");
+    document.getElementsByClassName("Rectangle_44")[4].setAttribute("style", "background: #303030; color: #999999;");
 
     document.getElementById("x3__").setAttribute("style", "color: white; text-decoration: normal; ");
     document.getElementById("x4__").setAttribute("style", "color: white; text-decoration: normal; ");
@@ -217,6 +231,13 @@ function DimInput() {
     document.getElementsByClassName("Rectangle_40_ci")[0].setAttribute("disabled", "true");
     document.getElementsByClassName("Rectangle_40_ci")[0].setAttribute("style", "background: #303030; color: #999999;");
 
+    document.getElementsByClassName("Rectangle_44")[2].removeAttribute("disabled");
+    document.getElementsByClassName("Rectangle_44")[2].setAttribute("style", "background: #282828; color: #FFFFFF;");
+    document.getElementsByClassName("Rectangle_44")[3].setAttribute("disabled", "true");
+    document.getElementsByClassName("Rectangle_44")[3].setAttribute("style", "background: #303030; color: #999999;");
+    document.getElementsByClassName("Rectangle_44")[4].setAttribute("disabled", "true");
+    document.getElementsByClassName("Rectangle_44")[4].setAttribute("style", "background: #303030; color: #999999;");
+
     document.getElementById("x3__").setAttribute("style", "color: white; text-decoration: normal; ");
     document.getElementById("x4__").setAttribute("style", "color: #999999; text-decoration: line-through; ");
     document.getElementById("x5__").setAttribute("style", "color: #999999; text-decoration: line-through; ");
@@ -275,6 +296,13 @@ function DimInput() {
     document.getElementsByClassName("Rectangle_39_ch")[0].setAttribute("style", "background: #282828; color: #FFFFFF;");
     document.getElementsByClassName("Rectangle_40_ci")[0].removeAttribute("disabled");
     document.getElementsByClassName("Rectangle_40_ci")[0].setAttribute("style", "background: #282828; color: #FFFFFF;");
+
+    document.getElementsByClassName("Rectangle_44")[2].removeAttribute("disabled");
+    document.getElementsByClassName("Rectangle_44")[2].setAttribute("style", "background: #282828; color: #FFFFFF;");
+    document.getElementsByClassName("Rectangle_44")[3].removeAttribute("disabled");
+    document.getElementsByClassName("Rectangle_44")[3].setAttribute("style", "background: #282828; color: #FFFFFF;");
+    document.getElementsByClassName("Rectangle_44")[4].removeAttribute("disabled");
+    document.getElementsByClassName("Rectangle_44")[4].setAttribute("style", "background: #282828; color: #FFFFFF;");
 
     document.getElementById("x3__").setAttribute("style", "color: white; text-decoration: normal; ");
     document.getElementById("x4__").setAttribute("style", "color: white; text-decoration: normal; ");

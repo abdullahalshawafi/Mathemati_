@@ -132,3 +132,53 @@ function substitute(el, box1="", box2="") {
       }
     }
 }
+
+
+function saveTextAsFile()
+{
+
+  if( document.getElementById('Newton').checked)
+ {
+     
+     inputs = document.getElementsByTagName("input");
+     var textToSave = "Inputs\n\nMethod = Newton\n\nDegree = " + inputs[3].value;
+      textToSave += "\n\n\nX             Y\n\n";
+  lengthInputs = inputs.length;
+  for (var i = 5; i < lengthInputs - 2; i = i + 2) {
+    if (!inputs[i].disabled) {
+          textToSave+=inputs[i].value+"             " +inputs[i+1].value+"\n";
+      
+    }
+  }
+ }
+ else
+ {
+  inputs = document.getElementsByTagName("input");
+     var textToSave = "Inputs\n\nMethod = Lagrange";
+      textToSave += "\n\n\nX             Y\n\n";
+  lengthInputs = inputs.length;
+  for (var i = 5; i < lengthInputs - 2; i = i + 2) {
+    if (!inputs[i].disabled) {
+          textToSave+=inputs[i].value+"             " +inputs[i+1].value+"\n";
+      
+    }
+  }
+ }
+    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = textToSaveAsURL;
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+}
+
+function destroyClickedElement(event)
+{
+    document.body.removeChild(event.target); 
+}

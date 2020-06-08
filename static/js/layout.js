@@ -42,3 +42,4 @@ document.getElementsByClassName('video')[0].addEventListener('click', function (
   video.removeChild(video.childNodes[0]);
   video.style.display = "none";
 });
+
