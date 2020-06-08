@@ -42,6 +42,7 @@ def PolynomialInterpolation():
     PolynomialFunction = ""
     if request.method == 'POST':
         Method = ''
+        error = ''
         Degree = -1
 
         NumPoints = 0
@@ -56,7 +57,7 @@ def PolynomialInterpolation():
             try:
                 Degree = int(request.form['Degree'])
             except:
-                Degree = -1
+                pass
 
         for i in range(20):
             if request.form["X_" + str(i)] and request.form["Y_" + str(i)]:
@@ -71,35 +72,39 @@ def PolynomialInterpolation():
                     pass
 
 
-        NumPoints=len(X_Points)
-        if ((Method=='Lagrange' and NumPoints > 0) or (Method=='Newton' and NumPoints > 1) ) and (Degree>-1 or Method=='Lagrange') and (NumPoints)>= (Degree+1):
+        NumPoints = len(X_Points)
+        PolynomialDerivativeFunction = ''
+        ResidualError = ''
+        PolynomialFunction = ''
+        ParametricX = ''
+        ParametricY = ''
+        X_val = 0
 
-            X_val = 0
-            if Method == "Newton":
-                X_diff_val = 0
-                X_val = 0
-                #if request.form["Xderivative"]:
-                 #   X_diff_val = float(request.form["Xderivative"])
-                #if request.form["Xvalue"]:
-                 #   X_val = float(request.form["Xvalue"])
-                DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
-                ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
+        if not(Method):
+            error = 'Chose a Method'
+            PolynomialFunction = 'Chose a Method'
 
-                return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction, ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
+        elif Degree < 0 and Method =='Newton':
+            error = 'Invalid Degree'
+            PolynomialFunction = 'Invalid Degree'
 
-            elif Method == "Lagrange":
-                #if request.form["Xvalue"]:
+        elif Method=='Lagrange' and NumPoints > 0 :
+            Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
+            ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
 
-                 #   X_val = float(request.form["Xvalue"])
-                Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
-                ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
+        elif Method=='Newton' and NumPoints > Degree:
+            X_diff_val = 0
+            DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
+            ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
 
-                return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
         else:
-            return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation',
-                                   css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg",
-                                   Method=Method, PolynomialFunction="Invalid input")
-        return redirect(url_for('PolynomialInterpolation'))
+            error = 'Missing Points'
+
+        return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation',
+                                css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method,
+                                PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction,
+                                 ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY, error = error)
+
     else:
 
         return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
@@ -380,7 +385,7 @@ def Differentiation():
                     i += 1
                 except:
                     pass
-            try:        
+            try:
                 results = TableDeriv(Calculation_Point, x, y)
             except:
                 pass
