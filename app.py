@@ -484,11 +484,13 @@ def Integration():
                     x1=float(request.form['x1'])
                     x2=float(request.form['x2'])
                 except:
-                    _error="Invalid x1 , or x2"
+                    if _error=='':
+                        _error="Invalid x1 , or x2"
                 try:  
                     N=int(request.form['n1'])
                 except:
-                    _error="Invalid N"
+                    if _error=='':
+                        _error="Invalid N"
                 
                     
                 try:
@@ -501,7 +503,8 @@ def Integration():
                     try:
                         Result,error=myfun(function,x1,x2,1,1,N)
                     except:
-                        _error="Invalid Inputs"
+                        if _error=='':
+                            _error="Invalid Inputs"
                 try:
                     exact=Exact(function,x1,x2,1,1,1,1,1)
                     ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
@@ -513,7 +516,8 @@ def Integration():
                         ResultRom="Order of Error must be even"
                     TrapError=Trapezoidal_error(function,x1,x2,N)
                 except:
-                    _error="Invalid Inputs"
+                    if _error=='':
+                        _error="Invalid Inputs"
                 
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,_error=_error,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
                 
@@ -590,43 +594,53 @@ def Integration():
                 try:
                     function=request.form['func']
                 except:
-                    _error="Invalid function"
+                    if _error=='':
+                        _error="Invalid function"
                 try:
                     x1=float(request.form['x1'])
                 except:
-                    _error="Invalid x1"
+                    if _error=='':
+                        _error="Invalid x1"
                 try:
                     x2=float(request.form['x2'])
                 except:
-                    _error="Invalid x2"
+                    if _error=='':
+                        _error="Invalid x2"
                 try:
                     N=int(request.form['n1'])
                 except:
-                    _error="Invalid N1"
+                    if _error=='':
+                        _error="Invalid N1"
                 try:
                     y1=float(request.form['y1'])
                 except:
-                    _error="Invalid y1"
+                    if _error=='':
+                        _error="Invalid y1"
                 try:
                     y2=float(request.form['y2'])
                 except:
-                    _error="Invalid y2"
+                    if _error=='':
+                        _error="Invalid y2"
                 try:
                     N2=int(request.form['n2'])
                 except:
-                    _error="Invalid N2"
+                    if _error=='':
+                        _error="Invalid N2"
                 try:
                     z1=float(request.form['z1'])
                 except:
-                    _error="Invalid z1"
+                    if _error=='':
+                        _error="Invalid z1"
                 try:
                     z2=float(request.form['z2'])
                 except:
-                    _error="Invalid z2"
+                    if _error=='':
+                        _error="Invalid z2"
                 try:
                     N3=int(request.form['n3'])
                 except:
-                    _error="Invalid N3"
+                    if _error=='':
+                        _error="Invalid N3"
                 Result="too complex"
                 try:
                     exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
@@ -634,17 +648,22 @@ def Integration():
                     ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)
                     OrderOfError=int(request.form['OrderOfError'])
                 except:
-                    _error="Invalid Inputs"
+                    if _error=='':
+                        _error="Invalid Inputs"
                 try:
                     if(OrderOfError%2==0):
                         ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
                     else:
                         ResultRom="Order of Error must be even"
                 except:
-                    _error="Invalid Inputs"
+                    if _error=='':
+                        _error="Invalid Inputs"
                 
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error,Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
-                
+        else:
+            _error="Chooce a Method" 
+            
+            return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error)           
     else:
         return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
