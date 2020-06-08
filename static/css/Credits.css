@@ -1430,10 +1430,8 @@ header {
 
 #ODERK0000 {
 	position: absolute;
-	width: 6vw;
-	height: 6vw;
-	left: -0.5vw;
-	top: -0.67vw;
+	width: 5vw;
+	height: 5vw;
 	overflow: visible;
 }
 
@@ -3183,7 +3181,7 @@ position: absolute;
 	color: rgba(255,255,255,1);
 	letter-spacing: 0.01953vw;
 
-	
+
 }
 
 #__Ziyad_Hassan_Abdelmaqsoud_gx {
@@ -3240,7 +3238,7 @@ position: absolute;
 	color: rgba(255,255,255,1);
 	letter-spacing: 0.01953vw;
 
-	
+
 }
 
 #__Menna_Allah_Ahmed_Ali__gz {
@@ -3259,8 +3257,8 @@ position: absolute;
 	font-size: 1.36718vw;
 	color: rgba(255,255,255,1);
 	letter-spacing: 0.01953vw;
-	
-	
+
+
 }
 
 #__Mostafa_Wael_Kamal_g {

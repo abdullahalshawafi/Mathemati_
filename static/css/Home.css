@@ -598,10 +598,8 @@ a {
 
 #ODERK0000 {
 	position: absolute;
-	width: calc(123vw / 15.36);
-	height: calc(123vw / 15.36);
-	left: -0.68vw;
-	top: -0.68vw;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
 	overflow: visible;
 }
 

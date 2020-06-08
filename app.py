@@ -17,7 +17,7 @@ from methods.NewtonRaphson import Newton_Raphson
 from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
 from methods.ODE_EulerAndHeun  import Solve_Euler ,Solve_Heun
-from methods.Surface_Interpolation import Surface_Interpolation
+from methods.BilinearInterpolation import Surface_Interpolation
 import numpy as np
 
 app = Flask(__name__)
@@ -42,6 +42,7 @@ def PolynomialInterpolation():
     PolynomialFunction = ""
     if request.method == 'POST':
         Method = ''
+        error = ''
         Degree = -1
 
         NumPoints = 0
@@ -53,51 +54,57 @@ def PolynomialInterpolation():
 
 
         if Method=="Newton" and (request.form['Degree']) :
-            Degree = int(request.form['Degree'])
+            try:
+                Degree = int(request.form['Degree'])
+            except:
+                pass
 
-        while (request.form["X_" + str(NumPoints)]) and (request.form["Y_" + str(NumPoints)]) :
+        for i in range(20):
+            if request.form["X_" + str(i)] and request.form["Y_" + str(i)]:
+                try:
+                    x_temp = float(request.form["X_" + str(i)])
 
-            Xtemp =float((request.form["X_" + str(NumPoints)]))
-            if NumPoints>0 :
-                if Xtemp != X_Points[NumPoints-1]:
-                    X_Points.append(float((request.form["X_" + str(NumPoints)])))
-                    Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
-            else:
-                X_Points.append(float((request.form["X_" + str(NumPoints)])))
-                Y_Points.append(float((request.form["Y_" + str(NumPoints)])))
+                    if not(x_temp in X_Points):
+                        X_Points.append(float(request.form["X_" + str(i)]))
+                        Y_Points.append(float(request.form["Y_" + str(i)]))
 
-            NumPoints += 1
+                except:
+                    pass
 
 
-        NumPoints=len(X_Points)
-        if ((Method=='Lagrange' and NumPoints > 0) or (Method=='Newton' and NumPoints > 1) ) and (Degree>-1 or Method=='Lagrange') and (NumPoints)>= (Degree+1):
+        NumPoints = len(X_Points)
+        PolynomialDerivativeFunction = ''
+        ResidualError = ''
+        PolynomialFunction = ''
+        ParametricX = ''
+        ParametricY = ''
+        X_val = 0
 
-            X_val = 0
-            if Method == "Newton":
-                X_diff_val = 0
-                X_val = 0
-                #if request.form["Xderivative"]:
-                 #   X_diff_val = float(request.form["Xderivative"])
-                #if request.form["Xvalue"]:
-                 #   X_val = float(request.form["Xvalue"])
-                DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
-                ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
+        if not(Method):
+            error = 'Chose a Method'
+            PolynomialFunction = 'Chose a Method'
 
-                return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction, ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY)
+        elif Degree < 0 and Method =='Newton':
+            error = 'Invalid Degree'
+            PolynomialFunction = 'Invalid Degree'
 
-            elif Method == "Lagrange":
-                #if request.form["Xvalue"]:
+        elif Method=='Lagrange' and NumPoints > 0 :
+            Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
+            ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
 
-                 #   X_val = float(request.form["Xvalue"])
-                Y_val, PolynomialFunction = LaGrange(X_Points, Y_Points, NumPoints, X_val)
-                ParametricX, ParametricY = bezier_curve_bin(NumPoints, X_Points, Y_Points)
+        elif Method=='Newton' and NumPoints > Degree:
+            X_diff_val = 0
+            DT, Y_val, PolynomialFunction, Y_diff_val, PolynomialDerivativeFunction, ResidualError = Newton(X_Points, Y_Points, NumPoints, X_val, Degree)
+            ParametricX ,ParametricY = bezier_curve_bin(NumPoints,X_Points,Y_Points)
 
-                return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method, PolynomialFunction = PolynomialFunction, ParametricX=ParametricX,ParametricY=ParametricY)
         else:
-            return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation',
-                                   css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg",
-                                   Method=Method, PolynomialFunction="Invalid input")
-        return redirect(url_for('PolynomialInterpolation'))
+            error = 'Missing Points'
+
+        return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation',
+                                css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", Method = Method,
+                                PolynomialFunction = PolynomialFunction , PolynomialDerivativeFunction= PolynomialDerivativeFunction,
+                                 ResidualError = ResidualError, ParametricX=ParametricX,ParametricY=ParametricY, error = error)
+
     else:
 
         return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
@@ -108,24 +115,26 @@ def SplineInterpolation():
         Numbers =[]
         NumPoints = 0
 
-        while (request.form['x_coordinates'+str(NumPoints)]) and (request.form['y_coordinates'+str(NumPoints)]) :
-           Numbers.append([float((request.form['x_coordinates'+str(NumPoints)])),float((request.form['y_coordinates'+str(NumPoints)]))])
-           NumPoints +=1
+        while (request.form['x_coordinates'+str(NumPoints)]) and (request.form['y_coordinates'+str(NumPoints)]):
+            try:
+                Numbers.append([float((request.form['x_coordinates'+str(NumPoints)])),float((request.form['y_coordinates'+str(NumPoints)]))])
+                NumPoints +=1
+            except:
+                pass
 
-        #print(NumPoints,Numbers)
-        if NumPoints>1:
+        if NumPoints > 1:
             LinearSpline = linear_spline(NumPoints,Numbers)
             IntervalList = get_interval_list(NumPoints,Numbers)
             QuadraticSpline = quad_spline(NumPoints,Numbers)
             CubicSpline = cubic_spline(NumPoints,Numbers)
-           # print(LinearSpline)
-            #print(QuadraticSpline)
-            #print(CubicSpline)
-            #print(IntervalList)
-            return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
+            return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",
+                                    wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1,
+                                    IntervalList = IntervalList, LinearSpline = LinearSpline,
+                                    QuadraticSpline = QuadraticSpline, CubicSpline = CubicSpline)
         else:
             return render_template('SplineInterpolation.html', title='Spline Interpolation',
-                                   css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg", eq="")
+                                   css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg",
+                                    eq="",error = 'Missing Points')
     else:
         return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css", wing="CF Header.png", logo="Logo.svg" , eq="")
 
@@ -134,6 +143,18 @@ def BilinearInterpolation():
     if request.method == 'POST':
         points = []
         Z = []
+        plane=''
+        _Z=''
+        x_val1=request.form['xinput']
+        y_val1=request.form['yinput']
+        x_val=0
+        y_val=0
+        if x_val1 and y_val1:
+            try:
+                x_val=float(x_val1)
+                y_val=float(y_val1)
+            except:
+                pass
 
         for i in range(25):
             x = request.form['x' + str(i)]
@@ -142,104 +163,185 @@ def BilinearInterpolation():
 
             if x and y and z:
                 try:
+
                     points.append([float(x), float(y)])
                     Z.append(float(z))
                 except:
                     pass
 
+
+
         try:
-            surface = Surface_Interpolation(points, Z)
+            np_points=np.array(points)
+            np_Z=np.array(Z)
+            surface = Surface_Interpolation(np_points,np_Z )
+            plane=surface.GetPlane_of_P(x_val,y_val)
+
+
             Surf, GriX, GriY, GriZ = surface.BiLinearInt()
             GriZ = GriZ.transpose()
             x1 = list(GriX)
             y1 = list(GriY)
             z1 = []
 
+
+            _Z=-1*plane[3]-x_val*plane[0]-y_val*plane[1]
+            if plane[2]:
+                _Z=_Z/plane[2]
+
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
         except:
-            return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+            return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="",plane=[1,1,1,1],_Z="")
 
-        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1,function=surface.GetPlane_of_P)
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg", eq="",x1 = x1, y1 = y1, z1 = z1,function=surface.GetPlane_of_P,plane=plane,Z=_Z)
 
     else:
-        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="")
+        return render_template('BI.html', title='Bilinear Interpolation', css="BI.css", wing="CF Header.png", logo="Logo.svg" , eq="",plane=[1,1,1,1],_Z="",z="")
 
 @app.route("/LeastSquareReg", methods=['GET', 'POST'])
 def LeastSquareReg():
     if request.method == 'POST':
         Method = ''
-        #print("Method=", Method)
+        error = ''
         if 'Method' in request.form:
             Method  = request.form['Method']
-           # print("Method=", Method)
         if Method == 'Nonlinear':
             Equation = request.form['Nonlinear_Equation']
             i = 0
             xdata = []
             ydata = []
             while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
-                xdata.append(float(request.form['x_coordinates' + str(i)]))
-                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                try:
+                    xdata.append(float(request.form['x_coordinates' + str(i)]))
+                    ydata.append(float(request.form['y_coordinates' + str(i)]))
+                except:
+                    pass
                 i += 1
             if len(xdata)>=3:
-                result, Error = Nonlinear_Regression(xdata, ydata, Equation, 4);
-                TrueErr = TrueError(ydata, 4);
-                r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
-            else:
-                result="The data set is too small"
-                Error='...'
-                TrueErr='...';
-                r='...'
+                try:
+                    result, Error = Nonlinear_Regression(xdata, ydata, Equation, 4)
+                    TrueErr = TrueError(ydata, 4)
+                    r = round((abs(Error-TrueErr)/TrueErr)**0.5,4)
+                except:
+                    error = "Invalid Inputs"
+                    result = "Invalid Inputs"
+                    Error = '...'
+                    TrueErr = '...'
+                    r = '...'
 
-            if result and TrueErr:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r)
+            elif len(xdata) == 0:
+                error = 'Missing Points'
+                result = "Missing Points"
+                Error = '...'
+                TrueErr = '...'
+                r = '...'
+
+            else:
+                error = "The data set is too small"
+                result = "The data set is too small"
+                Error = '...'
+                TrueErr = '...'
+                r = '...'
+
+            return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, error = error)
+
         elif Method == 'Linearized':
             i = 0
             xdata = []
             ydata = []
             while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
-                xdata.append(float(request.form['x_coordinates' + str(i)]))
-                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                try:
+                    xdata.append(float(request.form['x_coordinates' + str(i)]))
+                    ydata.append(float(request.form['y_coordinates' + str(i)]))
+                except:
+                    pass
                 i += 1
+
             j = 0
             Fdata = [request.form['Abdullah_Knows_It_All']]
             while request.form['term' + str(j)]:
                 Fdata.append(request.form['term' + str(j)])
                 j += 1
 
-            LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
+            try:
+                LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
+            except:
+                error = "Invalid Inputs"
+                result = "Invalid Inputs"
+                Error = '...'
+                TrueErr = '...'
+                r = '...'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                        css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
+                                        results=result, Error=Error, TrueErr=TrueErr, r=r, error = error)
 
             if  ydata and xdata and LHS !="" :
                 TrueErr = TrueError(ydata, 4)
-                r=round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
+                r = round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                        css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
+                                        results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
             elif not ydata or not xdata:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points.', Error='...', TrueErr='...', r='...')
+                error = 'Missing Points'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                        css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
+                                        results='Missing Points', Error='...', TrueErr='...', r='...', error = error)
             elif xdata and ydata:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular/Out of Domain Matrix', Error='...', TrueErr='...', r='...')
+                error = 'Singular/Out of Domain Matrix'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                        css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
+                                        results='Singular/Out of Domain Matrix', Error='...', TrueErr='...', r='...', error=error)
 
         elif Method == 'Best-Fitting-Family-of-Curves':
             i = 0
             xdata = []
             ydata = []
             while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
-                xdata.append(float(request.form['x_coordinates' + str(i)]))
-                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                try:
+                    xdata.append(float(request.form['x_coordinates' + str(i)]))
+                    ydata.append(float(request.form['y_coordinates' + str(i)]))
+                except:
+                    pass
                 i += 1
-            result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4);
-            TrueErr = TrueError(ydata, 4);
-            r=round((abs(Error-TrueErr)/TrueErr)**0.5,4);
-            if result !="" and Error !="" :
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
-            elif not xdata or not ydata:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Missing Points', Error='...', TrueErr='...', r='...', family= ' ...')
-            elif xdata and ydata:
-                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method, results='Singular Matrix/ Out of Domain Matrix', Error='...', TrueErr='...', r='...', family= ' ...')
+            try:
+                result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4)
+                TrueErr = TrueError(ydata, 4)
+                r = round((abs(Error-TrueErr)/TrueErr)**0.5,4)
+            except:
+                error = "Missing Points"
+                result = "Missing Points"
+                Error = '...'
+                TrueErr = '...'
+                r = '...'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                        css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
+                                        results=result, Error=Error, TrueErr=TrueErr, r=r, error = error)
 
-        return redirect(url_for('LeastSquareReg'))
+            if result !="" and Error !="" :
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                        css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
+                                        results=result, Error=Error, TrueErr=TrueErr, r=r, family=Family + ' curves')
+            elif not xdata or not ydata:
+                error = 'Missing Points'
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                        css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
+                                        results='Missing Points', Error='...', TrueErr='...', r='...', family= ' ...',error = error)
+            elif xdata and ydata:
+                return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                        css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
+                                        results='Singular Matrix/ Out of Domain Matrix', Error='...', TrueErr='...',
+                                        r='...', family= ' ...', error = error)
+
+        else:
+            error = 'Chose a Method'
+            return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                    css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg",
+                                    Method=Method, error = error)
     else:
-        return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.', css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
+        error = 'Singular/Out of Domain Matrix'
+        return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
+                                css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg")
 
 @app.route("/SurfaceFitting", methods=['GET', 'POST'])
 def SurfaceFitting():
@@ -250,11 +352,17 @@ def SurfaceFitting():
         xdata = []
         ydata = []
         zdata = []
+        RHS = 0
+
         while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!='' and request.form['z_coordinates' + str(i)]!=''):
-            xdata.append(float(request.form['x_coordinates' + str(i)]))
-            ydata.append(float(request.form['y_coordinates' + str(i)]))
-            zdata.append(float(request.form['z_coordinates' + str(i)]))
+            try:
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                zdata.append(float(request.form['z_coordinates' + str(i)]))
+            except:
+                pass
             i += 1
+
         j = 0
         Fdata = [request.form['Abdullah_Knows_It_All']]
         while request.form['term' + str(j)]:
@@ -262,7 +370,12 @@ def SurfaceFitting():
             j += 1
 
         if xdata and Fdata:
-            LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 4)
+            try:
+                LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 4)
+            except:
+                return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
+                                        title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
+                                        logo="Logo.svg", error = 'Invalid Input', results='Invalid Input', Error='...')
 
         if RHS:
             GriX, GriY, GriZ = PointsFor3DSF(xdata,ydata,RHS)
@@ -277,44 +390,64 @@ def SurfaceFitting():
 
 
         if LHS and RHS and not Sr == '':
-            #print(LHS, Sr)
-            return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",  title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results=RHS, Error=Sr, x1 = x1, y1 = y1, z1 = z1)
+            return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
+                                    title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
+                                    logo="Logo.svg", results=RHS, Error=Sr, x1 = x1, y1 = y1, z1 = z1)
         elif not xdata:
-            return redirect(url_for('SurfaceFitting'))
+            return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
+                                    title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
+                                    logo="Logo.svg", error = 'Missing Points', results='Missing Points', Error='...')
         else:
-            return render_template('SurfaceFitting.html', url="mRjVy0MSUI0", title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg", results='Singular Matrix', Error='...')
+            return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
+                                    title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
+                                    logo="Logo.svg", results='Singular Matrix', Error='...', error = 'Singular Matrix')
     else:
-        return render_template('SurfaceFitting.html', url="mRjVy0MSUI0", title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
+        return render_template('SurfaceFitting.html', url="mRjVy0MSUI0", title='Surface Fitting',
+                                css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
 
 @app.route("/Differentiation", methods=['GET', 'POST'])
 def Differentiation():
     if request.method == 'POST':
-       # print(request.form)
-        Method = ''
-        Method = request.form['Method']
-        Calculation_Point = 0
-        Calculation_Point = float(request.form['Calculation Point'])
+        results=''
+        error=''
+        try:
+            Method = ''
+            Method = request.form['Method']
+            Calculation_Point = 0
+            Calculation_Point = float(request.form['Calculation Point'])
+        except:
+            error="Invalid Calculation Point"
         if Method == 'Table' :
             x = []
             y = []
             i = 0
             while (request.form['x' + str(i)]!='' and request.form['y' + str(i)]!=''):
-                x.append(float(request.form['x' + str(i)]))
-                y.append(float(request.form['y' + str(i)]))
-                i += 1
-
-            results = TableDeriv(Calculation_Point, x, y)
+                try:
+                    x.append(float(request.form['x' + str(i)]))
+                    y.append(float(request.form['y' + str(i)]))
+                    i += 1
+                except:
+                    pass
+            try:
+                results = TableDeriv(Calculation_Point, x, y)
+            except:
+                error="Invalid Input"
         else:
-            Function = ''
-            Function = request.form['Function']
-            results = []
-            h = 0
-            order = 0
-            h = float(request.form['step'])
-            order = float(request.form['order'])
-            results = FuncDeriv(Function, h, order, Calculation_Point)
+            try:
+                Function = ''
+                Function = request.form['Function']
+                results = []
+                h = 0
+                order = 0
+                h = float(request.form['step'])
+                order = float(request.form['order'])
+                results = FuncDeriv(Function, h, order, Calculation_Point)
+            except:
+                error="Invalid Input"
 
-        return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" , results = results , Method = Method)
+        return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" ,error=error, results = results , Method = Method)
+
+            #return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
 
     else:
         return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
@@ -323,76 +456,195 @@ def Differentiation():
 def Integration():
     if request.method == 'POST':
         Dim=''
+        function=''
+        x1=''
+        x2=''
+        y1=''
+        y2=''
+        N2=''
+        N=''
+        Result=''
+        ResultTrap=''
+        error=''
+        _error=''
+        TrapError=''
+        exact=''
+        ResultMin=''
+        ErrorMin=''
+        ResultRom=''
+        OrderOfError=''
+
         if 'Dim' in request.form:
             NumOfVar=request.form['Dim']
             if NumOfVar == '1':
                 function=request.form['func']
                 function=function.replace("^","**")
                 function=function.replace("PI","pi")
-                x1=float(request.form['x1'])
-                x2=float(request.form['x2'])
-                N=int(request.form['n1'])
-                if N > 6:
-                    Result="N > 6"
-                    error=""
+                try:
+                    x1=float(request.form['x1'])
+                    x2=float(request.form['x2'])
+                except:
+                    _error="Invalid x1 , or x2"
+                try:  
+                    N=int(request.form['n1'])
+                except:
+                    _error="Invalid N"
+                
+                    
+                try:
+                    if N > 6:
+                        Result="N > 6"
+                        error=""
+                except:
+                    pass
                 else:
-                    Result,error=myfun(function,x1,x2,1,1,N)
-                exact=Exact(function,x1,x2,1,1,1,1,1)
-                ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
-                ResultMin,ErrorMin=single_mixe_rule(function,x1,x2,N)
-                OrderOfError=int(request.form['OrderOfError'])
-                if(OrderOfError%2==0):
-                    ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
-                else:
-                    ResultRom="Order of Error must be even"
-                TrapError=Trapezoidal_error(function,x1,x2,N)
-                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+                    try:
+                        Result,error=myfun(function,x1,x2,1,1,N)
+                    except:
+                        _error="Invalid Inputs"
+                try:
+                    exact=Exact(function,x1,x2,1,1,1,1,1)
+                    ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
+                    ResultMin,ErrorMin=single_mixe_rule(function,x1,x2,N)
+                    OrderOfError=int(request.form['OrderOfError'])
+                    if(OrderOfError%2==0):
+                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
+                    else:
+                        ResultRom="Order of Error must be even"
+                    TrapError=Trapezoidal_error(function,x1,x2,N)
+                except:
+                    _error="Invalid Inputs"
+                
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,_error=_error,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+                
+                  
+
             elif NumOfVar == '2':
-                function=request.form['func']
-                x1=float(request.form['x1'])
-                x2=float(request.form['x2'])
-                N=int(request.form['n1'])
-                y1=float(request.form['y1'])
-                y2=float(request.form['y2'])
-                N2=int(request.form['n2'])
-                if N > 6:
-                    Result="N > 6"
-                    error=""
+                try:
+                    function=request.form['func']
+                except:
+                    if _error=='':
+                        _error="Invalid Function"
+                try:
+                    x1=float(request.form['x1'])
+                except:
+                    if _error=='':
+                        _error="Invalid x1"
+                try:
+                    x2=float(request.form['x2'])
+                except:
+                    if _error=='':
+                        _error="Invalid x2"
+                try:
+                    N=int(request.form['n1'])
+                except:
+                    if _error=='':
+                        _error="Invalid N"
+                try:
+                    y1=float(request.form['y1'])
+                except:
+                    if _error=='':
+                        _error="Invalid y1"
+                try:    
+                    y2=float(request.form['y2'])
+                except:
+                    if _error=='':
+                        _error="Invalid y2"
+                try:
+                    N2=int(request.form['n2'])
+                except:
+                    if _error=='':
+                        _error="Invalid N2"
+                try:
+                    if N > 6:
+                
+                        Result="N > 6"
+                        error=""
+                except:
+                    pass
                 else:
-                    Result,error=myfun(function,x1,x2,y1,y2,N)
-                ResultMin=double_mixed_rule (function,x1,x2,N,y1,y2,N2)
-                exact=Exact(function,x1,x2,y1,y2,1,1,2)
-                ResultTrap=Trapezoidal_Double_Integ(function,x1,x2,N,y1,y2,N2)
-                OrderOfError=int(request.form['OrderOfError'])
-                if(OrderOfError%2==0):
-                    ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
-                else:
-                    ResultRom="Order of Error must be even"
-
-                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,y1=y1,y2=y2,n2=N2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+                    try:
+                        Result,error=myfun(function,x1,x2,y1,y2,N)
+                    except:
+                        if _error=='':
+                            _error="Invalid Input"
+                try:
+                    ResultMin=double_mixed_rule (function,x1,x2,N,y1,y2,N2)
+                    exact=Exact(function,x1,x2,y1,y2,1,1,2)
+                    ResultTrap=Trapezoidal_Double_Integ(function,x1,x2,N,y1,y2,N2)
+                    OrderOfError=int(request.form['OrderOfError'])
+                    if(OrderOfError%2==0):
+                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
+                    else:
+                        ResultRom="Order of Error must be even"
+                except:
+                    if _error=='':
+                        _error="Invalid Input"
+                
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,y1=y1,y2=y2,n2=N2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError,_error=_error)
+               
             else:
-                function=request.form['func']
-                x1=float(request.form['x1'])
-                x2=float(request.form['x2'])
-                N=int(request.form['n1'])
-                y1=float(request.form['y1'])
-                y2=float(request.form['y2'])
-                N2=int(request.form['n2'])
-                z1=float(request.form['z1'])
-                z2=float(request.form['z2'])
-                N3=int(request.form['n3'])
+                z1=''
+                z2=''
+                N3=''
+                try:
+                    function=request.form['func']
+                except:
+                    _error="Invalid function"
+                try:
+                    x1=float(request.form['x1'])
+                except:
+                    _error="Invalid x1"
+                try:
+                    x2=float(request.form['x2'])
+                except:
+                    _error="Invalid x2"
+                try:
+                    N=int(request.form['n1'])
+                except:
+                    _error="Invalid N1"
+                try:
+                    y1=float(request.form['y1'])
+                except:
+                    _error="Invalid y1"
+                try:
+                    y2=float(request.form['y2'])
+                except:
+                    _error="Invalid y2"
+                try:
+                    N2=int(request.form['n2'])
+                except:
+                    _error="Invalid N2"
+                try:
+                    z1=float(request.form['z1'])
+                except:
+                    _error="Invalid z1"
+                try:
+                    z2=float(request.form['z2'])
+                except:
+                    _error="Invalid z2"
+                try:
+                    N3=int(request.form['n3'])
+                except:
+                    _error="Invalid N3"
                 Result="too complex"
-                exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
-                ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
-                ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)
-                OrderOfError=int(request.form['OrderOfError'])
-                if(OrderOfError%2==0):
-                    ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
-                else:
-                    ResultRom="Order of Error must be even"
-
-                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
-
+                try:
+                    exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
+                    ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
+                    ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)
+                    OrderOfError=int(request.form['OrderOfError'])
+                except:
+                    _error="Invalid Inputs"
+                try:
+                    if(OrderOfError%2==0):
+                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
+                    else:
+                        ResultRom="Order of Error must be even"
+                except:
+                    _error="Invalid Inputs"
+                
+                return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error,Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
+                
     else:
         return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
@@ -842,11 +1094,11 @@ def background_process():
 
             x_index = (x_point-x1)/h
             y_index = (y_point-y1)/k
-            print(x_index)
-            print(y_index)
+            #print(x_index)
+            #print(y_index)
             try:
                 U = UList[int(x_index)][int(y_index)]
-                print(U)
+                #print(U)
             except:
                 return jsonify(error = 'Invalid Point', U = '')
 
@@ -1006,7 +1258,7 @@ def NonlinearSystem():
                 if Eqs_No == 2:
                     result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, 0, X0, Y0, 0, StoppingCriteria)
                     Length = len(result[1])
-                    print(result, Length)
+                    #print(result, Length)
                 elif Eqs_No == 3 and Z0 and h_xy:
                     result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
                     Length = len(result[1])

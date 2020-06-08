@@ -39,7 +39,6 @@ window.onload = function () {
     }
 };
 function GetHue(el) {
-      console.log(el.parentElement.parentElement.childNodes);
       x = el.value;
       var elementindex = 3;
       if(el.parentElement.parentElement.childNodes[1].id == "LinesP") elementindex = 1;
