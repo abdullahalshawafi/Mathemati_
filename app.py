@@ -367,13 +367,15 @@ def SurfaceFitting():
 @app.route("/Differentiation", methods=['GET', 'POST'])
 def Differentiation():
     if request.method == 'POST':
+        results=''
+        error=''
         try:
             Method = ''
             Method = request.form['Method']
             Calculation_Point = 0
             Calculation_Point = float(request.form['Calculation Point'])
         except:
-            pass
+            error="Invalid Calculation Point"
         if Method == 'Table' :
             x = []
             y = []
@@ -388,7 +390,7 @@ def Differentiation():
             try:
                 results = TableDeriv(Calculation_Point, x, y)
             except:
-                pass
+                error="Invalid Input"
         else:
             try:
                 Function = ''
@@ -400,11 +402,11 @@ def Differentiation():
                 order = float(request.form['order'])
                 results = FuncDeriv(Function, h, order, Calculation_Point)
             except:
-                pass
-        try:
-            return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" , results = results , Method = Method)
-        except:
-            return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
+                error="Invalid Input"
+        
+        return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" ,error=error, results = results , Method = Method)
+        
+            #return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
 
     else:
         return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
