@@ -61,7 +61,7 @@
 							<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" onclick="DownloadGuide()">
+						<button type="button" class="table-button" onclick="window.open('{{url_for("static", filename="Reports/Surface.pdf")}}')">
 							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">

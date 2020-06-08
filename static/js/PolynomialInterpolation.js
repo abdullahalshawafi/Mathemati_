@@ -94,7 +94,10 @@ function addtograph() {
     functionPlot(parameters);
 }
 
-
+document.getElementById('clear').addEventListener('click', function () {
+    parameters.data[1].points = [];
+    functionPlot(parameters);
+});
 
 function substitute(el, box1="", box2="") {
 
