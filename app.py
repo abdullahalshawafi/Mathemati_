@@ -110,20 +110,18 @@ def SplineInterpolation():
         Numbers =[]
         NumPoints = 0
 
-        while (request.form['x_coordinates'+str(NumPoints)]) and (request.form['y_coordinates'+str(NumPoints)]) :
-           Numbers.append([float((request.form['x_coordinates'+str(NumPoints)])),float((request.form['y_coordinates'+str(NumPoints)]))])
-           NumPoints +=1
+        while (request.form['x_coordinates'+str(NumPoints)]) and (request.form['y_coordinates'+str(NumPoints)]):
+            try:
+                Numbers.append([float((request.form['x_coordinates'+str(NumPoints)])),float((request.form['y_coordinates'+str(NumPoints)]))])
+                NumPoints +=1
+            except:
+                pass
 
-        #print(NumPoints,Numbers)
         if NumPoints>1:
             LinearSpline = linear_spline(NumPoints,Numbers)
             IntervalList = get_interval_list(NumPoints,Numbers)
             QuadraticSpline = quad_spline(NumPoints,Numbers)
             CubicSpline = cubic_spline(NumPoints,Numbers)
-           # print(LinearSpline)
-            #print(QuadraticSpline)
-            #print(CubicSpline)
-            #print(IntervalList)
             return render_template('SplineInterpolation.html', title='Spline Interpolation', css="SplineInterpolation.css",wing="CF Header.png", logo="Logo.svg",NumPoints = NumPoints-1, IntervalList=IntervalList,LinearSpline=LinearSpline, QuadraticSpline=QuadraticSpline, CubicSpline=CubicSpline)
         else:
             return render_template('SplineInterpolation.html', title='Spline Interpolation',
