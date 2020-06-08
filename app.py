@@ -670,27 +670,55 @@ def Integration():
 @app.route("/ODERK", methods=['GET', 'POST'])
 def ODERK():
     if request.method == 'POST':
+        error = ''
+        x0 = ''
+        fx0 = ''
+        h = ''
+        xn = ''
+        result = ''
+
         equation = request.form['equation']
         if not(equation):
-            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Equation')
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter Equation')
 
         try:
             x0 = float(request.form['x0'])
+        except:
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter X0')
+        try:
             fx0 = float(request.form['fx0'])
+        except:
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter fX0')
+        try:
             h = float(request.form['h'])
+        except:
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter h')
+        try:
             xn = float(request.form['xn'])
         except:
-            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Valid Parameters')
-
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter Xn')
         try:
             result = rungeKutta(x0, fx0, xn, h, equation)
         except:
-            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error =  'Can not Solve at This Point')
+            error = 'Can not Solve at This Point'
 
-        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
+        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                results=result, length=len(result), error = error)
 
     else:
-        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
+        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():
