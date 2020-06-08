@@ -207,7 +207,7 @@ class Surface_Interpolation:
         ymin = grid_y[0]
         ymax = grid_y[ycount - 1]
 
-        if xn < xmin and xn > xmax and yn < ymin and yn > ymax:
+        if xn < xmin or xn > xmax or yn < ymin or yn > ymax:
             return "out of bounds"
 
         xstep = (xmax - xmin) / (xcount - 1)

@@ -186,8 +186,17 @@ def BilinearInterpolation():
 
 
             _Z=-1*plane[3]-x_val*plane[0]-y_val*plane[1]
+            plane = list(plane)
+            plane.append(0)
+            plane.append(0)
+
             if plane[2]:
-                _Z=_Z/plane[2]
+                
+                _Z = np.round(_Z/plane[2],5)
+                plane[4] = np.round(-1*plane[0]/plane[2],5)
+                plane[5] = np.round(-1*plane[1]/plane[2],5)
+
+            plane = np.round(plane, 5)
 
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
