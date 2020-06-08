@@ -500,10 +500,13 @@ def Integration():
                 except:
                     if _error=='':
                         _error="Invalid N"
-                
+                try:
+                    OrderOfError=int(request.form['OrderOfError'])
+                except:
+                    ResultRom="Order of Error is invalid"
                     
                 try:
-                    if N > 6:
+                    if function != '' and x1 != '' and x2 != '' and N != '' and N > 6:
                         Result,error=myfun(function,x1,x2,1,1,6)
                 except:
                     pass
@@ -514,15 +517,17 @@ def Integration():
                         if _error=='':
                             _error="Invalid Inputs"
                 try:
-                    exact=Exact(function,x1,x2,1,1,1,1,1)
-                    ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
-                    ResultMin,ErrorMin=single_mixe_rule(function,x1,x2,N)
-                    OrderOfError=int(request.form['OrderOfError'])
-                    if(OrderOfError%2==0):
-                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
-                    else:
-                        ResultRom="Order of Error must be even"
-                    TrapError=Trapezoidal_error(function,x1,x2,N)
+                    if function != '' and x1 != '' and x2 != '':
+                        exact=Exact(function,x1,x2,1,1,1,1,1)
+                        if OrderOfError != '':
+                            if OrderOfError%2==0:
+                                ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
+                            else:
+                                ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '' and N != '':
+                        ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
+                        ResultMin,ErrorMin=single_mixe_rule(function,x1,x2,N)
+                        TrapError=Trapezoidal_error(function,x1,x2,N)
                 except:
                     if _error=='':
                         _error="Invalid Inputs"
@@ -568,6 +573,11 @@ def Integration():
                     if _error=='':
                         _error="Invalid N2"
                 try:
+                    OrderOfError=int(request.form['OrderOfError'])
+                except:
+                     ResultRom="Order of Error is invalid"
+                        
+                try:
                     if N > 6:                
                         Result,error=myfun(function,x1,x2,y1,y2,6)
                 except:
@@ -579,14 +589,16 @@ def Integration():
                         if _error=='':
                             _error="Invalid Input"
                 try:
-                    ResultMin=double_mixed_rule (function,x1,x2,N,y1,y2,N2)
-                    exact=Exact(function,x1,x2,y1,y2,1,1,2)
-                    ResultTrap=Trapezoidal_Double_Integ(function,x1,x2,N,y1,y2,N2)
-                    OrderOfError=int(request.form['OrderOfError'])
-                    if(OrderOfError%2==0):
-                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
-                    else:
-                        ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '':
+                        exact=Exact(function,x1,x2,y1,y2,1,1,2)
+                        if OrderOfError != '':
+                            if OrderOfError%2==0:
+                                ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
+                            else:
+                                ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '' and N != '':
+                        ResultMin=double_mixed_rule (function,x1,x2,N,y1,y2,N2)
+                        ResultTrap=Trapezoidal_Double_Integ(function,x1,x2,N,y1,y2,N2)
                 except:
                     if _error=='':
                         _error="Invalid Input"
@@ -647,27 +659,29 @@ def Integration():
                 except:
                     if _error=='':
                         _error="Invalid N3"
-                Result="too complex"
                 try:
-                    exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
-                    ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
-                    ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)
                     OrderOfError=int(request.form['OrderOfError'])
                 except:
-                    if _error=='':
-                        _error="Invalid Inputs"
+                     ResultRom="Order of Error is invalid"
+                Result="too complex"
                 try:
-                    if(OrderOfError%2==0):
-                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
-                    else:
-                        ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '':
+                        exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
+                        if OrderOfError != '':
+                            if OrderOfError%2==0:
+                                ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
+                            else:
+                                ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '' and N != '':
+                        ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
+                        ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)   
                 except:
                     if _error=='':
                         _error="Invalid Inputs"
-                
+                    
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error,Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
         else:
-            _error="Chooce a Method" 
+            _error="Choose a Method" 
             
             return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error)           
     else:
