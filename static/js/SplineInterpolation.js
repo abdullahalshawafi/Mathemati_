@@ -113,6 +113,12 @@ function Expand(el, x, intervals, eq) {
 
     }
 } 
+
+
+document.getElementById('clear').addEventListener('click', function () {
+    parameters.data[1].points = [];
+    functionPlot(parameters);
+});
 /*
 function Expand(el, x, intervals, eq) {
 

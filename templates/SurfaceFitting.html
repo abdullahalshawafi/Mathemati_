@@ -3,8 +3,12 @@
 
 <main>
 	<div id="Web_1920___1">
+		<script>
+			{% if error %}
+			alert("{{error}}")
+			{% endif %}
+		</script>
 		<div id="MidTab">
-
 			<svg class="Rectangle_8">
 				<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="21.5vw" height="21.65vw">
 				</rect>
@@ -57,7 +61,7 @@
 							<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" onclick="DownloadGuide()">
+						<button type="button" class="table-button" onclick="window.open('{{url_for("static", filename="Reports/Surface.pdf")}}')">
 							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
@@ -336,7 +340,7 @@
 			Plotly.newPlot('myFunction', [data_z1], layout);
 
 	</script>
-	
+
 
 </main>
 

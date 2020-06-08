@@ -33,8 +33,8 @@ def FixedPointIteration(choose, max_iteration, error, str_eq1, str_eq2, xo, yo, 
             x_sol.append(round(x_new, 4))
             y_sol.append(round(y_new, 4))
             e = ((abs(float(x_new) - float(xold))) / float(xold)) * 100
-            Iteration_Error.append(round(e, 4))
-            if e < float(error):
+            Iteration_Error.append(round(abs(e), 4))
+            if abs(e) <= abs(float(error)):
                 break
             i += 1
 
@@ -58,16 +58,14 @@ def FixedPointIteration(choose, max_iteration, error, str_eq1, str_eq2, xo, yo, 
             y_sol.append(round(y_new, 4))
             z_sol.append(round(z_new, 4))
             e = ((abs(float(x_new) - float(xold))) / float(xold)) * 100
-            Iteration_Error.append(round(e, 4))
-            if e < float(error):
+            Iteration_Error.append(round(abs(e), 4))
+            if abs(e) <= abs(float(error)):
                 break
             i += 1
 
     return x_sol, y_sol, z_sol, Iteration_Error
 
-# Test
-# u, w, m ,i= FixedPointIteration("2", "10", "0.005", .1 * x ** 2 + .1 * y ** 2 + .8, .8 + .1 * x + .1 * x * y ** 2, .5, .5)
-# print(u)
-# print(w)
-# print(i)
-# print(m)
+# Tes
+#u, w, m ,i= FixedPointIteration("2", "100", "0", .1 * x ** 2 + .1 * y ** 2 + .8, .8 + .1 * x + .1 * x * y ** 2, .5, .5)
+#if( len(u)==len(i)):
+#    print(i)
