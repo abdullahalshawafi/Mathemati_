@@ -493,8 +493,7 @@ def Integration():
                     
                 try:
                     if N > 6:
-                        Result="N > 6"
-                        error=""
+                        Result,error=myfun(function,x1,x2,1,1,6)
                 except:
                     pass
                 else:
@@ -556,10 +555,8 @@ def Integration():
                     if _error=='':
                         _error="Invalid N2"
                 try:
-                    if N > 6:
-                
-                        Result="N > 6"
-                        error=""
+                    if N > 6:                
+                        Result,error=myfun(function,x1,x2,y1,y2,6)
                 except:
                     pass
                 else:
