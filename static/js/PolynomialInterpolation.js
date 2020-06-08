@@ -97,7 +97,7 @@ function addtograph() {
 document.getElementById('clear').addEventListener('click', function () {
     parameters.data[1].points = [];
     functionPlot(parameters);
-});
+}); 
 
 function substitute(el, box1="", box2="") {
 
@@ -139,11 +139,11 @@ function substitute(el, box1="", box2="") {
 
 function saveTextAsFile()
 {
+     inputs = document.getElementsByTagName("input");
 
   if( document.getElementById('Newton').checked)
  {
      
-     inputs = document.getElementsByTagName("input");
      var textToSave = "Inputs\n\nMethod = Newton\n\nDegree = " + inputs[3].value;
       textToSave += "\n\n\nX             Y\n\n";
   lengthInputs = inputs.length;
@@ -156,7 +156,6 @@ function saveTextAsFile()
  }
  else
  {
-  inputs = document.getElementsByTagName("input");
      var textToSave = "Inputs\n\nMethod = Lagrange";
       textToSave += "\n\n\nX             Y\n\n";
   lengthInputs = inputs.length;
