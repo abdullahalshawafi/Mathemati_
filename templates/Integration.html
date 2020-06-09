@@ -46,9 +46,9 @@
 								<img src="{{url_for('static', filename='Assets/Int Button.svg')}}">
 							</button>
 							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<a class="table-button" href="#">
-								<img src="{{url_for('static', filename='Assets/Vid.svg')}}">
-							</a>
+							<button type="button" class="table-button" onclick="showVideo('{{url}}')">
+							<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
+						</button>
 							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
 							<button type="button" class="table-button" onclick="DownloadGuide()">
 								<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
