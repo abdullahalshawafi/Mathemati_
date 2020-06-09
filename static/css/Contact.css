@@ -339,20 +339,20 @@ a {
 }
 
 #Created_by_CMP_2023_to_help_ot {
-	position: absolute;
-	left: 47.2vw;
-	top: 1.3vw;
-	overflow: visible;
-	width: 35.6vw;
-	white-space: nowrap;
-	line-height: 2.32vw;
-	margin-top: -0.26vw;
-	text-align: center;
-	font-family: Radley;
-	font-style: italic;
-	font-weight: normal;
-	font-size: 1.8vw;
-	color: rgba(255,255,255,1);
+    position: absolute;
+    left: 48.2vw;
+    top: 1.3vw;
+    overflow: visible;
+    width: 35.6vw;
+    white-space: nowrap;
+    line-height: 2.32vw;
+    margin-top: -0.26vw;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.8vw;
+    color: rgba(255,255,255,1);
 }
 
 #Group_4 {
