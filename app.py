@@ -999,8 +999,8 @@ def background_process():
         #h = k = 0
         #dxx = dyy = dx = dy = u_coeff = function = ''
         try:
-            h = float(request.form['h_step'])
-            k = float(request.form['k_step'])
+            h = float((eval(request.form['h_step'])))
+            k = float(eval(request.form['k_step']))
         except:
             return jsonify(error = 'Enter h and k', U = '')
 
@@ -1056,8 +1056,8 @@ def background_process():
         pde.Get_Parameters(dxx, dyy, dx, dy, u_coeff, function)
 
         try:
-            x_point = float(request.form['x_cordinates'])
-            y_point = float(request.form['y_cordinates'])
+            x_point = float(eval(request.form['x_cordinates']))
+            y_point = float(eval(request.form['y_cordinates']))
         except:
             return jsonify(error = 'Enter x any y Values', U = '')
 
