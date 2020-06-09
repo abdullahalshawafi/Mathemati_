@@ -2,6 +2,11 @@
 {% block content %}
 
 	<main>
+		<script>
+			{% if error %}
+			alert("{{error}}")
+			{% endif %}
+		</script>
 		<div id="Web_1920___1">
 			<div id="RightTab">
 				<svg class="Rectangle_6">
@@ -401,7 +406,7 @@
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
 						<button type="button" class="table-button" onclick="DownloadGuide()">
-							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
+							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Download Guide">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
 						<button type="button" class="table-button" id="save">

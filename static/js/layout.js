@@ -24,6 +24,7 @@ function showVideo(url) {
   document.getElementsByTagName('header')[0].style.filter = "blur(0.5vw)";
   var video = document.getElementsByClassName('video')[0];
   var iframe = document.createElement("iframe");
+
   iframe.setAttribute("style", "position: absolute; left: 15.5vw; top: 12.2vw; width: 69vw; height: 33vw;");
   iframe.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
   iframe.setAttribute("src", "https://www.youtube.com/embed/" + url);
@@ -31,6 +32,7 @@ function showVideo(url) {
   iframe.setAttribute("allowfullscreen", "1");
   video.appendChild(iframe);
   video.style.display = "block";
+
 }
 
 document.getElementsByClassName('video')[0].addEventListener('click', function () {
@@ -40,3 +42,4 @@ document.getElementsByClassName('video')[0].addEventListener('click', function (
   video.removeChild(video.childNodes[0]);
   video.style.display = "none";
 });
+

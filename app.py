@@ -108,7 +108,7 @@ def PolynomialInterpolation():
     else:
 
         return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
-
+ 
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
     if request.method == 'POST':
@@ -186,8 +186,17 @@ def BilinearInterpolation():
 
 
             _Z=-1*plane[3]-x_val*plane[0]-y_val*plane[1]
+            plane = list(plane)
+            plane.append(0)
+            plane.append(0)
+
             if plane[2]:
-                _Z=_Z/plane[2]
+                
+                _Z = np.round(_Z/plane[2],5)
+                plane[4] = np.round(-1*plane[0]/plane[2],5)
+                plane[5] = np.round(-1*plane[1]/plane[2],5)
+
+            plane = np.round(plane, 5)
 
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
@@ -491,12 +500,14 @@ def Integration():
                 except:
                     if _error=='':
                         _error="Invalid N"
-                
+                try:
+                    OrderOfError=int(request.form['OrderOfError'])
+                except:
+                    ResultRom="Order of Error is invalid"
                     
                 try:
-                    if N > 6:
-                        Result="N > 6"
-                        error=""
+                    if function != '' and x1 != '' and x2 != '' and N != '' and N > 6:
+                        Result,error=myfun(function,x1,x2,1,1,6)
                 except:
                     pass
                 else:
@@ -506,15 +517,17 @@ def Integration():
                         if _error=='':
                             _error="Invalid Inputs"
                 try:
-                    exact=Exact(function,x1,x2,1,1,1,1,1)
-                    ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
-                    ResultMin,ErrorMin=single_mixe_rule(function,x1,x2,N)
-                    OrderOfError=int(request.form['OrderOfError'])
-                    if(OrderOfError%2==0):
-                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
-                    else:
-                        ResultRom="Order of Error must be even"
-                    TrapError=Trapezoidal_error(function,x1,x2,N)
+                    if function != '' and x1 != '' and x2 != '':
+                        exact=Exact(function,x1,x2,1,1,1,1,1)
+                        if OrderOfError != '':
+                            if OrderOfError%2==0:
+                                ResultRom=RombergRule(function, int(NumOfVar),x1,x2,1,1,1,1,OrderOfError)
+                            else:
+                                ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '' and N != '':
+                        ResultTrap=Trapezoidal_Integ(function,x1,x2,N)
+                        ResultMin,ErrorMin=single_mixe_rule(function,x1,x2,N)
+                        TrapError=Trapezoidal_error(function,x1,x2,N)
                 except:
                     if _error=='':
                         _error="Invalid Inputs"
@@ -560,10 +573,13 @@ def Integration():
                     if _error=='':
                         _error="Invalid N2"
                 try:
-                    if N > 6:
-                
-                        Result="N > 6"
-                        error=""
+                    OrderOfError=int(request.form['OrderOfError'])
+                except:
+                     ResultRom="Order of Error is invalid"
+                        
+                try:
+                    if N > 6:                
+                        Result,error=myfun(function,x1,x2,y1,y2,6)
                 except:
                     pass
                 else:
@@ -573,14 +589,16 @@ def Integration():
                         if _error=='':
                             _error="Invalid Input"
                 try:
-                    ResultMin=double_mixed_rule (function,x1,x2,N,y1,y2,N2)
-                    exact=Exact(function,x1,x2,y1,y2,1,1,2)
-                    ResultTrap=Trapezoidal_Double_Integ(function,x1,x2,N,y1,y2,N2)
-                    OrderOfError=int(request.form['OrderOfError'])
-                    if(OrderOfError%2==0):
-                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
-                    else:
-                        ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '':
+                        exact=Exact(function,x1,x2,y1,y2,1,1,2)
+                        if OrderOfError != '':
+                            if OrderOfError%2==0:
+                                ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,1,1,OrderOfError)
+                            else:
+                                ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '' and N != '':
+                        ResultMin=double_mixed_rule (function,x1,x2,N,y1,y2,N2)
+                        ResultTrap=Trapezoidal_Double_Integ(function,x1,x2,N,y1,y2,N2)
                 except:
                     if _error=='':
                         _error="Invalid Input"
@@ -641,27 +659,29 @@ def Integration():
                 except:
                     if _error=='':
                         _error="Invalid N3"
-                Result="too complex"
                 try:
-                    exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
-                    ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
-                    ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)
                     OrderOfError=int(request.form['OrderOfError'])
                 except:
-                    if _error=='':
-                        _error="Invalid Inputs"
+                     ResultRom="Order of Error is invalid"
+                Result="too complex"
                 try:
-                    if(OrderOfError%2==0):
-                        ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
-                    else:
-                        ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '':
+                        exact=Exact(function,x1,x2,y1,y2,z1,z2,3)
+                        if OrderOfError != '':
+                            if OrderOfError%2==0:
+                                ResultRom=RombergRule(function, int(NumOfVar),x1,x2,y1,y2,z1,z2,OrderOfError)
+                            else:
+                                ResultRom="Order of Error must be even"
+                    if function != '' and x1 != '' and x2 != '' and N != '':
+                        ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
+                        ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)   
                 except:
                     if _error=='':
                         _error="Invalid Inputs"
-                
+                    
                 return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error,Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
         else:
-            _error="Chooce a Method" 
+            _error="Choose a Method" 
             
             return render_template('Integration.html', title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error)           
     else:
@@ -670,27 +690,55 @@ def Integration():
 @app.route("/ODERK", methods=['GET', 'POST'])
 def ODERK():
     if request.method == 'POST':
+        error = ''
+        x0 = ''
+        fx0 = ''
+        h = ''
+        xn = ''
+        result = ''
+
         equation = request.form['equation']
         if not(equation):
-            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Equation')
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter Equation')
 
         try:
             x0 = float(request.form['x0'])
+        except:
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter X0')
+        try:
             fx0 = float(request.form['fx0'])
+        except:
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter fX0')
+        try:
             h = float(request.form['h'])
+        except:
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter h')
+        try:
             xn = float(request.form['xn'])
         except:
-            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error = 'Enter Valid Parameters')
-
+            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                    css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                    error = 'Enter Xn')
         try:
             result = rungeKutta(x0, fx0, xn, h, equation)
         except:
-            return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",error =  'Can not Solve at This Point')
+            error = 'Can not Solve at This Point'
 
-        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg", results=result, length=len(result))
+        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
+                                results=result, length=len(result), error = error)
 
     else:
-        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta', css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
+        return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
+                                css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg")
 
 @app.route("/ODEEH", methods=['GET', 'POST'])
 def ODEEH():

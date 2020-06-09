@@ -176,9 +176,26 @@
 				<div id="Stopping_Criteria__s___">
 					<span>Stopping Criteria εs% =</span>
 				</div>
+				<div class="Rectangle_190">
+					<div id="table">
+						<span class="inChars">Initial Vector = [ </span>
+
+						<input type="text" name="X1" class="Rectangle_44" placeholder="x1" value="{{request.form['X1']}}" />
+
+						<input type="text" name="X2" class="Rectangle_44" placeholder="x2" value="{{request.form['X2']}}" />
+
+						<input type="text" name="X3" class="Rectangle_44" placeholder="x3" value="{{request.form['X3']}}" />
+
+						<input type="text" name="X4" class="Rectangle_44" placeholder="x4" value="{{request.form['X4']}}" />
+
+						<input type="text" name="X5" class="Rectangle_44" placeholder="x5" value="{{request.form['X5']}}" />
+						<span class="inChars"> ]</span>
+
+					</div>
+  				</div>
         {% if results %}
        {% if choice == 1 %}
-       <input type="text" class="Path_6" name ="Stopping Criteria"  />
+       <input type="text"  class="Path_6" name ="Stopping Criteria"  />
        <input type="text" class="Rectangle_18" name = "Number of iterations" value = {{iterations}} />
        {% else %}
        <input type="text" class="Path_6" name ="Stopping Criteria" value= {{StoppingCriteria}}  />
@@ -190,30 +207,30 @@
        {% endif %}
 				<div class="Rectangle_28">
 					<div class="button-div">
-						<button type="submit" class="table-button" id="calc">
-							<img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" title="Calculate">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
-							<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="submit" class="table-button" id="calc">
+								<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}" title="Calculate">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
+								<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
 						<button type="button" class="table-button" onclick="DownloadGuide()">
 							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
 						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="save">
-							<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="load">
-							<img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="clear">
-							<img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
-						</button>
-					</div>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+								<button type="button" class="table-button" id="save" onclick="saveTextAsFile()">
+								<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="load">
+								<img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="clear">
+								<img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
+							</button>
+						</div>
 				</div>
         <div class="EquationsContainer">
 					<div id="x1_______x2_______x3_______x4_">

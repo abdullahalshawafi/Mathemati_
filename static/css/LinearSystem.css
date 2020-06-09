@@ -856,7 +856,7 @@ textarea:focus, input:focus {
 	outline: none;
 	cursor: pointer;
 	width: 3.255208333vw;
-	margin-top: 0.1vw; margin-bottom: 0.3vw;
+  margin-top: 0.1vw; margin-bottom: 0.3vw;
 	pointer-events: visible;
 }
 
@@ -963,7 +963,7 @@ textarea:focus, input:focus {
 #Number_of_iterations__ {
 	position: absolute;
 	left: 0vw;
-	top: 26.6276vw;
+	top: 28.2276vw;
 	overflow: visible;
 	width: 14.453125vw;
 	white-space: nowrap;
@@ -980,7 +980,7 @@ textarea:focus, input:focus {
 #Stopping_Criteria__s___ {
 	position: absolute;
 	left: 0.06510416667vw;
-	top: 30.7942vw;
+	top: 31.0942vw;
 	overflow: visible;
 	width: 14.7135vw;
 	white-space: nowrap;
@@ -1017,7 +1017,7 @@ textarea:focus, input:focus {
 	width: 5.2083333vw;
 	height: 1.7578125vw;
 	left: 15.49479167vw;
-	top: 26.953125vw;
+	top: 28.253125vw;
 }
 
 .Path_6 {
@@ -1026,7 +1026,7 @@ textarea:focus, input:focus {
 	width: 5.2083333vw;
 	height: 1.82291vw;
 	left: 15.49479167vw;
-	top: 30.859375vw;
+	top: 31.159375vw;
 	transform: matrix(1,0,0,1,0,0);
 }
 
@@ -1034,7 +1034,7 @@ textarea:focus, input:focus {
 #x1_______x2_______x3_______x4_ {
 	position: absolute;
 	left: 0.84635vw;
-	top: 10.546875vw;
+	top: 12.546875vw;
 	overflow: visible;
 	width: 19.661458vw;
 	white-space: nowrap;
@@ -1053,7 +1053,7 @@ textarea:focus, input:focus {
 	width: 20.833333vw;
 	height: 1.888020833vw;
 	left: 0vw;
-	top: 12.89025vw;
+	top: 14.89025vw;
 	overflow: visible;
 }
 
@@ -1133,7 +1133,7 @@ textarea:focus, input:focus {
 	width: 20.833333vw;
 	height: 1.888020833vw;
 	left: 0vw;
-	top: 15.49479167vw;
+	top: 17.49479167vw;
 	overflow: visible;
 }
 
@@ -1213,7 +1213,7 @@ textarea:focus, input:focus {
 	width: 20.833333vw;
 	height: 1.888020833vw;
 	left: 0vw;
-	top: 18.03385417vw;
+	top: 20.03385417vw;
 	overflow: visible;
 }
 
@@ -1293,7 +1293,7 @@ textarea:focus, input:focus {
 	width: 20.833333vw;
 	height: 1.888020833vw;
 	left: 0vw;
-	top: 20.63802083vw;
+	top: 22.63802083vw;
 	overflow: visible;
 }
 
@@ -1373,7 +1373,7 @@ textarea:focus, input:focus {
 	width: 20.833333vw;
 	height: 1.888020833vw;
 	left: 0vw;
-	top: 23.2421875vw;
+	top: 25.2421875vw;
 	overflow: visible;
 }
 
@@ -1655,4 +1655,43 @@ textarea:focus, input:focus {
 	font-weight: normal;
 	font-size: 1.888020833vw;
 	color: rgba(255,255,255,1);
+}
+
+::placeholder { 
+	color: #444444;
+	opacity: 1; 
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #444444;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: #444444;
+}
+
+.Rectangle_190 {
+	position: absolute;
+	max-width: 20.83vw;
+	left: 0px;
+	top: 9.9vw;
+}
+
+.Rectangle_44 {
+	position: relative;
+	width: 2.2vw;
+	height: 2.85vw;
+	padding: 0;
+	margin-bottom: 0.6vw;
+}
+
+.inChars {
+	position: relative;
+	color: white;
+	font-family: Radley;
+	font-style: italic;
+	font-size: 1vw;
+	padding: 0 0.2vw;
+	text-align: center;
+	width: 4vw;
+	margin-bottom: 0.6vw;
 }
