@@ -1,6 +1,16 @@
 function DimInput() {
   var Dim2 = document.getElementsByName("Dim")[0].checked;
   var Pair1 = document.getElementsByName("Method")[0].checked || document.getElementsByName("Method")[1].checked;
+  var Method=document.getElementById("Method")[0];
+  if (Method.checked)
+  {
+    document.getElementById('yn').disabled=true;
+  }
+  else 
+  {
+    document.getElementById('yn').disabled=false;
+  }
+
   if (Dim2) {
     document.getElementsByClassName("Rectangle_17")[0].setAttribute("disabled", "true");
     document.getElementsByClassName("Rectangle_17")[0].setAttribute("style", "background: #303030; color: #999999;");
@@ -86,4 +96,9 @@ function DimInput() {
     }
   }
 
+}
+
+function MethodChange()
+{
+  
 }
