@@ -867,6 +867,7 @@ def ODEPC():
             Method=''
             x_requested=''
             Equation=''
+            yp=''
             #results=[]
             Number_Of_Points=0
 
@@ -917,10 +918,12 @@ def ODEPC():
 
         elif Method=="MilneMethod":
             if Is_OK==True:
-                if len(x)!=0 and Equation and Number_Of_Corrections and Stopping_Criteria and x_requested:
+                if len(x)!=0 and Equation :
+                    
                     try :
-                        y_requested=float(request.form['yn'])
-                        yp, YC, relative_error=milne(Equation,5,x,y,x_requested,Number_Of_Corrections,Stopping_Criteria,y_requested)
+                        
+                        relative_error,yp, YC=milne(Equation,5,x,y,x_requested,Number_Of_Corrections,Stopping_Criteria)
+                        
                         return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",yp=yp,YC=YC,Error=relative_error,Method=Method,OK=Is_OK)
                     except:
                         return render_template('ODEPC.html', title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=False)

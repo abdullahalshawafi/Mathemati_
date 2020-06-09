@@ -27,9 +27,9 @@
 					 yp =
 					{%print(yp)%}
 					YC Iterations :
-					{%for i in range (4)%}
-					{%print(YC[i])%}
-					{%endfor%}
+					
+					{%print(YC)%}
+					
 
 					relative error =
 					{%print(Error)%}
@@ -80,7 +80,7 @@
                 {% if Method=="AdamBackward" %}
                 <input type="text" name="yn" value="{{results[-2]}}" class="Rectangle_33" id='yn' disabled  />
                 {% else %}
-                <input type="text" name="yn" class="Rectangle_33" id='yn'  />
+                <input type="text" name="yn" class="Rectangle_33" id='yn' value="{{yp}}" disabled  />
                 {% endif %}
                 <div id="x___">
                     <span>x<span style="font-size:0.8vw">n</span> = </span>

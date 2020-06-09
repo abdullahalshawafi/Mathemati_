@@ -1,37 +1,44 @@
+from Equation import Expression              # import Expression in the interface
 import math
 import numpy
-from Equation import Expression  
+#func = input("enter the equation Y' with regarding python format: \n")
+#fix = int(input("enter the fixing point"))
+#print("now, enter the last given four points....")
+#x = [0.0, 0.0, 0.0, 0.0]
+#y = [0.0, 0.0, 0.0, 0.0]
+#for i in range(4):
+#    x[i] = float(input("enter X coordindate of the " + str(i) + " point: "))
+#    y[i] = float(input("enter the Y coordinate of the " + str(i) + " point: "))
+
+#des = float(input("enter the X coordinate of the desired point : "))
+#nom = int(input("enter the number of iterations: "))
+#stop = float(input("enter the stopping criteria (relative error) in percentage"))
 
 
-def milne(func, fix, X, Y, des, nom, stop, exact):
-
+def milne(func, fix, X, Y, des, nom, stop):
     expr = Expression(func, ["y", "x"])
-
-    F = [0.0, 0.0, 0.0, 0.0, 0.0]
-    YC=[0.0]
-
-    h = X[1] - X[0]
-
+    f = [0.0, 0.0, 0.0, 0.0, 0.0]
+    yc = [0.0]                                                   # virtual array to put numbers of Yc in it
+    h = X[1] - X[0]                                            # calculating thee step size
     for i in range(4):
-        F[i] = round(expr(float(Y[i]), float(X[i])), fix)
-
-    yp = round(Y[0] + ((4 * h / 3) * (2 * F[3] - F[2] + 2 * F[1])), fix)
-
-
-    yc = yp
-    YC[0] = yc
-
+        f[i] = round(expr(float(Y[i]), float(X[i])), fix)                # filling the F array
+    yp = round(Y[0] + ((4 * h / 3) * (2 * f[3] - f[2] + 2 * f[1])), fix)    # Yp
+    yC = yp                                                                # initial value of yc which is = Yp
+    yc[0] = yC
+    yclist = ["Yc(initial) = " + str(yp) ]            # this is Y corrected string
+    # it is viewed as "at i = none, Yc(initial) = ..., at i = 0, Yc(0) = ..., etc,)
+    # it is returned as the list of iterations
     for i in range(nom):
-        bef = yc
-        yc = round(Y[2] + ((h / 3) * (F[2] + 4 * F[3] + 2 * expr(float(yc), float(des)))), fix)
-        sc = yc - bef
-        YC.append(yc)
-        if sc > (0.5 * (10 ** (2 - stop))) :
+        yC = round(Y[2] + ((h / 3) * (f[2] + 4 * f[3] + 2 * expr(float(yC), float(des)))), fix)
+        yc.append(yC)
+        RE = abs(float(((yc[i] - yC) / yC) * 100))
+        yclist.append("at i = " + str(i) + ", Yc(" + str(i) + ") = " + str(yC) + "   " + "Relative error = " + str(RE) + " %" )
+        if(RE <= stop):
             break
-        
+    return  RE,yc[-1], yclist
 
 
-    relative_error = float((exact - yc) * 100 / exact)
-    relative_error=abs(relative_error)
-    return yp, YC, relative_error
-
+#  example :
+#The module : Milne( Function(dy/dx=?) , decimal fix (rounding), four X values, four Y values , calculation point , no. of iterations, stopping criteria)
+RE, Y, List = milne("sin(x^2+y)+x*y", 4, [0.2, 0.4, 0.6, 0.8], [1.4, 1.85, 2.1, 2.9], 1.8, 90,0)
+print(Y,' ',RE, '\n' ,List)
