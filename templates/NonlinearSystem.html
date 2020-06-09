@@ -3,6 +3,11 @@
 
   <main>
     <div id="Web_1920___1">
+         {% if anyErrorsInPosting==1 %}
+				<script>
+					alert("{{errorMSG}}");
+				</script>
+			{% endif %}
       <div id="RightTab">
         <svg class="Rectangle_6">
           <rect

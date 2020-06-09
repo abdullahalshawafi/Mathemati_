@@ -1281,6 +1281,7 @@ def LinearSystem():
 def NonlinearSystem():
     if request.method == 'POST':
         Method = ''
+        errorMSG = ''
         Eqs_No = iterations = f_xy = g_xy =X0 = Y0 = 0
         StoppingCriteria = 0.0
         Length = 0
@@ -1288,59 +1289,104 @@ def NonlinearSystem():
 
         if 'Method' in request.form:
             Method  = request.form['Method']
-        if 'Dim' in request.form:
-            Eqs_No = int(request.form['Dim'])
-            if Eqs_No == 2:
-                f_xy = request.form['Feq']
-                g_xy = request.form['Geq']
-                X0 = request.form['X0']
-                if not X0 == '':
-                    X0 = float(request.form['X0'])
-                Y0 = request.form['Y0']
-                if not Y0 == '':
-                    Y0 = float(request.form['Y0'])
-            elif Eqs_No == 3:
-                f_xy = request.form['Feq']
-                g_xy = request.form['Geq']
-                h_xy = request.form['Heq']
-                X0 = request.form['X0']
-                if not X0 == '':
-                    X0 = float(request.form['X0'])
-                Y0 = request.form['Y0']
-                if not Y0 == '':
-                    Y0 = float(request.form['Y0'])
-                Z0 = request.form['Z0']
-                if not Z0 == '':
-                    Z0 = float(request.form['Z0'])
+        try:
+            if 'Dim' in request.form:
+                Eqs_No = int(request.form['Dim'])
+                if Eqs_No == 2:
+                    f_xy = request.form['Feq']
+                    g_xy = request.form['Geq']
+                    X0 = request.form['X0']
+                    if not X0 == '':
+                        X0 = float(request.form['X0'])
+                    Y0 = request.form['Y0']
+                    if not Y0 == '':
+                        Y0 = float(request.form['Y0'])
+                elif Eqs_No == 3:
+                    f_xy = request.form['Feq']
+                    g_xy = request.form['Geq']
+                    h_xy = request.form['Heq']
+                    X0 = request.form['X0']
+                    if not X0 == '':
+                        X0 = float(request.form['X0'])
+                    Y0 = request.form['Y0']
+                    if not Y0 == '':
+                        Y0 = float(request.form['Y0'])
+                    Z0 = request.form['Z0']
+                    if not Z0 == '':
+                        Z0 = float(request.form['Z0'])
 
-        StoppingCriteria = request.form['StoppingCriteria']
-        if not StoppingCriteria == '':
-            StoppingCriteria = float(request.form['StoppingCriteria'])
-        iterations = request.form['Iterations']
-        if not iterations == '':
-            iterations = int(request.form['Iterations'])
+            StoppingCriteria = request.form['StoppingCriteria']
+            if not StoppingCriteria == '':
+                StoppingCriteria = float(request.form['StoppingCriteria'])
+            iterations = request.form['Iterations']
+            if not iterations == '':
+                iterations = int(request.form['Iterations'])
+
+        except:
+            anyErrorsInPosting = 1
+            errorMSG = errorMSG + " Invalid inputs"
+
 
         if Method and Eqs_No and not StoppingCriteria == '' and iterations and f_xy and g_xy and X0 and Y0:
             if Method == "NewtonRaphson":
                 if Eqs_No == 2:
-                    result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, 0, X0, Y0, 0, StoppingCriteria)
-                    Length = len(result[1])
+                    try:
+                        result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, 0, X0, Y0, 0, StoppingCriteria)
+                        Length = len(result[1])
+                    except:
+                        anyErrorsInPosting = 1
+                        errorMSG = "can't be solved using this method !"
                     #print(result, Length)
                 elif Eqs_No == 3 and Z0 and h_xy:
-                    result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
-                    Length = len(result[1])
+                    try:
+                        result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
+                        Length = len(result[1])
+                    except:
+                        anyErrorsInPosting = 1
+                        errorMSG = "can't be solved using this method !"
             elif Method == "FixedPoint":
                 if Eqs_No == 2:
-                    result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0)
-                    Length = len(result[1])
+                    try:
+                        result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0)
+                        Length = len(result[1])
+                    except:
+                        anyErrorsInPosting = 1
+                        errorMSG = "can't be solved using this method !"
                 elif Eqs_No == 3 and h_xy and Z0:
-                    result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0, h_xy, Z0)
-                    Length = len(result[1])
+                    try:
+                        result = FixedPointIteration(str(Eqs_No), str(iterations), str(StoppingCriteria), f_xy, g_xy, X0, Y0, h_xy, Z0)
+                        Length = len(result[1])
+                    except:
+                        anyErrorsInPosting = 1
+                        errorMSG = "can't be solved using this method !"
             if Length:
                 return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - Copy2.png", logo="Logo Greeny.svg", Length=Length, Method=Method, iterations=iterations, Eqs_No=Eqs_No, results=result)
+            else:
+                anyErrorsInPosting = 1
+                errorMSG = "can't be solved using this method !"
+        else:
+            anyErrorsInPosting = 1  # as it will enter 'else' only if an error has occurred
+            if errorMSG == '':
+                errorMSG = " please fill all the inputs !"
+            if not Method:
+                errorMSG = errorMSG + " ,please Select a method!"
+            if not Eqs_No:
+                errorMSG = errorMSG + " ,please Enter number of Equations!"
+            if not errorMSG == " please fill all the inputs !":
+                errorMSG = errorMSG + " ,please fill all the inputs correctly!"
+
+        if anyErrorsInPosting:
+            return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems',
+                                   css="NonlinearSystems.css",
+                                   wing="SE - Copy2.png", logo="Logo Greeny.svg", Method=Method,
+                                   iterations=iterations, Eqs_No=Eqs_No, results=result,
+                                   StoppingCriteria=StoppingCriteria, anyErrorsInPosting=anyErrorsInPosting,
+                                   errorMSG=errorMSG)
+
         return redirect(url_for('NonlinearSystem'))
     else:
         return render_template('NonlinearSystem.html', url="4pb2Khe2fSM", title='Nonlinear Systems', css="NonlinearSystems.css", wing="SE - Copy2.png", logo="Logo Greeny.svg")
+
 
 @app.route("/EigenvalueProblem", methods=['GET', 'POST'])
 def EigenvalueProblem():
