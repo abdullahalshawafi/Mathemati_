@@ -38,7 +38,3 @@ def milne(func, fix, X, Y, des, nom, stop):
     return  RE,yc[-1], yclist
 
 
-#  example :
-#The module : Milne( Function(dy/dx=?) , decimal fix (rounding), four X values, four Y values , calculation point , no. of iterations, stopping criteria)
-RE, Y, List = milne("sin(x^2+y)+x*y", 4, [0.2, 0.4, 0.6, 0.8], [1.4, 1.85, 2.1, 2.9], 1.8, 90,0)
-print(Y,' ',RE, '\n' ,List)
