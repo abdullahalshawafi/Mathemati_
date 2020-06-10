@@ -1096,8 +1096,6 @@ textarea:focus, input:focus {
 	width: 3.25520833vw;
 	margin-top: 0.1vw; margin-bottom: 0.3vw;
 	pointer-events: visible;
-		cursor: pointer;
-
 }
 .button-div {
 	left: 0.4vw;
@@ -1110,8 +1108,6 @@ textarea:focus, input:focus {
 	margin: 0;
 	backgroud: transparent;
 	pointer-events: visible;
-	cursor: pointer;
-
 }
 
 	.button-div button img {

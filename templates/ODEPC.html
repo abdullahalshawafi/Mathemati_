@@ -27,9 +27,9 @@
 					 yp =
 					{%print(yp)%}
 					YC Iterations :
-					
-					{%print(YC)%}
-					
+					{%for i in range (4)%}
+					{%print(YC[i])%}
+					{%endfor%}
 
 					relative error =
 					{%print(Error)%}
@@ -80,7 +80,7 @@
                 {% if Method=="AdamBackward" %}
                 <input type="text" name="yn" value="{{results[-2]}}" class="Rectangle_33" id='yn' disabled  />
                 {% else %}
-                <input type="text" name="yn" class="Rectangle_33" id='yn' value="{{yp}}" disabled  />
+                <input type="text" name="yn" class="Rectangle_33" id='yn'  />
                 {% endif %}
                 <div id="x___">
                     <span>x<span style="font-size:0.8vw">n</span> = </span>
@@ -220,12 +220,12 @@
                             <img src="{{url_for('static', filename='Assets/Calc Button.svg')}}" title="Calculate">
                         </button>
                         <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                         <button type="button" class="table-button" onclick="showVideo('{{url}}')">
+                        <a class="table-button" href="#">
                             <img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-                        </button>
+                        </a>
                         <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
                         <button type="button" class="table-button" onclick="DownloadGuide()">
-                            <img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Download Guide">
+                            <img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
                         </button>
                         <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
                         <button type="button" class="table-button" id="save">

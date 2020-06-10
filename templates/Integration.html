@@ -2,11 +2,6 @@
 {% block content %}
 
 	<main>
-		<script>
-			{% if _error %}
-			alert("{{_error}}")
-			{% endif %}
-		</script>
 		<div id="Web_1920___1">
 
 			<div id="LeftTap">
@@ -46,33 +41,31 @@
 				<form action="{{url_for('Integration')}}" method="POST">
 					<div class="Rectangle_28">
 
-
-                        <div class="button-div">
-                            <button type="submit" class="table-button" id="calc">
-                                <img src="{{url_for('static', filename='Assets/Int Button.svg')}}">
-                            </button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                           <button type="button" class="table-button" onclick="showVideo('{{url}}')">
-							<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-						</button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <button type="button" class="table-button" onclick="window.open('{{url_for("static", filename="Reports/Romberg.pdf")}}')">
-                                <!-- Need to merge the PDF with other integration methods once they're ready -->
-                                <img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Download Guide">
-                            </button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <button type="button" class="table-button" id="save">
-                                <img src="{{url_for('static', filename='Assets/Save.svg')}}">
-                            </button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <button type="button" class="table-button" id="load">
-                                <img src="{{url_for('static', filename='Assets/Load.svg')}}">
-                            </button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <button type="button" class="table-button" id="clear">
-                                <img src="{{url_for('static', filename='Assets/Clear.svg')}}">
-                            </button>
-                        </div>
+						<div class="button-div">
+							<button type="submit" class="table-button" id="calc">
+								<img src="{{url_for('static', filename='Assets/Int Button.svg')}}">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<a class="table-button" href="#">
+								<img src="{{url_for('static', filename='Assets/Vid.svg')}}">
+							</a>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" onclick="DownloadGuide()">
+								<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="save">
+								<img src="{{url_for('static', filename='Assets/Save.svg')}}">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="load">
+								<img src="{{url_for('static', filename='Assets/Load.svg')}}">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="clear">
+								<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
+							</button>
+						</div>
 					</div>
 
 					<div id="__Linear_Integration">

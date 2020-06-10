@@ -1230,7 +1230,7 @@ textarea:focus, input:focus {
 	margin: 0;
 	pointer-events: visible;
 }
- 
+
 	.button-div button img {
 		height: 2.5vw;
 		transition: 0.2s;

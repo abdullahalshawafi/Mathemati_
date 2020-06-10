@@ -24,8 +24,6 @@ window.onload = function () {
   DimInput();
 }
 
-
-
 function addtograph() {
   if (document.getElementsByClassName("Rectangle_19")[0].value && document.getElementsByClassName("Rectangle_36")[0].value
     && document.getElementsByClassName("Rectangle_40")[0].value && document.getElementsByName("Dim")[0].checked) {
@@ -313,78 +311,4 @@ function DimInput() {
     document.getElementsByClassName("Rectangle_42")[0].setAttribute("style", "background: #282828; color: #FFFFFF;");
     document.getElementsByClassName("Rectangle_34")[0].setAttribute("style", "background: #282828; color: #FFFFFF;");
   }
-
-
-}
-
-
-function saveTextAsFile()
-    {
-
-        inputs = document.getElementsByTagName("input");
-
-        if( document.getElementById('2eqs').checked)
-             {
-                 var textToSave = "Inputs\n\nW = "+document.getElementsByName("w")[0].value+
-                 "\nNumber of equations = 2\n\nIntial Vector = [" + document.getElementsByName("X1")[0].value+" "+document.getElementsByName("X2")[0].value+" ]\n"+
-                 "\nEq_1 = [ " + document.getElementsByName("x00")[0].value+" , "+document.getElementsByName("x01")[0].value+" , "+document.getElementsByName("c0")[0].value+" ]"+
-                 "\nEq_2 = [ " + document.getElementsByName("x10")[0].value+" , "+document.getElementsByName("x11")[0].value+" , "+document.getElementsByName("c1")[0].value+" ]\n"+
-                 "\nNumber of iterations = " + document.getElementsByName("Number of iterations")[0].value+
-                 "\nStopping Criteria = " + document.getElementsByName("Stopping Criteria")[0].value;
-          
-             }
-        else if( document.getElementById('3eqs').checked)
-             {
-                 var textToSave = "Inputs\n\nW = "+document.getElementsByName("w")[0].value+
-                 "\nNumber of equations = 3\n\nIntial Vector = [" + document.getElementsByName("X1")[0].value+" "+document.getElementsByName("X2")[0].value+" "+document.getElementsByName("X3")[0].value+" ]\n"+
-                 "\nEq_1 = [ " + document.getElementsByName("x00")[0].value+" , "+document.getElementsByName("x01")[0].value+" , "+document.getElementsByName("x02")[0].value+" , "+document.getElementsByName("c0")[0].value+" ]"+
-                 "\nEq_2 = [ " + document.getElementsByName("x10")[0].value+" , "+document.getElementsByName("x11")[0].value+" , "+document.getElementsByName("x12")[0].value+" , "+document.getElementsByName("c1")[0].value+" ]"+
-                 "\nEq_3 = [ " + document.getElementsByName("x20")[0].value+" , "+document.getElementsByName("x21")[0].value+" , "+document.getElementsByName("x22")[0].value+" , "+document.getElementsByName("c2")[0].value+" ]\n"+
-                 "\nNumber of iterations = " + document.getElementsByName("Number of iterations")[0].value+
-                 "\nStopping Criteria = " + document.getElementsByName("Stopping Criteria")[0].value;
-          
-             }
-              else if( document.getElementById('4eqs').checked)
-             {
-                 var textToSave = "Inputs\n\nW = "+document.getElementsByName("w")[0].value+
-                 "\nNumber of equations = 4\n\nIntial Vector = [" + document.getElementsByName("X1")[0].value+" "+document.getElementsByName("X2")[0].value+" "+document.getElementsByName("X3")[0].value+" "+document.getElementsByName("X4")[0].value+" ]\n"+
-                 "\nEq_1 = [ " + document.getElementsByName("x00")[0].value+" , "+document.getElementsByName("x01")[0].value+" , "+document.getElementsByName("x02")[0].value+" , "+document.getElementsByName("x03")[0].value+" , "+document.getElementsByName("c0")[0].value+" ]"+
-                 "\nEq_2 = [ " + document.getElementsByName("x10")[0].value+" , "+document.getElementsByName("x11")[0].value+" , "+document.getElementsByName("x12")[0].value+" , "+document.getElementsByName("x13")[0].value+" , "+document.getElementsByName("c1")[0].value+" ]"+
-                 "\nEq_3 = [ " + document.getElementsByName("x20")[0].value+" , "+document.getElementsByName("x21")[0].value+" , "+document.getElementsByName("x22")[0].value+" , "+document.getElementsByName("x23")[0].value+" , "+document.getElementsByName("c2")[0].value+" ]"+
-                 "\nEq_4 = [ " + document.getElementsByName("x30")[0].value+" , "+document.getElementsByName("x31")[0].value+" , "+document.getElementsByName("x32")[0].value+" , "+document.getElementsByName("x33")[0].value+" , "+document.getElementsByName("c3")[0].value+" ]\n"+
-                 "\nNumber of iterations = " + document.getElementsByName("Number of iterations")[0].value+
-                 "\nStopping Criteria = " + document.getElementsByName("Stopping Criteria")[0].value;
-          
-             }
-             else
-             {
-                 var textToSave = "Inputs\n\nW = "+document.getElementsByName("w")[0].value+
-                 "\nNumber of equations = 5\n\nIntial Vector = [" + document.getElementsByName("X1")[0].value+" "+document.getElementsByName("X2")[0].value+" "+document.getElementsByName("X3")[0].value+" "+document.getElementsByName("X4")[0].value+" "+document.getElementsByName("X5")[0].value+" ]\n"+
-                 "\nEq_1 = [ " + document.getElementsByName("x00")[0].value+" , "+document.getElementsByName("x01")[0].value+" , "+document.getElementsByName("x02")[0].value+" , "+document.getElementsByName("x03")[0].value+" , "+document.getElementsByName("x04")[0].value+" , "+document.getElementsByName("c0")[0].value+" ]"+
-                 "\nEq_2 = [ " + document.getElementsByName("x10")[0].value+" , "+document.getElementsByName("x11")[0].value+" , "+document.getElementsByName("x12")[0].value+" , "+document.getElementsByName("x13")[0].value+" , "+document.getElementsByName("x14")[0].value+" , "+document.getElementsByName("c1")[0].value+" ]"+
-                 "\nEq_3 = [ " + document.getElementsByName("x20")[0].value+" , "+document.getElementsByName("x21")[0].value+" , "+document.getElementsByName("x22")[0].value+" , "+document.getElementsByName("x23")[0].value+" , "+document.getElementsByName("x24")[0].value+" , "+document.getElementsByName("c2")[0].value+" ]"+
-                 "\nEq_4 = [ " + document.getElementsByName("x30")[0].value+" , "+document.getElementsByName("x31")[0].value+" , "+document.getElementsByName("x32")[0].value+" , "+document.getElementsByName("x33")[0].value+" , "+document.getElementsByName("x34")[0].value+" , "+document.getElementsByName("c3")[0].value+" ]"+
-                 "\nEq_5 = [ " + document.getElementsByName("x40")[0].value+" , "+document.getElementsByName("x41")[0].value+" , "+document.getElementsByName("x42")[0].value+" , "+document.getElementsByName("x43")[0].value+" , "+document.getElementsByName("x44")[0].value+" , "+document.getElementsByName("c3")[0].value+" ]\n"+
-
-                 "\nNumber of iterations = " + document.getElementsByName("Number of iterations")[0].value+
-                 "\nStopping Criteria = " + document.getElementsByName("Stopping Criteria")[0].value;
-             }
-
-            var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
-            var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-            var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
-
-            var downloadLink = document.createElement("a");
-            downloadLink.download = fileNameToSaveAs;
-            downloadLink.innerHTML = "Download File";
-            downloadLink.href = textToSaveAsURL;
-            downloadLink.onclick = destroyClickedElement;
-            downloadLink.style.display = "none";
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-    }
-
-function destroyClickedElement(event)
-{
-    document.body.removeChild(event.target); 
 }
