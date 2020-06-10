@@ -229,9 +229,9 @@ def LeastSquareReg():
                 i += 1
             if len(xdata)>=3:
                 try:
-                    result, Error = Nonlinear_Regression(xdata, ydata, Equation, 4)
-                    TrueErr = TrueError(ydata, 4)
-                    r = round((abs(Error-TrueErr)/TrueErr)**0.5,4)
+                    result, Error = Nonlinear_Regression(xdata, ydata, Equation, 12)
+                    TrueErr = TrueError(ydata, 12)
+                    r = round((abs(Error-TrueErr)/TrueErr)**0.5,12)
                 except:
                     error = "Invalid Inputs"
                     result = "Invalid Inputs"
@@ -274,7 +274,7 @@ def LeastSquareReg():
                 j += 1
 
             try:
-                LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
+                LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 12)
             except:
                 error = "Invalid Inputs"
                 result = "Invalid Inputs"
@@ -287,7 +287,7 @@ def LeastSquareReg():
 
             if  ydata and xdata and LHS !="" :
                 TrueErr = TrueError(ydata, 4)
-                r = round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
+                r = round((abs(Sr-TrueErr)/TrueErr)**0.5,12)
                 return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
                                         css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
                                         results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
@@ -314,9 +314,9 @@ def LeastSquareReg():
                     pass
                 i += 1
             try:
-                result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4)
-                TrueErr = TrueError(ydata, 4)
-                r = round((abs(Error-TrueErr)/TrueErr)**0.5,4)
+                result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 12)
+                TrueErr = TrueError(ydata, 12)
+                r = round((abs(Error-TrueErr)/TrueErr)**0.5,12)
             except:
                 error = "Missing Points"
                 result = "Missing Points"
@@ -380,7 +380,7 @@ def SurfaceFitting():
 
         if xdata and Fdata:
             try:
-                LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 4)
+                LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 10)
             except:
                 return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
                                         title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
@@ -395,8 +395,7 @@ def SurfaceFitting():
 
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
-                print(list(GriZ[i]))
-                print(',')
+                
 
 
 
@@ -411,7 +410,7 @@ def SurfaceFitting():
         else:
             return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
                                     title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
-                                    logo="Logo.svg", results='Singular Matrix', Error='...', error = 'Singular Matrix')
+                                    logo="Logo.svg", results='Singular Matrix/Out of Domain', Error='...', error = 'Singular Matrix')
     else:
         return render_template('SurfaceFitting.html', url="mRjVy0MSUI0", title='Surface Fitting',
                                 css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")

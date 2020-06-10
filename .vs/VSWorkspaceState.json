@@ -3,9 +3,11 @@
     "",
     "\\methods",
     "\\static",
+    "\\static\\css",
     "\\static\\js",
+    "\\static\\Reports",
     "\\templates"
   ],
-  "SelectedNode": "\\app.py",
+  "SelectedNode": "\\templates\\PolynomialInterpolation.html",
   "PreviewInSolutionExplorer": false
 }
