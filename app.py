@@ -395,6 +395,8 @@ def SurfaceFitting():
 
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
+                print(list(GriZ[i]))
+                print(',')
 
 
 

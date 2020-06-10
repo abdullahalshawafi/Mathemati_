@@ -57,7 +57,7 @@ def PointsFor3DSF(xdata,ydata,RHS):
         if Po[i][1] > ymax:
             ymax = Po[i][1]
 
-    nx = 100
+    nx = 200
     ny = 200
 
     grid_x, grid_y = np.mgrid[xmin:xmax:((nx + 1) * 1j), ymin:ymax:((ny + 1) * 1j)]
@@ -72,8 +72,13 @@ def PointsFor3DSF(xdata,ydata,RHS):
 
     grid_z1 = zEvalList(grid_x, grid_y,RHS)
 
+   
     return grid_x_out, grid_y_out, grid_z1
 
+#x,y,z=(PointsFor3DSF([2,-3,-4,5,3,1],[2,-3,4,5,1,4],'0.874 * exp(x) + 43.3577 * cos(0.2*y*x) + -13.4375 * x + 0.7623 * y + -1.1454 * x*y'))
+#for i in z:
+ #   print(i)
+   # print(',')
 
 def Plot_3D_RHS(xdata,ydata,zdata,RHS):
     x,y = symbols('x y')
