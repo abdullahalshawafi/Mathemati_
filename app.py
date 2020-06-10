@@ -229,9 +229,9 @@ def LeastSquareReg():
                 i += 1
             if len(xdata)>=3:
                 try:
-                    result, Error = Nonlinear_Regression(xdata, ydata, Equation, 4)
-                    TrueErr = TrueError(ydata, 4)
-                    r = round((abs(Error-TrueErr)/TrueErr)**0.5,4)
+                    result, Error = Nonlinear_Regression(xdata, ydata, Equation, 12)
+                    TrueErr = TrueError(ydata, 12)
+                    r = round((abs(Error-TrueErr)/TrueErr)**0.5,12)
                 except:
                     error = "Invalid Inputs"
                     result = "Invalid Inputs"
@@ -274,7 +274,7 @@ def LeastSquareReg():
                 j += 1
 
             try:
-                LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 4)
+                LHS, RHS, Constants, Sr = Linearized_Regression(xdata, ydata, Fdata, 12)
             except:
                 error = "Invalid Inputs"
                 result = "Invalid Inputs"
@@ -287,7 +287,7 @@ def LeastSquareReg():
 
             if  ydata and xdata and LHS !="" :
                 TrueErr = TrueError(ydata, 4)
-                r = round((abs(Sr-TrueErr)/TrueErr)**0.5,4)
+                r = round((abs(Sr-TrueErr)/TrueErr)**0.5,12)
                 return render_template('LeastSquareReg.html', url="gr-a8q7EDbY", title='Least Square Reg.',
                                         css="LeastSquareReg.css", wing="CF Header.png", logo="Logo.svg", Method=Method,
                                         results=RHS, Error=Sr, TrueErr=TrueErr, r=r)
@@ -314,9 +314,9 @@ def LeastSquareReg():
                     pass
                 i += 1
             try:
-                result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 4)
-                TrueErr = TrueError(ydata, 4)
-                r = round((abs(Error-TrueErr)/TrueErr)**0.5,4)
+                result, Family, Error, STnd = Curve_Family_Detective(xdata, ydata, 12)
+                TrueErr = TrueError(ydata, 12)
+                r = round((abs(Error-TrueErr)/TrueErr)**0.5,12)
             except:
                 error = "Missing Points"
                 result = "Missing Points"
@@ -380,7 +380,7 @@ def SurfaceFitting():
 
         if xdata and Fdata:
             try:
-                LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 4)
+                LHS, RHS, Constants, Sr = Surface_Fit_Beta(xdata, ydata, zdata, Fdata, 10)
             except:
                 return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
                                         title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
@@ -395,6 +395,7 @@ def SurfaceFitting():
 
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
+                
 
 
 
@@ -409,7 +410,7 @@ def SurfaceFitting():
         else:
             return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
                                     title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
-                                    logo="Logo.svg", results='Singular Matrix', Error='...', error = 'Singular Matrix')
+                                    logo="Logo.svg", results='Singular Matrix/Out of Domain', Error='...', error = 'Singular Matrix')
     else:
         return render_template('SurfaceFitting.html', url="mRjVy0MSUI0", title='Surface Fitting',
                                 css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
@@ -1224,20 +1225,20 @@ def background_process():
 
         try:
             for i in range(4) :
-                f_str = 'function' + str(i)
+                #f_str = 'function' + str(i)
                 x_i_str = 'xi' + str(i)
                 x_f_str = 'xf' + str(i)
                 y_i_str = 'yi' + str(i)
                 y_f_str ='yf' + str(i)
                 u_str ='u' + str(i)
                 #Parameters
-                f = request.form[f_str]
+                #f = request.form[f_str]
                 x_i = request.form[x_i_str]
                 x_f = request.form[x_f_str]
                 y_i = request.form[y_i_str]
                 y_f = request.form[y_f_str]
                 u = request.form[u_str]
-                if not f=="" and not x_i=="" and not x_f=="" and not y_i=="" and not y_f=="" and not u=="":
+                if not x_i=="" and not x_f=="" and not y_i=="" and not y_f=="" and not u=="":
                     x_i = float(request.form[x_i_str])
                     x_f = float(request.form[x_f_str])
                     y_i = float(request.form[y_i_str])
@@ -1246,12 +1247,12 @@ def background_process():
                     xf_list.append(x_f)
                     yi_list.append(y_i)
                     yf_list.append(y_f)
-                    function_list.append(f)
+        
                     value_list.append(u)
                     boundry_counter = boundry_counter + 1
 
                 #Open Boundary Condition
-                elif f=="" and x_i=="" and x_f=="" and not y_i=="" and not y_f=="" and not u=="":
+                elif x_i=="" and x_f=="" and not y_i=="" and not y_f=="" and not u=="":
                     yy = int(y_i)
                     Rows = int(y_f)
                     Value = int(u)
@@ -1270,10 +1271,10 @@ def background_process():
         if boundry_counter==4:
             try:
                 # L R U D
-                #print("You Are in this Region")
+               
                 UList = Closed_Region(value_list[1], value_list[2], value_list[0], value_list[3], h, k,
                                       x1, x2, y1, y2, dxx, dyy, dx, dy, u_coeff, dxy, function)
-                #print(UList)
+                
             except:
                 return jsonify(error = 'Could not Solve')
             try:
@@ -1285,11 +1286,10 @@ def background_process():
 
             x_index = (x_point-x1)/h
             y_index = (y_point-y1)/k
-            #print(x_index)
-            #print(y_index)
+
             try:
                 U = UList[int(x_index)][int(y_index)]
-                #print(U)
+
             except:
                 return jsonify(error = 'Invalid Point', U = '')
 
@@ -1308,7 +1308,9 @@ def background_process():
             Number_Of_Rows = y_index + 1
 
             try:
-
+                # yy --> y_i
+                # Rows -->y_f
+                # value --> function
                 UList = Open_Region(value_list[0], value_list[1], value_list[2], h, k, x1, x2,
                                     y1, dxx, dyy, dx, dy, u_coeff, dxy, function, Value, yy, int(Number_Of_Rows))
 

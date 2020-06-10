@@ -15,6 +15,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from sympy.plotting import plot3d
 
 
+
 def Sround(x,n):
     if(x==0):
         return 0;
@@ -57,7 +58,7 @@ def PointsFor3DSF(xdata,ydata,RHS):
         if Po[i][1] > ymax:
             ymax = Po[i][1]
 
-    nx = 100
+    nx = 200
     ny = 200
 
     grid_x, grid_y = np.mgrid[xmin:xmax:((nx + 1) * 1j), ymin:ymax:((ny + 1) * 1j)]
@@ -72,8 +73,13 @@ def PointsFor3DSF(xdata,ydata,RHS):
 
     grid_z1 = zEvalList(grid_x, grid_y,RHS)
 
+   
     return grid_x_out, grid_y_out, grid_z1
 
+#x,y,z=(PointsFor3DSF([2,-3,-4,5,3,1],[2,-3,4,5,1,4],'0.874 * exp(x) + 43.3577 * cos(0.2*y*x) + -13.4375 * x + 0.7623 * y + -1.1454 * x*y'))
+#for i in z:
+ #   print(i)
+   # print(',')
 
 def Plot_3D_RHS(xdata,ydata,zdata,RHS):
     x,y = symbols('x y')
@@ -167,7 +173,10 @@ def Surface_Fit_Beta(xdata, ydata, zdata, Function,r):
     for i in range(0,len(F)): #this for loop goes through each function
         Z = [] #temporary list
         for j in range(0, len(xdata)):  #this one makes a new list by plugging each xdata, ydata for each function
-            Z.append(F[i](xdata[j], ydata[j], zdata[j]))
+            if(F[i](xdata[j], ydata[j], zdata[j])==F[i](xdata[j], ydata[j], zdata[j])):
+                Z.append(F[i](xdata[j], ydata[j], zdata[j]))
+            else:
+                return '','','',''
         FL.append(Z) #FL contains a sublist for each function, this sublist is the result from plugging each xdata,ydata,zdata into the function
         n=len(F)
     a = np.empty((n-1,n-1))
@@ -198,6 +207,15 @@ def Surface_Fit_Beta(xdata, ydata, zdata, Function,r):
 
     return LHS,RHS,StringSol,Sr #LHS and RHS are just what's actually needed
 
+def SurfaceInt(xdata,ydata,zdata,r):
+    Possible_Terms=['z','1','x','y','x^2','y^2','x*y','x^3','y^3','x^2*y','x*y^2','x^4','y^4','x^3*y','x^2*y^2','x*y^3']
+    RHS=[]
+    for i in range (0,len(xdata)+1):
+        RHS.append(Possible_Terms[i])
+
+    return Surface_Fit_Beta(xdata, ydata, zdata, RHS,r)
+
+    
 
 def Nonlinear_Regression(xdata,ydata,NonlinearFunction,r): #takes x,y lists and a nonlinear function string
   if('d' in NonlinearFunction):
@@ -325,12 +343,10 @@ def Curve_Family_Detective(xdata, ydata, r):
         RHS.append(rhs)
         Str_Sol.append(str_sol)
         reg_errors.append(sr)
-    print(reg_errors)
     for x in reg_errors:
         for x in reg_errors:
             if(x==''):
                 reg_errors.pop(reg_errors.index(x));
-    print(reg_errors)
 
     indm = reg_errors.index(min(reg_errors))
     indM=reg_errors.index(max(reg_errors))
