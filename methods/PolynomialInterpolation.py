@@ -13,6 +13,32 @@ La Grange
 def RoundExpression(expr, num_digits): #Rounds Expression Coefficients
     return expr.xreplace({n : round(n, num_digits) for n in expr.atoms(Number)})
 
+def superscript(n): #Changes the exponent to superscript character
+    SSTranslation = str.maketrans("23456789","²³⁴⁵⁶⁷⁸⁹")
+    n=n.translate(SSTranslation)
+    return n
+
+def PrettierExpression(exp):
+    '''
+    This Function takes a Symbolic Expression and returns it as 
+    a better looking string where exponents are shown as supersciprt
+
+    exp : Symbolic Expression
+
+    returns -> exp
+    exp : string of the Expression in a better version
+    '''
+    exp = str(exp)
+    n = len(exp)
+    for i in range(n):
+        if (i<n-1):
+            if exp[i] == '*':
+                if exp[i+1] == '*':
+                    exp = exp[:i]+ superscript(exp[i+2]) + exp[i+3:]
+                else:
+                    exp = exp[:i]+exp[i+1:]
+        n = len(exp)
+    return exp
 
 def NewtonGeneral(Xi, Yi, n, value):
     '''
@@ -161,10 +187,10 @@ def Newton(Xi,Yi,n,value,order): #for the interface team
     for i in range(n):
         DiffExp[i] = diff(Exp[i],x)
         DiffYint[i] = round(DiffExp[i].subs(x,value),6)
+        DiffExp[i] = PrettierExpression(DiffExp[i])
+        Exp[i] = PrettierExpression(Exp[i])
     
     return DT,Yint[order],Exp[order],DiffYint[order],DiffExp[order],RE[order]
-
-
 
 
 def LaGrange(Xi, Yi, n, value):
@@ -193,7 +219,7 @@ def LaGrange(Xi, Yi, n, value):
         sum = sum + product
         Exp = Exp + ExpProduct
 
-    Exp = RoundExpression(expand(Exp),6)
+    Exp = PrettierExpression(RoundExpression(expand(Exp),6))
     Yint = sum
     Yint = round(Yint,8)
     return Yint,Exp
