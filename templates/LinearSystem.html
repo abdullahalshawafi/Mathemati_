@@ -174,24 +174,24 @@
 					<span>Number of iterations =</span>
 				</div>
 				<div id="Stopping_Criteria__s___">
-					<span>Stopping Criteria εs% =</span>
+					<span>Stopping Criteria ε<sub>s</sub>% =</span>
 				</div>
 				<div class="Rectangle_190">
-					<div id="table">
-						<span class="inChars">Initial Vector = [ </span>
+                    <div id="table">
+                        <span class="inChars">Initial Vector = [ </span>
+                            
+                        <input type="text" name="X1" class="Rectangle_44" placeholder="x₁" value="{{request.form['X1']}}" />
 
-						<input type="text" name="X1" class="Rectangle_44" placeholder="x1" value="{{request.form['X1']}}" />
+                        <input type="text" name="X2" class="Rectangle_44" placeholder="x₂" value="{{request.form['X2']}}" />
 
-						<input type="text" name="X2" class="Rectangle_44" placeholder="x2" value="{{request.form['X2']}}" />
+                        <input type="text" name="X3" class="Rectangle_44" placeholder="x₃" value="{{request.form['X3']}}" />
 
-						<input type="text" name="X3" class="Rectangle_44" placeholder="x3" value="{{request.form['X3']}}" />
+                        <input type="text" name="X4" class="Rectangle_44" placeholder="x₄" value="{{request.form['X4']}}" />
 
-						<input type="text" name="X4" class="Rectangle_44" placeholder="x4" value="{{request.form['X4']}}" />
+                        <input type="text" name="X5" class="Rectangle_44" placeholder="x₅" value="{{request.form['X5']}}" />
+                        <span class="inChars"> ]</span>
 
-						<input type="text" name="X5" class="Rectangle_44" placeholder="x5" value="{{request.form['X5']}}" />
-						<span class="inChars"> ]</span>
-
-					</div>
+                    </div>
   				</div>
         {% if results %}
        {% if choice == 1 %}
@@ -230,7 +230,7 @@
 				</div>
         <div class="EquationsContainer">
 					<div id="x1_______x2_______x3_______x4_">
-						<span>x1&emsp;&nbsp;&nbsp;&nbsp;x2&emsp;&nbsp;&nbsp;&nbsp;x3&emsp;&nbsp;&nbsp;&nbsp;x4&emsp;&nbsp;&nbsp;&nbsp;x5&emsp;&nbsp;&nbsp;&nbsp;c</span>
+						<span>x<sub>1</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>2</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>3</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>4</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>5</sub>&emsp;&nbsp;&nbsp;&nbsp;c</span>
 					</div>
 					<div id="Line1">
 
@@ -521,22 +521,23 @@
 			<div id="Answer">
 
 				<div id="x1__">
-					<span>x1= </span>
+					<span>x<sub>1</sub> = </span>
 				</div>
 				<div id="x2__">
-					<span>x2= </span>
+					<span>x<sub>2</sub> = </span>
 				</div>
 				<div id="x5__">
-					<span>x5= </span>
+					<span>x<sub>5</sub> = </span>
 				</div>
-				<div id="_s___">
-					<span>ε</span><span style="font-size:16px;">s%</span><span>= </span>
-				</div>
+                <div id="_s___">
+                    <span>ε<sub>s</sub> =</span>
+                    <!--The percentage sign should be shown besides the output (it's bigger than expected when added here')-->
+                </div>
 				<div id="x3__">
-					<span>x3= </span>
+					<span>x<sub>3</sub> = </span>
 				</div>
 				<div id="x4__">
-					<span>x4= </span>
+					<span>x<sub>4</sub> = </span>
 				</div>
 				{% if anyErrorsInPosting==0 %}
 					{% if results and Eqs_No == 2 %}
