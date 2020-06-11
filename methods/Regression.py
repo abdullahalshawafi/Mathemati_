@@ -208,7 +208,7 @@ def Surface_Fit_Beta(xdata, ydata, zdata, Function,r):
     return LHS,RHS,StringSol,Sr #LHS and RHS are just what's actually needed
 
 def SurfaceInt(xdata,ydata,zdata,r):
-    Possible_Terms=['z','1','x','y','x^2','y^2','x*y','x^3','y^3','x^2*y','x*y^2','x^4','y^4','x^3*y','x^2*y^2','x*y^3']
+    Possible_Terms=['z','1','x','y','x^2','x*y','y^2','x^3','x^2*y','x*y^2','y^3','x^4','x^3*y','x^2*y^2','x*y^3','y^4']
     RHS=[]
     for i in range (0,len(xdata)+1):    
         RHS.append(Possible_Terms[i])
