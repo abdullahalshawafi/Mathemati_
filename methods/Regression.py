@@ -210,12 +210,12 @@ def Surface_Fit_Beta(xdata, ydata, zdata, Function,r):
 def SurfaceInt(xdata,ydata,zdata,r):
     Possible_Terms=['z','1','x','y','x^2','y^2','x*y','x^3','y^3','x^2*y','x*y^2','x^4','y^4','x^3*y','x^2*y^2','x*y^3']
     RHS=[]
-    for i in range (0,len(xdata)+1):
+    for i in range (0,len(xdata)+1):    
         RHS.append(Possible_Terms[i])
 
     return Surface_Fit_Beta(xdata, ydata, zdata, RHS,r)
 
-    
+#print(SurfaceInt([2,1,9],[5,8,0],[3,3,9],12))
 
 def Nonlinear_Regression(xdata,ydata,NonlinearFunction,r): #takes x,y lists and a nonlinear function string
   if('d' in NonlinearFunction):

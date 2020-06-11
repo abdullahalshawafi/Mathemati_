@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect, jsonify
 from methods.PolynomialInterpolation import Newton, LaGrange
 from methods.Bezier import bezier_curve_bin
 from methods.SplineInterpolation import linear_spline, quad_spline,cubic_spline, get_interval_list
-from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta, PointsFor3DSF, zEvalList
+from methods.Regression import Nonlinear_Regression, TrueError, Curve_Family_Detective, Linearized_Regression, Surface_Fit_Beta, PointsFor3DSF, zEvalList, SurfaceInt
 from methods.Differentiation import  TableDeriv, FuncDeriv
 from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoidal_Double_Integ, single_mixe_rule, double_mixed_rule, triple_mixed_rule, Trapezoidal_Triple_Integ
 from methods.Romberg import RombergRule
@@ -1615,6 +1615,64 @@ def EigenvalueProblem():
         return render_template('EigenvalueProblem.html', url="BYwlztZrgqM", title='Eigenvalue Problem', css="EigenvalueProblem.css",
                                wing="SE - Copy2.png", logo="Logo Greeny.svg")
 
+
+
+@app.route("/SurfaceInterpolation", methods=['GET', 'POST'])
+def SurfaceInterpolation():
+    if request.method == 'POST':
+        LHS = 0
+        i = 0
+        xdata = []
+        ydata = []
+        zdata = []
+        RHS = 0
+
+        while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!='' and request.form['z_coordinates' + str(i)]!=''):
+            try:
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+                zdata.append(float(request.form['z_coordinates' + str(i)]))
+            except:
+                pass
+            i += 1
+            
+        if xdata:
+            try:
+                LHS, RHS, Constants, Sr = SurfaceInt(xdata, ydata, zdata, 10)
+                print(LHS,RHS,Constants,Sr)
+            except:
+                return render_template('SurfaceInt.html', url="mRjVy0MSUI0",
+                                        title='Surface Interpolation', css="SurfaceInt.css", wing="CF Header.png",
+                                        logo="Logo.svg", error = 'Invalid Input', results='Invalid Input', Error='...')
+
+        if RHS:
+            GriX, GriY, GriZ = PointsFor3DSF(xdata,ydata,RHS)
+            GriZ = GriZ.transpose()
+            x1 = list(GriX)
+            y1 = list(GriY)
+            z1 = []
+
+            for i in range(np.shape(GriZ)[0]):
+                z1.append(list(GriZ[i]))
+                
+
+
+
+        if LHS and RHS and not Sr == '':
+            return render_template('SurfaceInt.html', url="mRjVy0MSUI0",
+                                        title='Surface Interpolation', css="SurfaceInt.css",wing="CF Header.png",
+                                    logo="Logo.svg", results=RHS, x1 = x1, y1 = y1, z1 = z1)
+        elif not xdata:
+            return render_template('SurfaceInt.html', url="mRjVy0MSUI0",
+                                        title='Surface Interpolation', css="SurfaceInt.css", wing="CF Header.png",
+                                    logo="Logo.svg", error = 'Missing Points', results='Missing Points')
+        else:
+            return render_template('SurfaceInt.html', url="mRjVy0MSUI0",
+                                        title='Surface Interpolation', css="SurfaceInt.css", wing="CF Header.png",
+                                    logo="Logo.svg", results='Singular Matrix/Out of Domain', error = 'Singular Matrix')
+    else:
+        return render_template('SurfaceInt.html', url="mRjVy0MSUI0",
+                                        title='Surface Interpolation', css="SurfaceInt.css", wing="CF Header.png", logo="Logo.svg")
 
 if __name__ == '__main__':
     app.run(debug=True)
