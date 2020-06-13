@@ -7,7 +7,7 @@ from methods.Differentiation import  TableDeriv, FuncDeriv
 from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoidal_Double_Integ, single_mixe_rule, double_mixed_rule, triple_mixed_rule, Trapezoidal_Triple_Integ
 from methods.Romberg import RombergRule
 from methods.Gauss_Quadrature import myfun, Exact
-from methods.ODE_Kutta import rungeKutta
+from methods.ODE_Kutta import rungeKutta,TrueDifferentials,TrueError
 from methods.ODE_Adams import ode_adams_backward_difference
 from methods.ODE_milne import milne
 from methods.RegularPDE import Open_Region, Closed_Region
@@ -410,7 +410,7 @@ def SurfaceFitting():
         else:
             return render_template('SurfaceFitting.html', url="mRjVy0MSUI0",
                                     title='Surface Fitting', css="SurfaceFitting.css", wing="CF Header.png",
-                                    logo="Logo.svg", results='Singular Matrix/Out of Domain', Error='...', error = 'Singular Matrix')
+                                    logo="Logo.svg", results='Singular Matrix/Out of Domain', Error='...', error = 'Singular Matrix/Out of Domain')
     else:
         return render_template('SurfaceFitting.html', url="mRjVy0MSUI0", title='Surface Fitting',
                                 css="SurfaceFitting.css", wing="CF Header.png", logo="Logo.svg")
@@ -734,9 +734,11 @@ def ODERK():
         except:
             error = 'Can not Solve at This Point'
 
+        TrueResult = TrueDifferentials(equation,x0,fx0,xn)
+        Truerror=TrueError(TrueResult,result[-1])
         return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
                                 css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
-                                results=result, length=len(result), error = error)
+                                results=result, length=len(result), Truerror=Truerror, error = error)
 
     else:
         return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
@@ -1195,8 +1197,8 @@ def background_process():
         return jsonify(U = U_Value)
     else :
         try:
-            h = float(request.form['h_step'])
-            k = float(request.form['k_step'])
+            h = float(eval(request.form['h_step']))
+            k = float(eval(request.form['k_step']))
         except:
             return jsonify(error = 'Enter h and k', U = '')
 
@@ -1278,8 +1280,8 @@ def background_process():
             except:
                 return jsonify(error = 'Could not Solve')
             try:
-                x_point = float(request.form['x_cordinates'])
-                y_point = float(request.form['y_cordinates'])
+                x_point = float(eval(request.form['x_cordinates']))
+                y_point = float(eval(request.form['y_cordinates']))
             except:
                 return jsonify(error = 'Enter x any y Values', U = '')
 

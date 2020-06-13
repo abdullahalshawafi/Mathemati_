@@ -43,28 +43,32 @@
 					</svg>
 				</div>
 			</div>
-			<div id="MidTab">
-				<svg class="Rectangle_8">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.49vw" ry="1.49vw" x="0" y="0" width="21.48vw" height="11.68vw">
-					</rect>
-				</svg>
-				<input type="text" value="{{request.form['xn']}}" class="Rectangle_32" disabled />
-				{% if results %}
-				<input type="text" value="{{results[-1]}}" class="Rectangle_33" disabled />
-				{% else %}
-				<input type="text" class="Rectangle_33" disabled />
-				{% endif %}
-				<input type="text" class="Rectangle_35" disabled />
-				<div id="x___">
-					<span>x<span style="font-size:0.8vw">n</span> = </span>
-				</div>
-				<div id="y___">
-					<span>f(x<span style="font-size:0.8vw">n</span>)= </span>
-				</div>
-				<div id="_s___">
-					<span>ε</span><span style="font-size:16px;">ₜ%</span><span> = </span>
-				</div>
-			</div>
+            <div id="MidTab">
+                <svg class="Rectangle_8">
+                    <rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.49vw" ry="1.49vw" x="0" y="0" width="21.48vw" height="11.68vw">
+                    </rect>
+                </svg>
+                <input type="text" value="{{request.form['xn']}}" class="Rectangle_32" disabled />
+                {% if results %}
+                <input type="text" value="{{results[-1]}}" class="Rectangle_33" disabled />
+                {% else %}
+                <input type="text" class="Rectangle_33" disabled />
+                {% endif %}
+                {% if not Truerror == '' %}
+                <input type="text" class="Rectangle_35" value="{{Truerror}}" disabled />
+                {% else %}
+                <input type="text" class="Rectangle_35" disabled />
+                {% endif %}
+                <div id="x___">
+                    <span>x<sub>n</sub> = </span>
+                </div>
+                <div id="y___">
+                    <span>f (x<sub>n</sub>) = </span>
+                </div>
+                <div id="_s___">
+                    <span>ε</span><span style="font-size:16px;">ₜ%</span><span> = </span>
+                </div>
+            </div>
 			<div id="LeftTap">
 				<svg class="Rectangle_3">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_3" rx="1.49vw" ry="1.49vw" x="0" y="0" width="22.98vw" height="35.28vw">
@@ -108,16 +112,16 @@
 						<span>Differential Equation: y`=</span>
 					</div>
 					<div id="Number_of_iterations__">
-						<span>for: x<span style="font-size:0.8vw">0</span> = </span>
+						<span>for: x<sub>0</sub> = </span>
 					</div>
 					<div id="Number_of_iterations__2">
-						<span>f ( x<span style="font-size:0.8vw">0</span> ) = </span>
+						<span>f ( x<sub>0</sub> ) = </span>
 					</div>
 					<div id="Stopping_Criteria__s___">
 						<span>Step (h) =</span>
 					</div>
 					<div id="Stopping_Criteria__s___2">
-						<span>at: x<span style="font-size:0.8vw">n</span> = </span>
+						<span>at: x<sub>n</sub> = </span>
 					</div>
 					<input type="text" value="{{request.form['h']}}" name="h" class="Path_6" />
 					<input type="text" value="{{request.form['fx0']}}" name="fx0" class="Rectangle_18" />
