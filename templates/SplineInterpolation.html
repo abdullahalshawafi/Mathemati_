@@ -2,9 +2,14 @@
 {% block content %}
 
 	<main>
+
+		<script>
+			{% if error %}
+			alert("{{error}}")
+			{% endif %}
+		</script>
 		<div id="Web_1920___1">
 			<div id="MidTab">
-
 				<svg class="Rectangle_8">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="21.5vw" height="21.65vw">
 					</rect>
@@ -64,7 +69,7 @@
 							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="save">
+						<button type="button" class="table-button" id="save" onclick="saveTextAsFile()">
 							<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
@@ -288,6 +293,7 @@
 				</div>
 			</div>
 		</div>
+
 	</main>
 
 	<script src="{{url_for('static', filename='js/SplineInterpolation.js')}}" charset="utf-8"></script>

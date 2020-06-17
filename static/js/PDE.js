@@ -27,22 +27,21 @@ function MethodSelection() {
     document.getElementById("UXY1").style.display="none";
     document.getElementById("UXY2").style.display="none";
 
-    document.getElementById("Dir0").style.display="none";
-    document.getElementById("Dir1").style.display="none";
-    document.getElementById("Dir2").style.display="none";
-    document.getElementById("Dir3").style.display="none";
-    document.getElementById("Dir4").style.display="none";
+    document.getElementById("func0").value=" ";
+    document.getElementById("func1").value=" ";
+    document.getElementById("func2").value=" ";
+    document.getElementById("func3").value=" ";
 
 
   } else {
     document.getElementById("UXY1").style.display="inline";
     document.getElementById("UXY2").style.display="inline";
 
-    document.getElementById("Dir0").style.display="block";
-    document.getElementById("Dir1").style.display="block";
-    document.getElementById("Dir2").style.display="block";
-    document.getElementById("Dir3").style.display="block";
-    document.getElementById("Dir4").style.display="block";
+
+    document.getElementById("func0").value="Up";
+    document.getElementById("func1").value="Left";
+    document.getElementById("func2").value="Right";
+    document.getElementById("func3").value="Down";
   }
 }
 

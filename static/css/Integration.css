@@ -659,7 +659,7 @@ textarea:focus, input:focus {
 	overflow: visible;
 	width: calc(192vw / 15.36);
 	white-space: nowrap;
-	line-height: calc(36vw / 15.36);
+	line-height: calc(25vw / 15.36);
 	margin-top: calc(-7vw / 15.36);
 	text-align: left;
 	font-family: Radley;

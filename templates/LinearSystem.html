@@ -3,26 +3,11 @@
 
 	<main>
 		<div id="Web_1920___1">
-			{% if anyErrorsInPosting==1 %}
+			{% if errorMSG %}
 				<script>
 					alert("{{errorMSG}}");
 				</script>
 			{% endif %}
-			<!-- not working as expected , to be checked later
-			{% if anyErrorsInPosting==10 %}
-			<script>
-				alert("some inputs are missing !!!");
-			</script>
-			{%elif anyErrorsInPosting==2 %}
-			<script>
-				alert("equations are parallel an can't be solved !!!");
-			</script>
-			{%elif anyErrorsInPosting==1%}
-			<script>
-				alert("equations can't form a diagonally dominant matrix and can't be solved using this method !!!");
-			</script>
-			{% endif %}
-			-->
 			<div id="RightTab">
 				<svg class="Rectangle_6">
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_6" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.16vw" height="4.557vw">
@@ -32,7 +17,7 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="26vw" height="22.2vw">
 					</rect>
 				</svg>
-				{% if anyErrorsInPosting==0 %}
+				{% if not errorMSG %}
 					{%if Eqs_No == 2  %}
 					<textarea class="Rectangle_9" disabled>> [ x1 x2 ], εs%
 						{% if results %}
@@ -78,7 +63,7 @@
 						{% endif %}
 					</textarea>
 					{% else %}
-					<textarea class="Rectangle_9" disabled>  </textarea>
+					<textarea class="Rectangle_9" disabled> Iterations... </textarea>
 					{% endif %}
 				{% else %}
 				<textarea class="Rectangle_9" disabled>  </textarea>
@@ -139,7 +124,7 @@
 					</path>
 				</svg>
 				<svg class="Rectangle_4">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="21vw">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="18vw">
 					</rect>
 				</svg>
 				<div id="System">
@@ -174,255 +159,144 @@
 					<span>Number of iterations =</span>
 				</div>
 				<div id="Stopping_Criteria__s___">
-					<span>Stopping Criteria εs% =</span>
+					<span>Stopping Criteria ε<sub>s</sub>% =</span>
 				</div>
+				<div class="Rectangle_190">
+<<<<<<< HEAD
+					<div id="table">
+						<form action="{{url_for('LinearSystem')}}" method="POST">
+						<span class="inChars">Initial Vector = [ </span>
+
+						<input type="text" name="v1" class="Rectangle_44" placeholder="v1" value="{{request.form['v1']}}" />
+
+						<input type="text" name="v2" class="Rectangle_44" placeholder="v2" value="{{request.form['v2']}}" />
+
+						<input type="text" name="v3" class="Rectangle_44" placeholder="v3" value="{{request.form['v3']}}" />
+
+						<input type="text" name="v4" class="Rectangle_44" placeholder="v4" value="{{request.form['v4']}}" />
+
+						<input type="text" name="v5" class="Rectangle_44" placeholder="v5" value="{{request.form['v5']}}" />
+						<span class="inChars"> ]</span>
+
+					</div>
+=======
+                    <div id="table">
+                        <span class="inChars">Initial Vector = [ </span>
+                            
+                        <input type="text" name="X1" class="Rectangle_44" placeholder="x₁" value="{{request.form['X1']}}" />
+
+                        <input type="text" name="X2" class="Rectangle_44" placeholder="x₂" value="{{request.form['X2']}}" />
+
+                        <input type="text" name="X3" class="Rectangle_44" placeholder="x₃" value="{{request.form['X3']}}" />
+
+                        <input type="text" name="X4" class="Rectangle_44" placeholder="x₄" value="{{request.form['X4']}}" />
+
+                        <input type="text" name="X5" class="Rectangle_44" placeholder="x₅" value="{{request.form['X5']}}" />
+                        <span class="inChars"> ]</span>
+
+                    </div>
+>>>>>>> 754a98b81866e07ecf52cd03ef74ba7d970d71c4
+  				</div>
         {% if results %}
        {% if choice == 1 %}
        <input type="text" class="Path_6" name ="Stopping Criteria"  />
-       <input type="text" class="Rectangle_18" name = "Number of iterations" value = {{iterations}} />
+       <input type="text" class="Rectangle_18" name = "Number of iterations" value="{{request.form['Number of iterations']}}" />
        {% else %}
-       <input type="text" class="Path_6" name ="Stopping Criteria" value= {{StoppingCriteria}}  />
+       <input type="text" class="Path_6" name ="Stopping Criteria"  value="{{request.form['Stopping Criteria']}}"  />
        <input type="text" class="Rectangle_18" name = "Number of iterations" />
        {% endif %}
        {% else %}
-       <input type="text" class="Path_6" name ="Stopping Criteria"  />
-       <input type="text" class="Rectangle_18" name = "Number of iterations" />
+       <input type="text" class="Path_6" name ="Stopping Criteria"  value="{{request.form['Stopping Criteria']}}"  />
+       <input type="text" class="Rectangle_18" name = "Number of iterations" value="{{request.form['Number of iterations']}}"  />
        {% endif %}
 				<div class="Rectangle_28">
 					<div class="button-div">
-						<button type="submit" class="table-button" id="calc">
-							<img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" title="Calculate">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
-							<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" onclick="DownloadGuide()">
-							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="save">
-							<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="load">
-							<img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="clear">
-							<img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
-						</button>
-					</div>
+							<button type="submit" class="table-button" id="calc">
+								<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}" title="Calculate">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
+								<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+								<button type="button" class="table-button" id="save">
+								<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="load">
+								<img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="clear">
+								<img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
+							</button>
+						</div>
 				</div>
         <div class="EquationsContainer">
 					<div id="x1_______x2_______x3_______x4_">
-						<span>x1&emsp;&nbsp;&nbsp;&nbsp;x2&emsp;&nbsp;&nbsp;&nbsp;x3&emsp;&nbsp;&nbsp;&nbsp;x4&emsp;&nbsp;&nbsp;&nbsp;x5&emsp;&nbsp;&nbsp;&nbsp;c</span>
+						<span>x<sub>1</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>2</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>3</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>4</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>5</sub>&emsp;&nbsp;&nbsp;&nbsp;c</span>
 					</div>
-					<div id="Line1">
 
+					<div id="Line1">
 						<div id="______________________________">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-            {% if results %}
-            {% if Eqs_No == 2 %}
-			<input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}} />
-			<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value ={{inputs[1]}}  />
-			<input type="text" class="Rectangle_37" name="x02" />
-			<input type="text" class="Rectangle_38" name="x03" />
-			<input type="text" class="Rectangle_39" name="x04" />
-			<input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value ={{inputs[2]}}  />
-            {% elif Eqs_No == 3 %}
-            <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}} />
-			<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value ={{inputs[1]}}  />
-            <input type="text" class="Rectangle_37" name="x02" value = {{inputs[2]}} />
-            <input type="text" class="Rectangle_38" name="x03"  />
-            <input type="text" class="Rectangle_39" name="x04"  />
-            <input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value ={{inputs[3]}}  />
-            {% elif Eqs_No == 4 %}
-            <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value = {{inputs[0]}} />
-            <input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value =  {{inputs[1]}}  />
-            <input type="text" class="Rectangle_37" name="x02" value = {{inputs[2]}} />
-            <input type="text" class="Rectangle_38" name="x03" value = {{inputs[3]}} />
-            <input type="text" class="Rectangle_39" name="x04" />
-            <input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value = {{inputs[4]}} />
-            {% elif Eqs_No == 5 %}
-            <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value ={{inputs[0]}}  />
-            <input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value = {{inputs[1]}} />
-            <input type="text" class="Rectangle_37" name="x02" value = {{inputs[2]}} />
-            <input type="text" class="Rectangle_38" name="x03" value = {{inputs[3]}} />
-            <input type="text" class="Rectangle_39" name="x04" value = {{inputs[4]}} />
-            <input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0" value = {{inputs[5]}} />
-            {% endif %}
-            {% else %}
-            <input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00"   />
-            <input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01"   />
-            <input type="text" class="Rectangle_37" name="x02" />
-            <input type="text" class="Rectangle_38" name="x03" />
-            <input type="text" class="Rectangle_39" name="x04" />
-            <input type="text" class="Rectangle_40" onfocusout="addtograph()"name="c0"  />
-            {% endif %}
+			<input type="text" class="Rectangle_19" onfocusout="addtograph()" name="x00" value="{{request.form['x00']}}" />
+			<input type="text" class="Rectangle_36" onfocusout="addtograph()" name="x01" value="{{request.form['x01']}}" />
+			<input type="text" class="Rectangle_37" name="x02" value="{{request.form['x02']}}"/>
+			<input type="text" class="Rectangle_38" name="x03" value="{{request.form['x03']}}"/>
+			<input type="text" class="Rectangle_39" name="x04" value="{{request.form['x04']}}"/>
+			<input type="text" class="Rectangle_40" onfocusout="addtograph()" name="c0" value="{{request.form['c0']}}"/>
 					</div>
+
 					<div id="Line1_bn">
-
-
-
 						<div id="_______________________________bp">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-            {% if results %}
-            {% if Eqs_No == 2 %}
-						<input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10"  value ={{inputs[3]}} />
-						<input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value ={{inputs[4]}} />
-						<input type="text" class="Rectangle_37_br" name="x12"/>
-						<input type="text" class="Rectangle_38_bs" name="x13" />
-						<input type="text" class="Rectangle_39_bt" name="x14"/>
-						<input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" value ={{inputs[5]}} />
-            {% elif Eqs_No == 3 %}
-            <input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" value ={{inputs[4]}} />
-            <input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value ={{inputs[5]}} />
-            <input type="text" class="Rectangle_37_br" name="x12" value ={{inputs[6]}} />
-            <input type="text" class="Rectangle_38_bs" name="x13" />
-            <input type="text" class="Rectangle_39_bt" name="x14"/>
-            <input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" value ={{inputs[7]}} />
-            {% elif Eqs_No == 4 %}
-            <input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" value ={{inputs[5]}} />
-            <input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value ={{inputs[6]}} />
-            <input type="text" class="Rectangle_37_br" name="x12" value ={{inputs[7]}} />
-            <input type="text" class="Rectangle_38_bs" name="x13" value ={{inputs[8]}} />
-            <input type="text" class="Rectangle_39_bt" name="x14"/>
-            <input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1"value ={{inputs[9]}} />
-            {% elif Eqs_No == 5 %}
-            <input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" value ={{inputs[6]}} />
-            <input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value ={{inputs[7]}} />
-            <input type="text" class="Rectangle_37_br" name="x12" value ={{inputs[8]}} />
-            <input type="text" class="Rectangle_38_bs" name="x13" value ={{inputs[9]}} />
-            <input type="text" class="Rectangle_39_bt" name="x14" value ={{inputs[10]}} />
-            <input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" value ={{inputs[11]}} />
-            {% endif %}
-            {% else %}
-            <input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" />
-            <input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" />
-            <input type="text" class="Rectangle_37_br" name="x12"/>
-            <input type="text" class="Rectangle_38_bs" name="x13" />
-            <input type="text" class="Rectangle_39_bt" name="x14"/>
-            <input type="text" class="Rectangle_40_bu" onfocusout="addtograph()"name="c1" />
-            {% endif %}
-
+						<input type="text" class="Rectangle_19_bo" onfocusout="addtograph()" name="x10" value="{{request.form['x10']}}" />
+						<input type="text" class="Rectangle_36_bq" onfocusout="addtograph()" name="x11" value="{{request.form['x11']}}" />
+						<input type="text" class="Rectangle_37_br" name="x12" value="{{request.form['x12']}}"/>
+						<input type="text" class="Rectangle_38_bs" name="x13" value="{{request.form['x13']}}" />
+						<input type="text" class="Rectangle_39_bt" name="x14" value="{{request.form['x14']}}"/>
+						<input type="text" class="Rectangle_40_bu" onfocusout="addtograph()" name="c1" value="{{request.form['c1']}}" />
 					</div>
-					<div id="Line1_bv">
 
+					<div id="Line1_bv">
 						<div id="_______________________________bx">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-            {% if results %}
-            {% if Eqs_No == 2 %}
-						<input type="text" class="Rectangle_19_bw"name="x20" />
-						<input type="text" class="Rectangle_36_by" name="x21"/>
-						<input type="text" class="Rectangle_37_bz"name="x22" />
-						<input type="text" class="Rectangle_38_b" name="x23"/>
-						<input type="text" class="Rectangle_39_b"name="x24" />
-						<input type="text" class="Rectangle_40_b"name="c2"  />
-            {% elif Eqs_No == 3 %}
-						<input type="text" class="Rectangle_19_bw"name="x20" value ={{inputs[8]}} />
-						<input type="text" class="Rectangle_36_by" name="x21"value ={{inputs[9]}} />
-						<input type="text" class="Rectangle_37_bz"name="x22" value ={{inputs[10]}} />
-						<input type="text" class="Rectangle_38_b" name="x23"/>
-						<input type="text" class="Rectangle_39_b"name="x24" />
-						<input type="text" class="Rectangle_40_b"name="c2"  value ={{inputs[11]}} />
-            {% elif Eqs_No == 4 %}
-						<input type="text" class="Rectangle_19_bw"name="x20" value ={{inputs[10]}} />
-						<input type="text" class="Rectangle_36_by" name="x21"value ={{inputs[11]}} />
-						<input type="text" class="Rectangle_37_bz"name="x22" value ={{inputs[12]}} />
-						<input type="text" class="Rectangle_38_b" name="x23"value ={{inputs[13]}} />
-						<input type="text" class="Rectangle_39_b"name="x24" />
-						<input type="text" class="Rectangle_40_b"name="c2"  value ={{inputs[14]}} />
-            {% elif Eqs_No == 5 %}
-						<input type="text" class="Rectangle_19_bw"name="x20" value ={{inputs[12]}} />
-						<input type="text" class="Rectangle_36_by" name="x21"value ={{inputs[13]}} />
-						<input type="text" class="Rectangle_37_bz"name="x22" value ={{inputs[14]}} />
-						<input type="text" class="Rectangle_38_b" name="x23"value ={{inputs[15]}} />
-						<input type="text" class="Rectangle_39_b"name="x24" value ={{inputs[16]}} />
-						<input type="text" class="Rectangle_40_b"name="c2"  value ={{inputs[17]}} />
-            {% endif %}
-            {% else %}
-						<input type="text" class="Rectangle_19_bw"name="x20" />
-						<input type="text" class="Rectangle_36_by" name="x21"/>
-						<input type="text" class="Rectangle_37_bz"name="x22" />
-						<input type="text" class="Rectangle_38_b" name="x23"/>
-						<input type="text" class="Rectangle_39_b"name="x24" />
-						<input type="text" class="Rectangle_40_b"name="c2"  />
-            {% endif %}
-
+						<input type="text" class="Rectangle_19_bw" name="x20" value="{{request.form['x20']}}"/>
+						<input type="text" class="Rectangle_36_by" name="x21" value="{{request.form['x21']}}"/>
+						<input type="text" class="Rectangle_37_bz" name="x22" value="{{request.form['x22']}}"/>
+						<input type="text" class="Rectangle_38_b"  name="x23" value="{{request.form['x23']}}"/>
+						<input type="text" class="Rectangle_39_b" name="x24"  value="{{request.form['x24']}}"/>
+						<input type="text" class="Rectangle_40_b" name="c2"   value="{{request.form['c2']}}"/>
 					</div>
+
 					<div id="Line1_b">
 						<div id="_______________________________b">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-            {% if results %}
-            {% if Eqs_No == 4 %}
-						<input type="text" class="Rectangle_19_b" name="x30"  value ={{inputs[15]}} />
-						<input type="text" class="Rectangle_36_b" name="x31"  value ={{inputs[16]}} />
-						<input type="text" class="Rectangle_37_b" name="x32"  value ={{inputs[17]}} />
-						<input type="text" class="Rectangle_38_ca" name="x33" value ={{inputs[18]}} />
-						<input type="text" class="Rectangle_39_ca" name="x34"/>
-						<input type="text" class="Rectangle_40_ca" name="c3"  value ={{inputs[19]}} />
-            {% elif Eqs_No == 5 %}
-						<input type="text" class="Rectangle_19_b" name="x30" value ={{inputs[18]}} />
-						<input type="text" class="Rectangle_36_b" name="x31" value ={{inputs[19]}} />
-						<input type="text" class="Rectangle_37_b" name="x32" value ={{inputs[20]}} />
-						<input type="text" class="Rectangle_38_ca" name="x33"value ={{inputs[21]}} />
-						<input type="text" class="Rectangle_39_ca" name="x34"value ={{inputs[22]}} />
-						<input type="text" class="Rectangle_40_ca" name="c3" value ={{inputs[23]}} />
-            {% else %}
-						<input type="text" class="Rectangle_19_b" name="x30"/>
-						<input type="text" class="Rectangle_36_b" name="x31" />
-						<input type="text" class="Rectangle_37_b" name="x32"/>
-						<input type="text" class="Rectangle_38_ca" name="x33"/>
-						<input type="text" class="Rectangle_39_ca" name="x34"/>
-						<input type="text" class="Rectangle_40_ca" name="c3"/>
-            {% endif %}
-            {% else %}
-            <input type="text" class="Rectangle_19_b" name="x30"/>
-            <input type="text" class="Rectangle_36_b" name="x31" />
-            <input type="text" class="Rectangle_37_b" name="x32"/>
-            <input type="text" class="Rectangle_38_ca" name="x33"/>
-            <input type="text" class="Rectangle_39_ca" name="x34"/>
-            <input type="text" class="Rectangle_40_ca" name="c3"/>
-            {% endif %}
-
-
+						<input type="text" class="Rectangle_19_b" name="x30"  value="{{request.form['x30']}}" />
+						<input type="text" class="Rectangle_36_b" name="x31"  value="{{request.form['x31']}}" />
+						<input type="text" class="Rectangle_37_b" name="x32"  value="{{request.form['x32']}}"/>
+						<input type="text" class="Rectangle_38_ca" name="x33" value="{{request.form['x33']}}" />
+						<input type="text" class="Rectangle_39_ca" name="x34" value="{{request.form['x34']}}"/>
+						<input type="text" class="Rectangle_40_ca" name="c3"  value="{{request.form['c3']}}" />
 					</div>
+
 					<div id="Line1_cb">
 						<div id="_______________________________cd">
 							<span>+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;+&emsp;&emsp;=</span>
 						</div>
-            {% if results %}
-            {% if Eqs_No == 5 %}
-						<input type="text" class="Rectangle_19_cc" name="x40" value ={{inputs[24]}} />
-						<input type="text" class="Rectangle_36_ce" name="x41" value ={{inputs[25]}} />
-						<input type="text" class="Rectangle_37_cf" name="x42" value ={{inputs[26]}} />
-						<input type="text" class="Rectangle_38_cg" name="x43" value ={{inputs[27]}} />
-						<input type="text" class="Rectangle_39_ch" name="x44" value ={{inputs[28]}} />
-						<input type="text" class="Rectangle_40_ci" name="c4"  value ={{inputs[29]}} />
-            {% else %}
-            <input type="text" class="Rectangle_19_cc" name="x40"/>
-            <input type="text" class="Rectangle_36_ce" name="x41"/>
-            <input type="text" class="Rectangle_37_cf" name="x42"/>
-            <input type="text" class="Rectangle_38_cg" name="x43"/>
-            <input type="text" class="Rectangle_39_ch" name="x44"/>
-            <input type="text" class="Rectangle_40_ci" name="c4"/>
-           {% endif %}
-           {% else %}
-           <input type="text" class="Rectangle_19_cc" name="x40"/>
-           <input type="text" class="Rectangle_36_ce" name="x41"/>
-           <input type="text" class="Rectangle_37_cf" name="x42"/>
-           <input type="text" class="Rectangle_38_cg" name="x43"/>
-           <input type="text" class="Rectangle_39_ch" name="x44"/>
-           <input type="text" class="Rectangle_40_ci" name="c4"/>
-          {% endif %}
-
+						<input type="text" class="Rectangle_19_cc" name="x40" value="{{request.form['x40']}}" />
+						<input type="text" class="Rectangle_36_ce" name="x41" value="{{request.form['x41']}}" />
+						<input type="text" class="Rectangle_37_cf" name="x42" value="{{request.form['x42']}}" />
+						<input type="text" class="Rectangle_38_cg" name="x43" value="{{request.form['x43']}}" />
+						<input type="text" class="Rectangle_39_ch" name="x44" value="{{request.form['x44']}}" />
+						<input type="text" class="Rectangle_40_ci" name="c4"  value="{{request.form['c4']}}" />
 					</div>
+
 				</div>
 				<div id="ID2_eqs_">
 					<input
@@ -431,45 +305,48 @@
 					 name="Dim"
 					 value=2
 					 onchange="DimInput()"
-          {% if results %}
+
           {% if Eqs_No == 2 %}
           checked
           {% endif %}
-          {% endif %}
+
 					 >
 					<label for="2eqs"><span>2eqs</span></label>
 				</div>
 				<div id="ID3_eqs_">
 					<input type="radio" id="3eqs" name="Dim" value=3 onchange="DimInput()"
-          {% if results %}
+
           {% if Eqs_No == 3 %}
           checked
           {% endif %}
-          {% endif %}
+
            ><label for="3eqs"><span>3eqs</span></label>
 				</div>
 				<div id="ID4_eqs_">
 					<input type="radio" id="4eqs" name="Dim" value=4 onchange="DimInput()"
-          {% if results %}
+
           {% if Eqs_No == 4 %}
           checked
           {% endif %}
-          {% endif %}
+
           ><label for="4eqs"><span>4eqs</span></label>
 				</div>
 				<div id="ID5_eqs_">
 					<input type="radio" id="5eqs" name="Dim" value=5 onchange="DimInput()"
-          {% if results %}
+
           {% if Eqs_No == 5 %}
           checked
           {% endif %}
-          {% endif %}
+
           ><label for="5eqs"><span>5eqs</span></label>
 				</div>
-				<input type="text" class="Rectangle_43" name="w"
+				<input type="text" class="Rectangle_43" name="w" placeholder="initial value is '1' for Gauss Seidel"
         {% if results%}
         value = {{w}}
+        {%else%}
+        value="1"
         {%endif%}
+
         />
      </form>
 			</div>
@@ -508,24 +385,25 @@
 			<div id="Answer">
 
 				<div id="x1__">
-					<span>x1= </span>
+					<span>x<sub>1</sub> = </span>
 				</div>
 				<div id="x2__">
-					<span>x2= </span>
+					<span>x<sub>2</sub> = </span>
 				</div>
 				<div id="x5__">
-					<span>x5= </span>
+					<span>x<sub>5</sub> = </span>
 				</div>
-				<div id="_s___">
-					<span>ε</span><span style="font-size:16px;">s%</span><span>= </span>
-				</div>
+                <div id="_s___">
+                    <span>ε<sub>s</sub> =</span>
+                    <!--The percentage sign should be shown besides the output (it's bigger than expected when added here')-->
+                </div>
 				<div id="x3__">
-					<span>x3= </span>
+					<span>x<sub>3</sub> = </span>
 				</div>
 				<div id="x4__">
-					<span>x4= </span>
+					<span>x<sub>4</sub> = </span>
 				</div>
-				{% if anyErrorsInPosting==0 %}
+				{% if not errorMSG %}
 					{% if results and Eqs_No == 2 %}
 					<input type="text" class="Rectangle_32" disabled value ="{{results[0][0]}}"  />
 					<input type="text" class="Rectangle_33" disabled value ="{{results[0][1]}}" />

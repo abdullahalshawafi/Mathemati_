@@ -45,10 +45,10 @@
 				</div>
 			</div>
 		</div>
-		<form action="{{url_for('SurfaceFitting')}}" method="post">
+		<form action="{{url_for('SurfaceInterpolation')}}" method="post">
 			<div id="LeffTapCon">
 				<svg class="Rectangle_18">
-					<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="25.53vw">
+					<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="31.53vw">
 					</rect>
 				</svg>
 				<div class="Rectangle_28">
@@ -61,7 +61,7 @@
 							<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" onclick="window.open('{{url_for("static", filename="Reports/Surface.pdf")}}')">
+						<button type="button" class="table-button" onclick="window.open('{{url_for("static", filename="Reports/SurfaceInt.pdf")}}')">
 							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
 						</button>
 						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
@@ -79,80 +79,10 @@
 					</div>
 				</div>
 
-				<div id="Linearized_">
-					<span>Surface Expression:</span>
-				</div>
-				<div class="Rectangle_19">
-					<div id="table">
-
-
-						{% if request.form['Abdullah_Knows_It_All'] %}
-						<input type="text" name="Abdullah_Knows_It_All" value="{{request.form['Abdullah_Knows_It_All']}}" class="Rectangle_44" /> <div class="inChar">=</div>
-						{% else %}
-						<input type="text" name="Abdullah_Knows_It_All" class="Rectangle_44" value="z" /> <div class="inChar">=</div>
-						{% endif %}
-
-						<input type="text" name="term0" value="{{request.form['term0']}}" class="Rectangle_44" /> <div class="inChars">C1 +</div>
-
-
-						<input type="text" name="term1" value="{{request.form['term1']}}" class="Rectangle_44" /> <div class="inChars">C2 +</div>
-
-
-						<input type="text" name="term2" value="{{request.form['term2']}}" class="Rectangle_44" /> <div class="inChars">C3 +</div>
-
-
-						<input type="text" name="term3" value="{{request.form['term3']}}" class="Rectangle_44" /> <div class="inChars">C4 +</div>
-
-
-						<input type="text" name="term4" value="{{request.form['term4']}}" class="Rectangle_44" /> <div class="inChars">C5 +</div>
-
-
-						<input type="text" name="term5" value="{{request.form['term5']}}" class="Rectangle_44" /> <div class="inChars">C6 +</div>
-
-
-						<input type="text" name="term6" value="{{request.form['term6']}}" class="Rectangle_44" /> <div class="inChars">C7 +</div>
-
-
-						<input type="text" name="term7" value="{{request.form['term7']}}" class="Rectangle_44" /> <div class="inChars">C8 +</div>
-
-
-						<input type="text" name="term8" value="{{request.form['term8']}}" class="Rectangle_44" /> <div class="inChars">C9 +</div>
-
-
-						<input type="text" name="term9" value="{{request.form['term9']}}" class="Rectangle_44" /> <div class="inChars">C10 +</div>
-
-
-						<input type="text" name="term10" value="{{request.form['term10']}}" class="Rectangle_44" /> <div class="inChars">C11 +</div>
-
-
-						<input type="text" name="term11" value="{{request.form['term11']}}" class="Rectangle_44" /> <div class="inChars">C12 +</div>
-
-
-						<input type="text" name="term12" value="{{request.form['term12']}}" class="Rectangle_44" /> <div class="inChars">C13 +</div>
-
-
-						<input type="text" name="term13" value="{{request.form['term13']}}" class="Rectangle_44" /> <div class="inChars">C14 +</div>
-
-
-						<input type="text" name="term14" value="{{request.form['term14']}}" class="Rectangle_44" /> <div class="inChars">C15 +</div>
-
-
-						<input type="text" name="term15" value="{{request.form['term15']}}" class="Rectangle_44" /> <div class="inChars">C16 +</div>
-
-
-						<input type="text" name="term16" value="{{request.form['term16']}}" class="Rectangle_44" /> <div class="inChars">C17 +</div>
-
-
-						<input type="text" name="term17" value="{{request.form['term17']}}" class="Rectangle_44" /> <div class="inChars">C18 +</div>
-
-
-						<input type="text" name="term18" value="{{request.form['term18']}}" class="Rectangle_44" /> <div class="inChars">C19</div>
-
-					</div>
-				</div>
+		
 
 				<div id="Table_">
-					<span>Table:</span>
+					<span>Data Set:</span>
 				</div>
 				<div class="Rectangle_55">
 					<table class="table">
@@ -264,7 +194,7 @@
 				</rect>
 			</svg>
 			<svg class="Rectangle_7">
-				<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="25.98vw" height="11.76vw">
+				<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="25.98vw" height="7.4vw">
 				</rect>
 			</svg>
 			<svg class="Path_3" viewBox="127.353 288 21.741 23.895">
@@ -288,23 +218,12 @@
 				<span>Z(x,y)= </span>
 			</div>
 
-
-
-			<div id="Sr___">
-				<span>Sᵣ = </span>
-			</div>
-
 			<div id="R___">
 				<span>Z (&emsp;&emsp;&emsp;&emsp;,</span>
 			</div>
 			<div id="____">
 				<span>) = </span>
 			</div>
-			{% if not Error == '' %}
-			<input type="text" class="Rectangle_34" value="{{Error}}" disabled style="text-align: left" />
-			{% else %}
-			<input type="text" class="Rectangle_34" disabled style="text-align: left" />
-			{% endif %}
 			<input type="text" class="Rectangle_41" />
 			<input type="text" class="Rectangle_43" onkeyup="substitute(this)" />
 			<input type="text" class="Rectangle_42" disabled />
@@ -818,6 +737,6 @@
 
 </main>
 
-<script src="{{url_for('static', filename='js/SurfaceFitting.js')}}" charset="utf-8"></script>
+<script src="{{url_for('static', filename='js/SurfaceInt.js')}}" charset="utf-8"></script>
 
 {% endblock content %}

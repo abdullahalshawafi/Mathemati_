@@ -15,12 +15,19 @@ var parameters = {
 functionPlot(parameters);
 
 function addtograph() {
-  if (document.getElementsByClassName("Rectangle_43")[0].value && document.getElementsByName("Dim")[0].checked) {
-    parameters.data[0].fn = document.getElementsByClassName("Rectangle_43")[0].value;
-  }
+    if (document.getElementsByClassName("Rectangle_43")[0].value && document.getElementsByName("Dim")[0].checked) {
+        var fn = document.getElementsByClassName("Rectangle_43")[0].value;
+        for (let i = 0; i < 9; i++)
+            fn = fn.replace('**', '^');
+        parameters.data[0].fn = fn;
+    }
   if (document.getElementsByClassName("Rectangle_59")[0].value && document.getElementsByClassName("Rectangle_60")[0].value && document.getElementsByName("Dim")[0].checked) {
-    parameters.data[0].range = [parseInt(document.getElementsByClassName("Rectangle_60")[0].value), parseInt(document.getElementsByClassName("Rectangle_59")[0].value)];
-    parameters.data[0].closed = true;
+      var Xi = document.getElementsByClassName("Rectangle_60")[0].value;
+      var Xf = document.getElementsByClassName("Rectangle_59")[0].value;
+      Xi = Xi.replace(/inf/g, '99999999999');
+      Xf = Xf.replace(/inf/g, '99999999999');
+      parameters.data[0].range = [parseInt(Xi), parseInt(Xf)];
+      parameters.data[0].closed = true;
   }
   functionPlot(parameters);
 }
