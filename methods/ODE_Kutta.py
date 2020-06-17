@@ -1,7 +1,7 @@
 # Python program to implement Runge Kutta method
 # function to get the value of f(x,y)
 import sympy
-import time
+
 def functionOf(x, y, equ):
     X = sympy.symbols('x')
     Y = sympy.symbols('y')
@@ -44,29 +44,4 @@ def Demo():
     print('The value of y at x is:', rungeKutta(x0, y0, x, h, equation)[-1])
 
 
-#Added by the interface team
-def TrueDifferentials(DifferentialEquation,x0,y0,xn):
-    return "..."
-    DifferentialEquation=DifferentialEquation.replace('y','(f(x))')
-    x,O=sympy.symbols('x O')
-    f=sympy.Function("f")
-    D=sympy.sympify(DifferentialEquation)-sympy.Derivative(f(x),x)
-    print(    sympy.classify_ode(D,ics={f(x0): y0}))
-    Sol=sympy.dsolve(D,f(x),ics={f(x0): y0})
-    Sol=str(Sol)
-    Sol=Sol[9:-1]
-    if('O' in Sol):
-        return "..."
-    Sol=sympy.sympify(Sol)
-    Sol=sympy.lambdify([x],Sol)
-    Answer=Sol(xn)
-    return Answer
-
-def TrueError(Exact,Approx):
-    if(Exact=='...'):
-        return 'WIP'
-    Error =abs(((Exact-Approx)/Exact)*100)
-    return str(round(Error,4))+'%'
-
-
-
+#Demo()

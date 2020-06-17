@@ -10,8 +10,7 @@ def find_order_in_matrix(eq):
                 return -1  # we will check for -1 when using the function to handle those equations separately
             else:
                 return i + 1
-    return -2
-    #raise Exception("INVALID INPUT : can't be solved using this numerical method")
+    raise Exception("INVALID INPUT : can't be solved using this numerical method")
     # if the equation can't be used in generating the diagonally dominant matrix , an error is raised !
 # this functions returns the diagonally dominant matrix,checks if an error has occurred
 def get_diagonally_dominant_matrix(num_EQs,list_of_inputs):
@@ -79,7 +78,6 @@ def get_tuple_of_LHS_and_RHS(n,diagonally_dominant_matrix): # tuple[0]->a | tupl
     return a,b
 # this function checks if the equations are parallel
 def are_equations_parallel(n,a,b): # n->num_EQs |a-> # coffs. of the LHS | b-> # coffs. of the RHS
-    parallel = True
     if n:  # if there are equations
         for i in range(0, n - 1):
             for j in range(i + 1, n):
@@ -112,7 +110,7 @@ def SOR(a, x, b,w):
     # returningm , our updated solution
     return x
 # this function solves the linear system and returns a tuple where tuple[0]->list with the answers | tuple[1]-> error_occurred
-def solve_linear_systems(n,list_of_inputs,w,choice,num_iterations,error,initialVec,accuracy):
+def solve_linear_systems(n,list_of_inputs,w,choice,num_iterations,error):
     # choice #1 -> oterations | choice #2 -> error
     # if the equations can't generate a diagonally dominant matrix then, error_occurred is 1, if parallel then,2
     empty_list=[]
@@ -132,13 +130,11 @@ def solve_linear_systems(n,list_of_inputs,w,choice,num_iterations,error,initialV
         error_occurred = 2
         return empty_list, error_occurred
 #######################################
-    roundTo = int (accuracy)*1
-    x=[] # initial guess
-    x_old = []
-    for item in initialVec:
-        x_old.append(float(item))
-        x.append(float(item))
-
+    roundTo = 6
+    x = [1]  # intial guess
+    x = n * x  # intial guess
+    x_old = [1]
+    x_old = n * x_old
     max_error_each_iteration = []
     all_errors_in_one_iteration = []
     list_of_iterations = []

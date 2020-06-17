@@ -1,3 +1,8 @@
+
+
+
+
+
 function DimInput() {
   var Dim2 = document.getElementsByName("Dim")[0].checked;
   var Pair1 = document.getElementsByName("Method")[0].checked || document.getElementsByName("Method")[1].checked;
@@ -89,8 +94,4 @@ function DimInput() {
     }
   }
 
-}
-
-window.onload = function () {
-    DimInput();
 }

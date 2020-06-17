@@ -6,7 +6,8 @@ var parameters = {
             graphType: 'polyline'
         },
         {
-            points: [],
+            points: [
+            ],
             fnType: 'points',
             graphType: 'scatter',
             color: "#000000"
@@ -19,11 +20,6 @@ var parameters = {
     height: window.innerWidth / 100 * 18.45,
     width: window.innerWidth / 100 * 19.13
 };
-
-document.getElementById('clear').addEventListener('click', function () {
-    parameters.data[1].points = [];
-    functionPlot(parameters);
-});
 
 function Scatter(el) {
     var elx = el.parentElement.parentElement.childNodes[1].childNodes[0];
