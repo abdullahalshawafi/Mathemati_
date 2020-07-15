@@ -267,7 +267,6 @@ def Nonlinear_Plot(xdata,ydata,NonlinearFunction):
     Function=sympy.sympify(NonlinearFunction);
     F=sympy.lambdify([x], Function);
     plt.figure(figsize=(6, 4));
-
     plt.scatter(xdata, ydata, label='Data');
     xdata=np.linspace(min(xdata),max(xdata),10000);
     plt.plot(xdata, F(xdata), label='Best Fit');

@@ -50,8 +50,8 @@ a {
 	overflow: visible;
 	position: absolute;
 	width: calc(298.697vw / 15.36);
-	height: calc(203.949vw / 15.36);
-	left: calc(126.621vw / 15.36);
+	height: calc(188.949vw / 15.36);
+	left: calc(55.621vw / 15.36);
 	top: 0vw;
 	transform: matrix(1,0,0,1,0,0);
 }
@@ -61,7 +61,7 @@ a {
 	position: absolute;
 	width: calc(72.815vw / 15.36);
 	height: calc(15.962vw / 15.36);
-	left: calc(346.784vw / 15.36);
+	left: calc(250.784vw / 15.36);
 	top: calc(186.846vw / 15.36);
 	transform: matrix(1,0,0,1,0,0);
 }

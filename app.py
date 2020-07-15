@@ -7,7 +7,7 @@ from methods.Differentiation import  TableDeriv, FuncDeriv
 from methods.NewtonCotes import Trapezoidal_Integ, Trapezoidal_error, Trapezoidal_Double_Integ, single_mixe_rule, double_mixed_rule, triple_mixed_rule, Trapezoidal_Triple_Integ
 from methods.Romberg import RombergRule
 from methods.Gauss_Quadrature import myfun, Exact
-from methods.ODE_Kutta import rungeKutta,TrueDifferentials,TrueError
+from methods.ODE_Kutta import rungeKutta,TrueDifferentials,TrueErrorr
 from methods.ODE_Adams import ode_adams_backward_difference
 from methods.ODE_milne import milne
 from methods.RegularPDE import Open_Region, Closed_Region
@@ -735,7 +735,7 @@ def ODERK():
             error = 'Can not Solve at This Point'
 
         TrueResult = TrueDifferentials(equation,x0,fx0,xn)
-        Truerror=TrueError(TrueResult,result[-1])
+        Truerror=TrueErrorr(TrueResult,result[-1])
         return render_template('ODERK.html', url="gC-XbgLj63I", title='ODE Runge-Kutta',
                                 css="ODERK.css", wing="DE - Copy.png", logo="Logo.svg",
                                 results=result, length=len(result), Truerror=Truerror, error = error)

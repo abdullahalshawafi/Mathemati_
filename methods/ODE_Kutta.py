@@ -62,7 +62,7 @@ def TrueDifferentials(DifferentialEquation,x0,y0,xn):
     Answer=Sol(xn)
     return Answer
 
-def TrueError(Exact,Approx):
+def TrueErrorr(Exact,Approx):
     if(Exact=='...'):
         return 'WIP'
     Error =abs(((Exact-Approx)/Exact)*100)
