@@ -41,31 +41,31 @@
 				<form action="{{url_for('Integration')}}" method="POST">
 					<div class="Rectangle_28">
 
-                        <div class="button-div">
-                            <button type="submit" class="table-button" id="calc">
-                                <img src="{{url_for('static', filename='Assets/Int Button.svg')}}">
-                            </button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <a class="table-button" href="#">
-                                <img src="{{url_for('static', filename='Assets/Vid.svg')}}">
-                            </a>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <button type="button" class="table-button" onclick="window.open('{{url_for("static", filename="Reports/Romberg.pdf")}}')">
-                                <img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
-                            </button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <button type="button" class="table-button" id="save">
-                                <img src="{{url_for('static', filename='Assets/Save.svg')}}">
-                            </button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <button type="button" class="table-button" id="load">
-                                <img src="{{url_for('static', filename='Assets/Load.svg')}}">
-                            </button>
-                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-                            <button type="button" class="table-button" id="clear">
-                                <img src="{{url_for('static', filename='Assets/Clear.svg')}}">
-                            </button>
-                        </div>
+						<div class="button-div">
+							<button type="submit" class="table-button" id="calc">
+								<img src="{{url_for('static', filename='Assets/Int Button.svg')}}">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<a class="table-button" href="#">
+								<img src="{{url_for('static', filename='Assets/Vid.svg')}}">
+							</a>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" onclick="DownloadGuide()">
+								<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="save">
+								<img src="{{url_for('static', filename='Assets/Save.svg')}}">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="load">
+								<img src="{{url_for('static', filename='Assets/Load.svg')}}">
+							</button>
+							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+							<button type="button" class="table-button" id="clear">
+								<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
+							</button>
+						</div>
 					</div>
 
 					<div id="__Linear_Integration">
@@ -81,45 +81,45 @@
 					<div id="f_x__y__z___">
 						<span>f(x, y, z) =</span>
 					</div>
-                    <div id="Xi__">
-                        <span>x<sub>i</sub> =</span>
-                    </div>
+					<div id="Xi__">
+						<span>Xi =</span>
+					</div>
 					<input type="text" class="Rectangle_59" name="x2" value="{{x2}}" onfocusout="addtograph()" />
 					<input type="text" class="Rectangle_60" name="x1" value="{{x1}}"onfocusout="addtograph()" />
 					<input type="text" class="Rectangle_61" name="n1" value="{{n1}}"/>
-                    <div id="Xf__">
-                        <span>x<sub>f</sub> =</span>
-                    </div>
+					<div id="Xf__">
+						<span>Xf =</span>
+					</div>
 					<div id="N_in_the_X_direction__">
 						<span>N in the X-direction =</span>
 					</div>
-                    <div id="Yi__">
-                        <span>y<sub>i</sub> =</span>
-                    </div>
+					<div id="Yi__">
+						<span>Yi =</span>
+					</div>
 					<input type="text" class="Rectangle_62" name="y2" value="{{y2}}"/>
 					<input type="text" class="Rectangle_63" name="y1" value="{{y1}}"/>
 					<input type="text" class="Rectangle_64" name="n2" value="{{n2}}"/>
 
 
 					<div id="Yf__">
-						<span>y<sub>f</sub> =</span>
+						<span>Yf =</span>
 					</div>
 
 					<div id="N_in_the_Y_direction__">
 						<span>N in the Y-direction =</span>
 					</div>
 
-                    <div id="Zi__">
-                        <span>z<sub>i</sub> =</span>
-                    </div>
+					<div id="Zi__">
+						<span>Zi =</span>
+					</div>
 
 					<input type="text" class="Rectangle_65" name="z2" value="{{z2}}" />
 					<input type="text" class="Rectangle_66" name="z1" value="{{z1}}"/>
 					<input type="text" class="Rectangle_67" name="n3" value="{{n3}}"/>
 
-                    <div id="Zf__">
-                        <span>z<sub>f</sub> =</span>
-                    </div>
+					<div id="Zf__">
+						<span>Zf =</span>
+					</div>
 
 					<div id="N_in_the_Z_direction__">
 						<span>N in the Z-direction =</span>
@@ -127,10 +127,9 @@
 
 					<input type="text" class="Rectangle_77" name="OrderOfError" value="{{OrderOfError}}" />
 
-                    <div id="O_h___h_to_the_power____">
-                        <span>n for O(h<sup>n</sup>) </span><span style="font-size:1.11vw;color:rgba(151,151,151,1);">(Romberg)</span><span> = </span>
-                        <!--<span>O[h] (</span><span style="font-size:1.17vw;color:rgba(151,151,151,1);">Romberg - h^?:</span><span>) =</span>-->
-                    </div>
+					<div id="O_h___h_to_the_power____">
+						<span>O[h] (</span><span style="font-size:1.17vw;color:rgba(151,151,151,1);">Romberg - h^?:</span><span>) =</span>
+					</div>
 				</form>
 			</div>
 			<div id="ExactTab">
@@ -138,9 +137,9 @@
 					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="21.5vw" height="4.5vw">
 					</rect>
 				</svg>
-                <div id="I___Ex">
-                    <span>I<sub>exact</sub> = </span>
-                </div>
+				<div id="I___Ex">
+					<span>I<span style="font-size:1vw"> Exact</span> = </span>
+				</div>
 				<input type="text" class="Rectangle_8-51" value="{{exact}}" disabled />
 
 			</div>
@@ -184,7 +183,7 @@
 			</div>
 			<div id="RI">
 				<div id="I___">
-					<span>I<sub>trap</sub> = </span>
+					<span>I<span style="font-size:1.1vw"> trap</span> = </span>
 				</div>
 				<div id="I___E">
 					<span>Error =</span>
@@ -194,9 +193,9 @@
 				<input type="text" class="Rectangle_32E" value="{{TrapError}}"  disabled />
 				<input type="text" class="Rectangle_46E" value="{{ErrorMin}}"   disabled />
 
-                <div id="Error__">
-                    <span>I<sub>min</sub> = </span>
-                </div>
+				<div id="Error__">
+					<span>I<span style="font-size:1.1vw"> minEr</span> = </span>
+				</div>
 				<div id="Error__E">
 					<span>Error =</span>
 				</div>
@@ -259,7 +258,7 @@
 				<input type="text" class="Rectangle_32_cb" disabled />
 				{% endif %}
 				<div id="I____cc">
-					<span>I<sub>R</sub> = </span>
+					<span>I = </span>
 				</div>
 				<div id="Romberg_">
 					<span>Romberg:</span>
@@ -291,7 +290,7 @@
 				<input type="text" class="Rectangle_36_cm" value="{{error}}"  disabled />
 
 				<div id="I____cn">
-					<span>I<sub>G</sub> = </span>
+					<span>I = </span>
 					<div id="Error__EG">
 						<span>Error =</span>
 					</div>

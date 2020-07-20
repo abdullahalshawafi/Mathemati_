@@ -139,7 +139,7 @@
 					</path>
 				</svg>
 				<svg class="Rectangle_4">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="18vw">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="21vw">
 					</rect>
 				</svg>
 				<div id="System">
@@ -174,8 +174,9 @@
 					<span>Number of iterations =</span>
 				</div>
 				<div id="Stopping_Criteria__s___">
-					<span>Stopping Criteria ε<sub>s</sub>% =</span>
+					<span>Stopping Criteria εs% =</span>
 				</div>
+<<<<<<< HEAD
 				<div class="Rectangle_190">
                     <div id="table">
                         <span class="inChars">Initial Vector = [ </span>
@@ -193,6 +194,8 @@
 
                     </div>
   				</div>
+=======
+>>>>>>> parent of 2872d0a... linear Systems Revised !
         {% if results %}
        {% if choice == 1 %}
        <input type="text" class="Path_6" name ="Stopping Criteria"  />
@@ -207,30 +210,34 @@
        {% endif %}
 				<div class="Rectangle_28">
 					<div class="button-div">
-							<button type="submit" class="table-button" id="calc">
-								<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}" title="Calculate">
-							</button>
-							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
-								<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
-							</button>
-							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-								<button type="button" class="table-button" id="save">
-								<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
-							</button>
-							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<button type="button" class="table-button" id="load">
-								<img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
-							</button>
-							<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-							<button type="button" class="table-button" id="clear">
-								<img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
-							</button>
-						</div>
+						<button type="submit" class="table-button" id="calc">
+							<img src="{{url_for('static', filename='Assets/BracketsButton.svg')}}" title="Calculate">
+						</button>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button type="button" id="videoButton" class="table-button" onclick="showVideo('{{url}}')">
+							<img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
+						</button>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button type="button" class="table-button" onclick="DownloadGuide()">
+							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
+						</button>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button type="button" class="table-button" id="save">
+							<img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
+						</button>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button type="button" class="table-button" id="load">
+							<img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
+						</button>
+						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+						<button type="button" class="table-button" id="clear">
+							<img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
+						</button>
+					</div>
 				</div>
         <div class="EquationsContainer">
 					<div id="x1_______x2_______x3_______x4_">
-						<span>x<sub>1</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>2</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>3</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>4</sub>&emsp;&nbsp;&nbsp;&nbsp;x<sub>5</sub>&emsp;&nbsp;&nbsp;&nbsp;c</span>
+						<span>x1&emsp;&nbsp;&nbsp;&nbsp;x2&emsp;&nbsp;&nbsp;&nbsp;x3&emsp;&nbsp;&nbsp;&nbsp;x4&emsp;&nbsp;&nbsp;&nbsp;x5&emsp;&nbsp;&nbsp;&nbsp;c</span>
 					</div>
 					<div id="Line1">
 
@@ -482,10 +489,7 @@
 				<input type="text" class="Rectangle_43" name="w"
         {% if results%}
         value = {{w}}
-        {%else%}
-        value="1"
         {%endif%}
-
         />
      </form>
 			</div>
@@ -524,23 +528,22 @@
 			<div id="Answer">
 
 				<div id="x1__">
-					<span>x<sub>1</sub> = </span>
+					<span>x1= </span>
 				</div>
 				<div id="x2__">
-					<span>x<sub>2</sub> = </span>
+					<span>x2= </span>
 				</div>
 				<div id="x5__">
-					<span>x<sub>5</sub> = </span>
+					<span>x5= </span>
 				</div>
-                <div id="_s___">
-                    <span>ε<sub>s</sub> =</span>
-                    <!--The percentage sign should be shown besides the output (it's bigger than expected when added here')-->
-                </div>
+				<div id="_s___">
+					<span>ε</span><span style="font-size:16px;">s%</span><span>= </span>
+				</div>
 				<div id="x3__">
-					<span>x<sub>3</sub> = </span>
+					<span>x3= </span>
 				</div>
 				<div id="x4__">
-					<span>x<sub>4</sub> = </span>
+					<span>x4= </span>
 				</div>
 				{% if anyErrorsInPosting==0 %}
 					{% if results and Eqs_No == 2 %}

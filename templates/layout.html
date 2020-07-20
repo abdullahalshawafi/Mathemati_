@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css" />
     <link rel="icon" href="{{url_for('static', filename='images/Icon.png')}}" />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/animate.css')}}">
+    <link rel="stylesheet" href="/static/css/animate.css">
 
     <link
       href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap"
@@ -15,12 +15,12 @@
       href="https://fonts.googleapis.com/css2?family=Radley:ital@1&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + css) }}">
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{url_for('static', filename='js/Script1.js')}}"></script>
     <script src="{{url_for('static', filename='js/Script2.js')}}"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/' + css) }}">
     <title>{{title}}</title>
   </head>
   <body>
@@ -52,7 +52,6 @@
             <div class="dropdown_content">
               <a href="{{url_for('PolynomialInterpolation')}}">Polynomial Int.</a>
               <a href="{{url_for('SplineInterpolation')}}">Spline Int.</a>
-              <a href="{{url_for('SurfaceInterpolation')}}">Surface Int.</a>
               <a href="{{url_for('BilinearInterpolation')}}">Bilinear Int.</a>
               <a href="{{url_for('LeastSquareReg')}}">Least Square Reg.</a>
               <a href="{{url_for('SurfaceFitting')}}">Surface Fitting</a>
@@ -79,18 +78,6 @@
     </header>
 
   		<div class="video"></div>
-       <tr>
-        <td colspan="3" style="display: none;"></td>
-            <textarea style="display: none;" style="position: absolute; top: 50vw; left: 50vw" id="inputTextToSave" cols="80" rows="25"> </textarea>
-
-        </td>
-    </tr>
-
-    <tr>
-        <td style="display: none;"><input id="inputFileNameToSaveAs" style="display: none;"></input></td>
-        <td><button style="display: none;" onclick="saveTextAsFile()" >Save Text to File</button></td>
-    </tr>
-
 
       {% block content %}{% endblock content %}
 

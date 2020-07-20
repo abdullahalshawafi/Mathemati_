@@ -1375,20 +1375,20 @@ textarea:focus, input:focus {
 }
 
 #x___ {
-    position: absolute;
-    left: 1.9vw;
-    top: 1vw;
-    overflow: visible;
-    width: 2.669270833vw;
-    white-space: nowrap;
-    line-height: 2.34375vw;
-    margin-top: -0.2278645vw;
-    text-align: left;
-    font-family: Radley;
-    font-style: italic;
-    font-weight: normal;
-    font-size: 1.54395833vw;
-    color: rgba(255,255,255,1);
+	position: absolute;
+	left: 0.8vw;
+	top: 1vw;
+	overflow: visible;
+	width: 2.669270833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278645vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888vw;
+	color: rgba(255,255,255,1);
 }
 
 .Rectangle_33 {
@@ -1396,25 +1396,25 @@ textarea:focus, input:focus {
 	overflow: visible;
 	width: 14.44270833vw;
 	height: 1.7578vw;
-	left: 5.5343vw;
+	left: 5.2343vw;
 	top: 4.7109375vw;
 }
 
 #y___ {
-    position: absolute;
-    top: 4.38541667vw;
-    overflow: visible;
-    width: 2.47395833vw;
-    white-space: nowrap;
-    line-height: 2.34375vw;
-    margin-top: -0.2278645vw;
-    text-align: left;
-    font-family: Radley;
-    font-style: italic;
-    font-weight: normal;
-    font-size: 1.54395833vw;
-    color: rgba(255,255,255,1);
-    left: 0.8vw;
+	position: absolute;
+	top: 4.38541667vw;
+	overflow: visible;
+	width: 2.47395833vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.2278645vw;
+	text-align: left;
+	font-family: Radley;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 1.888vw;
+	color: rgba(255,255,255,1);
+	left: 0.8vw;
 }
 
 .Rectangle_35 {
@@ -1422,7 +1422,7 @@ textarea:focus, input:focus {
 	overflow: visible;
 	width: 14.44270833vw;
 	height: 1.7578vw;
-	left: 5.5343vw;
+	left: 5.2343vw;
 	top: 8.3109375vw;
 }
 
@@ -1440,5 +1440,5 @@ textarea:focus, input:focus {
 	font-weight: normal;
 	font-size: 1.888vw;
 	color: rgba(255,255,255,1);
-	left: 1.9vw;
+	left: 0.8vw;
 }
