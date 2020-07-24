@@ -34,13 +34,15 @@
 					</div>
 					<div id="out">
 
-						<span>at: X = <input name="x_cordinates" type="text" class="Rectangle_x" value="{{request.form['x_cordinates']}}" /> &nbsp; Y = <input type="text" name="y_cordinates" value="{{request.form['y_cordinates']}}" id="Y" class="Rectangle_x" /></span>
+						<span>x<sub>n</sub> = <input name="x_cordinates" type="text" class="Rectangle_x" value="{{request.form['x_cordinates']}}" /> &nbsp; y<sub>n</sub> = <input type="text" name="y_cordinates" value="{{request.form['y_cordinates']}}" id="Y" class="Rectangle_x" /></span>
 						<br />
-						<span>U = <label id="res">
-							{% if U != 'erorr' %}
-							{%print(U)%}
-							{% endif %}
-						</label></span>
+                        <span>
+                            U = <label id="res">
+                                {% if U != 'erorr' %}
+                                {%print(U)%}
+                                {% endif %}
+                            </label>
+                        </span>
 
 					</div>
 				</div>
@@ -99,31 +101,31 @@
 
 				<div class="Rectangle_28">
 
-					<div class="button-div">
-						<button class="table-button" type="submit" id="calc">
-							<img src="{{url_for('static', filename='Assets/Calc Button.svg')}}">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<a class="table-button" href="#">
-							<img src="{{url_for('static', filename='Assets/Vid.svg')}}">
-						</a>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" onclick="DownloadGuide()">
-							<img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="save">
-							<img src="{{url_for('static', filename='Assets/Save.svg')}}">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="load">
-							<img src="{{url_for('static', filename='Assets/Load.svg')}}">
-						</button>
-						<img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
-						<button type="button" class="table-button" id="clear">
-							<img src="{{url_for('static', filename='Assets/Clear.svg')}}">
-						</button>
-					</div>
+                    <div class="button-div">
+                        <button class="table-button" type="submit" id="calc">
+                            <img src="{{url_for('static', filename='Assets/Calc Button.svg')}}">
+                        </button>
+                        <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                        <a class="table-button" href="#">
+                            <img src="{{url_for('static', filename='Assets/Vid.svg')}}">
+                        </a>
+                        <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                        <button type="button" class="table-button" onclick="window.open('{{url_for("static", filename="Plots/Boundeies.png")}}')">
+                            <img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
+                        </button>
+                        <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                        <button type="button" class="table-button" id="save">
+                            <img src="{{url_for('static', filename='Assets/Save.svg')}}">
+                        </button>
+                        <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                        <button type="button" class="table-button" id="load">
+                            <img src="{{url_for('static', filename='Assets/Load.svg')}}">
+                        </button>
+                        <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                        <button type="button" class="table-button" id="clear">
+                            <img src="{{url_for('static', filename='Assets/Clear.svg')}}">
+                        </button>
+                    </div>
 				</div>
 
 
@@ -155,19 +157,19 @@
 
 
 
-						<input type="text" name="dxx" value="{{request.form['dxx']}}" class="Rectangle_44" /> <span class="inChars">Uxx +</span>
+						<input type="text" name="dxx" value="{{request.form['dxx']}}" class="Rectangle_44" /> <span class="inChars">U<sub>xx</sub> +</span>
 
 
-						<input type="text" name="dyy" value="{{request.form['dyy']}}" class="Rectangle_44" /> <span class="inChars">Uyy +</span>
+						<input type="text" name="dyy" value="{{request.form['dyy']}}" class="Rectangle_44" /> <span class="inChars">U<sub>yy</sub> +</span>
 
 						<br />
 
-						<input type="text" name="dxy" value="{{request.form['dxy']}}" id="UXY1" class="Rectangle_44" />  <span id="UXY2" class="inChars">Uxy + </span>
-						<input type="text" name="dx" value="{{request.form['dx']}}" class="Rectangle_44" />  <span class="inChars">Ux + </span>
+						<input type="text" name="dxy" value="{{request.form['dxy']}}" id="UXY1" class="Rectangle_44" />  <span id="UXY2" class="inChars">U<sub>xy</sub> + </span>
+						<input type="text" name="dx" value="{{request.form['dx']}}" class="Rectangle_44" />  <span class="inChars">U<sub>x</sub> + </span>
 
 
 
-						<input type="text" name="dy" value="{{request.form['dy']}}" class="Rectangle_44" /> <span class="inChars">Uy + </span>
+						<input type="text" name="dy" value="{{request.form['dy']}}" class="Rectangle_44" /> <span class="inChars">U<sub>y</sub> + </span>
 
 
 
@@ -189,57 +191,57 @@
 							<tr>
 
 								<th>Boundry Eq: f(x,y) = 0 =</th>
-								<th>Xi</th>
-								<th>Xf</th>
-								<th>Yi</th>
-								<th>Yf</th>
+								<th>x<sub>i</sub></th>
+								<th>x<sub>f</sub></th>
+								<th>y<sub>i</sub></th>
+								<th>y<sub>f</sub></th>
 								<th>U(x,y)=</th>
-								<th id="Dir0">Direction</th>
+								
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 
-								<td class="wide-slot"><input name="function0" value="{{request.form['function0']}}" type="text" /></td>
+								<td class="wide-slot"><input name="function0" id="func0" value="{{request.form['function0']}}" type="text" /></td>
 								<td><input name="xi0" value="{{request.form['xi0']}}" type="text" /></td>
 								<td><input name="xf0" value="{{request.form['xf0']}}" type="text" /></td>
 								<td><input name="yi0" value="{{request.form['yi0']}}" type="text" /></td>
 								<td><input name="yf0" value="{{request.form['yf0']}}" type="text" /></td>
 								<td class="wide-slot"><input name="u0" value="{{request.form['u0']}}" type="text" /></td>
-								<td value="UP" type="text" id="Dir1">UP</td>
+								
 
 							</tr>
-							<tr>
+							<tr>    
 
-								<td class="wide-slot"><input name="function1" value="{{request.form['function1']}}" type="text" /></td>
+								<td class="wide-slot"><input name="function1" id="func1" value="{{request.form['function1']}}" type="text" /></td>
 								<td><input name="xi1" value="{{request.form['xi1']}}" type="text" /></td>
 								<td><input name="xf1" value="{{request.form['xf1']}}" type="text" /></td>
 								<td><input name="yi1" value="{{request.form['yi1']}}" type="text" /></td>
 								<td><input name="yf1" value="{{request.form['yf1']}}" type="text" /></td>
 								<td class="wide-slot"><input name="u1" value="{{request.form['u1']}}" type="text" /></td>
-								<td value="Left" type="text" id="Dir2">Left</td>
+								
 
 							</tr>
 							<tr>
 
-								<td class="wide-slot"><input name="function2" value="{{request.form['function2']}}" type="text" /></td>
+								<td class="wide-slot"><input name="function2" id="func2" value="{{request.form['function2']}}" type="text" /></td>
 								<td><input name="xi2" value="{{request.form['xi2']}}" type="text" /></td>
 								<td><input name="xf2" value="{{request.form['xf2']}}" type="text" /></td>
 								<td><input name="yi2" value="{{request.form['yi2']}}" type="text" /></td>
 								<td><input name="yf2" value="{{request.form['yf2']}}" type="text" /></td>
 								<td class="wide-slot"><input name="u2" value="{{request.form['u2']}}" type="text" /></td>
-								<td value="Right" type="text" id="Dir3">Right</td>
+								
 
 							</tr>
 							<tr>
 
-								<td class="wide-slot"><input name="function3" value="{{request.form['function3']}}" type="text" /></td>
+								<td class="wide-slot"><input name="function3" id="func3" value="{{request.form['function3']}}" type="text" /></td>
 								<td><input name="xi3" value="{{request.form['xi3']}}" type="text" /></td>
 								<td><input name="xf3" value="{{request.form['xf3']}}" type="text" /></td>
 								<td><input name="yi3" value="{{request.form['yi3']}}" type="text" /></td>
 								<td><input name="yf3" value="{{request.form['yf3']}}" type="text" /></td>
 								<td class="wide-slot"><input name="u3" value="{{request.form['u3']}}" type="text" /></td>
-								<td value="UP" id="Dir4" type="text">Down</td>
+								
 
 							</tr>
 							<tr>
@@ -349,10 +351,11 @@
 					<rect fill="rgba(40,40,40,1)" id="Rectangle_57" rx="1.5vw" ry="1.5vw" x="0" y="0" width="23.63vw" height="16.21vw">
 					</rect>
 				</svg>
-				<svg class="Rectangle_58">
-					<rect fill="rgba(40,40,40,1)" id="Rectangle_58" rx="1.5vw" ry="1.5vw" x="0" y="0" width="23.63vw" height="15.5vw">
-					</rect>
-				</svg>
+                <svg class="Rectangle_58">
+                    <rect fill="rgba(40,40,40,1)" id="Rectangle_58" rx="1.5vw" ry="1.5vw" x="0" y="0" width="23.63vw" height="15.5vw">
+                    </rect>
+                    <!--<img src={{url_for('static', filename='Plots/Boundeies.png')}} alt="Chart" height="auto" width="100%">-->
+                </svg>
 
 				<section id="plot">
 					<div id="myFunction" class="Rectangle_8"></div>

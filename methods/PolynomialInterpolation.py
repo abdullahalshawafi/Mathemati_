@@ -13,7 +13,6 @@ La Grange
 def RoundExpression(expr, num_digits): #Rounds Expression Coefficients
     return expr.xreplace({n : round(n, num_digits) for n in expr.atoms(Number)})
 
-
 def NewtonGeneral(Xi, Yi, n, value):
     '''
     This function uses Newton General technique for Interpolation
@@ -57,7 +56,7 @@ def NewtonGeneral(Xi, Yi, n, value):
         Yint[order] = Yint2
     for order in range(0,n):  #Calculating Residual error for each order
         RE[order] = Yint[n-1] - Yint[order]
-        Exp[order] = RoundExpression(expand(Exp[order]),6)
+        Exp[order] = RoundExpression(nsimplify(expand(Exp[order])),6)
         Yint[order] = round(Yint[order],6)
         RE[order] = round(RE[order],6)
         
@@ -116,7 +115,7 @@ def NewtonGregory(Xi, Yi, n, value):
 
     for order in range(0,n):
         RE[order] = Yint[n-1] - Yint[order]
-        Exp[order] = RoundExpression(expand(Exp[order]),6)
+        Exp[order] = RoundExpression(nsimplify(expand(Exp[order])),6)
         Yint[order] = round(Yint[order],6)
         RE[order] = round(RE[order],6)
 
@@ -165,8 +164,6 @@ def Newton(Xi,Yi,n,value,order): #for the interface team
     return DT,Yint[order],Exp[order],DiffYint[order],DiffExp[order],RE[order]
 
 
-
-
 def LaGrange(Xi, Yi, n, value):
     '''
     This function uses La Grange technique for Interpolation
@@ -193,7 +190,7 @@ def LaGrange(Xi, Yi, n, value):
         sum = sum + product
         Exp = Exp + ExpProduct
 
-    Exp = RoundExpression(expand(Exp),6)
+    Exp = RoundExpression(nsimplify(expand(Exp)),6)
     Yint = sum
     Yint = round(Yint,8)
     return Yint,Exp

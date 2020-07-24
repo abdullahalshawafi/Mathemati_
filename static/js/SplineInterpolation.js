@@ -112,7 +112,13 @@ function Expand(el, x, intervals, eq) {
         functionPlot(parameters);
 
     }
-}
+} 
+
+
+document.getElementById('clear').addEventListener('click', function () {
+    parameters.data[1].points = [];
+    functionPlot(parameters);
+});
 /*
 function Expand(el, x, intervals, eq) {
 
@@ -171,3 +177,32 @@ function Expand(el, x, intervals, eq) {
 
 
 */
+function saveTextAsFile()
+{
+    var textToSave = "Inputs\n\n\nX             Y\n\n";
+  inputs = document.getElementsByTagName("input");
+  lengthInputs = inputs.length;
+  for (var i = 1; i < lengthInputs; i = i + 2) {
+    if (!inputs[i].disabled) {
+          textToSave+=inputs[i].value+"             " +inputs[i+1].value+"\n";
+      
+    }
+  }
+    var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+    var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+    var fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+
+    var downloadLink = document.createElement("a");
+    downloadLink.download = fileNameToSaveAs;
+    downloadLink.innerHTML = "Download File";
+    downloadLink.href = textToSaveAsURL;
+    downloadLink.onclick = destroyClickedElement;
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+}
+
+function destroyClickedElement(event)
+{
+    document.body.removeChild(event.target); 
+}

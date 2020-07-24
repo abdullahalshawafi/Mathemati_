@@ -161,8 +161,8 @@ class Surface_Interpolation:
             if Po1[i][1] > ymax:
                 ymax = Po1[i][1]
 
-        nx = 40
-        ny = 40
+        nx = 250
+        ny = 250
 
         grid_x, grid_y = np.mgrid[xmin:xmax:((nx + 1) * 1j), ymin:ymax:((ny + 1) * 1j)]
         grid_x_out = np.mgrid[xmin:xmax:((nx + 1) * 1j)]
@@ -207,7 +207,7 @@ class Surface_Interpolation:
         ymin = grid_y[0]
         ymax = grid_y[ycount - 1]
 
-        if xn < xmin and xn > xmax and yn < ymin and yn > ymax:
+        if xn < xmin or xn > xmax or yn < ymin or yn > ymax:
             return "out of bounds"
 
         xstep = (xmax - xmin) / (xcount - 1)

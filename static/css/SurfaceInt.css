@@ -327,7 +327,7 @@ a {
 	overflow: visible;
 	width: 20.25vw;
 	left: 0.2vw;
-	top: 8.5vw;
+	top: 2.5vw;
 }
 
 .Rectangle_28 {
@@ -446,8 +446,8 @@ a {
 
 #Table_ {
 	position: absolute;
-	left: 0.07vw;
-	top: 6.1vw;
+	left: 1.7vw;
+	top: 0.1vw;
 	overflow: visible;
 	width: 3.77vw;
 	white-space: nowrap;
@@ -458,16 +458,16 @@ a {
 	font-style: italic;
 	font-weight: normal;
 	font-size: 1.45vw;
-	color: rgba(175,175,175,1);
+	color: white;
 }
 
 .Rectangle_55 {
 	position: absolute;
 	overflow: auto;
 	width: 18.8vw;
-	height: 24vw;
+	height: 30.53vw;
 	left: 1.1vw;
-	top: 8.5vw;
+	top: 2.5vw;
 	color: white;
 }
 
