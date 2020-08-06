@@ -1571,14 +1571,14 @@ def EigenvalueProblem():
                 float(x)
             except :
                 anyErrorsInPosting = 1
-                errorMSG = "Please enter numbers only"
+                errorMSG = "Please, enter numbers only"
                 break
         for x in list_init_vector:
             try:
                 float(x)
             except ValueError:
                 anyErrorsInPosting = 1
-                errorMSG = "Please enter numbers only"
+                errorMSG = "Please, enter numbers only"
                 break
 
         if not anyErrorsInPosting and size and (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
