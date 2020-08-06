@@ -1392,7 +1392,7 @@ def LinearSystem():
                                        StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=0,errorMSG=errorMSG)
             else:
                 anyErrorsInPosting = 1
-                errorMSG = "can't be solved using this method !"
+                errorMSG = "Can't be solved using this method !"
         else:
             anyErrorsInPosting = 1  # as it will enter 'else' only if an error has occurred
             errorMSG = "please fill all the inputs !"
