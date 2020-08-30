@@ -1392,7 +1392,7 @@ def LinearSystem():
                                        StoppingCriteria=StoppingCriteria, w=w,anyErrorsInPosting=0,errorMSG=errorMSG)
             else:
                 anyErrorsInPosting = 1
-                errorMSG = "can't be solved using this method !"
+                errorMSG = "Can't be solved using this method !"
         else:
             anyErrorsInPosting = 1  # as it will enter 'else' only if an error has occurred
             errorMSG = "please fill all the inputs !"
@@ -1571,14 +1571,14 @@ def EigenvalueProblem():
                 float(x)
             except :
                 anyErrorsInPosting = 1
-                errorMSG = "please enter numbers only"
+                errorMSG = "Please, enter numbers only"
                 break
         for x in list_init_vector:
             try:
                 float(x)
             except ValueError:
                 anyErrorsInPosting = 1
-                errorMSG = "please enter numbers only"
+                errorMSG = "Please, enter numbers only"
                 break
 
         if not anyErrorsInPosting and size and (size * size == len(list_of_entires)) and (1 * size == len(list_init_vector)) and iter_or_stoppingC and (StoppingCriteria or num_iteration) and Method:
