@@ -5,9 +5,8 @@
     "\\static",
     "\\static\\css",
     "\\static\\js",
-    "\\static\\Reports",
     "\\templates"
   ],
-  "SelectedNode": "\\methods\\Regression.py",
+  "SelectedNode": "\\app.py",
   "PreviewInSolutionExplorer": false
 }
