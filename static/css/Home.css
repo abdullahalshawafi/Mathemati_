@@ -61,7 +61,7 @@ a {
 	position: absolute;
 	width: calc(72.815vw / 15.36);
 	height: calc(15.962vw / 15.36);
-	left: calc(250.784vw / 15.36);
+	left: calc(270.784vw / 15.36);
 	top: calc(186.846vw / 15.36);
 	transform: matrix(1,0,0,1,0,0);
 }
