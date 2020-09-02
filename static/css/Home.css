@@ -140,7 +140,7 @@ a {
 	position: absolute;
 	width: calc(420vw / 15.36);
 	height: calc(80vw / 15.36);
-	left: calc(800vw / 15.36);
+	left: calc(780vw / 15.36);
 	top: calc(340vw / 15.36);
 	overflow: visible;
 	cursor: pointer;
@@ -151,7 +151,7 @@ a {
 	left: calc(110vw / 15.36);
 	top: calc(29vw / 15.36);
 	overflow: visible;
-	width: calc(369vw / 15.36);
+	width: calc(529vw / 15.36);
 	height: calc(80vw / 15.36);
 	text-align: left;
 	font-family: Reem Kufi;
@@ -206,7 +206,7 @@ a {
 }
 
 	#Spline_Interpolation:hover {
-		font-size: calc(35vw / 15.36);
+		font-size: calc(33vw / 15.36);
 		color: #1CA0FF;
 		transition: 0.1s;
 	}
@@ -224,7 +224,7 @@ a {
 	position: absolute;
 	width: calc(420vw / 15.36);
 	height: calc(80vw / 15.36);
-	left: calc(800vw / 15.36);
+	left: calc(780vw / 15.36);
 	top: calc(424vw / 15.36);
 	overflow: visible;
 	cursor: pointer;
@@ -266,7 +266,7 @@ a {
 	position: absolute;
 	width: calc(330vw / 15.36);
 	height: calc(80vw / 15.36);
-	left: calc(800vw / 15.36);
+	left: calc(780vw / 15.36);
 	top: calc(507vw / 15.36);
 	overflow: visible;
 	cursor: pointer;
@@ -309,7 +309,7 @@ a {
 	position: absolute;
 	width: calc(450vw / 15.36);
 	height: calc(80vw / 15.36);
-	left: calc(800vw / 15.36);
+	left: calc(780vw / 15.36);
 	top: calc(590vw / 15.36);
 	overflow: visible;
 	cursor: pointer;
@@ -326,14 +326,14 @@ a {
 	font-family: Reem Kufi;
 	font-style: normal;
 	font-weight: normal;
-	font-size: calc(30vw / 15.36);
+	font-size: calc(26vw / 15.36);
 	color: rgba(255,255,255,1);
 	letter-spacing: calc(0.4vw / 15.36);
 	transition: 0.1s;
 }
 
 	#Bilinear_Interpolation:hover {
-		font-size: calc(35vw / 15.36);
+		font-size: calc(29vw / 15.36);
 		color: #1CA0FF;
 		transition: 0.1s;
 	}
@@ -347,6 +347,48 @@ a {
 	overflow: visible;
 }
 
+
+#SRI {
+	position: absolute;
+	width: calc(450vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(1120vw / 15.36);
+	top: calc(590vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Surface_Interpolation {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
+	overflow: visible;
+	width: calc(471vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(28vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Surface_Interpolation:hover {
+		font-size: calc(31vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#SRI0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
 
 #Data_is_often_given_for_discre {
 	position: absolute;

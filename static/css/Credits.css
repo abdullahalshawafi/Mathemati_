@@ -2707,8 +2707,8 @@ header {
 
 #Curve_Fitting {
 	position: absolute;
-	left: 6.22135vw;
-	top: 4.296875vw;
+	left: 8.22135vw;
+	top: 2.296875vw;
 	overflow: visible;
 	width: 10.22135vw;
 	white-space: nowrap;
@@ -3058,7 +3058,7 @@ header {
 #__Abdullah_Adel_Abdullah_gq {
 	position: absolute;
 	left: 3.059895vw;
-	top: 7.2265625vw;
+	top: 6.2265625vw;
 	overflow: visible;
 	width: 15.88541667vw;
 	white-space: nowrap;
@@ -3072,13 +3072,12 @@ header {
 	color: rgba(255,255,255,1);
 	letter-spacing: 0.01953vw;
 }
-
-#__Peter_Michael_Azmy {
+#__Hossam_Muhammad_Saeed_ {
 	position: absolute;
 	left: 3.059895vw;
-	top: 9.700520833vw;
+	top: 8.700520833vw;
 	overflow: visible;
-	width: 13.21614583vw;
+	width: 18.098958vw;
 	white-space: nowrap;
 	line-height: 2.34375vw;
 	margin-top: -0.325520833vw;
@@ -3090,11 +3089,10 @@ header {
 	color: rgba(255,255,255,1);
 	letter-spacing: 0.01953vw;
 }
-
 #__Omar_Muhammed_Yacine {
 	position: absolute;
 	left: 3.059895vw;
-	top: 12.17447vw;
+	top: 11.17447vw;
 	overflow: visible;
 	width: 16.9270833vw;
 	white-space: nowrap;
@@ -3109,12 +3107,13 @@ header {
 	letter-spacing: 0.01953vw;
 }
 
-#__Hossam_Muhammad_Saeed_ {
+
+#__Peter_Michael_Azmy {
 	position: absolute;
 	left: 3.059895vw;
-	top: 14.6484375vw;
+	top: 13.6484375vw;
 	overflow: visible;
-	width: 18.098958vw;
+	width: 13.21614583vw;
 	white-space: nowrap;
 	line-height: 2.34375vw;
 	margin-top: -0.325520833vw;
@@ -3127,10 +3126,29 @@ header {
 	letter-spacing: 0.01953vw;
 }
 
+
 #__Mostafa_Magdy_Abdel_Rahman_ {
 	position: absolute;
 	left: 3.059895vw;
-	top: 17.05729167vw;
+	top: 16.05729167vw;
+	overflow: visible;
+	width: 20.44270vw;
+	white-space: nowrap;
+	line-height: 2.34375vw;
+	margin-top: -0.325520833vw;
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.36718vw;
+	color: rgba(255,255,255,1);
+	letter-spacing: 0.01953vw;
+}
+
+#__Tarek_Yasser_Ismail_ {
+	position: absolute;
+	left: 3.059895vw;
+	top: 18.55729167vw;
 	overflow: visible;
 	width: 20.44270vw;
 	white-space: nowrap;
@@ -3165,7 +3183,7 @@ header {
 }
 
 #__Osama_Magdy_Aied {
-position: absolute;
+	position: absolute;
 	left: 25.84635vw;
 	top: 16.05729167vw;
 	overflow: visible;
@@ -3185,9 +3203,9 @@ position: absolute;
 }
 
 #__Ziyad_Hassan_Abdelmaqsoud_gx {
-		position: absolute;
+	position: absolute;
 	left: 47.8515625vw;
-	top: 7.2265625vw;
+	top: 6.2265625vw;
 	overflow: visible;
 	width: 13.8020833vw;
 	white-space: nowrap;
@@ -3242,7 +3260,7 @@ position: absolute;
 }
 
 #__Menna_Allah_Ahmed_Ali__gz {
-position: absolute;
+	position: absolute;
 	left: 25.78125vw;
 	top: 13.6484375vw;
 	overflow: visible;
@@ -3283,7 +3301,7 @@ position: absolute;
 #__Yahia_Zakaria_Mohamed_g {
 	position: absolute;
 	left: 47.91666667vw;
-	top: 9.700520833vw;
+	top: 8.700520833vw;
 	overflow: visible;
 	width: 16.341145vw;
 	white-space: nowrap;
@@ -3301,7 +3319,7 @@ position: absolute;
 #__Yousef_Gamal_Reda_g {
 	position: absolute;
 	left: 47.8515625vw;
-	top: 12.17447vw;
+	top: 11.17447vw;
 	overflow: visible;
 	width: 12.9572917vw;
 	white-space: nowrap;
@@ -3319,7 +3337,7 @@ position: absolute;
 #__Taher_Mohamed_Ahmed__g {
 	position: absolute;
 	left: 47.8515625vw;
-	top: 14.6484375vw;
+	top: 13.6484375vw;
 	overflow: visible;
 	width: 16.2109375vw;
 	white-space: nowrap;
@@ -3337,7 +3355,7 @@ position: absolute;
 #__Ziad_Atef_Ahmed_g {
 	position: absolute;
 	left: 47.72135417vw;
-	top: 17.05729167vw;
+	top: 16.05729167vw;
 	overflow: visible;
 	width: 11.39322917vw;
 	white-space: nowrap;
