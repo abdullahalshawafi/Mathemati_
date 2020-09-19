@@ -18,6 +18,7 @@ from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
 from methods.ODE_EulerAndHeun  import func_xyzt,Solve_Euler ,Solve_Heun
 from methods.BilinearInterpolation import Surface_Interpolation
+from methods.LeastAbsoluteErrors import LeastAbsoluteDeviations, LeastSquares,CorrelationCoefficients, Numpify, Angulus
 import numpy as np
 
 app = Flask(__name__)
@@ -1617,7 +1618,13 @@ def EigenvalueProblem():
         return render_template('EigenvalueProblem.html', url="BYwlztZrgqM", title='Eigenvalue Problem', css="EigenvalueProblem.css",
                                wing="SE - Copy2.png", logo="Logo Greeny.svg")
 
-
+@app.route("/LeastAbsoluteErrors", methods=['GET', 'POST'])
+def LAE():
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('LeastAbsoluteErrors.html', url="",
+                                        title='Least Absolute Deviations', css="LeastAbsoluteErrors.css", wing="CF Header.png", logo="Logo.svg")
 
 @app.route("/SurfaceInterpolation", methods=['GET', 'POST'])
 def SurfaceInterpolation():
