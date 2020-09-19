@@ -32,8 +32,8 @@
 				<div id="We_find_x_for_you">
 					<span>We find</span><span style="font-family:Radley;font-style:italic;font-weight:normal;"> </span><span style="font-family:Radley;font-style:italic;font-weight:normal;color:rgba(255,255,255,1);">x</span><span> for you</span>
 				</div>
-				<div class = "wow fadeInRightBig
- "      id="CF">
+				<div class="wow fadeInRightBig
+ " id="CF">
 					<svg class="Rectangle_2_n">
 						<linearGradient id="Rectangle_2_n" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
 							<stop offset="0" stop-color="#002c4b" stop-opacity="1"></stop>
@@ -48,7 +48,7 @@
 					</div>
 					<div id="PI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Polynomial_Interpolation">
-							<a href="{{url_for('PolynomialInterpolation')}}"><span>Polynomial Interpolation</span></a>
+							<a href="{{url_for('PolynomialInterpolation')}}"><span>Polynomial Interpolation (+Bezier)</span></a>
 						</div>
 						<img id="PI0000" src="{{url_for('static', filename='HoverAnimations/PI/PI0000.png')}}">
 					</div>
@@ -72,9 +72,15 @@
 					</div>
 					<div id="BI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
 						<div id="Bilinear_Interpolation">
-							<a href="{{url_for('BilinearInterpolation')}}"><span>Bilinear Interpolation (WIP)</span></a>
+							<a href="{{url_for('BilinearInterpolation')}}"><span>Bilinear Interpolation</span></a>
 						</div>
 						<img id="BI0000" src="{{url_for('static', filename='HoverAnimations/BI/BI0000.png')}}">
+					</div>
+					<div id="SRI" onmouseenter="ForwardAnimation(this)" onmouseleave="BackwardAnimation(this)">
+						<div id="Surface_Interpolation">
+							<a href="{{url_for('SurfaceInterpolation')}}"><span>Surface Interpolation</span></a>
+						</div>
+						<img id="SRI0000" src="{{url_for('static', filename='HoverAnimations/SRI/SRI0000.png')}}">
 					</div>
 					<div id="Data_is_often_given_for_discre">
 						<span>Data is often given for discrete values along a continuum. This section  offers  techniques  to  fit  curves and surfaces  to such data in order to obatain intermediate estimites through interpolation and regression.</span>
