@@ -7,7 +7,7 @@ def LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4): #RP 
 
    #Constructing the design matrix
    X=np.c_[np.ones((len(xdata),1)),xdata]
-   theta=np.random.randn(2,1) #Initializing random theta, recall that numpy's arrays are multidimensional
+   theta= np.random.rand(2,1) #Initializing random theta, recall that numpy's arrays are multidimensional
 
      #Choreographing the iterative scheme
    for  t in range(iterations):
@@ -19,12 +19,14 @@ def LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4): #RP 
         W= W * np.identity(len(W))
         #Calculating Theta's RHS
         A=np.linalg.inv(np.linalg.multi_dot([X.T,W,X]))
-        B=np.linalg.multi_dot([X.T,W,y])
+        B=np.linalg.multi_dot([X.T,W,ydata])
         #Tolerance Check
         if(abs(theta[0][0]-np.dot(A,B)[0][0])/abs(theta[0][0])<tolerance/100 and abs(theta[1][0]-np.dot(A,B)[1][0])/abs(theta[1][0])<tolerance/100): #In love with this
             break
         #RHS Calculation Done
         theta=np.dot(A ,B)
+      #  if(theta[0][0] != theta[0][0]):
+        #    LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4)
    return np.round(theta,RP);
 
 
@@ -80,7 +82,8 @@ def CorrelationCoefficients(theta,Theta,xdata,ydata):
     #The correlation coefficient
     Qabs=abs((AbsTrues-AbsErrors)/AbsTrues)
     Qsq=abs((SqrTrues-SqrErrors)/SqrTrues)
-    return np.sqrt(Qabs)*100,np.sqrt(Qsq)*100 #Absolute and squared correlation coefficients
+    return "( "+str(round(AbsTrues,4))+" , "+str(round(AbsErrors,4))+" , "+str(round(np.sqrt(Qabs)*100,4))+" )", "( "+str(round(SqrTrues,4))+" , "+str(round(SqrErrors,4))+" , "+str(round(np.sqrt(Qsq)*100,4))+" )"
+    #return np.sqrt(Qabs)*100,np.sqrt(Qsq)*100,AbsErrors,Sqr #Absolute and squared correlation coefficients
 
 #Generating a random data that's suitable for a linear fit
 
@@ -92,8 +95,8 @@ def Numpify(xdata,ydata):
     y=np.array(ydata)
     y=y.reshape(len(y),1)
     return x,y
-x=[1,2,3,4,5,6,7,8,9]
-y=[11,3,6,8,6,5,3,8,5]
+x=[6,-2,0,-7,-8]
+y=[8,7,1,9,3]
 x,y=Numpify(x,y)
 th=LeastAbsoluteDeviations(x,y,0.1,400)
 print("y = ",th[1][0],"*x","+",th[0][0])

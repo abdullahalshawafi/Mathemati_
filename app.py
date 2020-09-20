@@ -109,7 +109,7 @@ def PolynomialInterpolation():
     else:
 
         return render_template('PolynomialInterpolation.html', url="vdBtRSCF_kA", title='Polynomial Interpolation', css="PolynomialInterpolation.css", wing="CF Header.png", logo="Logo.svg", PolynomialFunction = PolynomialFunction)
- 
+
 @app.route("/SplineInterpolation", methods=['GET', 'POST'])
 def SplineInterpolation():
     if request.method == 'POST':
@@ -192,7 +192,7 @@ def BilinearInterpolation():
             plane.append(0)
 
             if plane[2]:
-                
+
                 _Z = np.round(_Z/plane[2],5)
                 plane[4] = np.round(-1*plane[0]/plane[2],5)
                 plane[5] = np.round(-1*plane[1]/plane[2],5)
@@ -396,7 +396,7 @@ def SurfaceFitting():
 
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
-                
+
 
 
 
@@ -497,7 +497,7 @@ def Integration():
                 except:
                     if _error=='':
                         _error="Invalid x1 , or x2"
-                try:  
+                try:
                     N=int(request.form['n1'])
                 except:
                     if _error=='':
@@ -506,7 +506,7 @@ def Integration():
                     OrderOfError=int(request.form['OrderOfError'])
                 except:
                     ResultRom="Order of Error is invalid"
-                    
+
                 try:
                     if function != '' and x1 != '' and x2 != '' and N != '' and N > 6:
                         Result,error=myfun(function,x1,x2,1,1,6)
@@ -533,10 +533,10 @@ def Integration():
                 except:
                     if _error=='':
                         _error="Invalid Inputs"
-                
+
                 return render_template('Integration.html', url="EgQa0aKmUyk" , title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,_error=_error,error=error,ResultTrap=ResultTrap,TrapError=TrapError,ResultMin=ResultMin,ErrorMin=ErrorMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
-                
-                  
+
+
 
             elif NumOfVar == '2':
                 try:
@@ -564,7 +564,7 @@ def Integration():
                 except:
                     if _error=='':
                         _error="Invalid y1"
-                try:    
+                try:
                     y2=float(request.form['y2'])
                 except:
                     if _error=='':
@@ -578,9 +578,9 @@ def Integration():
                     OrderOfError=int(request.form['OrderOfError'])
                 except:
                      ResultRom="Order of Error is invalid"
-                        
+
                 try:
-                    if N > 6:                
+                    if N > 6:
                         Result,error=myfun(function,x1,x2,y1,y2,6)
                 except:
                     pass
@@ -604,9 +604,9 @@ def Integration():
                 except:
                     if _error=='':
                         _error="Invalid Input"
-                
+
                 return render_template('Integration.html', url="EgQa0aKmUyk" , title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",Dim = NumOfVar,function=function,x1=x1,x2=x2,y1=y1,y2=y2,n2=N2,n1=N,Result=Result,exact=exact,error=error,ResultTrap=ResultTrap,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError,_error=_error)
-               
+
             else:
                 z1=''
                 z2=''
@@ -676,17 +676,17 @@ def Integration():
                                 ResultRom="Order of Error must be even"
                     if function != '' and x1 != '' and x2 != '' and N != '':
                         ResultTrap=Trapezoidal_Triple_Integ(function,x1,x2,N,y1,y2,N2,z1,z2,N3)
-                        ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)   
+                        ResultMin=triple_mixed_rule (function,x1,x2,N,y1,y2,N2,z1,z2,N3)
                 except:
                     if _error=='':
                         _error="Invalid Inputs"
-                
+
                 return render_template('Integration.html', url="EgQa0aKmUyk" , title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error,Dim = NumOfVar,function=function,x1=x1,x2=x2,n1=N,Result=Result,exact=exact,ResultTrap=ResultTrap,y1=y1,y2=y2,n2=N2,z1=z1,z2=z2,n3=N3,ResultMin=ResultMin,ResultRom=ResultRom,OrderOfError=OrderOfError)
 
         else:
-            _error="Choose a Method" 
-            
-            return render_template('Integration.html', url="EgQa0aKmUyk" , title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error)           
+            _error="Choose a Method"
+
+            return render_template('Integration.html', url="EgQa0aKmUyk" , title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg",_error=_error)
     else:
         return render_template('Integration.html' , url="EgQa0aKmUyk" , title='Integration', css="Integration.css", wing="SE - Copy.png", logo="Logo Crimson.svg")
 
@@ -1092,11 +1092,11 @@ def ODEPC():
         elif Method=="MilneMethod":
             if Is_OK==True:
                 if len(x)!=0 and Equation :
-                    
+
                     try :
-                        
+
                         relative_error,yp, YC=milne(Equation,5,x,y,x_requested,Stopping_Criteria,Number_Of_Corrections)
-                        
+
                         return render_template('ODEPC.html',  url="icvMDjMea3w" , title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",yp=yp,YC=YC,Error=relative_error,Method=Method,OK=Is_OK)
                     except:
                         return render_template('ODEPC.html',  url="icvMDjMea3w" , title='ODE Predictor/Corrector', css="ODEPC.css", wing="DE - Copy.png", logo="Logo.svg",Method=Method,OK=False)
@@ -1250,7 +1250,7 @@ def background_process():
                     xf_list.append(x_f)
                     yi_list.append(y_i)
                     yf_list.append(y_f)
-        
+
                     value_list.append(u)
                     boundry_counter = boundry_counter + 1
 
@@ -1274,10 +1274,10 @@ def background_process():
         if boundry_counter==4:
             try:
                 # L R U D
-               
+
                 UList = Closed_Region(value_list[1], value_list[2], value_list[0], value_list[3], h, k,
                                       x1, x2, y1, y2, dxx, dyy, dx, dy, u_coeff, dxy, function)
-                
+
             except:
                 return jsonify(error = 'Could not Solve')
             try:
@@ -1619,9 +1619,57 @@ def EigenvalueProblem():
                                wing="SE - Copy2.png", logo="Logo Greeny.svg")
 
 @app.route("/LeastAbsoluteErrors", methods=['GET', 'POST'])
-def LAE():
+def LeastAbsoluteErrors():
     if request.method == 'POST':
-        pass
+        xdata=[]
+        ydata=[]
+        i=0
+        Iterations=1000
+        Tolerance=1/1000
+
+        if (request.form['iterations'] != ''):
+            if( len(request.form['iterations'].split(' '))==1):
+                if(float(request.form['iterations'].split(' ')[0])>=1 ):
+                    Iterations = request.form['iterations'].split(' ')[0]
+                elif(float(request.form['iterations'].split(' ')[0])<1 and float(request.form['iterations'].split(' ')[0])>=0 ):
+                    Tolerance= request.form['iterations'].split(' ')[0]
+                    if(float(request.form['iterations'].split(' ')[0])==0):
+                        Tolerance=1/1000000
+
+            else:
+                Iterations = request.form['iterations'].split(' ')[0]
+                Tolerance = request.form['iterations'].split(' ')[2]
+            Iterations=int(np.ceil(int(Iterations)))
+            Tolerance=float(Tolerance)
+
+
+        while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
+            try:
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+            except:
+                pass
+            i += 1
+
+        x,y=Numpify(xdata,ydata)
+        Th=LeastSquares(x,y,4)
+        th=LeastAbsoluteDeviations(x,y,Tolerance,Iterations,4)
+        for i in range(25):
+            if (th[0][0]  != th[0][0]):
+                th=LeastAbsoluteDeviations(x,y,Tolerance,Iterations,4)
+        Ya=str(th[1][0])+"*x"+"+"+str(th[0][0])
+        if(th[0][0]  != th[0][0]):
+            Ya="Unable to converge."
+        Ys=str(Th[1][0])+"*x"+"+"+str(Th[0][0])
+        Angle=str(round(Angulus(th,Th),3))+"°"
+        Qs,Qa=CorrelationCoefficients(th,Th,x,y)
+        if (i == 0):
+            return render_template('LeastAbsoluteErrors.html', url="", error="Missing inputs!",
+                                    title='Least Absolute Deviations', css="LeastAbsoluteErrors.css", wing="CF Header.png", logo="Logo.svg")
+
+        return render_template('LeastAbsoluteErrors.html', url="",
+                                        title='Least Absolute Deviations', css="LeastAbsoluteErrors.css", wing="CF Header.png", logo="Logo.svg", Ya=Ya, Ys=Ys
+                                      ,Qs=Qs,Qa=Qa,Angle=Angle  )
     else:
         return render_template('LeastAbsoluteErrors.html', url="",
                                         title='Least Absolute Deviations', css="LeastAbsoluteErrors.css", wing="CF Header.png", logo="Logo.svg")
@@ -1644,7 +1692,7 @@ def SurfaceInterpolation():
             except:
                 pass
             i += 1
-            
+
         if xdata:
             try:
                 LHS, RHS, Constants, Sr = SurfaceInt(xdata, ydata, zdata, 10)
@@ -1663,7 +1711,7 @@ def SurfaceInterpolation():
 
             for i in range(np.shape(GriZ)[0]):
                 z1.append(list(GriZ[i]))
-                
+
 
 
 

@@ -49,7 +49,7 @@
 					</div>
 				</div>
 			</div>
-			<form action="{{url_for('LeastSquareReg')}}" method="post">
+			<form action="{{url_for('LeastAbsoluteErrors')}}" method="post">
 				<div id="LeffTapCon">
 					<svg class="Rectangle_18">
 						<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="0" width="20.25vw" height="26.53vw">
@@ -84,8 +84,8 @@
 					</div>
 					<div id="Non_Linearized_">
 						<label for="iterations">
-							<span>Iterations:</span>
-							<input type="text" id="iterations" name="iterations" value="{{request.form['iterations']}}" class="Rectangle_43" style="text-align: left" />
+							<span>Iterations or Stopping Criteria:</span>
+							<input type="text" id="iterations" name="iterations" value="{{request.form['iterations']}}" placeholder="e.g. 1000 or 0.0001" class="Rectangle_43" style="text-align: left" />
 						</label>
 					</div>
 
@@ -214,10 +214,10 @@
 				</div>
 			</div>
 			<div id="Answer">
-				{% if family %}
-				<input type="text" class="Rectangle_32" value="{{family}}" disabled style="text-align: left" />
+				{% if Ya %}
+				<input type="text" class="Rectangle_32" value="{{Ya}}" onmouseout="addtograph()" disabled style="text-align: left" />
 				{% else %}
-				<input type="text" class="Rectangle_32" disabled style="text-align: left" />
+				<input type="text" class="Rectangle_32" onmouseout="addtograph()" disabled style="text-align: left" />
 				{% endif %}
 				<div id="R__x____">
 					<span>yₐ=</span>
@@ -229,15 +229,9 @@
 					<span>Qₐ = </span>
 				</div>
 
-				{% if Method == 'Linearized' %}
-				<div id="R___">
-					<span>Y ( </span>
-				</div>
-				{% else %}
 				<div id="R___">
 					<span>y ( </span>
 				</div>
-				{% endif %}
 				<div id="____">
 					<span>) = </span>
 				</div>
@@ -248,31 +242,30 @@
 				<div id="Correlation_factor__">
 					<span>θₛₐ&nbsp;=</span>
 				</div>
+
 				<div id="Best_fitting_curves_are__">
-					{% if Method == 'Linearized' %}
-					<span>Y (x) = </span>
-					{% else %}
-					<span>yₛ=</span>					{% endif %}
-					{% if results %}
-					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" value="{{results}}" disabled style="text-align: left">
+					<span>yₛ=</span>
+
+					{% if Ys %}
+					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" value="{{Ys}}" disabled style="text-align: left">
 					{% else %}
 					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" disabled style="text-align: left">
 					{% endif %}
 				</div>
-				{% if not Error == '' %}
-				<input type="text" class="Rectangle_34" value="{{Error}}" disabled style="text-align: left" />
+				{% if not Qa == '' %}
+				<input type="text" class="Rectangle_34" value="{{Qa}}" placeholder="(  Sᵣ  ,  Sₜ  ,  r  )" disabled style="text-align: left" />
 				{% else %}
-				<input type="text" class="Rectangle_34" disabled style="text-align: left" />
+				<input type="text" class="Rectangle_34" placeholder="(  Sᵣ  ,  Sₜ  ,  r  )" disabled style="text-align: left" />
 				{% endif %}
 				<input type="text" class="Rectangle_41" onkeyup="substitute(this)" style="width: 5vw; left: 1.6vw;" />
 				<input type="text" class="Rectangle_42" disabled style="left: 8.5vw; width: 15vw; text-align: left;"/>
-				{% if not TrueErr == '' %}
-				<input type="text" class="Rectangle_45" disabled value="{{TrueErr}}" style="text-align: left" />
+				{% if not Qs == '' %}
+				<input type="text" class="Rectangle_45" placeholder="(  Sᵣ  ,  Sₜ  ,  r  )" disabled value="{{Qs}}" style="text-align: left" />
 				{% else %}
-				<input type="text" class="Rectangle_45" disabled style="text-align: left" />
+				<input type="text" class="Rectangle_45" placeholder="(  Sᵣ  ,  Sₜ  ,  r  )" disabled style="text-align: left" />
 				{% endif %}
-				{% if not r == '' %}
-				<input type="text" class="Rectangle_46" disabled value="{{r}}" style="width: 20.7vw; left: 2.8vw; text-align: left;" />
+				{% if not Angle == '' %}
+				<input type="text" class="Rectangle_46" disabled value="{{Angle}}" placeholder="Included Angle" style="width: 20.7vw; left: 2.8vw; text-align: left;" />
 				{% else %}
 				<input type="text" class="Rectangle_46" disabled style="width: 20.7vw; left: 2.8vw; text-align: left;" />
 				{% endif %}
