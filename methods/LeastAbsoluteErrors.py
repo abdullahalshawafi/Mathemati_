@@ -12,6 +12,7 @@ def LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4): #RP 
      #Choreographing the iterative scheme
    for  t in range(iterations):
         #Forging the weight matrix
+        print(theta)
         W=[]
         for i in range(len(xdata)):
             W.append(1/abs(ydata[i]-np.dot(theta.T,X[i])))
@@ -20,13 +21,13 @@ def LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4): #RP 
         #Calculating Theta's RHS
         A=np.linalg.inv(np.linalg.multi_dot([X.T,W,X]))
         B=np.linalg.multi_dot([X.T,W,ydata])
-        #Tolerance Check
-        if(abs(theta[0][0]-np.dot(A,B)[0][0])/abs(theta[0][0])<tolerance/100 and abs(theta[1][0]-np.dot(A,B)[1][0])/abs(theta[1][0])<tolerance/100): #In love with this
-            break
+        #if(np.dot(A,B)[0][0] !=np.dot(A,B)[0][0]): #Rest in Peace.
+          #  break
         #RHS Calculation Done
         theta=np.dot(A ,B)
-      #  if(theta[0][0] != theta[0][0]):
-        #    LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4)
+        #Tolerance Check
+        if(abs(theta[0][0]-np.dot(A,B)[0][0])/abs(theta[0][0])<tolerance and abs(theta[1][0]-np.dot(A,B)[1][0])/abs(theta[1][0])<tolerance): #In love with this
+            break
    return np.round(theta,RP);
 
 
@@ -95,13 +96,13 @@ def Numpify(xdata,ydata):
     y=np.array(ydata)
     y=y.reshape(len(y),1)
     return x,y
-x=[6,-2,0,-7,-8]
-y=[8,7,1,9,3]
-x,y=Numpify(x,y)
-th=LeastAbsoluteDeviations(x,y,0.1,400)
-print("y = ",th[1][0],"*x","+",th[0][0])
-Th=LeastSquares(x,y)
-print("y = ",Th[1][0],"*x","+",Th[0][0])
-print(CorrelationCoefficients(th,Th,x,y))
-GraphTheory(x,y,th,Th)
+#x=[2,-9,1,-8,4]   
+#y=[-8,3,0,-7,3]
+#x,y=Numpify(x,y)
+#th=LeastAbsoluteDeviations(x,y,0.0001,1000)
+#print("y = ",th[1][0],"*x","+",th[0][0])
+#Th=LeastSquares(x,y)
+#print("y = ",Th[1][0],"*x","+",Th[0][0])
+#print(CorrelationCoefficients(th,Th,x,y))
+#GraphTheory(x,y,th,Th)
 

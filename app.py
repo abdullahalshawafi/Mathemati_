@@ -1658,7 +1658,7 @@ def LeastAbsoluteErrors():
             if (th[0][0]  != th[0][0]):
                 th=LeastAbsoluteDeviations(x,y,Tolerance,Iterations,4)
         Ya=str(th[1][0])+"*x"+"+"+str(th[0][0])
-        if(th[0][0]  != th[0][0]):
+        if(th[0][0]  != th[0][0]): #Hopefully this will no longer happen again.
             Ya="Unable to converge."
         Ys=str(Th[1][0])+"*x"+"+"+str(Th[0][0])
         Angle=str(round(Angulus(th,Th),3))+"°"
