@@ -12,7 +12,6 @@ def LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4): #RP 
      #Choreographing the iterative scheme
    for  t in range(iterations):
         #Forging the weight matrix
-        print(theta)
         W=[]
         for i in range(len(xdata)):
             W.append(1/abs(ydata[i]-np.dot(theta.T,X[i])))
@@ -28,7 +27,7 @@ def LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4): #RP 
         #Tolerance Check
         if(abs(theta[0][0]-np.dot(A,B)[0][0])/abs(theta[0][0])<tolerance and abs(theta[1][0]-np.dot(A,B)[1][0])/abs(theta[1][0])<tolerance): #In love with this
             break
-   return np.round(theta,RP);
+   return X,ydata,W,theta
 
 
 #Least Squares take on the matter
@@ -37,7 +36,7 @@ def LeastSquares(xdata,ydata,RP=4):
     #Contriving the normal equation
     Theta=np.linalg.multi_dot([np.linalg.pinv(X),ydata])
     return np.round(Theta,RP)
-    
+
 #Graphing both plots
 def GraphTheory(xdata,ydata,theta,Theta): #theta is for absolutes and Theta is for squares
     X = np.linspace(min(xdata),max(xdata),100)
@@ -47,7 +46,7 @@ def GraphTheory(xdata,ydata,theta,Theta): #theta is for absolutes and Theta is f
     Ys=Theta[1][0]*X+Theta[0][0]
     plt.plot(X, Ys, 'r-', label='Least Squares')
     plt.plot(X, Y, 'g-', label='Least Absolutes')
-    plt.plot(x, y, "b.") #blue small dots=b.
+    plt.plot(xdata, ydata, "b.") #blue small dots=b.
     plt.xlabel("$x_1$", fontsize=18) #$LATEX$
     plt.ylabel("$y$", rotation=0, fontsize=18)  #rotation=0 for a vertical y
     plt.show()
@@ -58,7 +57,7 @@ def Angulus(theta, Theta):
     AngleDifference = np.arctan(abs((Theta[1][0]-theta[1][0])/(1+Theta[1][0]*theta[1][0]))) #The angle difference between the two lines
     return AngleDifference*180/np.pi  #In degrees
 
-def CorrelationCoefficients(theta,Theta,xdata,ydata): 
+def CorrelationCoefficients(theta,Theta,xdata,ydata):
     #Regression Errors
     AbsoluteErrors=[]
     SquareErrors=[]
@@ -69,7 +68,7 @@ def CorrelationCoefficients(theta,Theta,xdata,ydata):
     AbsErrors=np.sum(AbsoluteErrors)
     SqrErrors=np.sum(SquareErrors)
     #print(AbsoluteErrors,SquareErrors)
-        
+
     #True Errors (Regression Errors with respect to a horizontal line)
     AbsoluteTrues=[]
     SquareTrues=[]
@@ -83,7 +82,7 @@ def CorrelationCoefficients(theta,Theta,xdata,ydata):
     #The correlation coefficient
     Qabs=abs((AbsTrues-AbsErrors)/AbsTrues)
     Qsq=abs((SqrTrues-SqrErrors)/SqrTrues)
-    return "( "+str(round(AbsTrues,4))+" , "+str(round(AbsErrors,4))+" , "+str(round(np.sqrt(Qabs)*100,4))+" )", "( "+str(round(SqrTrues,4))+" , "+str(round(SqrErrors,4))+" , "+str(round(np.sqrt(Qsq)*100,4))+" )"
+    return "( "+str(round(AbsErrors,4))+" , "+str(round(AbsTrues,4))+" , "+str(round(np.sqrt(Qabs)*100,4))+" )", "( "+str(round(SqrErrors,4))+" , "+str(round(SqrTrues,4))+" , "+str(round(np.sqrt(Qsq)*100,4))+" )"
     #return np.sqrt(Qabs)*100,np.sqrt(Qsq)*100,AbsErrors,Sqr #Absolute and squared correlation coefficients
 
 #Generating a random data that's suitable for a linear fit
@@ -96,7 +95,11 @@ def Numpify(xdata,ydata):
     y=np.array(ydata)
     y=y.reshape(len(y),1)
     return x,y
-#x=[2,-9,1,-8,4]   
+
+def ZeroDerivativeCheck(X,Y,W,theta):
+    return np.linalg.multi_dot([((Y-np.dot(X,theta)).T),W,X])
+
+#x=[2,-9,1,-8,4]
 #y=[-8,3,0,-7,3]
 #x,y=Numpify(x,y)
 #th=LeastAbsoluteDeviations(x,y,0.0001,1000)
@@ -105,4 +108,3 @@ def Numpify(xdata,ydata):
 #print("y = ",Th[1][0],"*x","+",Th[0][0])
 #print(CorrelationCoefficients(th,Th,x,y))
 #GraphTheory(x,y,th,Th)
-

@@ -18,7 +18,7 @@ from methods.FixedPoint import FixedPointIteration
 from methods.Eigenvalue import solve_Eigenvalue
 from methods.ODE_EulerAndHeun  import func_xyzt,Solve_Euler ,Solve_Heun
 from methods.BilinearInterpolation import Surface_Interpolation
-from methods.LeastAbsoluteErrors import LeastAbsoluteDeviations, LeastSquares,CorrelationCoefficients, Numpify, Angulus
+from methods.LeastAbsoluteErrors import LeastAbsoluteDeviations, LeastSquares,CorrelationCoefficients, Numpify, Angulus, ZeroDerivativeCheck
 import numpy as np
 
 app = Flask(__name__)
@@ -1628,17 +1628,19 @@ def LeastAbsoluteErrors():
         Tolerance=1/1000
 
         if (request.form['iterations'] != ''):
-            if( len(request.form['iterations'].split(' '))==1):
-                if(float(request.form['iterations'].split(' ')[0])>=1 ):
-                    Iterations = request.form['iterations'].split(' ')[0]
-                elif(float(request.form['iterations'].split(' ')[0])<1 and float(request.form['iterations'].split(' ')[0])>=0 ):
-                    Tolerance= request.form['iterations'].split(' ')[0]
-                    if(float(request.form['iterations'].split(' ')[0])==0):
+            I=request.form['iterations']
+    
+            if( len(I.split(' '))==1):
+                if(float(eval(I.split(' ')[0]))>=1 ):
+                    Iterations = I.split(' ')[0]
+                elif(float(eval(I.split(' ')[0]))<1 and float(eval(I.split(' ')[0]))>=0 ):
+                    Tolerance= eval(I.split(' ')[0])
+                    if(float(eval(I.split(' ')[0]))==0):
                         Tolerance=1/1000000
 
             else:
                 Iterations = request.form['iterations'].split(' ')[0]
-                Tolerance = request.form['iterations'].split(' ')[2]
+                Tolerance = eval(request.form['iterations'].split(' ')[2])
             Iterations=int(np.ceil(int(Iterations)))
             Tolerance=float(Tolerance)
 
@@ -1653,16 +1655,12 @@ def LeastAbsoluteErrors():
 
         x,y=Numpify(xdata,ydata)
         Th=LeastSquares(x,y,4)
-        th=LeastAbsoluteDeviations(x,y,Tolerance,Iterations,4)
-        for i in range(25):
-            if (th[0][0]  != th[0][0]):
-                th=LeastAbsoluteDeviations(x,y,Tolerance,Iterations,4)
-        Ya=str(th[1][0])+"*x"+"+"+str(th[0][0])
-        if(th[0][0]  != th[0][0]): #Hopefully this will no longer happen again.
-            Ya="Unable to converge."
+        XD,YD,W,th=LeastAbsoluteDeviations(x,y,Tolerance,Iterations,4)
+        Ya=str(round(th[1][0],4))+"*x"+"+"+str(round(th[0][0],4))
         Ys=str(Th[1][0])+"*x"+"+"+str(Th[0][0])
         Angle=str(round(Angulus(th,Th),3))+"°"
-        Qs,Qa=CorrelationCoefficients(th,Th,x,y)
+        Derivative=ZeroDerivativeCheck(XD,YD,W,th)
+        Qa,Qs=CorrelationCoefficients(th,Th,x,y)
         if (i == 0):
             return render_template('LeastAbsoluteErrors.html', url="", error="Missing inputs!",
                                     title='Least Absolute Deviations', css="LeastAbsoluteErrors.css", wing="CF Header.png", logo="Logo.svg")
