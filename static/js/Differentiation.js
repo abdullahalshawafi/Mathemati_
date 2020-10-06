@@ -2,8 +2,11 @@ var parameters = {
 	target: '#myFunction',
 	data: [{
 		fn: '0',
-		color: "rgba(0,0,0,0)",
-		range: [-10, 10]
+		color: "rgba(0,0,0,0)"
+	},
+	{
+		fn: '0',
+		color: "#0000FF",
 	},
 	{
 		points: [],
@@ -23,6 +26,7 @@ function addtograph() {
 	if (document.getElementsByClassName("Rectangle_43")[0].value && document.getElementsByName("Method")[0].checked) {
 		parameters.data[0].color = "#00ff88";
 		parameters.data[0].fn = document.getElementsByClassName("Rectangle_43")[0].value;
+		parameters.data[1].fn = document.getElementsByClassName("Rectangle_32_hidden")[0].value ? document.getElementsByClassName("Rectangle_32_hidden")[0].value : '0';
 	}
 	functionPlot(parameters);
 }

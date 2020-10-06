@@ -591,6 +591,15 @@ a {
     top: 10vw;
 }
 
+.AbdullahAndEssamCheckedIn {
+    position: absolute;
+    overflow: visible;
+    width: 20.7vw;
+    height: 1.9vw;
+    left: 2.8vw;
+    top: 19.21vw;
+}
+
 #Sr___ {
     position: absolute;
     left: 0.07vw;
@@ -707,6 +716,23 @@ a {
     text-align: left;
     font-family: Radley;
     font-style: italic;
+    font-weight: normal;
+    font-size: 1.56vw;
+    color: rgba(255,255,255,1);
+}
+
+#Derivative {
+    position: absolute;
+    left: 0.07vw;
+    top: 19.21vw;
+    overflow: visible;
+    width: 13.48vw;
+    white-space: nowrap;
+    line-height: 2.38vw;
+    margin-top: -0.35vw;
+    text-align: left;
+    font-family: Radley;
+    font-style: normal;
     font-weight: normal;
     font-size: 1.56vw;
     color: rgba(255,255,255,1);

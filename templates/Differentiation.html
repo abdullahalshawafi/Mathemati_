@@ -59,7 +59,7 @@
 				</svg>
 				<div class="Rectangle_28">
                     <div class="button-div">
-                        <button type="submit" class="table-button" id="calc">
+                        <button type="submit" onclick="addtograph()" class="table-button" id="calc">
                             <img src="{{url_for('static', filename='Assets/Diff Button.svg')}}" title="Calculate">
                         </button>
                         <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
@@ -255,6 +255,7 @@
 			<div id="RI">
 				{%if results %}
 					<input type="text" class="Rectangle_32_cm" disabled value="{{results[0]}}" />
+					<input type="hidden" class="Rectangle_32_hidden" disabled value="{{Tango}}" />
 	        		{% if Method == "Function" %}
 						<input type="text" class="Rectangle_36_cm" disabled value="{{results[1]}}"/>
 					{%else%}

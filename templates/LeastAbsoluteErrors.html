@@ -85,7 +85,7 @@
 					<div id="Non_Linearized_">
 						<label for="iterations">
 							<span>Iterations or Stopping Criteria:</span>
-							<input type="text" id="iterations" name="iterations" value="{{request.form['iterations']}}" placeholder="e.g. 1000 or 0.0001" class="Rectangle_43" style="text-align: left" />
+							<input type="text" id="iterations" name="iterations" value="{{request.form['iterations']}}" placeholder="e.g. 1000 or 0.01/100" class="Rectangle_43" style="text-align: left" />
 						</label>
 					</div>
 
@@ -199,7 +199,7 @@
 					</rect>
 				</svg>
 				<svg class="Rectangle_7">
-					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="25.98vw" height="20.96vw">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="25.98vw" height="22.96vw">
 					</rect>
 				</svg>
 				<svg class="Path_3" viewBox="127.353 288 21.741 23.895">
@@ -242,6 +242,15 @@
 				<div id="Correlation_factor__">
 					<span>θₛₐ&nbsp;=</span>
 				</div>
+				
+				<div id="Derivative">
+					<span>∇J&nbsp;=</span>
+				</div>
+				{% if not Gradi == '' %}
+				<input type="text" class="AbdullahAndEssamCheckedIn" value="{{Gradi}}" placeholder="(∂J/∂a , ∂J/∂b)" disabled style="text-align: left" />
+				{% else %}
+				<input type="text" class="AbdullahAndEssamCheckedIn" placeholder="(∂J/∂a , ∂J/∂b)" disabled style="text-align: left" />
+				{% endif %}
 
 				<div id="Best_fitting_curves_are__">
 					<span>yₛ=</span>

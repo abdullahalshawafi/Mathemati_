@@ -453,10 +453,16 @@ def Differentiation():
                 h = float(request.form['step'])
                 order = float(request.form['order'])
                 results = FuncDeriv(Function, h, order, Calculation_Point)
+                import sympy
+                from sympy import symbols
+                x = symbols('x');
+                F=sympy.sympify(Function )  
+                y=sympy.lambdify([x],F)
+                Tango=str(results[0])+"*x"+"+"+str(y(Calculation_Point)-results[0]*Calculation_Point)
             except:
                 error="Invalid Input"
 
-        return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" ,error=error, results = results , Method = Method)
+        return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" ,error=error, results = results , Method = Method,Tango=Tango)
 
             #return render_template('Differentiation.html', url='KPnkAIZqWFQ', title='Differentiation', css="Differentiation.css", wing="SE - Copy.png", logo="Logo Crimson.svg" )
 
@@ -1659,7 +1665,8 @@ def LeastAbsoluteErrors():
         Ya=str(round(th[1][0],4))+"*x"+"+"+str(round(th[0][0],4))
         Ys=str(Th[1][0])+"*x"+"+"+str(Th[0][0])
         Angle=str(round(Angulus(th,Th),3))+"°"
-        Derivative=ZeroDerivativeCheck(XD,YD,W,th)
+        Gradi=ZeroDerivativeCheck(XD,YD,W,th)
+        Gradi="("+str(Gradi[0][0])+" , "+str(Gradi[0][1])+")"
         Qa,Qs=CorrelationCoefficients(th,Th,x,y)
         if (i == 0):
             return render_template('LeastAbsoluteErrors.html', url="", error="Missing inputs!",
@@ -1667,7 +1674,7 @@ def LeastAbsoluteErrors():
 
         return render_template('LeastAbsoluteErrors.html', url="",
                                         title='Least Absolute Deviations', css="LeastAbsoluteErrors.css", wing="CF Header.png", logo="Logo.svg", Ya=Ya, Ys=Ys
-                                      ,Qs=Qs,Qa=Qa,Angle=Angle  )
+                                      ,Qs=Qs,Qa=Qa,Angle=Angle,Gradi=Gradi  )
     else:
         return render_template('LeastAbsoluteErrors.html', url="",
                                         title='Least Absolute Deviations', css="LeastAbsoluteErrors.css", wing="CF Header.png", logo="Logo.svg")

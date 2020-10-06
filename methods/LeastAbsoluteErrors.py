@@ -3,7 +3,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 
-def LeastAbsoluteDeviations(xdata,ydata,tolerance=0.1,iterations=400,RP=4): #RP is the rounding point and the tolerance is the stopping criteria (Relative true error)
+def LeastAbsoluteDeviations(xdata,ydata,tolerance=0.0000001/100,iterations=1000000,RP=4): #RP is the rounding point and the tolerance is the stopping criteria (Relative true error)
 
    #Constructing the design matrix
    X=np.c_[np.ones((len(xdata),1)),xdata]
@@ -99,12 +99,13 @@ def Numpify(xdata,ydata):
 def ZeroDerivativeCheck(X,Y,W,theta):
     return np.linalg.multi_dot([((Y-np.dot(X,theta)).T),W,X])
 
-#x=[2,-9,1,-8,4]
-#y=[-8,3,0,-7,3]
-#x,y=Numpify(x,y)
-#th=LeastAbsoluteDeviations(x,y,0.0001,1000)
-#print("y = ",th[1][0],"*x","+",th[0][0])
-#Th=LeastSquares(x,y)
-#print("y = ",Th[1][0],"*x","+",Th[0][0])
-#print(CorrelationCoefficients(th,Th,x,y))
-#GraphTheory(x,y,th,Th)
+# x=[6,2,0,7,8]
+# y=[8,7,1,9,3]
+# x,y=Numpify(x,y)
+# xd,yd,w,th=LeastAbsoluteDeviations(x,y,0.0001,1000)
+# print("y = ",th[1][0],"*x","+",th[0][0])
+# Th=LeastSquares(x,y)
+# print("y = ",Th[1][0],"*x","+",Th[0][0])
+# a,b=CorrelationCoefficients(th,Th,x,y)
+# print(a,'\n',b)
+# print(ZeroDerivativeCheck(xd,yd,w,th))
