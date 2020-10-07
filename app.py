@@ -19,6 +19,7 @@ from methods.Eigenvalue import solve_Eigenvalue
 from methods.ODE_EulerAndHeun  import func_xyzt,Solve_Euler ,Solve_Heun
 from methods.BilinearInterpolation import Surface_Interpolation
 from methods.LeastAbsoluteErrors import LeastAbsoluteDeviations, LeastSquares,CorrelationCoefficients, Numpify, Angulus, ZeroDerivativeCheck
+from methods.LogCosh import minLogCoshLoss, RegressionErrors
 import numpy as np
 
 app = Flask(__name__)
@@ -1678,6 +1679,50 @@ def LeastAbsoluteErrors():
     else:
         return render_template('LeastAbsoluteErrors.html', url="",
                                         title='Least Absolute Deviations', css="LeastAbsoluteErrors.css", wing="CF Header.png", logo="Logo.svg")
+
+
+@app.route("/LogCoshLoss", methods=['GET', 'POST'])
+def LogCoshLoss():
+    if request.method == 'POST':
+        xdata=[]
+        ydata=[]
+        i=0
+        Iterations=1000
+        Tolerance=0
+        Learning_Rate=0.01
+        if request.form['iterations']:
+            Iterations=eval(request.form['iterations'])
+        if request.form['Lamda']:
+            Learning_Rate=eval(request.form['Lamda'])
+
+
+
+        while (request.form['x_coordinates' + str(i)]!='' and request.form['y_coordinates' + str(i)]!=''):
+            try:
+                xdata.append(float(request.form['x_coordinates' + str(i)]))
+                ydata.append(float(request.form['y_coordinates' + str(i)]))
+            except:
+                pass
+            i += 1
+
+        x,y=Numpify(xdata,ydata)
+        Th=LeastSquares(x,y,4)
+        th, Gradi=minLogCoshLoss(x,y,Iterations,Learning_Rate,Tolerance,4)
+        Gradi="("+str(Gradi[0][0])+" , "+str(Gradi[1][0])+")"
+        Ya=str(round(th[1][0],4))+"*x"+"+"+str(round(th[0][0],4))
+        Ys=str(Th[1][0])+"*x"+"+"+str(Th[0][0])
+        Angle=str(round(Angulus(th,Th),3))+"°"
+        Qa,Qs=RegressionErrors(th,Th,x,y)
+        if (i == 0):
+            return render_template('LogCoshLoss.html', url="", error="Missing inputs!",
+                                    title='Log-Cosh Loss', css="LogCoshLoss.css", wing="CF Header.png", logo="Logo.svg")
+
+        return render_template('LogCoshLoss.html', url="",
+                                        title='Log-Cosh Loss', css="LogCoshLoss.css", wing="CF Header.png", logo="Logo.svg", Ya=Ya, Ys=Ys
+                                      ,Qs=Qs,Qa=Qa,Angle=Angle,Gradi=Gradi  )
+    else:
+        return render_template('LogCoshLoss.html', url="",
+                                        title='Log-Cosh Loss', css="LogCoshLoss.css", wing="CF Header.png", logo="Logo.svg")
 
 @app.route("/SurfaceInterpolation", methods=['GET', 'POST'])
 def SurfaceInterpolation():

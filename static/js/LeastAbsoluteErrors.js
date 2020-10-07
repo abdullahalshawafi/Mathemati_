@@ -20,8 +20,8 @@ var parameters = {
         }
     ],
     grid: false,
-    yAxis: { domain: [-5, 5] },
-    xAxis: { domain: [-5, 5] },
+    yAxis: { domain: [-10, 10] },
+    xAxis: { domain: [-10, 10] },
     height: window.innerWidth / 100 * 18.45,
     width: window.innerWidth / 100 * 19.13
 }

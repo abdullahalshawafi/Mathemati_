@@ -1,0 +1,296 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<main>
+	<script>
+		{% if error %}
+		alert("{{error}}")
+		{% endif %}
+	</script>
+		<div id="Web_1920___1">
+			<div id="MidTab">
+				<svg class="Rectangle_8">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_8" rx="1.5vw" ry="1.5vw" x="0" y="0" width="21.5vw" height="21.65vw">
+					</rect>
+				</svg>
+				<svg class="Rectangle_8-5">
+					<rect fill="#282828" id="Rectangle_8.5" rx="0.8vw" ry="0.8vw" x="0" y="0" width="18.5vw" height="18.65vw">
+					</rect>
+				</svg>
+				<section id="plot">
+					<div id="myFunction" class="Rectangle_8"></div>
+				</section>
+			</div>
+			<div id="LeftTap">
+				<svg class="Rectangle_3">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_3" rx="1.5vw" ry="1.5vw" x="0" y="0" width="22.98vw" height="35.9vw">
+					</rect>
+				</svg>
+				<svg class="Rectangle_2">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_2" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.1vw" height="4.23vw">
+					</rect>
+				</svg>
+				<svg class="Path_1" viewBox="127.353 288 21.742 20.791">
+					<path fill="rgba(60,60,60,1)" id="Path_1" d="M 127.3529815673828 288 C 139.6577301025391 288.034423828125 149.3477172851563 294.8020629882813 149.0894622802734 306.1839294433594 C 148.8312377929688 317.5657653808594 149.0894622802734 288 149.0894622802734 288 L 127.3529815673828 288 Z">
+					</path>
+				</svg>
+				<svg class="Path_2" viewBox="127.353 288 21.742 20.791">
+					<path fill="rgba(60,60,60,1)" id="Path_2" d="M 149.0945129394531 288 C 136.7897644042969 288.034423828125 127.0997924804688 294.8020629882813 127.358024597168 306.1839294433594 C 127.6162490844727 317.5657653808594 127.358024597168 288 127.358024597168 288 L 149.0945129394531 288 Z">
+					</path>
+				</svg>
+				<svg class="Rectangle_4">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_4" rx="1.5vw" ry="1.5vw" x="0" y="0" width="3.84vw" height="21vw">
+					</rect>
+				</svg>
+				<div id="System">
+					<div class="GraphOptions">
+						<div class="Slider-Container"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
+						<img class="points" id="Points" src="{{url_for('static', filename='Assets/Points.svg')}}">
+					</div>
+				</div>
+			</div>
+			<form action="{{url_for('LogCoshLoss')}}" method="post">
+				<div id="LeffTapCon">
+					<svg class="Rectangle_18">
+						<rect fill="rgba(40,40,40,1)" id="Rectangle_18" rx="1.55vw" ry="1.55vw" x="0" y="51" width="20.25vw" height="23.53vw">
+						</rect>
+					</svg>
+					<div class="Rectangle_28">
+                        <div class="button-div">
+                            <button type="submit" class="table-button" id="calc">
+                                <img src="{{url_for('static', filename='Assets/Calc Button.svg')}}" title="Calculate">
+                            </button>
+                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                            <button type="button" class="table-button" onclick="showVideo('{{url}}')">
+                                <img src="{{url_for('static', filename='Assets/Vid.svg')}}" title="Page Instructions">
+                            </button>
+                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                            <button type="button" class="table-button" onclick="window.open('{{url_for("static", filename="Reports/LAD.pdf")}}')">
+                                <img src="{{url_for('static', filename='Assets/REF Button.svg')}}" title="Downlaod Guide">
+                            </button>
+                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                            <button type="button" class="table-button" id="save">
+                                <img src="{{url_for('static', filename='Assets/Save.svg')}}\" title="Save Your Data">
+                            </button>
+                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                            <button type="button" class="table-button" id="load">
+                                <img src="{{url_for('static', filename='Assets/Load.svg')}}" title="Upload Your Data">
+                            </button>
+                            <img class="strk" src="{{url_for('static', filename='Assets/Storked-Copy.svg')}}">
+                            <button type="button" class="table-button" id="clear">
+                                <img src="{{url_for('static', filename='Assets/Clear.svg')}}" title="Clear Input Fields">
+                            </button>
+                        </div>
+					</div>
+					<div id="Non_Linearized_">
+						<label for="iterations">
+							<span>Iterations :</span>
+							<input type="text" id="iterations" name="iterations" value="{{request.form['iterations']}}" placeholder="Convergence might be slow, be generous." class="Rectangle_43" style="text-align: left" />
+						</label>
+					</div>
+
+					<div id="Lamda_">
+						<label for="Lamda">
+							<span>Learning Rate (λ) :</span>
+							<input type="text" id="Lamda" name="Lamda" value="{{request.form['Lamda']}}" placeholder=" Gradient Descent's Step Size." class="Rectangle_1999" style="text-align: left" />
+						</label>
+					</div>
+
+
+					<div id="Table_">
+						<span>Table:</span>
+					</div>
+					<div class="Rectangle_55">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>x</th>
+									<th>y</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input name="x_coordinates0" onfocusout="Scatter(this)" value="{{request.form['x_coordinates0']}}" type="text" /></td>
+									<td><input name="y_coordinates0" onfocusout="Scatter(this)" value="{{request.form['y_coordinates0']}}" type="text" /></td>
+
+								</tr>
+								<tr>
+									<td><input name="x_coordinates1" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates1']}}" type="text" /></td>
+									<td><input name="y_coordinates1" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates1']}}" type="text" /></td>
+
+								</tr>
+								<tr>
+									<td><input name="x_coordinates2" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates2']}}" type="text" /></td>
+									<td><input name="y_coordinates2" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates2']}}" type="text" /></td>
+								</tr>
+								<tr>
+									<td><input name="x_coordinates3" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates3']}}" type="text" /></td>
+									<td><input name="y_coordinates3" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates3']}}" type="text" /></td>
+
+								</tr>
+								<tr>
+									<td><input name="x_coordinates4" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates4']}}" type="text" /></td>
+									<td><input name="y_coordinates4" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates4']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates5" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates5']}}" type="text" /></td>
+									<td><input name="y_coordinates5" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates5']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates6" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates6']}}" type="text" /></td>
+									<td><input name="y_coordinates6" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates6']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates7" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates7']}}" type="text" /></td>
+									<td><input name="y_coordinates7" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates7']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates8" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates8']}}" type="text" /></td>
+									<td><input name="y_coordinates8" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates8']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates9"  onfocusout="Scatter(this)" value="{{request.form['x_coordinates9']}}" type="text" /></td>
+									<td><input name="y_coordinates9"  onfocusout="Scatter(this)" value="{{request.form['y_coordinates9']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates10"  onfocusout="Scatter(this)" value="{{request.form['x_coordinates10']}}" type="text" /></td>
+									<td><input name="y_coordinates10" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates10']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates11" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates11']}}" type="text" /></td>
+									<td><input name="y_coordinates11"  onfocusout="Scatter(this)" value="{{request.form['y_coordinates11']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates12" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates12']}}" type="text" /></td>
+									<td><input name="y_coordinates12" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates12']}}" type="text" /></td>
+
+								</tr>
+
+								<tr>
+									<td><input name="x_coordinates13"  onfocusout="Scatter(this)" value="{{request.form['x_coordinates13']}}" type="text" /></td>
+									<td><input name="y_coordinates13" onfocusout="Scatter(this)"  value="{{request.form['y_coordinates13']}}" type="text" /></td>
+
+								</tr>
+
+							</tbody>
+							<tfoot>
+								<tr>
+									<td><input name="x_coordinates14" onfocusout="Scatter(this)"  value="{{request.form['x_coordinates14']}}" type="text" /></td>
+									<td><input name="y_coordinates14"  onfocusout="Scatter(this)" value="{{request.form['y_coordinates14']}}" type="text" /></td>
+								</tr>
+							</tfoot>
+						</table>
+
+
+					</div>
+				</div>
+			</form>
+			<div id="AnswerTab">
+				<svg class="Rectangle_6">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_6" rx="1.5vw" ry="1.5vw" x="0" y="0" width="7.16vw" height="4.56vw">
+					</rect>
+				</svg>
+				<svg class="Rectangle_7">
+					<rect fill="rgba(60,60,60,1)" id="Rectangle_7" rx="1.5vw" ry="1.5vw" x="0" y="0" width="25.98vw" height="22.96vw">
+					</rect>
+				</svg>
+				<svg class="Path_3" viewBox="127.353 288 21.741 23.895">
+					<path fill="rgba(60,60,60,1)" id="Path_3" d="M 149.094482421875 288 C 136.7897644042969 288.0395812988281 127.0997924804688 295.8175354003906 127.358024597168 308.8985900878906 C 127.6162490844727 321.9796142578125 127.358024597168 288 127.358024597168 288 L 149.094482421875 288 Z">
+					</path>
+				</svg>
+				<div id="Brackets">
+					<div class="GraphOptions-Polynomial">
+						<img class="linesicon" id="LinesP" src="{{url_for('static', filename='Assets/Lines.svg')}}">
+						<div class="Slider-Container LineSlider"><input type="range" class="SliderInput" id="#Hue" onchange="GetHue()" value="60"></div>
+					</div>
+				</div>
+			</div>
+			<div id="Answer">
+				{% if Ya %}
+				<input type="text" class="Rectangle_32" value="{{Ya}}" onmouseout="addtograph()" disabled style="text-align: left" />
+				{% else %}
+				<input type="text" class="Rectangle_32" onmouseout="addtograph()" disabled style="text-align: left" />
+				{% endif %}
+				<div id="R__x____">
+					<span>yₗ=</span>
+				</div>
+
+
+
+				<div id="Sr___">
+					<span>Eₗ = </span>
+				</div>
+
+				<div id="R___">
+					<span>y ( </span>
+				</div>
+				<div id="____">
+					<span>) = </span>
+				</div>
+				<div id="St___">
+					<span>Eₛ = </span>
+				</div>
+
+				<div id="Correlation_factor__">
+					<span>θₛₗ&nbsp;=</span>
+				</div>
+				
+				<div id="Derivative">
+					<span>∇J&nbsp;=</span>
+				</div>
+				{% if not Gradi == '' %}
+				<input type="text" class="AbdullahAndEssamCheckedIn" value="{{Gradi}}" placeholder="(∂J/∂a , ∂J/∂b)" disabled style="text-align: left" />
+				{% else %}
+				<input type="text" class="AbdullahAndEssamCheckedIn" placeholder="(∂J/∂a , ∂J/∂b)" disabled style="text-align: left" />
+				{% endif %}
+
+				<div id="Best_fitting_curves_are__">
+					<span>yₛ=</span>
+
+					{% if Ys %}
+					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" value="{{Ys}}" disabled style="text-align: left">
+					{% else %}
+					<input type="text" class="Rectangle_Essam" onmouseout="addtograph()" disabled style="text-align: left">
+					{% endif %}
+				</div>
+				{% if not Qa == '' %}
+				<input type="text" class="Rectangle_34" value="{{Qa}}" placeholder="" disabled style="text-align: left" />
+				{% else %}
+				<input type="text" class="Rectangle_34" placeholder="" disabled style="text-align: left" />
+				{% endif %}
+				<input type="text" class="Rectangle_41" onkeyup="substitute(this)" style="width: 5vw; left: 1.6vw;" />
+				<input type="text" class="Rectangle_42" disabled style="left: 8.5vw; width: 15vw; text-align: left;"/>
+				{% if not Qs == '' %}
+				<input type="text" class="Rectangle_45" placeholder="" disabled value="{{Qs}}" style="text-align: left" />
+				{% else %}
+				<input type="text" class="Rectangle_45" placeholder="" disabled style="text-align: left" />
+				{% endif %}
+				{% if not Angle == '' %}
+				<input type="text" class="Rectangle_46" disabled value="{{Angle}}" placeholder="Included Angle" style="width: 20.7vw; left: 2.8vw; text-align: left;" />
+				{% else %}
+				<input type="text" class="Rectangle_46" disabled style="width: 20.7vw; left: 2.8vw; text-align: left;" />
+				{% endif %}
+			</div>
+		</div>
+
+	</main>
+
+	<script src="{{url_for('static', filename='js/LogCoshLoss.js')}}" charset="utf-8"></script>
+
+{% endblock content %}
