@@ -259,5 +259,4 @@ def DEMO():
     Z = np.array([3, 6, 1, 6, 4, 6, 7, 14, 4, 10, 11, 10, 5, 7])
     surf=Surface_Interpolation(Po1,Z)
     w=surf.GetPlane_of_P(1,1)
-    print(w)
 DEMO()

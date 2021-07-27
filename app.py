@@ -31,6 +31,10 @@ app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 def home():
     return render_template('Home.html')
 
+@app.route("/home-dynamic")
+def homeDynamic():
+    return render_template('home-dynamic.html')
+
 @app.route("/Credits")
 def Credits():
     return render_template('Credits.html', title='Credits', css="Credits.css", wing="Neon Green Header.svg", logo="Logo.svg")
@@ -1472,7 +1476,6 @@ def NonlinearSystem():
                     except:
                         anyErrorsInPosting = 1
                         errorMSG = "can't be solved using this method !"
-                    #print(result, Length)
                 elif Eqs_No == 3 and Z0 and h_xy:
                     try:
                         result = Newton_Raphson(Eqs_No, iterations, f_xy, g_xy, h_xy, X0, Y0, Z0, StoppingCriteria)
@@ -1746,7 +1749,6 @@ def SurfaceInterpolation():
         if xdata:
             try:
                 LHS, RHS, Constants, Sr = SurfaceInt(xdata, ydata, zdata, 10)
-                print(LHS,RHS,Constants,Sr)
             except:
                 return render_template('SurfaceInt.html', url="mRjVy0MSUI0",
                                         title='Surface Interpolation', css="SurfaceInt.css", wing="CF Header.png",

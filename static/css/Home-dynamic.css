@@ -1,0 +1,1026 @@
+.mediaViewInfo {
+	--web-view-name: custom 1;
+	--web-view-id: custom___1;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+
+:root {
+	--web-view-ids: custom___1;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+#credits:hover, #contact:hover {
+	color: #00FF88;
+}
+
+#custom___1 {
+	position: absolute;
+	width: calc(1518vw / 15.36);
+	height: calc(3599vw / 15.36);
+	background-color: rgba(23,23,23,1);
+	overflow: hidden;
+	--web-view-name: custom 1;
+	--web-view-id: custom___1;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+
+#Logo {
+	position: absolute;
+	width: calc(425.318vw / 15.36);
+	height: calc(203.949vw / 15.36);
+	left: calc(555.557vw / 15.36);
+	top: calc(192.298vw / 15.36);
+	overflow: visible;
+}
+
+.Path_1 {
+	overflow: visible;
+	position: absolute;
+	width: calc(298.697vw / 15.36);
+	height: calc(188.949vw / 15.36);
+	left: calc(55.621vw / 15.36);
+	top: 0vw;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Path_2 {
+	overflow: visible;
+	position: absolute;
+	width: calc(72.815vw / 15.36);
+	height: calc(15.962vw / 15.36);
+	left: calc(270.784vw / 15.36);
+	top: calc(186.846vw / 15.36);
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.Path_3 {
+	overflow: visible;
+	position: absolute;
+	width: calc(97.024vw / 15.36);
+	height: calc(162.325vw / 15.36);
+	left: 0vw;
+	top: calc(17.755vw / 15.36);
+	transform: matrix(1,0,0,1,0,0);
+}
+
+#We_find_x_for_you {
+	position: absolute;
+	left: calc(484vw / 15.36);
+	top: calc(452vw / 15.36);
+	overflow: visible;
+	width: calc(569vw / 15.36);
+	white-space: nowrap;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(75vw / 15.36);
+	color: rgba(46,129,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+}
+
+#CF {
+	position: absolute;
+	width: calc(1536vw / 15.36);
+	height: calc(768vw / 15.36);
+	left: 0vw;
+	top: calc(716vw / 15.36);
+	overflow: visible;
+}
+
+.Rectangle_2_n {
+	position: absolute;
+	overflow: visible;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: calc(5vw / 15.36);
+}
+
+#CFBlue {
+	position: absolute;
+	width: calc(720vw / 15.36);
+	height: calc(720vw / 15.36);
+	left: calc(57vw / 15.36);
+	top: calc(48vw / 15.36);
+	overflow: visible;
+	mix-blend-mode: lighten;
+}
+
+#_Curve_Fitting {
+	position: absolute;
+	left: calc(786vw / 15.36);
+	top: 0vw;
+	overflow: hidden;
+	width: calc(660vw / 15.36);
+	height: calc(182vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(150vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+}
+
+#PI {
+	position: absolute;
+	width: calc(420vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(780vw / 15.36);
+	top: calc(340vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Polynomial_Interpolation {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(29vw / 15.36);
+	overflow: visible;
+	width: calc(529vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Polynomial_Interpolation:hover {
+		font-size: calc(35vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#PI0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#SI {
+	position: absolute;
+	width: calc(450vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(1120vw / 15.36);
+	top: calc(507vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Spline_Interpolation {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
+	overflow: visible;
+	width: calc(439vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Spline_Interpolation:hover {
+		font-size: calc(33vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#SI0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#LSR {
+	position: absolute;
+	width: calc(420vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(780vw / 15.36);
+	top: calc(424vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Least_Squares_Regression {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(30vw / 15.36);
+	overflow: visible;
+	width: calc(371vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Least_Squares_Regression:hover {
+		font-size: calc(35vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#LSR0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#SR {
+	position: absolute;
+	width: calc(330vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(780vw / 15.36);
+	top: calc(507vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Surface_Regression {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
+	overflow: visible;
+	width: calc(230vw / 15.36);
+	height: calc(70vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Surface_Regression:hover {
+		font-size: calc(35vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#SR0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+
+#BI {
+	position: absolute;
+	width: calc(450vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(780vw / 15.36);
+	top: calc(590vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Bilinear_Interpolation {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
+	overflow: visible;
+	width: calc(471vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(26vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Bilinear_Interpolation:hover {
+		font-size: calc(29vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#BI0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+
+#SRI {
+	position: absolute;
+	width: calc(450vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(1120vw / 15.36);
+	top: calc(590vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Surface_Interpolation {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
+	overflow: visible;
+	width: calc(471vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(28vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Surface_Interpolation:hover {
+		font-size: calc(31vw / 15.36);
+		color: #1CA0FF;
+		transition: 0.1s;
+	}
+
+#SRI0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Data_is_often_given_for_discre {
+	position: absolute;
+	left: calc(837vw / 15.36);
+	top: calc(224vw / 15.36);
+	overflow: visible;
+	width: calc(674vw / 15.36);
+	height: calc(123vw / 15.36);
+	line-height: calc(35vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-weight: normal;
+	font-size: calc(24vw / 15.36);
+	color: rgba(177,177,177,1);
+}
+
+#NC {
+	position: absolute;
+	width: calc(1536vw / 15.36);
+	height: calc(726vw / 15.36);
+	left: 0vw;
+	top: calc(1438vw / 15.36);
+	overflow: visible;
+}
+
+.Rectangle_2_ba {
+	position: absolute;
+	overflow: visible;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+}
+
+#CalculusRED {
+	position: absolute;
+	width: calc(686vw / 15.36);
+	height: calc(686vw / 15.36);
+	left: calc(751vw / 15.36);
+	top: calc(40vw / 15.36);
+	overflow: visible;
+}
+
+#_Calculus {
+	position: absolute;
+	left: calc(60vw / 15.36);
+	top: calc(6vw / 15.36);
+	overflow: hidden;
+	width: calc(660vw / 15.36);
+	height: calc(222vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(150vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+}
+
+#DRE {
+	position: absolute;
+	width: calc(450vw / 15.36);
+	height: calc(111vw / 15.36);
+	left: calc(110vw / 15.36);
+	top: calc(395vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Differentiation_using_Richards {
+	position: absolute;
+	left: calc(88vw / 15.36);
+	top: calc(10vw / 15.36);
+	overflow: hidden;
+	width: calc(375vw / 15.36);
+	height: calc(101vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Differentiation_using_Richards:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF1C6D;
+		transition: 0.1s;
+	}
+
+#DRE0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#NCI {
+	position: absolute;
+	width: calc(450vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(110vw / 15.36);
+	top: calc(528vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Numerical_Integration {
+	position: absolute;
+	left: calc(88vw / 15.36);
+	top: calc(28vw / 15.36);
+	overflow: visible;
+	width: calc(330vw / 15.36);
+	height: calc(58vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Numerical_Integration:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF1C6D;
+		transition: 0.1s;
+	}
+
+#NCI0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#Calculus_is_the_mathematics_of {
+	position: absolute;
+	left: calc(114vw / 15.36);
+	top: calc(219vw / 15.36);
+	overflow: visible;
+	width: calc(744vw / 15.36);
+	height: calc(136vw / 15.36);
+	line-height: calc(35vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;;
+	font-weight: normal;
+	font-size: calc(24vw / 15.36);
+	color: rgba(177,177,177,1);
+}
+
+#DE {
+	position: absolute;
+	width: calc(1590vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: calc(2161vw / 15.36);
+	overflow: visible;
+}
+
+.Rectangle_2_bh {
+	position: absolute;
+	overflow: visible;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+}
+
+#_Differential_Eqs_ {
+	position: absolute;
+	left: calc(730vw / 15.36);
+	top: calc(13vw / 15.36);
+	overflow: hidden;
+	width: calc(861vw / 15.36);
+	height: calc(222vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(150vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+}
+
+#DE4 {
+	position: absolute;
+	width: calc(688vw / 15.36);
+	height: calc(688vw / 15.36);
+	left: calc(72vw / 15.36);
+	top: calc(25vw / 15.36);
+	overflow: visible;
+	mix-blend-mode: screen;
+}
+
+#ODERK {
+	position: absolute;
+	width: calc(370vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(834vw / 15.36);
+	top: calc(357vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#ODEI {
+	position: absolute;
+	width: calc(370vw / 15.36);
+	height: calc(80vw / 15.36);
+	left: calc(834vw / 15.36);
+	top: calc(440vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+.ODE___Iterative_methods {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(30vw / 15.36);
+	overflow: visible;
+	width: calc(300vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	.ODE___Iterative_methods:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF6D1C;
+		transition: 0.1s;
+	}
+
+#ODERK0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	overflow: visible;
+}
+
+#ODEI0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#ODEPC {
+	position: absolute;
+	width: calc(600vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(834vw / 15.36);
+	top: calc(521vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#ODE___Predictor_Corrector_meth {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(30vw / 15.36);
+	overflow: visible;
+	width: calc(555vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#ODE___Predictor_Corrector_meth:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF6D1C;
+		transition: 0.1s;
+	}
+
+
+#ODEPC0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#PDE {
+	position: absolute;
+	width: calc(400vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(834vw / 15.36);
+	top: calc(603vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#PDE___Finite_Differences {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(29vw / 15.36);
+	overflow: visible;
+	width: calc(371vw / 15.36);
+	height: calc(80vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#PDE___Finite_Differences:hover {
+		font-size: calc(35vw / 15.36);
+		color: #FF6D1C;
+		transition: 0.1s;
+	}
+
+#PDE0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#A_differential_equation_is_an_ {
+	position: absolute;
+	left: calc(791vw / 15.36);
+	top: calc(209vw / 15.36);
+	overflow: visible;
+	width: calc(711vw / 15.36);
+	height: calc(141vw / 15.36);
+	line-height: calc(35vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(24vw / 15.36);
+	color: rgba(177,177,177,1);
+}
+
+#SE {
+	position: absolute;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: calc(2879vw / 15.36);
+	overflow: visible;
+}
+
+.Rectangle_2_bw {
+	position: absolute;
+	overflow: visible;
+	width: calc(1536vw / 15.36);
+	height: calc(718vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+}
+
+#_Systems_of_Eqs_ {
+	position: absolute;
+	left: calc(60vw / 15.36);
+	top: calc(1vw / 15.36);
+	overflow: hidden;
+	width: calc(796vw / 15.36);
+	height: calc(222vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(150vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+}
+
+#SE_MODEL2 {
+	position: absolute;
+	width: calc(600vw / 15.36);
+	height: calc(600vw / 15.36);
+	left: calc(832vw / 15.36);
+	top: calc(88vw / 15.36);
+	overflow: visible;
+	mix-blend-mode: screen;
+}
+
+#LS {
+	position: absolute;
+	width: calc(500vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(142vw / 15.36);
+	top: calc(371vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Linear_Systems_of_Equations_ {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(31vw / 15.36);
+	overflow: hidden;
+	width: calc(420vw / 15.36);
+	height: calc(58vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Linear_Systems_of_Equations_:hover {
+		font-size: calc(35vw / 15.36);
+		color: #DFFF1C;
+		transition: 0.1s;
+	}
+
+#LS0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#NS {
+	position: absolute;
+	width: calc(550vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(142vw / 15.36);
+	top: calc(465vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Nonlinear_Systems_of_Equations {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
+	overflow: hidden;
+	width: calc(475vw / 15.36);
+	height: calc(58vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Nonlinear_Systems_of_Equations:hover {
+		font-size: calc(35vw / 15.36);
+		color: #DFFF1C;
+		transition: 0.1s;
+	}
+
+#NS0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#EP {
+	position: absolute;
+	width: calc(400vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: calc(142vw / 15.36);
+	top: calc(561vw / 15.36);
+	overflow: visible;
+	cursor: pointer;
+}
+
+#Eigenvalue_Problem {
+	position: absolute;
+	left: calc(110vw / 15.36);
+	top: calc(32vw / 15.36);
+	overflow: visible;
+	width: calc(300vw / 15.36);
+	height: calc(58vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(30vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	transition: 0.1s;
+}
+
+	#Eigenvalue_Problem:hover {
+		font-size: calc(35vw / 15.36);
+		color: #DFFF1C;
+		transition: 0.1s;
+	}
+
+#EP0000 {
+	position: absolute;
+	width: calc(100vw / 15.36);
+	height: calc(100vw / 15.36);
+	left: 0vw;
+	top: 0vw;
+	overflow: visible;
+}
+
+#A_system_of_equations_is_a_set {
+	position: absolute;
+	left: calc(114vw / 15.36);
+	top: calc(208vw / 15.36);
+	overflow: visible;
+	width: calc(744vw / 15.36);
+	height: calc( 142 vw / 15.36);
+	line-height: calc(35vw / 15.36);
+	margin-top: calc(-5.5vw / 15.36);
+	text-align: left;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(24vw / 15.36);
+	color: rgba(177,177,177,1);
+}
+
+#CF_b {
+	position: absolute;
+	width: calc(123.333vw / 15.36);
+	height: calc(740vw / 15.36);
+	left: calc(-48vw / 15.36);
+	top: calc(708vw / 15.36);
+	overflow: visible;
+}
+
+#NC_ca {
+	position: absolute;
+	width: calc(129vw / 15.36);
+	height: calc(774 vw / 15.36);
+	left: calc(1459vw / 15.36);
+	top: calc(1409vw / 15.36);
+	overflow: visible;
+}
+
+#DE_cb {
+	position: absolute;
+	width: calc(124vw / 15.36);
+	height: calc(744vw / 15.36);
+	left: calc(-52vw / 15.36);
+	top: calc(2143vw / 15.36);
+	overflow: visible;
+}
+
+#SE_cc {
+	position: absolute;
+	width: calc(126vw / 15.36);
+	height: calc(756vw / 15.36);
+	left: calc(1459vw / 15.36);
+	top: calc(2843vw / 15.36);
+	overflow: visible;
+}
+
+#Credits_______________________ {
+	position: absolute;
+	left: calc(406vw / 15.36);
+	top: calc(47vw / 15.36);
+	overflow: visible;
+	width: calc(725vw / 15.36);
+	white-space: nowrap;
+	text-align: center;
+	font-family: Reem Kufi;
+	font-style: normal;
+	font-weight: normal;
+	font-size: calc(40vw / 15.36);
+	color: rgba(255,255,255,1);
+	letter-spacing: calc(0.4vw / 15.36);
+	z-index: 2;
+}
+
+	#Credits_______________________:hover {
+		position: absolute;
+		left: calc(406vw / 15.36);
+		top: calc( 47 vw / 15.36);
+		overflow: visible;
+		width: calc(725vw / 15.36);
+		white-space: nowrap;
+		text-align: center;
+		font-family: Reem Kufi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: calc(40 vw / 15.36);
+		color: rgba(255,255,255,1);
+		letter-spacing: calc(0.4vw / 15.36);
+	}
+
+#backblue2 {
+	position: absolute;
+	width: calc(1600vw / 15.36);
+	height: calc(661vw / 15.36);
+	left: calc(-63.5vw / 15.36);
+	top: calc(-176.5vw / 15.36);
+	overflow: visible;
+}
+
+::-webkit-scrollbar {
+	height: 0px;
+	width: 10px;
+}

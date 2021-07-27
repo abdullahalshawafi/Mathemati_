@@ -1,0 +1,561 @@
+@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Radley:ital@1&display=swap");
+//The primary color, will change depending on the page.
+:root {
+  --primary-color: #2e81ff;
+  //var r = document.querySelector(':root');
+  //  r.style.setProperty('--primary-color', 'tomato');
+  //to get the current colot:   var rs = getComputedStyle(r);
+}
+
+//Removing purple and underlines from links.
+a {
+  text-decoration: none;
+  color: white;
+  &:visited {
+    color: white;
+  }
+}
+
+li {
+  z-index: 99;
+}
+//Setting the background color.
+body {
+  background-color: #1d1d1d;
+  margin: 0;
+  padding: 0;
+  font-family: "Reem Kufi";
+  box-sizing: border-box; //This means that padding doesn't add up on width and height.
+  cursor: default;
+}
+
+//Starting with the navigation bar.
+
+.navBar {
+  min-width: 870px;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -0.3rem;
+
+    ul {
+      list-style-type: none;
+    }
+
+    a {
+      font-weight: 100;
+      &:hover {
+        color: var(--primary-color);
+        font-weight: 500;
+      }
+    }
+
+    li {
+      display: inline;
+    }
+
+    .left-nav {
+      li {
+        display: inline;
+        margin-right: 2rem;
+      }
+    }
+
+    .right-nav {
+      margin-right: 2rem;
+      li {
+        display: inline;
+        margin-left: 2rem;
+      }
+    }
+  }
+}
+
+.logo {
+  text-align: center;
+  color: white;
+  min-width: 870px;
+
+  h1 {
+    font-size: 5rem;
+    font-weight: 100;
+
+    span {
+      
+      color: var(--primary-color);
+    }
+
+    margin-bottom: 0;
+    margin-top: 2rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 100;
+    color: var(--primary-color);
+    span {
+      font-family: "Radley";
+      color: white;
+      font-style: italic;
+    }
+    #love{
+      display: inline;
+      color: var(--primary-color);
+
+    }
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+.searchBox {
+  min-width: 870px;
+
+  text-align: center;
+  margin-top: 2rem;
+  form {
+    input[type="search"] {
+      font-weight: 100;
+      width: 60vw;
+      min-width: 600px;
+      border-radius: 0.5rem;
+      padding-left: 0.67rem;
+      height: 35px;
+      background-color: transparent;
+      border-color: transparent;
+      font-family: "Reem Kufi";
+      color: white;
+      font-size: 1rem;
+      position: relative;
+      &:focus {
+        outline: none;
+        border: 1.3px solid var(--primary-color);
+      }
+    }
+
+    button {
+      color: white;
+      background-color: transparent;
+      border: none;
+      margin-left: -2rem;
+      position: relative;
+      cursor: pointer;
+    }
+  }
+}
+
+.hero {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  .family-container {
+    position: relative;
+    z-index: 3;
+    bottom: -5px;
+    display: flex;
+    justify-content: center;
+    min-width: 870px;
+
+    .top-left {
+      //position: absolute;
+      align-self: flex-end;
+      margin-bottom: -1.1rem;
+      margin-right: -0.64rem;
+      //  left: 32.45rem;
+      // top:0.55rem;
+    }
+
+    .top-right {
+      //  position: absolute;
+      align-self: flex-end;
+      margin-bottom: -1.1rem;
+      margin-left: -0.1rem;
+
+      //  top:0.55rem;
+      // right: 32.45rem;
+    }
+
+    .family {
+      h3 {
+        color: var(--primary-color);
+        font-weight: 100;
+        text-align: center;
+        background-color: #262525;
+        border-top-left-radius: 0.9rem;
+        border-top-right-radius: 0.9rem;
+        margin: 0;
+        padding: 1.1rem;
+        padding-bottom: 0.33rem;
+        padding-top: 0.5rem;
+      }
+    }
+  }
+
+  .methods-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 870px;
+
+    .arrow {
+      margin: 0.7rem;
+      transform: scale(0.7);
+      &:hover {
+        transform: scale(0.8);
+      }
+    }
+
+    position: relative;
+    .Qmark {
+      position: absolute;
+      top: 11.7vw;
+      right: 21.3vw;
+      transform: scale(0.8);
+      cursor: pointer;
+      path {
+        fill: var(--primary-color);
+      }
+    }
+
+    .methods {
+      border: 1.2px solid var(--primary-color);
+      border-radius: 2.4rem;
+      background-color: #262525;
+      border: 5px solid #333333;
+      // z-index: -1;
+      width: 59%;
+      min-width: 600px;
+
+      ul {
+        width: 100%;
+        min-width: 100%;
+        padding: 0 1rem 0.3rem 1.5rem;
+
+        li {
+          margin-top: 1rem;
+          font-size: 1.3rem;
+          list-style: none;
+          padding-right: 20px;
+
+          &:before {
+            content: "⬤";
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            display: inline-block;
+            margin-right: 0.3em;
+          }
+
+          &:hover {
+            &::before {
+              cursor: pointer;
+
+              transform: scale(1.05);
+            }
+          }
+
+          span {
+            margin-right: 1rem;
+            height: 17px;
+            width: 17px;
+            min-width: 17px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  padding: 1rem 1rem 0.4rem 1rem;
+  min-width: 870px;
+  h4 {
+    font-weight: 100;
+    margin: 0.3rem 0.6rem;
+    letter-spacing: 0.05rem;
+  }
+
+  span {
+    color: var(--primary-color);
+    cursor: pointer;
+  }
+  .Cont {
+
+    a{
+      &:hover{
+        color: var(--primary-color);
+      }
+    }
+
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  color: white;
+}
+
+#Credits {
+  a {
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.searchBox {
+  &:before {
+    display: inline-block;
+    position: absolute;
+    min-width: 60vw;
+    width: 60vw;
+    border-radius: 0.5rem;
+    height: 35px;
+    border-color: transparent;
+    font-family: "Reem Kufi";
+    color: white;
+    font-size: 1rem;
+    content: attr(placeholder);
+    text-align: left;
+    padding-top: 0.33rem;
+    padding-left: 0.75rem;
+    color: #aaa;
+    background-color: #2d2c2c;
+    z-index: 0;
+    box-sizing: border-box;
+    //margin-left: -23.8rem;
+    margin-left: -29.8vw;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 99;
+  color: white;
+  padding: 10px;
+  padding-bottom: 50px;
+  border-width: 5px;
+  width: 185px;
+  min-width: 185px;
+  height: 210px;
+  margin: auto;
+  background-color: #161616;
+  opacity: 50%;
+  display: none;
+  top: 26rem;
+  left: 67.2rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  text-align: justify;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .searchBox {
+    &:before {
+      display: none;
+    }
+  }
+
+  .searchBox {
+    form {
+      input[type="search"] {
+        background-color: #262525;
+      }
+    }
+  }
+
+  .hero {
+    .methods-container {
+      .methods {
+        ul {
+          li {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .Qmark {
+    display: none;
+  }
+
+  .tooltip{
+    display: none !important;
+  }
+
+  .hero {
+    .methods-container {
+      .methods {
+        ul {
+          li {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Fireworks, Thanks to Codepen.io.
+//Note that "Anyone can use the code put on CodePen for whatever they wish."
+$particles: 50;
+$width: 500;
+$height: 500;
+
+// Create the explosion...
+$box-shadow: ();
+$box-shadow2: ();
+@for $i from 0 through $particles {
+  $box-shadow: $box-shadow,
+               random($width)-$width / 2 + px
+               random($height)-$height / 1.2 + px
+               //var(--primary-color);
+               hsl(random(400), 100, 50);
+  $box-shadow2: $box-shadow2, 0 0 #fff
+}
+@mixin keyframes ($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animationName} {
+        @content;
+    }
+
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin animation-delay ($settings) {
+    -moz-animation-delay: $settings;
+    -webkit-animation-delay: $settings;
+    -o-animation-delay: $settings;
+    -ms-animation-delay: $settings;
+    animation-delay: $settings;
+}
+
+@mixin animation-duration ($settings) {
+    -moz-animation-duration: $settings;
+    -webkit-animation-duration: $settings;
+    -o-animation-duration: $settings;
+    -ms-animation-duration: $settings;
+    animation-duration: $settings;
+}
+
+@mixin animation ($settings) {
+    -moz-animation: $settings;
+    -webkit-animation: $settings;
+    -o-animation: $settings;
+    -ms-animation: $settings;
+    animation: $settings;
+}
+
+@mixin transform ($settings) {
+    transform: $settings;
+    -moz-transform: $settings;
+    -webkit-transform: $settings;
+    -o-transform: $settings;
+    -ms-transform: $settings;
+}
+
+.pyro{
+  display: none;
+
+}
+
+.pyro > .before, .pyro > .after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  box-shadow: $box-shadow2;
+  @include animation((1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards));
+}
+    
+.pyro > .after {
+  @include animation-delay((1.25s, 1.25s, 1.25s));
+  @include animation-duration((1.25s, 1.25s, 6.25s));
+}
+        
+@include keyframes(bang) {
+  to {
+    box-shadow:$box-shadow;
+  }
+}
+    
+@include keyframes(gravity)  {
+  to {
+    @include transform(translateY(200px));
+    opacity: 0;
+  }
+}
+    
+@include keyframes(position) {
+  0%, 19.9% {
+    margin-top: 10%;
+    margin-left: 40%;
+  }
+  20%, 39.9% {
+    margin-top: 40%;
+    margin-left: 30%;
+  }
+  40%, 59.9% {  
+    margin-top: 20%;
+    margin-left: 70%
+  }
+  60%, 79.9% {  
+    margin-top: 30%;
+    margin-left: 20%;
+  }
+  80%, 99.9% {  
+    margin-top: 30%;
+    margin-left: 80%;
+  }
+}
