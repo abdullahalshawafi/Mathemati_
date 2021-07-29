@@ -701,12 +701,12 @@
         4.92,  4.96,  5.  ];
 
 				{% if x1 and y1 and z1 %}
-			  z1 = {{z1|tojson}};
-			  x1 = {{x1|tojson}};
-			  y1 = {{y1|tojson}};
+				z1 = {{z1|tojson}};
+				x1 = {{x1|tojson}};
+				y1 = {{y1|tojson}};
 				{% endif %}
 
-        var data_z1 = { z: z1, x: x1, y: y1, type: 'surface', colorscale: 'thermal', colorbar: {  thickness: '1000' } , marker: { colorbar: false }/*, colorbar: {showscale: false}*/};
+        var data_z1 = { z: z1, x: x1, y: y1, type: 'surface', colorscale: 'thermal', showscale: false};
         var layout = {
             
               plot_bgcolor: "#dddddd",
@@ -717,7 +717,7 @@
                     center: { x: -0.0175180927088209, y: 0.036161238213795494, z: -0.211808218572925 }
                 }
             },
-			  width: window.innerWidth / 100 * 20.5,
+			width: window.innerWidth / 100 * 20.5,
             height: window.innerWidth / 100 * 19.2,
             colorscale: "thermal",
 
@@ -729,7 +729,6 @@
 			    t: window.innerWidth / 100 * 1.94
 			  }
 			};
-
 			Plotly.newPlot('myFunction', [data_z1], layout);
 
 	</script>

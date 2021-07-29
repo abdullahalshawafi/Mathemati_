@@ -449,7 +449,7 @@ $box-shadow2: ();
                random($height)-$height / 1.2 + px
                //var(--primary-color);
                hsl(random(400), 100, 50);
-  $box-shadow2: $box-shadow2, 0 0 #fff
+  $box-shadow2: $box-shadow2, 0 0 var(--primary-color)
 }
 @mixin keyframes ($animationName) {
     @-webkit-keyframes #{$animationName} {
