@@ -1064,3 +1064,31 @@ textarea:focus, input:focus {
 .LineSlider {
     transform: rotate(90deg) translate(-1vw,1vw);
 }
+
+
+.LOGCOSH
+{
+position: fixed;
+top: 38vw;
+left: 70vw;
+background:linear-gradient(to right,#1ca0ff, #004f88);
+border-radius: 2rem;
+padding: 1rem 0.5rem;
+font-size: 0.8rem;
+font-weight:100;
+
+}
+.LOGCOSH:hover{
+    /* background:linear-gradient( to right, #004f88,#1ca0ff);*/
+    transform: scale(1.04); 
+    box-shadow: #004f88 0px 1px 13px 0px;
+
+}
+
+@media only screen and (max-width: 900px) {
+    .LOGCOSH
+    {
+display: none;
+    
+    }
+  }

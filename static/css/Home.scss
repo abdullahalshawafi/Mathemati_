@@ -284,6 +284,9 @@ body {
   span {
     color: var(--primary-color);
     cursor: pointer;
+    &:hover{
+      text-shadow: 0px 0px 1px var(--primary-color);     //more like a red glow effect.
+    }
   }
   .Cont {
 

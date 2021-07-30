@@ -24,7 +24,7 @@ const M = [
     "Least Absolute Deviations: Iteratively Reweighted Least Squares",
   ],
   [
-    "Least Squares Regression: The Normal Equation",
+    "Surface Fitting: Ordinary Least Squares",
     "Surface Interpolation: Bivariate Polynomials With Zero Residuals",
     "Bilinear Interpolation (Coming Soon)",
     "",
@@ -82,7 +82,7 @@ const allMethods = [
   "Spline Interpolation: Linear, Quadratic & Cubic Polynomials",
   "Least Absolute Deviations: Iteratively Reweighted Least Squares",
 
-  "Least Squares Regression: The Normal Equation",
+  "Surface Fitting: Ordinary Least Squares",
   "Surface Interpolation: Bivariate Polynomials With Zero Residuals",
   "Bilinear Interpolation",
 
