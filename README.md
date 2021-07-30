@@ -7,14 +7,23 @@
   http://www.Mathematinu.com/
 </div>
 <br>
-🎨 In case you're here to contribute:
-All it takes is to run app.py after cloning the project in order to get going, feel free to contact us.
+🎨 <b>In case you're here to contribute,</b>
+All it takes is to run app.py after cloning the project in order to get going. Feel free to contact us.
 <br>
 <br>
+
 <div align="center">
-  🛫 <b> Now it's time for a free tour </b> 🛬
+   <h2> Technologies used </h2>
+  <img src="Screenshots/Web.png" width='30%'>
+  <br>
+  <img src="Screenshots/Flask.png" width='30%' title="If you can't see me, you're Github is on light mode. True developers don't know what light mode is.">
+
+  </div>
+<div align="center">
+  <h2> 🛫 <b>  Now it's time for a free tour </b> 🛬 </h2>
   
-<h2> Legacy Homepage </h2> <img src="Screenshots/DynamicHome.gif">
+  <h3> Legacy Homepage </h3> 
+  <img src="Screenshots/DynamicHome.gif">
     <p>
     <br>
 Each slide here involves an animation for each method, like this:    <br>
@@ -26,43 +35,43 @@ Of course due to your internet, we'll get to Mars before you load the homepage, 
     <br>
   </p>
   
-<h2>Homepage </h2>
+<h3>Homepage </h3>
 <img src="Screenshots/GG.png">
   <p>
     <br>
-You can navigate through different pages using your mouse or keyboard, the five general topics are <b> Curve Fitting, Surface Fitting, Calculus, Differential Equations, System of Equations </b>    <br>
+You can navigate through different pages using your mouse or keyboard, the five general topics are <b> Curve Fitting, Surface Fitting, Calculus, Differential Equations and System of Equations. </b>    <br>
   </p>
   <img src="Screenshots/Left Right.gif">
   <p>
  <br>
-    In order to find the method you want to use in O(1), it also comes with a <b>search feature </b>
+    In order to find the method you want to use in O(1), it also comes with a <b>search feature.</b>
   <br>
   </p>
  <img src="Screenshots/Search.gif">
   <p>
  <br>
-   Real fans will be able to rediscover Mathemati in order to land on the <b> legacy homepage</b>, as a hint:.
+   True fans will be able to rediscover Mathemati in order to land on the <b> legacy homepage</b>, as a hint:
   <br>
   </p>
    <img src="Screenshots/Love.PNG">
   <p>
  <br>
-Now let's explore one of the methods included in each of the topics
+Now let's appraise one of the methods included in each of the topics
     <br>
   </p>
-  <h2>Curve Fitting: Interpolation</h2>
+  <h3>Curve Fitting: Interpolation</h3>
 <img src="Screenshots/Interpolation.gif">
   
-  <h2>Surface Fitting: Surface Interpolation</h2>
+  <h3>Surface Fitting: Surface Interpolation</h3>
 <img src="Screenshots/Surface.gif">
   
-  <h2>Calculus: Differentiation</h2>
+  <h3>Calculus: Differentiation</h3>
 <img src="Screenshots/Calculus.gif">
   
-   <h2>Differential Equations: Runge-Kutta Methods</h2>
+   <h3>Differential Equations: Runge-Kutta Methods</h3>
 <img src="Screenshots/Diff.gif">
   
- <h2>Systems of Eqs: Linear Systems</h2>
+ <h3>Systems of Eqs: Linear Systems</h3>
 <img src="Screenshots/LinearSys.gif">
   
   <p>
@@ -71,16 +80,17 @@ Most pages also come with a video to guide you on how to use it.
   <br>
   </p>
    <img src="Screenshots//VideoFeature.gif">
-They also less usually include a small document explaining how the method itself works/how it was implemented (the next icon).
-  
-   <h2>Credits</h2>
+  <p><br>
+They also usually include a small document explaining how the method itself works/how it was implemented (the next icon down.)
+  </br></p>
+   <h3>Credits</h3>
 <img src="Screenshots/Credits.gif">
  
-   <h2>Thank you :))</h2>
+   <h3>Thank you :))</h3>
 <img src="Screenshots/Fireworks.gif">
   <p align="left">
  <br>
-    <b>Final note:</b> Please beware that some methods in the website demand that you use Python's syntax for math, not all methods support exponentiation through (a^b) insead of (a**b) and you should write (x*y) instead of (xy).
+    <b>Final note:</b> Please beware that some methods in the website demand that you use Python's syntax for mathematical expressions, not all methods support exponentiation through (a^b) insead of (a**b) and you should write (x*y) instead of (xy).
   <br>
   </p>
   
