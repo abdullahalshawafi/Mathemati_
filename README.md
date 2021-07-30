@@ -4,7 +4,7 @@
 <p align='justify'>
   <b>Mathemati</b> is a website created with love by Cairo University's freshmen (graduating 2023) that features over <b>24 different numerical methods</b> that tackle different problems in mathematics, ranging from complicated problems like PDEs and ODEs that lack a closed form to other problems that you won't find elsewhere on the internet, such as Least Absolute Errors & Surface Interpolation, besides problems that can situationally get complicated such as non-linear systems and triple integrals. For the time being, you can visit the website at
   </p>
-  http://www.Mathematinu.com/
+https://Mathemati.herokuapp.com/
 </div>
 <br>
 <span title="Note that you might need to pip install -r requirements.txt if you're missing any of the Python packages used.">
