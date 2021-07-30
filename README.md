@@ -7,8 +7,10 @@
   http://www.Mathematinu.com/
 </div>
 <br>
+<span title="Note that you might need to pip install -r requirements.txt if you're missing any of the Python packages used.">
 🎨 <b>In case you're here to contribute,</b>
 All it takes is to run app.py after cloning the project in order to get going. Feel free to contact us.
+ </span>
 <br>
 <br>
 
