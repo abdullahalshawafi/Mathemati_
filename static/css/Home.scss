@@ -30,6 +30,10 @@ body {
   cursor: default;
 }
 
+.content{
+  min-height: 84vh;
+}
+
 //Starting with the navigation bar.
 
 .navBar {
@@ -146,6 +150,8 @@ body {
 }
 
 .hero {
+
+
   margin-top: 2rem;
   margin-bottom: 2rem;
 
@@ -275,6 +281,8 @@ body {
   font-size: 1rem;
   padding: 1rem 1rem 0.4rem 1rem;
   min-width: 870px;
+  margin-top: 1rem;
+  margin-bottom: 0.7rem;
   h4 {
     font-weight: 100;
     margin: 0.3rem 0.6rem;
@@ -435,6 +443,17 @@ input[type="search"]::-webkit-search-results-decoration {
       }
     }
   }
+}
+
+
+@media screen and (min-width: 1300px) {
+
+
+  .tooltip{
+    margin-left: 7vw;
+  }
+
+
 }
 
 //Fireworks, Thanks to Codepen.io.
