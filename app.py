@@ -20,16 +20,52 @@ from methods.ODE_EulerAndHeun  import func_xyzt,Solve_Euler ,Solve_Heun
 from methods.BilinearInterpolation import Surface_Interpolation
 from methods.LeastAbsoluteErrors import LeastAbsoluteDeviations, LeastSquares,CorrelationCoefficients, Numpify, Angulus, ZeroDerivativeCheck
 from methods.LogCosh import minLogCoshLoss, RegressionErrors
+from flask_sqlalchemy import SQLAlchemy
 import numpy as np
+from datetime import datetime
 
 app = Flask(__name__)
 app.static_folder = 'static'
 app.config['SECRET_KEY'] = 'edcb30ed4a6a5b467a2ed529ed889dbf'
 
-@app.route("/")
-@app.route("/home")
+
+
+#initializing DB
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///counter.db'    #We'll use SQLite
+db = SQLAlchemy(app)
+class CountDB(db.Model):
+   id = db.Column(db.Integer, primary_key = True)
+   student_id = db.Column(db.String, nullable = False)
+   date_created = db.Column(db.DateTime, default = datetime.utcnow)
+   def __repr__(self):
+    return "It's student with id %r" % self.student_id
+
+
+
+@app.route("/", methods=['GET','POST'])
+@app.route("/home", methods=['GET','POST'])
 def home():
-    return render_template('Home.html')
+    if request.method == 'POST':
+        given_id = request.form["id_from_alert"]    
+        print(given_id)
+        new_id = CountDB(student_id = given_id)   
+        print(new_id)
+        try:
+            db.session.add(new_id)
+            db.session.commit()
+            x = CountDB.query.order_by(CountDB.date_created).all()
+            print(x)
+            return redirect('/')
+        except:
+            return "There was an error due to your ID."
+    else:
+        return render_template('Home.html')
+    
+@app.route("/stickers")
+def get_sticker_ids():
+    students = CountDB.query.order_by(CountDB.date_created).all()                                  
+    return render_template('sticker.html', students = students) 
+
 
 @app.route("/home-dynamic")
 def homeDynamic():

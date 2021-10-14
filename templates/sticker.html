@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+   <title>Sticker List</title>
+</head>
+<body>
+
+   <div class="content">
+      <h1>Stickers Time</h1>
+      {% if students|length < 1%}
+      <h4>There are no stickers for anyone.</h4>
+      {% else %}
+      <table border="1">
+         <tr>
+            <th>
+               info
+            </th>
+
+            <th>
+               time
+            </th>
+            
+         </tr>
+         {% for student in students%}
+         <tr>
+            <td>
+               {{student.student_id}}
+            </td>
+            <td>
+               {{student.date_created}}
+            </td>
+            
+         </tr>
+         {% endfor %}
+      </table>
+      {% endif %}
+   </div>
+
+</body>
+</html>

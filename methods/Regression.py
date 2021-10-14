@@ -9,7 +9,6 @@ from numpy import *
 import sympy
 from sympy.abc import x,y
 from sympy import symbols
-from sympy import symbol
 from sympy.plotting import plot
 from mpl_toolkits.mplot3d import Axes3D
 from sympy.plotting import plot3d

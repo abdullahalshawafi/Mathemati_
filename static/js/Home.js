@@ -184,6 +184,27 @@ for (let k = 0; k < IDs.length; k++) {
   });
 }
 
+
+document.body.addEventListener("keydown", function (event) {
+  if(!localStorage.getItem("gotSticker")){
+  const key = event.key;
+  var myElement = document.getElementById("S");   
+  if (myElement !== document.activeElement) {   //search bar isn't active.
+    if(key == "x"){
+      let id = prompt("Please enter your ID:", "");
+      if (id != null && id != "" ) {      //empty or cancelled prompt.
+        if(!isNaN(id))                    //the given string is a number
+        document.getElementById("X").value = id;    // we will use this in a POST request in flask.
+        document.id_form.submit();
+        localStorage.setItem('gotSticker', 'true');
+      } 
+    }
+  }
+}
+});
+
+
+
 document.body.addEventListener("keydown", function (event) {
   const key = event.key;
   var myElement = document.getElementById("S");

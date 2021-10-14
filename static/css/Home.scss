@@ -136,6 +136,8 @@ body {
         outline: none;
         border: 1.3px solid var(--primary-color);
       }
+
+
     }
 
     button {
@@ -147,6 +149,11 @@ body {
       cursor: pointer;
     }
   }
+}
+
+#idBox {
+  display: none;
+  width: 1px;
 }
 
 .hero {
