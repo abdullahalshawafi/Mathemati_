@@ -24,7 +24,7 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 matplotlib==3.2.1
 mccabe==0.6.1
-mpmath==1.1.0
+mpmath==1.3.0
 numpy==1.22.0
 pefile==2019.4.18
 pycodestyle==2.5.0
