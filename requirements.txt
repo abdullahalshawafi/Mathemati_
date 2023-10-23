@@ -17,7 +17,7 @@ gevent-websocket==0.10.1
 greenlet==0.4.15
 gunicorn==20.0.4
 isort==4.3.21
-itsdangerous==1.1.0
+itsdangerous
 Jinja2==2.11.3
 kiwisolver==1.2.0
 lazy-object-proxy==1.4.3
